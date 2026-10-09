@@ -1,3 +1,19 @@
+## 2026-10-09 PASS
+artefact: C:\Dev\products\constellation-labs (commit ec11802, served at http://localhost:5191)  sha256: src/pages/ProductPage.tsx c7d46160e96bcd32576c49911c70673e38742d7091403f634d02b7bc16603cc0
+medium: web (product pages)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: /nod at 375 (scratchpad r8-nod-375.png); my own per-letter probe (p/h1b.mjs) on all four product pages at 320/360/375/390/414/768 after 2.5 s
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run
+relative: round 7 FAIL (Nod title split "N / od") -> fixed: yes. 24 of 24 titles on one line and inside the viewport; /nod 134-220px, right edge 261-438px within the viewport.
+similar prompt: unchanged (partly)
+scores: originality 7/10, design quality 7/10, reference fidelity 8/10, craft 7/10
+hard blockers:
+none
+taste flags:
+- round 7 flags stand: Pinpoints title much smaller than the others on mobile, Sam's avatar on #C8753A, liquid on most sections, WEB-08 gradient text twice, small eyebrows on liquid, Plato Coffee in Nod lab notes, Acre dashboard figures in the proof shot
+- gate note: PASS with 3 or more taste flags, so show Aldo the render before calling it done
+
 ## 2026-10-09 FAIL
 artefact: C:\Dev\products\constellation-labs (commit 0d3b7cb, served at http://localhost:5191)  sha256: src/pages/ProductPage.tsx a7eb725393b0a8e7210f2dda8dee09feb303e0a12fff854690536a42ef97ba13
 medium: web (product pages)  client-facing: yes  stage: final: BRIEF.md
