@@ -132,6 +132,13 @@
   @keyframes marquee { to { transform: translateX(-50%); } }
 
   .dash-ring { stroke-dasharray: 2 7; }
+
+  /* Prism's hero word splits light like the prism does */
+  .prism-split { animation: prism-split 5s ease-in-out infinite; }
+  @keyframes prism-split {
+    0%, 100% { text-shadow: 0 0 0 transparent, 0 0 0 transparent; }
+    45%, 60% { text-shadow: -.035em 0 0 rgba(254,110,54,.85), .035em 0 0 rgba(124,140,240,.85); }
+  }
 }
 
 @layer utilities {

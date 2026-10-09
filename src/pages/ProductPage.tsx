@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Patch from "@/components/patches/Patch";
 import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import { SCENES } from "@/components/scenes";
+import { SIGNATURES } from "@/components/signature";
 import StageTrack from "@/components/home/StageTrack";
 import Cta from "@/components/ui/Cta";
 import StatusChip from "@/components/ui/StatusChip";
@@ -40,13 +41,21 @@ function Product({ p }: { p: Product }) {
   const next = nextProduct(p.slug);
   const index = products.findIndex((x) => x.slug === p.slug);
   const real = REAL[p.slug];
+  const sig = SIGNATURES[p.slug];
   const stage = p.color;
 
   useMotion(root, (r) => {
     gsap.timeline({ defaults: { ease: "expo.out" } })
       .from(r.querySelectorAll(".pp-ch"), { yPercent: 105, duration: 1.3, stagger: 0.04 }, 0.15)
       .from(r.querySelectorAll(".pp-fade"), { y: 24, opacity: 0, duration: 1, stagger: 0.08 }, 0.5)
-      .from(r.querySelector(".pp-patch"), { scale: 0.4, rotate: -30, opacity: 0, duration: 1.4, ease: "back.out(1.5)" }, 0.4);
+      .from(r.querySelector(".pp-patch"), p.slug === "pinpoints"
+        ? { yPercent: -260, rotate: 0, opacity: 0, duration: 1.3, ease: "bounce.out" } // dropped like a pin
+        : { scale: 0.4, rotate: -30, opacity: 0, duration: 1.4, ease: "back.out(1.5)" }, 0.4);
+    // One small gesture per venture, so no two heroes behave alike
+    const hp = r.querySelector(".pp-patch-inner");
+    if (p.slug === "nod" && hp) gsap.to(hp, { rotate: -12, duration: 0.35, ease: "power2.inOut", yoyo: true, repeat: 3, repeatDelay: 0.05, delay: 2.2, onComplete() { this.delay(3).restart(true); } });
+    if (p.slug === "acre" && hp) gsap.to(hp, { y: -14, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: -1 });
+    if (p.slug === "prism") r.querySelector(".pp-title")?.classList.add("prism-split");
     gsap.to(r.querySelector(".pp-patch"), { yPercent: 30, rotate: 16, ease: "none", scrollTrigger: { trigger: r.querySelector(".pp-hero"), start: "top top", end: "bottom top", scrub: true } });
     const caps = r.querySelector(".pp-caps");
     if (caps) {
@@ -68,7 +77,7 @@ function Product({ p }: { p: Product }) {
             <span className="eyebrow !text-ink/70">Lab no. 0{index + 1}</span>
             <StatusChip status={p.status} className="ml-1" />
           </div>
-          <h1 className="mt-6 overflow-hidden pb-[.08em] font-black leading-[.8] tracking-[-0.068em]" style={{ fontSize: `min(300px, calc((100vw - 2 * var(--gutter)) / ${(p.name.length * 0.58).toFixed(2)}))` }} aria-label={p.name}>
+          <h1 className="pp-title mt-6 overflow-hidden pb-[.08em] font-black leading-[.8] tracking-[-0.068em]" style={{ fontSize: `min(300px, calc((100vw - 2 * var(--gutter)) / ${(p.name.length * 0.58).toFixed(2)}))` }} aria-label={p.name}>
             {p.name.split("").map((c, k) => <span key={k} aria-hidden="true" className="pp-ch inline-block">{c}</span>)}
           </h1>
           <div className="mt-8 grid items-end gap-10 md:grid-cols-[1fr_auto]">
@@ -88,7 +97,7 @@ function Product({ p }: { p: Product }) {
               onPointerLeave={() => setSheen(null)}
               aria-hidden="true"
             >
-              <Patch slug={p.slug} sheen={sheen} />
+              <div className="pp-patch-inner"><Patch slug={p.slug} sheen={sheen} /></div>
             </div>
           </div>
         </div>
@@ -115,11 +124,31 @@ function Product({ p }: { p: Product }) {
         </div>
       </section>
 
-      {/* What it does */}
+      {/* Try it: each venture's own experiment */}
+      {sig && (
+        <section aria-labelledby="try-title" className="relative overflow-clip">
+          <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg="#F3EEE7" wash={0.7} grain={0.11} speed={0.25} scale={1.8} resolution={0.45} className="absolute inset-0 h-full w-full" />
+          <div className="wrap relative pt-24 md:pt-32">
+            <p className="eyebrow" data-reveal>Try it · Experiment no. 0{index + 1}</p>
+            <div className="mt-4 grid gap-6 md:grid-cols-[1.2fr_1fr] md:items-end">
+              <h2 id="try-title" className="d-l" data-reveal>{sig.title}</h2>
+              <p className="lede" data-reveal=".1">{sig.line}</p>
+            </div>
+          </div>
+          {sig.fullBleed ? <div className="relative"><sig.Component /></div> : <div className="wrap relative pb-24 pt-12 md:pb-32 md:pt-16"><sig.Component /></div>}
+        </section>
+      )}
+
+      {/* What it does, and who for */}
       <section aria-labelledby="caps-title" className="pp-caps wrap grid gap-14 py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
         <div className="md:sticky md:top-28 md:self-start">
           <h2 id="caps-title" className="d-l" data-reveal>What it does.</h2>
-          <div className="pp-caps-patch patch patch-shadow mt-12 hidden w-[200px] md:block" aria-hidden="true"><Patch slug={p.slug} /></div>
+          <p className="lede mt-6 max-w-[22rem]" data-reveal>
+            Made for {p.audiences.map((a, i) => (
+              <span key={a}>{i > 0 && (i === p.audiences.length - 1 ? " and " : ", ")}<strong className="font-bold text-ink">{a.charAt(0).toLowerCase() + a.slice(1)}</strong></span>
+            ))}.
+          </p>
+          <div className="pp-caps-patch patch patch-shadow mt-12 hidden w-[180px] md:block" aria-hidden="true"><Patch slug={p.slug} /></div>
         </div>
         <ol className="border-t hairline">
           {p.capabilities.map((c, i) => (
@@ -129,19 +158,6 @@ function Product({ p }: { p: Product }) {
             </li>
           ))}
         </ol>
-      </section>
-
-      {/* Who it's for */}
-      <section aria-labelledby="who-title" className="wrap pb-24 md:pb-36">
-        <h2 id="who-title" className="d-m" data-reveal>Who it's for.</h2>
-        <ul className={`mt-10 grid gap-3 ${p.audiences.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
-          {p.audiences.map((a, i) => (
-            <li key={a} className="grain sheet flex min-h-[140px] flex-col justify-between p-7 md:min-h-[200px] md:p-9" style={{ background: i === 0 ? stage : i === 1 ? "hsl(var(--cream))" : "hsl(var(--mist))" }} data-reveal={String(i * 0.08)}>
-              <span className="num text-[13px] text-ink-soft">0{i + 1}</span>
-              <span className="d-s max-w-[14ch]">{a}</span>
-            </li>
-          ))}
-        </ul>
       </section>
 
       {/* The real thing */}
@@ -165,18 +181,28 @@ function Product({ p }: { p: Product }) {
         </section>
       )}
 
-      {/* Where it's at */}
-      <section aria-labelledby="status-title" className="wrap py-24 md:py-36">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr]">
-          <h2 id="status-title" className="d-l" data-reveal>Where it's at.</h2>
-          <dl className="grid gap-6 self-end">
-            <div className="border-t hairline pt-4" data-reveal><dt className="eyebrow">Now</dt><dd className="mt-2 text-[20px] font-bold">{p.now}</dd></div>
-            <div className="border-t hairline pt-4" data-reveal><dt className="eyebrow">Next</dt><dd className="mt-2 text-[20px] font-bold">{p.next}</dd></div>
-            <div className="border-t hairline pt-4" data-reveal>
-              <dt className="eyebrow">Built with</dt>
-              <dd className="mt-3 flex flex-wrap gap-2">{p.stack.map((s) => <span key={s} className="chip">{s}</span>)}</dd>
+      {/* Lab notes */}
+      <section aria-labelledby="notes-title" className="wrap py-24 md:py-36">
+        <div className="sheet relative isolate overflow-hidden p-7 md:p-14" style={{ background: stage }} data-reveal>
+          <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg={p.color} wash={0.66} grain={0.12} speed={0.22} scale={1.8} resolution={0.45} className="absolute inset-0 -z-10 h-full w-full" />
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-ink/15 pb-5">
+            <h2 id="notes-title" className="text-[13px] font-bold uppercase tracking-[.2em]">Lab notes · Experiment no. 0{index + 1} · {p.name}</h2>
+            <StatusChip status={p.status} />
+          </div>
+          <div className="grid gap-10 pt-8 md:grid-cols-[1.4fr_1fr] md:gap-16 md:pt-12">
+            <div>
+              <p className="text-[12px] font-bold uppercase tracking-[.2em] text-ink/75">Hypothesis</p>
+              <p className="mt-4 text-[clamp(26px,3.2vw,46px)] font-black leading-[1.05] tracking-[-0.035em]">{p.hypothesis}</p>
             </div>
-          </dl>
+            <dl className="grid content-end gap-6">
+              <div className="border-t border-ink/15 pt-4"><dt className="text-[12px] font-bold uppercase tracking-[.2em] text-ink/75">Where it's at</dt><dd className="mt-2 text-[19px] font-bold">{p.now}</dd></div>
+              <div className="border-t border-ink/15 pt-4"><dt className="text-[12px] font-bold uppercase tracking-[.2em] text-ink/75">Next</dt><dd className="mt-2 text-[19px] font-bold">{p.next}</dd></div>
+              <div className="border-t border-ink/15 pt-4">
+                <dt className="text-[12px] font-bold uppercase tracking-[.2em] text-ink/75">Built with</dt>
+                <dd className="mt-3 flex flex-wrap gap-2">{p.stack.map((x) => <span key={x} className="chip">{x}</span>)}</dd>
+              </div>
+            </dl>
+          </div>
         </div>
         <div className="mt-16"><StageTrack compact highlight={p.slug} /></div>
       </section>

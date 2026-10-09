@@ -24,6 +24,8 @@ export interface Product {
   color: string;
   /** Index into STAGES: 0 Idea, 1 Prototype, 2 In use, 3 Beta, 4 Graduated. */
   stage: 0 | 1 | 2 | 3 | 4;
+  /** The experiment, stated as a belief we are testing. Not a result. */
+  hypothesis: string;
   cta: { label: string; href: string; external: boolean };
   problem: string;
   capabilities: string[];
@@ -55,6 +57,7 @@ export const products: Product[] = [
     kind: "Property platform",
     color: "#d2d9c7",
     stage: 3,
+    hypothesis: "If every party works from the same deal room, a property deal stops getting lost between email, WhatsApp and paper.",
     cta: { label: "Open Acre", href: LINKS.acre, external: true },
     problem:
       "Property transactions in South Africa run across email, WhatsApp, paper and separate verification steps. Nobody, not the buyer, seller, owner or agent, can see where a deal actually stands.",
@@ -79,6 +82,7 @@ export const products: Product[] = [
     kind: "Visual feedback",
     color: "#f0c0a1",
     stage: 3,
+    hypothesis: "If feedback is pinned to the exact element, and clients can show the change they mean, review rounds get shorter.",
     cta: { label: "Ask for a Pinpoints invite", href: LINKS.pinpointsInvite, external: true },
     problem:
       "Review rounds die in email threads and screenshots. \"The button on the second page\" is not feedback anyone can act on.",
@@ -103,6 +107,7 @@ export const products: Product[] = [
     kind: "Headless CMS",
     color: "#d8d1df",
     stage: 2,
+    hypothesis: "If clients can change their own words, images and sections, a finished site stops needing a developer for every small edit.",
     cta: { label: "Book a Prism demo", href: LINKS.prismDemo, external: true },
     problem:
       "Sites built with AI tools look great at handover. Then the client wants to change a headline and has to come back to the developer, or worse, open the code.",
@@ -130,6 +135,7 @@ export const products: Product[] = [
     kind: "In-person networking",
     color: "#b3d3c6",
     stage: 1,
+    hypothesis: "If saying hello costs a nod instead of a cold approach, people working in the same room will actually meet.",
     cta: { label: "Join the pilot", href: LINKS.nodPilot, external: true },
     problem:
       "Remote workers sit next to useful people every day in coffee shops and coworking spaces, and never meet them. Walking up cold feels awkward.",
