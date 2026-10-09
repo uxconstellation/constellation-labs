@@ -1,4 +1,20 @@
 ## 2026-10-09 FAIL
+artefact: C:\Dev\products\constellation-labs (commit a9de9af, served at http://localhost:5191)  sha256: src/components/home/Hero.tsx a1a30e60d77eab8c38b376407f16736f8d5d55c29f72daae7e8ae3494d8ef77f
+medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: re-verify pass on /pinpoints, /prism and the home hero at 1440 (scratchpad p/: pinpoints-proof, prism-now, hero-t20, flips.png), a 68-sample viewport probe at 1440 and 1280, and /build and /404 at 390 (scratchpad shots2/)
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: unchanged from the round below (5 findings, all non-blocking)
+relative: round 1 FAIL (3 blockers) -> fixed: partly. Pinpoints claim fixed: the page reads "Built, and in beta.", the CTA is a mailto invite, and the services-page placeholder link is gone from rendered anchors. Prism usage claim fixed: "Early access, running on our own studio work." Orbit labels no longer leave the viewport (0 of 68 samples), but flipping them left now runs them through the glass mark's ring.
+similar prompt: unchanged (partly)
+scores: originality 6/10, design quality 7/10, reference fidelity 7/10, craft 6/10
+hard blockers:
+- H4 | Home hero at 1440: when a status label flips left (data-flip=1 at x > 70% of the stage, Hero.tsx:61/151), it sits on the 3D ring and the ring stroke crosses the text. Seen in p/hero-t20.png ("Nod, in development" struck through at about x 1115-1245, y 523, last letter touching the Nod patch stitching) and in p/flips.png frames 3 and 6 (Nod, Prism). Flipped in 18 of 52 label samples. The builder's probe checks only the viewport, so it passes. | Give the label a solid paper chip (bg-cream, px-2, rounded-full) so the ring passes behind it, or flip the label above or below the patch instead of towards the mark, then add a label-vs-mark overlap check to probe-labels.mjs
+taste flags:
+- unchanged from round 1 below (product-page template, WEB-14, WEB-05/06, WEB-20, mobile scene legibility, card micro-label AA, Plato Coffee and Acre dashboard figures, footer pile on every route)
+- /build and /404 at 390: no new issues. The /build hero "Your patch goes here" ring repeats twice down the page (shots2/build-390-00, -01).
+
+## 2026-10-09 FAIL
 artefact: C:\Dev\products\constellation-labs (commit 905c1df, served at http://localhost:5191)  sha256: src/pages/Index.tsx 5f097ef7302b89695e97fc2ad3b21f966ae57a87b45c1626c95904dafe34cf37; dist/index.html ebe8e81d191e202578eb0cbc1e3412accac93c86cbc3d524a8b1538c4134725f (dist may predate HEAD; review is of the dev server)
 medium: web (8 routes)  client-facing: yes (investors and clients)  stage: final: BRIEF.md deliverable constellationlabs.cc
 builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)

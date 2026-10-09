@@ -59,6 +59,7 @@ export default function Hero() {
         p.style.setProperty("--s", `${s}`);
         p.style.zIndex = depth > -0.05 ? "4" : "1";
         p.dataset.flip = x > w * 0.7 ? "1" : "0"; // keep the label inside the stage
+        p.dataset.back = depth > -0.05 ? "0" : "1"; // behind the glass: hide the label
       });
     };
     place();
@@ -148,7 +149,7 @@ export default function Hero() {
                     <Patch slug={p.slug} />
                   </span>
                 </span>
-                <span data-orbit-label className={cn("pointer-events-none absolute left-[88%] top-[18%] hidden group-data-[flip='1']:left-auto group-data-[flip='1']:right-[88%] sm:flex w-max items-center gap-1.5 text-[12.5px] font-medium text-ink-soft transition-all duration-500 ease-lab", hover === i && "text-ink")}>
+                <span data-orbit-label className={cn("pointer-events-none absolute left-[88%] top-[18%] hidden w-max items-center gap-1.5 rounded-full border border-ink/10 bg-paper px-2.5 py-1 text-[12.5px] font-medium text-ink-soft shadow-[0_4px_14px_-6px_rgba(58,36,16,.35)] transition-[opacity,color] duration-500 ease-lab group-data-[back='1']:opacity-0 group-data-[flip='1']:left-auto group-data-[flip='1']:right-[88%] sm:flex", hover === i && "text-ink")}>
                   <i className="h-1.5 w-1.5 rounded-full" style={{ background: statusDot[p.status] }} />
                   {p.name}, {p.status.toLowerCase()}
                 </span>
