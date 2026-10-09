@@ -1,4 +1,20 @@
 ## 2026-10-09 PASS
+artefact: C:\Dev\products\constellation-labs\dist (commit 5179447, deploy build)  sha256: dist/index.html 5f12815e750de65ad39c3dd1f3067053564f0050043f6fea8bdb136f7434e628
+medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: no re-render needed. The round 8 PASS render (ec11802) stands because no rendered source changed: `git diff -w ec11802 HEAD -- src vite.config.ts index.html package.json` is empty. Changes since then: SLOP-REVIEW.md, STATUS.md, public/_redirects removed, public/_headers added (X-Robots-Tag: noindex, nofollow), wrangler.toml added (assets-only Worker, ./dist, SPA not_found_handling), vite.config.ts line endings only. A fresh `vite build` into scratch is byte-identical to dist/ (diff -rq clean); dist/_headers carries noindex.
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run (no copy change)
+relative: round 8 PASS -> carried: deploy config only
+similar prompt: unchanged (partly)
+scores: originality 7/10, design quality 7/10, reference fidelity 8/10, craft 7/10
+hard blockers:
+none
+taste flags:
+- round 8 flags stand (see below)
+- gate note: PASS with 3 or more taste flags, so show Aldo the render before calling it done
+
+## 2026-10-09 PASS
 artefact: C:\Dev\products\constellation-labs (commit ec11802, served at http://localhost:5191)  sha256: src/pages/ProductPage.tsx c7d46160e96bcd32576c49911c70673e38742d7091403f634d02b7bc16603cc0
 medium: web (product pages)  client-facing: yes  stage: final: BRIEF.md
 builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)

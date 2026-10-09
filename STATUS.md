@@ -1,6 +1,7 @@
 # Constellation Labs: status
 
 ## Current truth (2026-10-09)
+- REVIEW LINK: https://constellation-labs-review.aldo-144.workers.dev (Cloudflare Workers, Aldo@uxconstellation.com's Account, version 1404705e-a2f1-4c5f-ae49-9525935d76aa, X-Robots-Tag noindex). Publish: `npm run build`, then wrangler from this folder (account pinned in wrangler.toml). Live walk scripts/walk-live.mjs: 8/8 routes, 0 console errors, images 2/2. Stage: Aldo review.
 - Home: C:\Dev\products\constellation-labs (git, not pushed; target uxconstellation/constellation-labs). Baseline import c5d86ec.
 - Built: index, /acre /pinpoints /prism /nod, /invest, /build, 404. Dev: `labs-dev` in C:\Dev\.claude\launch.json (port 5191).
 - Index order: hero (Made in Labs., glass mark, patch orbit) > trading-card venture shelf (Google Labs shelf) > What Labs is (colour sweep) > Why we build > How a venture grows (stage track) > Two ways in (invest/build doors) > patch-pile footer.
@@ -9,4 +10,4 @@
 - Toolchain: SWC native binding blocked by a cache-dir ACL on this machine, switched to @vitejs/plugin-react (Babel). Lockfile regenerated on Windows.
 - Checks: tsc clean, vitest 4/4, build OK (main chunk 196 KB gzip, Three chunk lazy). Screenshots via scripts/shots.mjs (Playwright).
 - SLOP-REVIEW.md: PASS round 8 (2026-10-09, distinct product pages). Remaining taste flags in SLOP-REVIEW.md; Aldo to see renders before "done".
-- Not done: Pinpoints live URL (LINKS.pinpoints placeholder), deploy host, route code-splitting.
+- Not done: Pinpoints live URL (CTA is an invite mailto until then), production host for constellationlabs.cc, GitHub remote, route code-splitting.

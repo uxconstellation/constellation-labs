@@ -1,5 +1,6 @@
 name = "constellation-labs-review"
 compatibility_date = "2026-09-01"
+account_id = "14433850716ebaf371127d380c2d0673" # Aldo@uxconstellation.com's Account
 
 [assets]
 directory = "./dist"
