@@ -17,9 +17,9 @@ for (let s = 0; s < 20; s++) {
       const b = e.getBoundingClientRect();
       const top = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2);
       e.style.pointerEvents = "";
-      return [b.left, b.right, !!top && e.contains(top)];
+      return [b.left, b.right, !!top && e.contains(top), top ? (top.className?.baseVal ?? top.className).toString().slice(0, 60) + " " + top.tagName : "none"];
     }));
-  for (const [l, rr, onTop] of r) { checks++; if (l < 0 || rr > 1440 || !onTop) bad++; }
+  for (const [l, rr, onTop, who] of r) { checks++; if (l < 0 || rr > 1440 || !onTop) { bad++; console.log("fail", Math.round(l), Math.round(rr), who); } }
   // jump the orbit forward by waiting
   await p.waitForTimeout(3200);
 }

@@ -60,7 +60,7 @@ export default function Hero() {
         p.style.setProperty("--s", `${s}`);
         p.style.zIndex = depth > -0.05 ? "4" : "1";
         p.dataset.flip = x > w * 0.7 ? "1" : "0"; // keep the label inside the stage
-        p.dataset.back = depth > -0.05 ? "0" : "1"; // behind the glass: hide the label
+        p.dataset.back = depth > 0.15 ? "0" : "1"; // behind the glass: hide the label
       });
     };
     place();
