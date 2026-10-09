@@ -1,3 +1,20 @@
+## 2026-10-09 PASS
+artefact: C:\Dev\products\constellation-labs (commit 9c3b882, served at http://localhost:5191)  sha256: src/components/home/Hero.tsx 2ee0fe697e6ef9df03824d35258d7398dd56a1ec9085be49c94a12f7ec626a7a
+medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: home hero orbit sampled every 4 s over a full orbit at 1440x900 and 1280x900, 16 frames each (scratchpad r3/sheet1440.png, sheet1280.png, native o*.png)
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: unchanged (5 findings, all non-blocking)
+relative: round 2 FAIL (H4, the ring crossed the flipped labels) -> fixed: yes. The labels sit on solid paper chips in front of the ring in all 32 frames. 67 visible label samples, 0 off-screen. Labels hide while their patch is behind the glass.
+similar prompt: unchanged (partly)
+scores: originality 6/10, design quality 7/10, reference fidelity 7/10, craft 7/10
+hard blockers:
+none
+taste flags:
+- craft | At 1280 two chips can sit edge to edge mid-orbit ("Nod, in development" touching "Prism, early access", r3/o1280-04.png). Both stay legible, so this is not a blocker. | Hide the trailing label when two chip boxes come within 8px
+- round 1 flags still stand (see below): product-page template stamped four times, WEB-14 three-card rows, WEB-05/06 numbering and eyebrows, WEB-20 accent word, mobile scene legibility, card micro-label AA (3.56-4.19:1), Plato Coffee and Acre dashboard figures, footer pile on every route
+- gate note: PASS with 3 or more taste flags, so show Aldo the render before calling it done
+
 ## 2026-10-09 FAIL
 artefact: C:\Dev\products\constellation-labs (commit a9de9af, served at http://localhost:5191)  sha256: src/components/home/Hero.tsx a1a30e60d77eab8c38b376407f16736f8d5d55c29f72daae7e8ae3494d8ef77f
 medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
