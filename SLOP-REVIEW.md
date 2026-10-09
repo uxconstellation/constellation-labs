@@ -1,3 +1,26 @@
+## 2026-10-09 FAIL
+artefact: C:\Dev\products\constellation-labs (commit 4e9b4a6, served at http://localhost:5191)  sha256: src/components/brand/Liquid.tsx 0fddc292964a2de24f42dfe85f7fc3434e0ab08369f0c0dd9f7b909a5f72c7d3
+medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: shots.mjs on / /acre /pinpoints /invest /build at 1440 and 390 (scratchpad r4/), a pixel AA probe for text over Liquid canvases (p/liqaa.mjs: text hidden, box screenshotted, p10 contrast against the real pixels), a WebGL context census (p/gl.mjs, p/spa.mjs), and an elementFromPoint check on the CTAs
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current (desktop-hero.png astronaut disc)
+ring 2: not re-run (copy unchanged apart from the shelf subhead)
+relative: Aldo: "more award winning and on brand, random shapes not on brand, more gradient and noise" -> fixed: mostly. The blobs are gone. The hero disc behind the glass mark now reads as the main site's astronaut disc in its own palette, the ink panels carry the night liquid, and the grain is everywhere. Brand fidelity is clearly up.
+perf: index 10 WebGL contexts (9 Liquid + Three glass), /invest 7, /acre and /prism 6, /build 4; under Chrome's 16 cap. Off-screen fields pause (IntersectionObserver), and contexts are released on unmount (loseContext). 10 SPA navigations: 68 created, 0 lost while mounted, no "too many contexts" warnings. Not a blocker. Watch the index if more fields are added.
+similar prompt: "Google Labs style showcase, grainy gradient mesh, rounded cards" -> lands here: partly (the grainy gradient is now a 2024-25 default, rescued only because it is the studio's own liquid)
+scores: originality 6/10, design quality 7/10, reference fidelity 8/10, craft 6/10
+hard blockers:
+- H4 | /invest hero at 390 and 768: the night-disc wrapper div paints over both hero CTAs. r4/invest-390-00.png and r4/inv-cta.png show "Talk [to Aldo]" and "[See the portfo]lio" swallowed by the disc. elementFromPoint at 75% of each button returns the wrapper DIV, so taps are intercepted too (375: the portfolio CTA is covered). | Make the Liquid wrapper pointer-events-none and put the CTA row on z-10 above it, or push the disc below the CTAs on narrow widths
+- H4 | Key body copy below AA on the night liquid: /invest why-card 01 "Every product starts from friction..." is white 15.5px at 4.07:1 (1440) and 3.74:1 (390), and home why-card 01 "A studio meets the same friction..." is 3.81:1 at 390. The copy crosses the bright orange band (r4/invest-1440-01.png). | Keep the disc out of the text column (mask it to the top-right), or put an ink scrim under the body copy
+taste flags:
+- liquid everywhere | Hero disc, shelf field, product heroes, scene stages, why cards, doors, the conversation band, Talk to Aldo and the footer wordmark all run the same liquid, so no section owns it. The main site uses it once, as the hero disc. | Keep the hero disc, the ink doors and the footer wordmark; return the shelf, product heroes and peach cards to grained paper with one accent
+- grain density | The page-wide film grain makes the cream paper read mottled and dusty at 1440 (r4/home-1440-00.png, top band). The main site's grain lives on cards, not the page. | Halve the overlay opacity or limit it to liquid and cards
+- WEB-08 | Gradient text now appears in the hero "Labs." and the liquid-filled footer wordmark on every route | Keep one
+- AA small print on liquid (not key copy): shelf eyebrow "The ventures" 3.11:1, card Stage/Next 4.06:1, "Constellation Labs ✦" 3.47:1, product-door eyebrows "Back it" 2.84:1, /build "For teams" 3.41:1, "Opens an email..." 3.73:1, invest "Step 0x" 3.65-4.12:1 | Darken to ink/80 on liquid grounds
+- reference drift | The Acre hero and stage use a green/peach liquid that is not in the stated #8B2252/#C43E1A/#1A3A3A ramp (r4/acre-1440-00.png). That is fine as a product accent, but the shelf and Pinpoints pink fields read closer to a generic pastel mesh than to the studio liquid | Tie each product field to its patch colours, darker and less pastel
+- round 1 flags still stand: product-page template, WEB-14 three-card rows, WEB-05/06, WEB-20, mobile scene legibility, Plato Coffee and Acre dashboard figures
+- peach/pink cards and product hero body copy: measured, they pass (invest cards 02 and 03, Acre/Pinpoints hero hooks and CTAs not flagged)
+
 ## 2026-10-09 PASS
 artefact: C:\Dev\products\constellation-labs (commit 9c3b882, served at http://localhost:5191)  sha256: src/components/home/Hero.tsx 2ee0fe697e6ef9df03824d35258d7398dd56a1ec9085be49c94a12f7ec626a7a
 medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md

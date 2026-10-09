@@ -48,7 +48,7 @@
   :focus-visible { outline: 2px solid hsl(var(--orange-ink)); outline-offset: 3px; border-radius: 8px; }
   img, svg { max-width: 100%; }
   /* Page-wide film grain, the main site's fine-grain texture */
-  body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; background-image: url("./assets/fine-grain.webp"); background-size: 320px; opacity: .085; mix-blend-mode: multiply; }
+  body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; background-image: url("./assets/fine-grain.webp"); background-size: 320px; opacity: .05; mix-blend-mode: multiply; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }

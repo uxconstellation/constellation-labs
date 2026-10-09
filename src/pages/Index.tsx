@@ -57,7 +57,7 @@ export default function Index() {
         <ol className="mt-14 grid gap-3 md:mt-20 md:grid-cols-3">
           {WHY.map((w, i) => (
             <LiquidSheet as="li" key={w.t} tone={TONES[i]} className="flex flex-col p-8 md:min-h-[380px] md:p-10" data-reveal={String(i * 0.1)}>
-              <span className={cn("num text-[13px]", i === 0 ? "text-paper/60" : "text-ink-soft")}>0{i + 1}</span>
+              <span className={cn("num w-fit text-[13px]", i === 0 ? "rounded-full bg-ink px-2.5 py-1 text-paper" : "text-ink-soft")}>0{i + 1}</span>
               <p className="d-s mt-6 max-w-[13ch] md:mt-auto md:pt-10">{w.t}</p>
               <p className={cn("mt-4 text-[15.5px] leading-relaxed", i === 0 ? "text-paper/80" : "text-ink/80")}>{w.b}</p>
               {w.proof.length > 0 && (

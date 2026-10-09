@@ -119,7 +119,6 @@ export default function Build() {
       {/* Patch maker */}
       <section id="patch" aria-labelledby="patch-title" className="scroll-mt-20 px-2 pb-24 md:px-4 md:pb-32">
         <div className="sheet relative isolate overflow-hidden bg-cream px-5 py-14 md:px-16 md:py-20">
-          <Liquid palette={PALETTES.day} bg="#F3EEE7" wash={0.74} grain={0.1} speed={0.2} scale={1.6} resolution={0.45} className="absolute inset-0 -z-10 h-full w-full" />
           <div className="wrap !px-0">
             <h2 id="patch-title" className="d-l max-w-[14ch]" data-reveal>Every build gets a patch.</h2>
             <p className="lede mt-8 max-w-[30rem]" data-reveal=".1">Name the thing you want built. We will sew it on the board next to ours.</p>

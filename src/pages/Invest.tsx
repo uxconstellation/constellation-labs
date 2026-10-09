@@ -41,7 +41,7 @@ export default function Invest() {
       {/* Hero */}
       <section className="iv-hero grain relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] bg-ink pb-16 pt-[120px] text-paper md:pb-24 md:pt-[150px]" aria-labelledby="iv-title">
         <div className="wrap grid items-end gap-12 lg:grid-cols-[1.15fr_.85fr]">
-          <div>
+          <div className="relative z-10">
             <p className="eyebrow iv-fade !text-paper/60">For investors</p>
             <h1 id="iv-title" className="mt-6" aria-label="Back the next one.">
               <span className="block overflow-hidden pb-[.06em]" aria-hidden="true"><span className="iv-line d-hero block">Back the</span></span>
@@ -55,8 +55,8 @@ export default function Invest() {
               <Cta href="#portfolio" variant="line-light" arrow={false}>See the portfolio ↓</Cta>
             </div>
           </div>
-          <div className="iv-hand relative mx-auto h-[300px] w-full max-w-[460px] md:h-[400px]" aria-hidden="true">
-            <div className="absolute bottom-[8%] left-1/2 aspect-square w-[118%] -translate-x-1/2">
+          <div className="iv-hand pointer-events-none relative z-0 mx-auto h-[300px] w-full max-w-[460px] md:h-[400px]" aria-hidden="true">
+            <div className="absolute bottom-[8%] left-1/2 aspect-square w-[100%] -translate-x-1/2 lg:w-[118%]">
               <Liquid shape="disc" palette={PALETTES.night} bg="#160C15" grain={0.13} className="h-full w-full" />
             </div>
             {products.map((p, i) => (
@@ -79,7 +79,7 @@ export default function Invest() {
         <ol className="mt-16 grid gap-3 md:mt-24 md:grid-cols-3">
           {WHY.map((w, i) => (
             <LiquidSheet as="li" key={w.t} tone={TONES[i]} className="flex min-h-[220px] flex-col justify-between p-8 md:min-h-[340px] md:p-10" data-reveal={String(i * 0.1)}>
-              <span className={cn("num text-[13px]", i === 0 ? "text-paper/60" : "text-ink-soft")}>0{i + 1}</span>
+              <span className={cn("num w-fit text-[13px]", i === 0 ? "rounded-full bg-ink px-2.5 py-1 text-paper" : "text-ink-soft")}>0{i + 1}</span>
               <div>
                 <p className="d-s max-w-[14ch]">{w.t}</p>
                 <p className={cn("mt-4 text-[15.5px] leading-relaxed", i === 0 ? "text-paper/80" : "text-ink/80")}>{w.b}</p>
@@ -125,7 +125,6 @@ export default function Invest() {
 
       {/* How */}
       <section aria-labelledby="how-title" className="relative overflow-hidden bg-cream py-28 md:py-40">
-        <Liquid palette={PALETTES.ember} bg="#F3EEE7" wash={0.72} grain={0.1} speed={0.2} scale={1.6} resolution={0.45} className="absolute inset-0 h-full w-full" />
         <div className="wrap relative">
           <h2 id="how-title" className="d-l max-w-[14ch]" data-reveal>How a conversation goes.</h2>
           <ol className="mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-8">

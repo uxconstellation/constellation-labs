@@ -15,6 +15,10 @@ export default function LiquidSheet({ tone, as: Tag = "div", className, children
         <div aria-hidden="true" className="absolute -right-[30%] -top-[34%] -z-10 aspect-square w-[105%] min-w-[420px]">
           <Liquid shape="disc" palette={PALETTES.night} bg="#160C15" grain={0.12} className="h-full w-full" />
         </div>
+      ) : null}
+      {tone === "ink" ? (
+        // Ink scrim under the copy so body text keeps AA over the disc
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,#160C15_0%,#160C15_45%,rgba(22,12,21,.55)_72%,rgba(22,12,21,0)_100%)]" />
       ) : (
         <Liquid palette={tone === "ember" ? PALETTES.ember : PALETTES.day} bg="#F3EEE7" wash={0.64} grain={0.11} speed={0.25} scale={1.8} resolution={0.45} className="absolute inset-0 -z-10 h-full w-full" />
       )}
