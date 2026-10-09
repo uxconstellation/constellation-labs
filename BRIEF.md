@@ -28,6 +28,7 @@ Vite React + GSAP ScrollTrigger + Three (glass mark). Host: Cloudflare (Workers 
 - Arial Black caps. Pure white surfaces.
 - Acre demo logins.
 - (2026-10-09) Co-work's integration: main-site journey layout reused as-is, cramped stage panels, tacked-on thumbnails. Aldo: "design, layout and consistency aren't on par".
+- (2026-10-09) One full-bleed sheet per product. Aldo: "isn't scalable and doesn't give any information about what labs is and why we build."
 
 ## Always
 - Keep the four motion scenes exactly as animated, and the patch badges.
