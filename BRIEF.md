@@ -31,6 +31,7 @@ Vite React + GSAP ScrollTrigger + Three (glass mark). Host: Cloudflare (Workers 
 - (2026-10-09) One full-bleed sheet per product. Aldo: "isn't scalable and doesn't give any information about what labs is and why we build."
 
 ## Always
+- Feel like experiments: the brand liquid (main-site RadialLiquid) with grain, and every product page has its own hands-on "Try it" experiment plus lab notes (hypothesis, not results).
 - Ventures are illustrated trading cards on a Google Labs style shelf; adding one is one entry in products.ts.
 - Say what Labs is and why we build, in plain words, near the top.
 - Keep the four motion scenes exactly as animated, and the patch badges.
