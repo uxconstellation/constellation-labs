@@ -1,4 +1,21 @@
 ## 2026-10-09 FAIL
+artefact: C:\Dev\products\constellation-labs (commit 0d3b7cb, served at http://localhost:5191)  sha256: src/pages/ProductPage.tsx a7eb725393b0a8e7210f2dda8dee09feb303e0a12fff854690536a42ef97ba13
+medium: web (product pages)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: shots.mjs on /acre /pinpoints /prism /nod at 1440 and 390 (scratchpad r7/, heroes1440.png, heroes390.png); h1 line-box probe at 360/375/390/414 over 8 s (p/h1.mjs)
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run
+relative: round 6 FAIL (Nod switch AA) -> fixed: yes. The switch, Nod sent and the fly bubble are now #9A5526 (paper on it about 5.1:1 by my calculation; builder reports 5.36). The distinctness flag is mostly fixed: Watch it work is gone and the loop sits in each hero on a paper card with the patch sewn on; ORDER differs per venture (ProductPage.tsx:31-37). The heroes now read as four different products at 1440 (heroes1440.png).
+similar prompt: unchanged (partly)
+scores: originality 7/10, design quality 7/10, reference fidelity 8/10, craft 6/10
+hard blockers:
+- H4 | /nod hero title breaks mid-word on mobile: "Nod" renders as "N" / "od" across two lines at 360, 375, 390 and 414 (r7/nod-390-00.png; probe: 4 line boxes, font-size about 204px at 390). The per-letter inline-block spans (.pp-ch) allow a break between letters, and the fit formula min(220px, (100vw - 2*gutter)/1.74) is too large for Nod's wide glyphs. Acre, Prism and Pinpoints stay on one line. | Add white-space: nowrap to .pp-title and fit the size per word (measure scrollWidth and scale), or give Nod its own divisor (about 2.0)
+taste flags:
+- Pinpoints hero at 390: the title is set much smaller (68px) than the other three (123-153px), so the series loses rhythm on mobile | Accept two lines ("Pin-" is not allowed; use "Pin / points" as two spans) or scale the others to match
+- Sam's avatar initial is still paper on #C8753A (NodRoom.tsx:10), about 3.1:1; decorative next to the name | Use #9A5526 for consistency
+- prior flags stand: liquid on most sections, WEB-08 gradient text twice, small eyebrows on liquid, Plato Coffee in Nod lab notes, Acre dashboard figures in the proof shot
+
+## 2026-10-09 FAIL
 artefact: C:\Dev\products\constellation-labs (commit d2a2879, served at http://localhost:5191)  sha256: src/pages/ProductPage.tsx 5f8fdeb4ffbe6f708a69680d735b2c6612712bc20cf26f1dee3254885c9301ee
 medium: web (product pages /acre /pinpoints /prism /nod)  client-facing: yes  stage: final: BRIEF.md
 builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)

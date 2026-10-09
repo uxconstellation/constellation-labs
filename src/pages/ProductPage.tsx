@@ -221,7 +221,7 @@ function Product({ p }: { p: Product }) {
             <span className="eyebrow !text-ink/70">Lab no. 0{index + 1}</span>
             <StatusChip status={p.status} className="ml-1" />
           </div>
-          <h1 className="pp-title mt-6 overflow-hidden pb-[.08em] font-black leading-[.8] tracking-[-0.068em]" style={{ fontSize: `min(220px, calc((100vw - 2 * var(--gutter)) / ${(p.name.length * 0.58).toFixed(2)}))` }} aria-label={p.name}>
+          <h1 className="pp-title mt-6 overflow-hidden whitespace-nowrap pb-[.08em] font-black leading-[.8] tracking-[-0.068em]" style={{ fontSize: `min(220px, calc((100vw - 2 * var(--gutter)) / ${(p.name.length * 0.62 + 0.3).toFixed(2)}))` }} aria-label={p.name}>
             {p.name.split("").map((c, k) => <span key={k} aria-hidden="true" className="pp-ch inline-block">{c}</span>)}
           </h1>
           <div className="mt-6 grid items-start gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-14">
