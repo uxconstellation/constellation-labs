@@ -33,7 +33,7 @@ export default function Fork({ title = "Two ways in." }: { title?: string }) {
           <div aria-hidden="true" className="pointer-events-none absolute -right-[18%] -top-[28%] aspect-square w-[95%] opacity-90 transition-transform duration-[1200ms] ease-lab group-hover:scale-110">
             <Liquid shape="disc" palette={PALETTES.night} bg="#160C15" grain={0.12} className="h-full w-full" />
           </div>
-          <p className="eyebrow relative !text-paper/60">For investors</p>
+          <p className="eyebrow relative !text-paper/90">For investors</p>
           <p className="d-m relative mt-5 max-w-[9ch]">Back the next one.</p>
           <p className="relative mt-5 max-w-[22rem] text-[16px] leading-relaxed text-paper/75">
             Each product is a company in waiting. See what is on the bench, what each one needs, and what comes next.

@@ -110,7 +110,7 @@ function Product({ p }: { p: Product }) {
       <section aria-labelledby="problem-title" className="relative overflow-hidden bg-ink py-28 text-paper md:py-40">
         <Liquid palette={PALETTES.night} bg="#160C15" wash={0.62} grain={0.12} speed={0.25} scale={2} resolution={0.5} className="absolute inset-0 h-full w-full" />
         <div className="wrap relative">
-          <h2 id="problem-title" className="eyebrow !text-paper/60">The problem</h2>
+          <h2 id="problem-title" className="eyebrow !text-paper/90">The problem</h2>
           <Sweep dark className="mt-8 max-w-[24ch] text-[clamp(30px,4.4vw,66px)] font-black leading-[1.04] tracking-[-0.04em]" text={p.problem} />
         </div>
       </section>
@@ -195,7 +195,7 @@ function Product({ p }: { p: Product }) {
           <div aria-hidden="true" className="absolute -right-[25%] -top-[40%] -z-10 aspect-square w-[90%] transition-transform duration-[1200ms] ease-lab group-hover:scale-110">
             <Liquid shape="disc" palette={PALETTES.night} bg="#160C15" grain={0.12} className="h-full w-full" />
           </div>
-          <p className="eyebrow !text-paper/60">Back it</p>
+          <p className="eyebrow !text-paper/90">Back it</p>
           <div>
             <p className="d-m max-w-[14ch]">Talk to us about {p.name}.</p>
             <span className="btn btn-orange mt-6">Invest in Labs <span className="arrow" aria-hidden="true">→</span></span>

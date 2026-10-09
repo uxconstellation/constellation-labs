@@ -42,7 +42,7 @@ export default function Invest() {
       <section className="iv-hero grain relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] bg-ink pb-16 pt-[120px] text-paper md:pb-24 md:pt-[150px]" aria-labelledby="iv-title">
         <div className="wrap grid items-end gap-12 lg:grid-cols-[1.15fr_.85fr]">
           <div className="relative z-10">
-            <p className="eyebrow iv-fade !text-paper/60">For investors</p>
+            <p className="eyebrow iv-fade !text-paper/90">For investors</p>
             <h1 id="iv-title" className="mt-6" aria-label="Back the next one.">
               <span className="block overflow-hidden pb-[.06em]" aria-hidden="true"><span className="iv-line d-hero block">Back the</span></span>
               <span className="block overflow-hidden pb-[.1em]" aria-hidden="true"><span className="iv-line d-hero block">next <span className="text-orange">one.</span></span></span>
@@ -142,7 +142,7 @@ export default function Invest() {
       {/* Close */}
       <section aria-labelledby="close-title" className="wrap py-28 md:py-40">
         <LiquidSheet tone="ink" className="p-8 md:p-16">
-          <p className="eyebrow !text-paper/60" data-reveal>Start here</p>
+          <p className="eyebrow !text-paper/90" data-reveal>Start here</p>
           <h2 id="close-title" className="d-hero mt-6" data-reveal>Talk to Aldo.</h2>
           <div className="mt-10 grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
             <p className="lede max-w-[30rem] !text-paper/75" data-reveal>

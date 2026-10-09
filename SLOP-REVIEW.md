@@ -1,3 +1,21 @@
+## 2026-10-09 PASS
+artefact: C:\Dev\products\constellation-labs (commit 2003fcd, served at http://localhost:5191)  sha256: src/pages/Invest.tsx 6329b3c4f667e1ef387ce294da3b9cc5c48579119fb992c4ea09125b890e34c4
+medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: /invest hero at 390 (r5-inv390.png) and the home ink why-card at 390 (r5-cardhome.png); elementFromPoint on both /invest CTAs at 375/390/768/1440; pixel AA probe p/liqaa.mjs on / and /invest at 1440 and 390
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run (no copy change)
+relative: round 4 FAIL (2 x H4) -> fixed: yes. Both CTAs are the topmost element at all 4 widths, and the disc sits below the buttons on mobile. No text at or above 14px fails AA over liquid on / or /invest (/invest: 1 fail in 30 at 1440 and 1 in 11 at 390, both the 12px "Start here" eyebrow). Why-card 01 body copy no longer fails.
+similar prompt: unchanged (partly)
+scores: originality 6/10, design quality 7/10, reference fidelity 8/10, craft 7/10
+hard blockers:
+none
+taste flags:
+- AA small print on liquid (not key copy): "Start here" eyebrow on Talk to Aldo 3.84:1 (1440) and 3.16:1 (390); home shelf small labels as in round 4 (eyebrow, Stage/Next, card footer) | Darken to ink/80 or white/80
+- round 4 flags otherwise stand, partly eased (grain 0.085 to 0.05; liquid removed from the conversation band and the patch maker): liquid still carries most sections, WEB-08 gradient text twice, pastel product fields
+- round 1 flags stand: product-page template, WEB-14, WEB-05/06, WEB-20, mobile scene legibility, Plato Coffee and Acre dashboard figures
+- gate note: PASS with 3 or more taste flags, so show Aldo the render before calling it done
+
 ## 2026-10-09 FAIL
 artefact: C:\Dev\products\constellation-labs (commit 4e9b4a6, served at http://localhost:5191)  sha256: src/components/brand/Liquid.tsx 0fddc292964a2de24f42dfe85f7fc3434e0ab08369f0c0dd9f7b909a5f72c7d3
 medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
