@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Labs Patches</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
+<style>
+  :root{--ink:#160C15;--soft:#5E5660;--cream:#F3EEE7;--line:#E8E2D8;--orange:#FE6E36}
+  *{box-sizing:border-box;margin:0}
+  body{background:#fff;color:var(--ink);font-family:Satoshi,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1280px;margin:0 auto;padding:56px 48px 80px}
+  h1{font:900 64px/0.95 'Noken','Arial Black',sans-serif;text-transform:uppercase}
+  .lead{margin-top:16px;max-width:52ch;color:var(--soft);font-size:18px;line-height:1.55}
+  /* the board: cream twill like the main site's cards, with grain */
+  .board{position:relative;margin-top:44px;border-radius:32px;padding:56px 40px 64px;overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(22,12,21,.025) 0 2px, transparent 2px 5px),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.35) 0 1px, transparent 1px 4px),
+      #F3EEE7;
+    box-shadow:inset 0 1px 0 #fff, inset 0 -40px 80px -40px rgba(22,12,21,.08)}
+  .board::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;align-items:center}
+  .patch{position:relative;display:block;text-decoration:none;color:inherit;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+  .patch svg{width:100%;height:auto;display:block;overflow:visible}
+  .patch .sheen{position:absolute;inset:6%;border-radius:50%;pointer-events:none;opacity:0;transition:opacity .3s;mix-blend-mode:soft-light;
+    background:radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.9), transparent 55%)}
+  .patch:hover .sheen{opacity:1}
+  .patch:nth-child(1){transform:rotate(-4deg)} .patch:nth-child(2){transform:rotate(3deg) translateY(18px)}
+  .patch:nth-child(3){transform:rotate(-2deg) translateY(-10px)} .patch:nth-child(4){transform:rotate(5deg) translateY(12px)}
+  .meta{margin-top:18px;text-align:center}
+  .meta b{font-size:15px}
+  .chip{display:inline-flex;align-items:center;gap:7px;margin-top:8px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+  .chip i{width:7px;height:7px;border-radius:50%}
+  .notes{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:36px}
+  .notes p{font-size:14px;line-height:1.55;color:var(--soft)} .notes b{color:var(--ink);display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- raised embroidery: fuzzy thread edge, top-left light, soft cast shadow -->
+    <filter id="emb" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="fuzzy"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.2" result="blur"/>
+      <feSpecularLighting in="blur" surfaceScale="2.6" specularConstant=".55" specularExponent="16" lighting-color="#ffffff" result="spec">
+        <fePointLight x="-60" y="-120" z="220"/>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+      <feComposite in="fuzzy" in2="specIn" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0" result="lit"/>
+      <feDropShadow in="lit" dx="0" dy="1.2" stdDeviation=".8" flood-color="#160C15" flood-opacity=".28"/>
+    </filter>
+    <!-- the patch body lifting off the board -->
+    <filter id="lift" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#160C15" flood-opacity=".22"/>
+    </filter>
+    <!-- satin stitch thread texture -->
+    <pattern id="satin" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
+      <rect width="5" height="5" fill="transparent"/><rect width="1.6" height="5" fill="#fff" opacity=".22"/>
+    </pattern>
+    <pattern id="satin2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-52)">
+      <rect width="1.6" height="5" fill="#000" opacity=".10"/>
+    </pattern>
+    <pattern id="twill" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="transparent"/><rect width="2" height="6" fill="#000" opacity=".05"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <h1>The patch set</h1>
+  <p class="lead">One embroidered patch per product, each its own shape, in Constellation colours. Hover them: they tilt toward the cursor and the thread catches the light, the same depth language as the cards on the main site.</p>
+
+  <div class="board">
+    <div class="grid">
+
+      <!-- ACRE: round patch, a house on its own acre -->
+      <a class="patch" href="#acre" aria-label="Acre">
+        <svg viewBox="0 0 400 420" role="img" aria-hidden="true">
+          <defs><clipPath id="acreClip"><circle cx="200" cy="200" r="150"/></clipPath></defs>
+          <g filter="url(#lift)">
+            <circle cx="200" cy="200" r="172" fill="#2F6B4F"/>
+            <circle cx="200" cy="200" r="172" fill="none" stroke="#24563F" stroke-width="16" stroke-dasharray="1.6 2.6"/>
+            <circle cx="200" cy="200" r="158" fill="#FBF7F1"/>
+            <circle cx="200" cy="200" r="158" fill="url(#twill)"/>
+          </g>
+          <g clip-path="url(#acreClip)" filter="url(#emb)">
+            <circle cx="282" cy="118" r="30" fill="#F7A27A"/><circle cx="282" cy="118" r="30" fill="url(#satin)"/>
+            <path d="M40 252 Q130 170 240 222 T380 210 V380 H40 Z" fill="#4E9673"/>
+            <path d="M40 252 Q130 170 240 222 T380 210 V380 H40 Z" fill="url(#satin2)"/>
+            <path d="M30 278 Q190 218 380 268 V380 H30 Z" fill="#2F6B4F"/>
+            <path d="M30 278 Q190 218 380 268 V380 H30 Z" fill="url(#satin)"/>
+            <rect x="148" y="186" width="84" height="56" fill="#FFFFFF"/>
+            <rect x="148" y="186" width="84" height="56" fill="url(#satin2)"/>
+            <path d="M136 190 L190 146 L244 190 Z" fill="#FE6E36"/>
+            <path d="M136 190 L190 146 L244 190 Z" fill="url(#satin)"/>
+            <rect x="181" y="208" width="18" height="34" rx="2" fill="#173F3F"/>
+            <rect x="158" y="200" width="16" height="14" fill="#B8D8CB"/><rect x="206" y="200" width="16" height="14" fill="#B8D8CB"/>
+            <path d="M96 262 V238" stroke="#7A5A3A" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="96" cy="222" r="22" fill="#173F3F"/><circle cx="96" cy="222" r="22" fill="url(#satin)"/>
+            <circle cx="300" cy="236" r="13" fill="#173F3F"/><path d="M300 249 V262" stroke="#7A5A3A" stroke-width="5" stroke-linecap="round"/>
+          </g>
+          <circle cx="200" cy="200" r="146" fill="none" stroke="#2F6B4F" stroke-width="2.4" stroke-dasharray="7 6" opacity=".7"/>
+          <!-- name ribbon -->
+          <g filter="url(#lift)">
+            <path d="M70 330 L330 330 L346 352 L330 374 L70 374 L54 352 Z" fill="#173F3F"/>
+            <path d="M74 336 L326 336 M74 368 L326 368" stroke="#FBF7F1" stroke-width="1.8" stroke-dasharray="6 5" opacity=".55"/>
+          </g>
+          <text x="200" y="362" text-anchor="middle" font-family="'Noken','Arial Black',sans-serif" font-weight="900" font-size="30" letter-spacing="6" fill="#FBF7F1" filter="url(#emb)">ACRE</text>
+        </svg>
+        <span class="sheen"></span>
+        <div class="meta"><b>Acre</b><br><span class="chip"><i style="background:#2F6B4F"></i>Beta</span></div>
+      </a>
+
+      <!-- PINPOINTS: shaped like a map pin, a review pinned to the page -->
+      <a class="patch" href="#pinpoints" aria-label="Pinpoints">
+        <svg viewBox="0 0 400 420" role="img" aria-hidden="true">
+          <defs><clipPath id="pinClip"><path d="M200 392 C150 326 62 268 62 176 A138 138 0 1 1 338 176 C338 268 250 326 200 392 Z"/></clipPath></defs>
+          <g filter="url(#lift)">
+            <path d="M200 408 C146 338 46 276 46 176 A154 154 0 1 1 354 176 C354 276 254 338 200 408 Z" fill="#C2410C"/>
+            <path d="M200 408 C146 338 46 276 46 176 A154 154 0 1 1 354 176 C354 276 254 338 200 408 Z" fill="none" stroke="#A3360A" stroke-width="16" stroke-dasharray="1.6 2.6"/>
+            <path d="M200 392 C150 326 62 268 62 176 A138 138 0 1 1 338 176 C338 268 250 326 200 392 Z" fill="#FE6E36"/>
+            <path d="M200 392 C150 326 62 268 62 176 A138 138 0 1 1 338 176 C338 268 250 326 200 392 Z" fill="url(#twill)"/>
+          </g>
+          <g clip-path="url(#pinClip)" filter="url(#emb)">
+            <!-- the page being reviewed -->
+            <rect x="104" y="82" width="192" height="146" rx="14" fill="#FBF7F1"/>
+            <rect x="104" y="82" width="192" height="146" rx="14" fill="url(#satin2)"/>
+            <rect x="104" y="82" width="192" height="26" rx="14" fill="#E8E2D8"/>
+            <circle cx="122" cy="95" r="4.5" fill="#FE6E36"/><circle cx="137" cy="95" r="4.5" fill="#B7AA93"/><circle cx="152" cy="95" r="4.5" fill="#B7AA93"/>
+            <rect x="122" y="124" width="112" height="14" rx="4" fill="#160C15"/>
+            <rect x="122" y="150" width="150" height="7" rx="3.5" fill="#B7AA93"/>
+            <rect x="122" y="164" width="130" height="7" rx="3.5" fill="#B7AA93"/>
+            <rect x="122" y="190" width="70" height="22" rx="11" fill="#173F3F"/>
+            <rect x="116" y="118" width="124" height="26" rx="6" fill="none" stroke="#173F3F" stroke-width="3" stroke-dasharray="6 4"/>
+            <!-- the pin -->
+            <path d="M246 126 L238 152" stroke="#160C15" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="249" cy="118" r="15" fill="#173F3F"/><circle cx="249" cy="118" r="15" fill="url(#satin)"/>
+            <circle cx="244" cy="113" r="4.5" fill="#B8D8CB"/>
+            <!-- the comment, approved -->
+            <g transform="translate(-8 -34)"><path d="M250 214 h86 a12 12 0 0 1 12 12 v34 a12 12 0 0 1 -12 12 h-58 l-14 14 v-14 h-14 a12 12 0 0 1 -12 -12 v-34 a12 12 0 0 1 12 -12 z" fill="#FFFFFF"/>
+            <circle cx="276" cy="243" r="13" fill="#2F6B4F"/>
+            <path d="M269 243 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="296" y="234" width="38" height="6" rx="3" fill="#B7AA93"/><rect x="296" y="246" width="26" height="6" rx="3" fill="#B7AA93"/></g>
+          </g>
+          <path d="M200 380 C154 318 74 262 74 176 A126 126 0 1 1 326 176 C326 262 246 318 200 380 Z" fill="none" stroke="#FBF7F1" stroke-width="2.4" stroke-dasharray="7 6" opacity=".55"/>
+          <text x="200" y="304" text-anchor="middle" font-family="'Noken','Arial Black',sans-serif" font-weight="900" font-size="24" letter-spacing="3" fill="#FBF7F1" filter="url(#emb)">PINPOINTS</text>
+        </svg>
+        <span class="sheen"></span>
+        <div class="meta"><b>Pinpoints</b><br><span class="chip"><i style="background:#2F6B4F"></i>Beta</span></div>
+      </a>
+
+      <!-- PRISM: triangle patch, one beam in, every colour out -->
+      <a class="patch" href="#prism" aria-label="Prism">
+        <svg viewBox="0 0 400 420" role="img" aria-hidden="true">
+          <defs><clipPath id="prismClip"><path d="M200 64 L350 330 L50 330 Z"/></clipPath></defs>
+          <g filter="url(#lift)">
+            <path d="M200 44 L366 340 L34 340 Z" fill="#2D2F38" stroke="#2D2F38" stroke-width="34" stroke-linejoin="round"/>
+            <path d="M200 44 L366 340 L34 340 Z" fill="none" stroke="#3A3C46" stroke-width="18" stroke-linejoin="round" stroke-dasharray="1.6 2.6"/>
+            <path d="M200 64 L350 330 L50 330 Z" fill="#160C15" stroke="#160C15" stroke-width="18" stroke-linejoin="round"/>
+            <path d="M200 64 L350 330 L50 330 Z" fill="url(#twill)"/>
+          </g>
+          <g clip-path="url(#prismClip)" filter="url(#emb)"><g transform="translate(200 214) scale(1.3) translate(-200 -214)">
+            <!-- one white beam in -->
+            <path d="M40 252 L176 206" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+            <!-- spectrum out -->
+            <path d="M222 214 L380 200 L380 226 Z" fill="#FE6E36"/>
+            <path d="M222 216 L380 226 L380 252 Z" fill="#F2B33D"/>
+            <path d="M222 218 L380 252 L380 278 Z" fill="#7FC8A9"/>
+            <path d="M222 220 L380 278 L380 304 Z" fill="#7C8CF0"/>
+            <path d="M222 222 L380 304 L380 330 Z" fill="#C77DDB"/>
+            <!-- the glass prism -->
+            <path d="M200 156 L246 238 L154 238 Z" fill="#E9F1EF" opacity=".92"/>
+            <path d="M200 156 L246 238 L154 238 Z" fill="url(#satin)"/>
+            <path d="M200 156 L222 238" stroke="#FFFFFF" stroke-width="2" opacity=".8"/>
+            <path d="M200 156 L246 238 L154 238 Z" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+          </g></g>
+          <path d="M200 88 L330 318 L70 318 Z" fill="none" stroke="#B7AA93" stroke-width="2.4" stroke-linejoin="round" stroke-dasharray="7 6" opacity=".6"/>
+          <text x="200" y="312" text-anchor="middle" font-family="'Noken','Arial Black',sans-serif" font-weight="900" font-size="26" letter-spacing="6" fill="#FBF7F1" filter="url(#emb)">PRISM</text>
+        </svg>
+        <span class="sheen"></span>
+        <div class="meta"><b>Prism</b><br><span class="chip"><i style="background:#7C8CF0"></i>Early access</span></div>
+      </a>
+
+      <!-- NOD: rounded tag, two cups at one table, steam meeting in a nod -->
+      <a class="patch" href="#nod" aria-label="Nod">
+        <svg viewBox="0 0 400 420" role="img" aria-hidden="true">
+          <defs><clipPath id="nodClip"><rect x="54" y="74" width="292" height="252" rx="58"/></clipPath></defs>
+          <g filter="url(#lift)">
+            <rect x="38" y="58" width="324" height="284" rx="72" fill="#C8753A"/>
+            <rect x="38" y="58" width="324" height="284" rx="72" fill="none" stroke="#A85E2A" stroke-width="16" stroke-dasharray="1.6 2.6"/>
+            <rect x="54" y="74" width="292" height="252" rx="58" fill="#F8F6F2"/>
+            <rect x="54" y="74" width="292" height="252" rx="58" fill="url(#twill)"/>
+          </g>
+          <g clip-path="url(#nodClip)" filter="url(#emb)">
+            <!-- the table -->
+            <path d="M40 262 H360 V340 H40 Z" fill="#E8D5C2"/>
+            <path d="M40 262 H360" stroke="#C8753A" stroke-width="6"/>
+            <!-- table talker with QR -->
+            <path d="M184 262 L194 206 H206 L216 262 Z" fill="#FFFFFF"/>
+            <rect x="191" y="214" width="18" height="18" fill="#160C15"/>
+            <rect x="194" y="217" width="5" height="5" fill="#FFFFFF"/><rect x="201" y="224" width="5" height="5" fill="#FFFFFF"/>
+            <!-- two cups -->
+            <path d="M104 214 H164 L158 262 H110 Z" fill="#C8753A"/><path d="M104 214 H164 L158 262 H110 Z" fill="url(#satin)"/>
+            <path d="M164 224 a12 12 0 0 1 0 22" fill="none" stroke="#C8753A" stroke-width="7"/>
+            <path d="M296 214 H236 L242 262 H290 Z" fill="#52B788"/><path d="M296 214 H236 L242 262 H290 Z" fill="url(#satin)"/>
+            <path d="M236 224 a12 12 0 0 0 0 22" fill="none" stroke="#52B788" stroke-width="7"/>
+            <!-- steam rising and meeting: the nod -->
+            <path d="M134 200 C126 178 146 166 140 146 C136 132 150 120 168 116" fill="none" stroke="#B7AA93" stroke-width="6" stroke-linecap="round"/>
+            <path d="M266 200 C274 178 254 166 260 146 C264 132 250 120 232 116" fill="none" stroke="#B7AA93" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="200" cy="112" r="19" fill="#C8753A"/>
+            <path d="M190 112 l7 7 l13 -14" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <rect x="66" y="86" width="268" height="228" rx="48" fill="none" stroke="#C8753A" stroke-width="2.4" stroke-dasharray="7 6" opacity=".6"/>
+          <g filter="url(#lift)">
+            <rect x="140" y="320" width="120" height="44" rx="22" fill="#160C15"/>
+          </g>
+          <text x="200" y="351" text-anchor="middle" font-family="'Noken','Arial Black',sans-serif" font-weight="900" font-size="26" letter-spacing="6" fill="#F8F6F2" filter="url(#emb)">NOD</text>
+        </svg>
+        <span class="sheen"></span>
+        <div class="meta"><b>Nod</b><br><span class="chip"><i style="background:#C8753A"></i>In development</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="notes">
+    <p><b>Acre, round</b>A house on its own acre. Green border for the brand, orange roof from the CI, teal door from the star.</p>
+    <p><b>Pinpoints, map pin</b>The patch is the pin. Inside, a page under review: a dashed selection, a pin in it, and a comment already approved.</p>
+    <p><b>Prism, triangle</b>On CI dark, the one dark patch. A single white beam goes in, every colour comes out, which is what Prism does to one site.</p>
+    <p><b>Nod, rounded tag</b>Two cups at one table with the QR table talker between them. Their steam meets in a nod.</p>
+  </div>
+</div>
+
+<script>
+  // Tilt toward the cursor with a moving sheen, the main site's DepthCard behaviour.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.patch').forEach((p) => {
+      const base = getComputedStyle(p).transform === 'none' ? '' : getComputedStyle(p).transform;
+      p.addEventListener('pointermove', (e) => {
+        const r = p.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        p.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 16}deg) rotateY(${(x - 0.5) * 16}deg) scale(1.04)`;
+        p.style.setProperty('--x', x * 100 + '%'); p.style.setProperty('--y', y * 100 + '%');
+      });
+      p.addEventListener('pointerleave', () => { p.style.transform = ''; });
+    });
+  }
+</script>
+</body>
+</html>

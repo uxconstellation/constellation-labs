@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Labs Look</title>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
+<style>
+  :root{
+    /* Labs light tokens */
+    --paper:#FFFFFF;        /* page */
+    --mist:#F7F4EF;         /* raised surface, from CI cream */
+    --cream:#F3EEE7;        /* CI cream, sections */
+    --line:#E8E2D8;         /* hairlines */
+    --ink:#160C15;          /* CI forest dark, all text */
+    --ink-soft:#5E5660;     /* secondary text */
+    --sand:#B7AA93;         /* CI warm grey, decoration only */
+    --orange:#FE6E36;       /* CI orange, fills and highlights */
+    --orange-ink:#C2410C;   /* orange for small text and links */
+    --teal:#173F3F;         /* CI teal, the star, secondary fills */
+    --acre:#2F6B4F; --pinpoints:#FE6E36; --nod:#C8753A;
+    --prism:linear-gradient(110deg,#FE6E36,#F2B33D 30%,#7FC8A9 55%,#7C8CF0 80%,#C77DDB);
+    --r:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:'Satoshi',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+  .display{font-family:'Noken','Arial Black',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.01em;line-height:.95}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid var(--line)}
+  section{padding:88px 0;border-bottom:1px solid var(--line)}
+  h2.sec{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:36px}
+  .lockup{display:flex;align-items:center;gap:14px}
+  .lockup .wm{height:20px;width:auto}
+  .lockup .wm path{fill:var(--ink)}
+  .labs-tag{font-weight:900;font-size:13px;letter-spacing:.32em;padding:6px 10px 6px 12px;border:1.5px solid var(--ink);border-radius:999px}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:72px 0 88px}
+  .hero h1{font-size:76px}
+  .hero p{margin-top:24px;font-size:19px;line-height:1.55;color:var(--ink-soft);max-width:30ch}
+  .stage{aspect-ratio:1;border-radius:32px;background:radial-gradient(120% 90% at 30% 20%,#fff 0%,var(--mist) 55%,var(--cream) 100%);display:grid;place-items:center;position:relative;overflow:hidden}
+  .stage::after{content:"";position:absolute;inset:auto 18% 9% 18%;height:22px;border-radius:50%;background:radial-gradient(closest-side,rgba(22,12,21,.16),transparent)}
+
+  /* variants */
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .tile{border-radius:var(--r);border:1px solid var(--line);aspect-ratio:1;display:grid;place-items:center;position:relative}
+  .tile small{position:absolute;left:16px;bottom:14px;font-size:12px;color:var(--ink-soft);font-weight:500}
+  .tile.dark{background:var(--ink);border-color:var(--ink)} .tile.dark small{color:#B7AA93}
+  .tile.mist{background:var(--mist)}
+
+  /* colours */
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .sw{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--paper)}
+  .sw .chip{height:110px}
+  .sw .meta{padding:14px 16px 16px}
+  .sw b{display:block;font-size:15px}
+  .sw code{font-size:12px;color:var(--ink-soft)}
+  .sw p{font-size:13px;line-height:1.45;color:var(--ink-soft);margin-top:6px}
+  .ratio{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--mist)}
+  .ratio.fail{background:#FDE7DD;color:#9A3412}
+
+  /* type */
+  .type{display:grid;gap:26px}
+  .type .row{display:grid;grid-template-columns:160px 1fr;align-items:baseline;gap:24px;border-top:1px solid var(--line);padding-top:22px}
+  .type .lab{font-size:12px;color:var(--ink-soft)}
+
+  /* components */
+  .comp{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .btns{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn{font:700 15px 'Satoshi';padding:14px 22px;border-radius:999px;border:1.5px solid transparent;display:inline-flex;gap:10px;align-items:center}
+  .btn.pri{background:var(--orange);color:var(--ink)}
+  .btn.sec{border-color:var(--ink);color:var(--ink);background:transparent}
+  .btn.ghost{color:var(--orange-ink);padding-left:4px}
+  .status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}
+  .status i{width:7px;height:7px;border-radius:50%}
+  .card{border:1px solid var(--line);border-radius:24px;padding:26px;background:var(--paper);box-shadow:0 1px 0 rgba(22,12,21,.04),0 24px 48px -28px rgba(22,12,21,.25);position:relative;overflow:hidden}
+  .card .bar{position:absolute;left:0;top:0;right:0;height:4px}
+  .card h3{font-family:'Noken','Arial Black',sans-serif;font-weight:900;text-transform:uppercase;font-size:30px;margin:18px 0 8px}
+  .card p{color:var(--ink-soft);line-height:1.5;font-size:15px}
+  .card .go{margin-top:20px;font-weight:700;font-size:14px;display:flex;justify-content:space-between}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .note{font-size:14px;line-height:1.6;color:var(--ink-soft);max-width:70ch}
+  .note b{color:var(--ink)}
+  footer{padding:40px 0 60px;font-size:13px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Labs mark: the Constellation capsule rendered as a glass test tube, the star suspended inside, a satin ring around it on the diagonal -->
+    <linearGradient id="glassBody" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/>
+      <stop offset=".18" stop-color="#EEF2F1" stop-opacity=".55"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".2"/>
+      <stop offset=".85" stop-color="#E6ECEA" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="glassEdge" x1="0" x2="1">
+      <stop offset="0" stop-color="#173F3F" stop-opacity=".45"/>
+      <stop offset=".5" stop-color="#173F3F" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#173F3F" stop-opacity=".4"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#FF8A57"/>
+      <stop offset="1" stop-color="#F45A1F"/>
+    </linearGradient>
+    <linearGradient id="satin" x1="0" x2="1">
+      <stop offset="0" stop-color="#C9BCA4"/>
+      <stop offset=".22" stop-color="#FBF8F3"/>
+      <stop offset=".42" stop-color="#D8CCB6"/>
+      <stop offset=".6" stop-color="#FFFFFF"/>
+      <stop offset=".8" stop-color="#C2B49B"/>
+      <stop offset="1" stop-color="#EDE5D8"/>
+    </linearGradient>
+    <linearGradient id="satinBack" x1="0" x2="1">
+      <stop offset="0" stop-color="#B7AA93"/>
+      <stop offset=".5" stop-color="#D9CFBE"/>
+      <stop offset="1" stop-color="#B7AA93"/>
+    </linearGradient>
+    <clipPath id="tube"><path d="M140 70 L140 290 A60 60 0 0 0 260 290 L260 70 Z"/></clipPath>
+    <clipPath id="ringBack"><rect x="0" y="0" width="400" height="200"/></clipPath>
+    <clipPath id="ringFront"><rect x="0" y="200" width="400" height="200"/></clipPath>
+    <path id="star" d="M3211.7 1706.5C2940.86 1435.66 2835.54 1435.66 2564.7 1706.5C2835.54 1435.66 2835.54 1330.34 2564.7 1059.5C2835.54 1330.34 2940.86 1330.34 3211.7 1059.5C2940.86 1330.34 2940.86 1435.66 3211.7 1706.5Z"/>
+
+    <symbol id="labsMark" viewBox="0 0 400 400">
+      <!-- ring, back half -->
+      <g transform="rotate(20 200 200)"><g clip-path="url(#ringBack)">
+        <ellipse cx="200" cy="200" rx="176" ry="44" fill="none" stroke="url(#satinBack)" stroke-width="13" opacity=".75"/>
+      </g></g>
+      <!-- glass tube -->
+      <g transform="rotate(45 200 200)">
+        <g clip-path="url(#tube)">
+          <rect x="130" y="60" width="140" height="300" fill="url(#glassBody)"/>
+          <!-- orange liquid, the experiment -->
+          <rect x="130" y="280" width="140" height="80" fill="url(#liquid)"/>
+          <ellipse cx="200" cy="280" rx="62" ry="6" fill="#FFB08C"/>
+          <circle cx="178" cy="300" r="5" fill="#fff" opacity=".55"/>
+          <circle cx="214" cy="284" r="3.2" fill="#fff" opacity=".5"/>
+          <circle cx="196" cy="322" r="2.6" fill="#fff" opacity=".45"/>
+          <!-- highlight stripe -->
+          <rect x="156" y="92" width="12" height="210" rx="6" fill="#fff" opacity=".85"/>
+        </g>
+        <path d="M140 70 L140 290 A60 60 0 0 0 260 290 L260 70 Z" fill="none" stroke="url(#glassEdge)" stroke-width="3"/>
+        <rect x="128" y="56" width="144" height="16" rx="8" fill="#FFFFFF" stroke="url(#glassEdge)" stroke-width="3"/>
+      </g>
+      <!-- the Constellation star, suspended -->
+      <use href="#star" fill="#173F3F" transform="translate(196 188) scale(.15) translate(-2888.2 -1383)"/>
+      <!-- ring, front half -->
+      <g transform="rotate(20 200 200)"><g clip-path="url(#ringFront)">
+        <ellipse cx="200" cy="200" rx="176" ry="44" fill="none" stroke="url(#satin)" stroke-width="15"/>
+        <ellipse cx="200" cy="200" rx="176" ry="44" fill="none" stroke="#fff" stroke-width="2" opacity=".7" transform="translate(0 -4)"/>
+      </g></g>
+    </symbol>
+
+    <symbol id="labsMono" viewBox="0 0 400 400">
+      <g transform="rotate(20 200 200)"><g clip-path="url(#ringBack)"><ellipse cx="200" cy="200" rx="176" ry="44" fill="none" stroke="currentColor" stroke-width="12" opacity=".35"/></g></g>
+      <g transform="rotate(45 200 200)"><path d="M140 70 L140 290 A60 60 0 0 0 260 290 L260 70 Z" fill="none" stroke="currentColor" stroke-width="12"/><rect x="124" y="54" width="152" height="18" rx="9" fill="currentColor"/><rect x="130" y="282" width="140" height="80" fill="currentColor" clip-path="url(#tube)"/></g>
+      <use href="#star" fill="currentColor" transform="translate(196 188) scale(.15) translate(-2888.2 -1383)"/>
+      <g transform="rotate(20 200 200)"><g clip-path="url(#ringFront)"><ellipse cx="200" cy="200" rx="176" ry="44" fill="none" stroke="currentColor" stroke-width="12"/></g></g>
+    </symbol>
+
+    <symbol id="labsSmall" viewBox="0 0 400 400">
+      <g transform="rotate(45 200 200)"><path d="M140 70 L140 290 A60 60 0 0 0 260 290 L260 70 Z" fill="#FFFFFF" stroke="#173F3F" stroke-width="16"/><rect x="130" y="280" width="140" height="80" fill="#FE6E36" clip-path="url(#tube)"/><path d="M140 70 L140 290 A60 60 0 0 0 260 290 L260 70 Z" fill="none" stroke="#173F3F" stroke-width="16"/><rect x="118" y="50" width="164" height="22" rx="11" fill="#173F3F"/></g>
+      <use href="#star" fill="#173F3F" transform="translate(196 186) scale(.19) translate(-2888.2 -1383)"/>
+      <g transform="rotate(20 200 200)"><ellipse cx="200" cy="200" rx="182" ry="46" fill="none" stroke="#173F3F" stroke-width="16" clip-path="url(#ringFront)"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header>
+    <div class="lockup">
+      <svg width="44" height="44"><use href="#labsMark"/></svg>
+      <svg class="wm" style="height:20px;width:72px" preserveAspectRatio="xMinYMid meet" aria-label="Constellation" xmlns="http://www.w3.org/2000/svg" viewBox="287 70 452 126"><path  d="M310.868 97.7007C314.771 97.7007 317.989 95.1672 319.085 91.6067H325.521C324.357 98.6593 318.263 104 310.868 104H303.405C295.188 104 288.547 97.3583 288.547 89.1418C288.547 80.9252 295.188 74.2835 303.405 74.2835H310.868C318.263 74.2835 324.357 79.6243 325.521 86.6083H319.085C317.989 83.1163 314.771 80.5829 310.868 80.5829H303.405C298.681 80.5829 294.846 84.4173 294.846 89.1418C294.846 93.8663 298.681 97.7007 303.405 97.7007H310.868ZM379.864 78.3233C389.998 78.3233 396.845 82.0208 396.845 91.1959C396.845 100.303 389.998 104 379.864 104C369.731 104 362.952 100.303 362.952 91.1959C362.952 82.0208 369.731 78.3233 379.864 78.3233ZM379.864 98.9331C386.438 98.9331 390.546 96.3312 390.546 91.1959C390.546 85.9921 386.438 83.3902 379.864 83.3902C373.291 83.3902 369.251 85.9921 369.251 91.1959C369.251 96.3312 373.291 98.9331 379.864 98.9331ZM455.297 78.3233C464.404 78.3233 469.334 81.6784 469.334 90.5797V104.068H463.034V90.5797C463.034 85.9921 460.295 83.3902 452.627 83.3902C447.56 83.3902 443.246 85.5128 441.74 88.7309V104.068H435.44V78.3233H441.74V83.6641C443.657 81.4045 448.518 78.3233 455.297 78.3233ZM539.865 92.4968C540.96 94.6879 540.96 97.0159 539.728 99.0016C537.674 102.357 532.675 104 524.459 104C517.338 104 512.339 102.631 509.669 99.8233C507.752 97.8376 507.752 95.8519 507.752 95.4411H514.051C514.393 96.3312 515.763 97.7007 524.459 97.7007C533.292 97.7007 533.976 96.6736 534.25 96.2628C534.524 95.7835 534.319 95.3042 534.113 94.8933C532.812 93.0446 525.965 93.5924 522.542 93.5924H521.651C515.694 93.5924 508.3 93.5924 507.752 87.5669C507.546 85.4443 508.163 83.5956 509.464 82.1577C511.86 79.5558 516.516 78.3233 524.116 78.3233C531.306 78.3233 536.236 79.6927 538.769 82.4316C540.413 84.0749 540.618 85.7182 540.618 86.4029H534.25C533.839 85.6497 531.785 84.5542 524.116 84.5542C516.174 84.5542 515.147 85.102 514.462 85.7182C514.188 85.9236 513.914 86.3344 514.12 87.0876C514.599 88.594 519.323 88.3201 521.651 88.3201H522.542C531.443 88.3201 537.879 88.594 539.865 92.4968ZM603.124 79.0765V84.0749H591.415V93.5239C591.415 97.7007 592.237 98.9331 596.003 98.9331C597.989 98.9331 600.454 98.5223 602.987 98.18V103.247C600.933 103.589 597.167 104 594.291 104C588.677 104 585.116 101.877 585.116 97.1529V84.0749H577.79V79.0765H585.116V73.2565L591.415 71.6816V79.0765H603.124ZM322.303 179.32C322.645 181.443 322.372 184.113 322.372 184.113H295.12C296.01 187.947 299.845 189.933 305.596 189.933C309.978 189.933 313.402 188.564 315.182 186.304H322.029C320.18 192.398 314.018 195 305.596 195C295.394 195 288.615 191.303 288.615 182.196C288.615 173.021 295.394 169.323 305.596 169.323C314.566 169.323 321.002 172.268 322.303 179.32ZM295.531 179.046H315.798C314.292 176.17 310.594 174.39 305.596 174.39C300.461 174.39 296.9 175.965 295.531 179.046ZM367.336 195H361.037V160.901H367.336V195ZM413.255 195H406.955V160.901H413.255V195ZM478.14 169.323H484.439V195.068H478.14V191.097C475.812 193.699 472.593 195 466.705 195C459.721 195 451.778 190.96 451.778 182.196C451.778 173.363 459.721 169.323 466.705 169.323C471.977 169.323 477.044 171.035 478.14 173.226V169.323ZM468.828 189.385C474.442 189.385 477.934 186.715 477.934 182.196C477.934 177.608 474.442 174.938 468.828 174.938C463.144 174.938 458.078 177.608 458.078 182.196C458.078 186.715 463.144 189.385 468.828 189.385ZM547.759 170.077V175.075H536.05V184.524C536.05 188.701 536.872 189.933 540.638 189.933C542.623 189.933 545.088 189.522 547.622 189.18V194.247C545.568 194.589 541.802 195 538.926 195C533.311 195 529.751 192.877 529.751 188.153V175.075H522.424V170.077H529.751V164.256L536.05 162.682V170.077H547.759ZM592.735 167.201H586.435V160.901H592.735V167.201ZM592.735 195H586.435V169.323H592.735V195ZM648.239 169.323C658.373 169.323 665.22 173.021 665.22 182.196C665.22 191.303 658.373 195 648.239 195C638.105 195 631.327 191.303 631.327 182.196C631.327 173.021 638.105 169.323 648.239 169.323ZM648.239 189.933C654.812 189.933 658.921 187.331 658.921 182.196C658.921 176.992 654.812 174.39 648.239 174.39C641.666 174.39 637.626 176.992 637.626 182.196C637.626 187.331 641.666 189.933 648.239 189.933ZM723.672 169.323C732.778 169.323 737.708 172.678 737.708 181.58V195.068H731.409V181.58C731.409 176.992 728.67 174.39 721.001 174.39C715.935 174.39 711.621 176.513 710.114 179.731V195.068H703.815V169.323H710.114V174.664C712.032 172.405 716.893 169.323 723.672 169.323Z" fill="#C4C4C4" />
+</svg>
+      <span class="labs-tag">LABS</span>
+    </div>
+    <span class="eyebrow">Step 3 · Labs look · concept for review</span>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Constellation Labs</p>
+      <h1 class="display" style="margin-top:18px">Products we built because we needed them.</h1>
+      <p>Same family as Constellation. Same star, same colours, same type. Turned inside out: white paper instead of night sky.</p>
+    </div>
+    <div class="stage"><svg width="78%" height="78%" style="position:relative;z-index:1"><use href="#labsMark"/></svg></div>
+  </div>
+
+  <section>
+    <h2 class="sec">The mark</h2>
+    <div class="grid4">
+      <div class="tile"><svg width="62%" height="62%"><use href="#labsMark"/></svg><small>Primary, on white</small></div>
+      <div class="tile mist"><svg width="62%" height="62%" style="color:#160C15"><use href="#labsMono"/></svg><small>Mono, one colour</small></div>
+      <div class="tile dark"><svg width="62%" height="62%" style="color:#F3EEE7"><use href="#labsMono"/></svg><small>Reversed, on CI dark</small></div>
+      <div class="tile"><div style="display:flex;gap:22px;align-items:end"><svg width="96" height="96"><use href="#labsSmall"/></svg><svg width="48" height="48"><use href="#labsSmall"/></svg><svg width="24" height="24"><use href="#labsSmall"/></svg></div><small>Small sizes and favicon</small></div>
+    </div>
+    <p class="note" style="margin-top:28px"><b>The idea:</b> the Constellation capsule becomes a glass test tube. The star floats inside it, the orange is the experiment, and the satin ring passes behind and in front of the glass on the diagonal. In the build, the ring turns slowly in Three.js and the liquid catches the light as you move. This file is a flat vector stand-in for that.</p>
+  </section>
+
+  <section>
+    <h2 class="sec">Colour roles</h2>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--paper);border-bottom:1px solid var(--line)"></div><div class="meta"><b>Paper</b><code>#FFFFFF</code><p>The page. Most of every screen.</p></div></div>
+      <div class="sw"><div class="chip" style="background:var(--mist)"></div><div class="meta"><b>Mist</b><code>#F7F4EF</code><p>Raised surfaces and stages, from CI cream.</p></div></div>
+      <div class="sw"><div class="chip" style="background:var(--cream)"></div><div class="meta"><b>Cream</b><code>#F3EEE7</code><p>CI cream. Alternate sections.</p></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink)"></div><div class="meta"><b>Ink</b><code>#160C15</code><p>CI dark, now the text colour.</p><span class="ratio">19.1 : 1 on paper</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink-soft)"></div><div class="meta"><b>Ink soft</b><code>#5E5660</code><p>Secondary text and labels.</p><span class="ratio">7.1 : 1 on paper</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--orange)"></div><div class="meta"><b>Orange</b><code>#FE6E36</code><p>CI orange. Buttons and highlights, always with ink text.</p><span class="ratio fail">2.8 : 1 as text, so never used as text</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--orange-ink)"></div><div class="meta"><b>Orange ink</b><code>#C2410C</code><p>Orange for links and small text.</p><span class="ratio">5.2 : 1 on paper</span></div></div>
+      <div class="sw"><div class="chip" style="background:var(--teal)"></div><div class="meta"><b>Teal</b><code>#173F3F</code><p>CI teal. The star, secondary fills.</p><span class="ratio">11.5 : 1 on paper</span></div></div>
+    </div>
+    <h2 class="sec" style="margin-top:56px">Product accents</h2>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--acre)"></div><div class="meta"><b>Acre</b><code>#2F6B4F</code><p>Land green.</p></div></div>
+      <div class="sw"><div class="chip" style="background:var(--pinpoints)"></div><div class="meta"><b>Pinpoints</b><code>#FE6E36</code><p>The pin is orange.</p></div></div>
+      <div class="sw"><div class="chip" style="background:var(--prism)"></div><div class="meta"><b>Prism</b><code>spectrum</code><p>Only used on Prism.</p></div></div>
+      <div class="sw"><div class="chip" style="background:var(--nod)"></div><div class="meta"><b>Nod</b><code>#C8753A</code><p>From Nod's own brand.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Type</h2>
+    <div class="type">
+      <div class="row"><span class="lab">Display · Noken · 72</span><span class="display" style="font-size:72px">Labs</span></div>
+      <div class="row"><span class="lab">Heading · Noken · 36</span><span class="display" style="font-size:36px">Feedback pinned to the exact spot</span></div>
+      <div class="row"><span class="lab">Lead · Satoshi 500 · 20</span><span style="font-size:20px;font-weight:500;line-height:1.5">Every product here started as a problem inside our own studio.</span></div>
+      <div class="row"><span class="lab">Body · Satoshi 400 · 16</span><span style="font-size:16px;line-height:1.6;color:var(--ink-soft);max-width:62ch">We build it, use it on live work, and only then show it to anyone. Some stay internal. Some become companies.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec">Components</h2>
+    <div class="comp">
+      <div>
+        <div class="btns">
+          <span class="btn pri">Open Pinpoints →</span>
+          <span class="btn sec">Book a Prism demo</span>
+          <span class="btn ghost">Next experiment →</span>
+        </div>
+        <div class="btns" style="margin-top:22px">
+          <span class="status"><i style="background:#2F6B4F"></i>Beta</span>
+          <span class="status"><i style="background:#7C8CF0"></i>Early access</span>
+          <span class="status"><i style="background:#C8753A"></i>In development</span>
+        </div>
+        <p class="note" style="margin-top:28px"><b>Rules:</b> rounded pills like the main site, orange buttons carry ink text, and white space does the work. Shadows are soft and warm, never grey.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="bar" style="background:var(--pinpoints)"></div><span class="status"><i style="background:#2F6B4F"></i>Beta</span><h3>Pinpoints</h3><p>Feedback pinned to the exact spot.</p><div class="go"><span>Explore</span><span>→</span></div></div>
+        <div class="card"><div class="bar" style="background:var(--prism)"></div><span class="status"><i style="background:#7C8CF0"></i>Early access</span><h3>Prism</h3><p>Your vibe-coded site, editable like Wix.</p><div class="go"><span>Explore</span><span>→</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Concept for review. Noken is self-hosted on the main site; this preview falls back to Arial Black where Noken isn't installed.</footer>
+</div>
+</body>
+</html>

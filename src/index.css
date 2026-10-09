@@ -1,0 +1,85 @@
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Noken: self-host the licensed file at /public/fonts/noken-bold.woff2 to enable it.
+   Until then headings fall back to Arial Black, same as the main site today. */
+@font-face {
+  font-family: "Noken";
+  src: local("Noken"), url("/fonts/noken-bold.woff2") format("woff2");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Labs light tokens. Constellation CI, turned inside out. */
+    --paper: 0.0 0.0% 100.0%;          /* #FFFFFF page */
+    --mist: 37.5 33.3% 95.3%;          /* #F7F4EF raised surfaces */
+    --cream: 35.0 33.3% 92.9%;         /* #F3EEE7 CI cream, alternate sections */
+    --line: 37.5 25.8% 87.8%;          /* #E8E2D8 hairlines */
+    --ink: 306.0 29.4% 6.7%;           /* #160C15 CI dark, all text */
+    --ink-soft: 288.0 5.5% 35.7%;      /* #5E5660 secondary text, 7.1:1 */
+    --sand: 38.3 20.0% 64.7%;          /* #B7AA93 CI warm grey, decoration only */
+    --orange: 16.8 99.0% 60.4%;        /* #FE6E36 CI orange, fills only, never text */
+    --orange-ink: 17.5 88.3% 40.4%;    /* #C2410C orange for links, 5.2:1 */
+    --teal: 180.0 46.5% 16.9%;         /* #173F3F CI teal, the star */
+
+    --acre: 152.0 39.0% 30.2%;         /* #2F6B4F */
+    --pinpoints: 16.8 99.0% 60.4%;     /* #FE6E36 */
+    --prism: 231.7 79.5% 71.4%;        /* #7C8CF0, solid stand-in for the spectrum */
+    --nod: 24.9 56.3% 50.6%;           /* #C8753A */
+
+    /* Aliases the duplicated Constellation landing CSS reads. Same names, Labs values. */
+    --background: var(--paper);
+    --foreground: var(--ink);
+    --primary: var(--orange);
+    --primary-foreground: var(--ink);
+    --accent: var(--cream);
+    --accent-foreground: var(--ink);
+    --card: var(--mist);
+    --card-foreground: var(--ink);
+    --border: var(--line);
+
+    --prism-spectrum: linear-gradient(110deg, #fe6e36, #f2b33d 30%, #7fc8a9 55%, #7c8cf0 80%, #c77ddb);
+  }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-paper font-body text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 { @apply font-display font-bold uppercase; letter-spacing: 0.01em; line-height: 0.98; }
+  ::selection { background: hsl(var(--orange) / 0.35); }
+  :focus-visible { outline: 2px solid hsl(var(--orange-ink)); outline-offset: 3px; border-radius: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer utilities {
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.18em] text-ink-soft; }
+  .bg-prism { background-image: var(--prism-spectrum); }
+}
+
+/* The patch board: cream twill with the main site's card grain */
+@layer components {
+  .patch-board {
+    background:
+      repeating-linear-gradient(135deg, hsl(var(--ink) / .025) 0 2px, transparent 2px 5px),
+      repeating-linear-gradient(45deg, rgb(255 255 255 / .35) 0 1px, transparent 1px 4px),
+      hsl(var(--cream));
+    box-shadow: inset 0 1px 0 #fff, inset 0 -40px 80px -40px hsl(var(--ink) / .08);
+  }
+  .patch-board::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35; mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px;
+  }
+  @media (min-width: 768px) { .patch-item { transform: translateY(var(--rest-y, 0)); } }
+}

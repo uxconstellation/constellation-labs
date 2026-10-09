@@ -1,0 +1,136 @@
+/*
+ * Labs deviations on top of the duplicated Constellation landing CSS (landing.css).
+ * Rule: change only what makes it Labs. Daylight instead of night, the glass instead
+ * of the astronaut, patches instead of 3D objects, four products instead of three phases.
+ */
+
+/* Daylight hero: same layers, a morning sky instead of the night */
+.labs-hero { background: linear-gradient(180deg, #ffffff 0%, #fffaf5 55%, #fbe9dc 100%); }
+.labs-hero .hero-atmosphere { mix-blend-mode: multiply; opacity: .06; }
+.labs-hero .hero-cloud-back { opacity: .55; }
+.labs-hero .hero-cloud-front { opacity: .9; }
+.labs-hero .landing-eyebrow { color: hsl(var(--ink-soft)); }
+.labs-hero .hero-description { color: hsl(var(--ink) / .78); }
+
+/* The glass takes the astronaut's place and float */
+.labs-glass { width: min(640px, 47vw); aspect-ratio: 1; top: 120px; right: 3%; }
+.labs-glass-float { position: relative; width: 100%; height: 100%; mask-image: none !important; }
+.labs-glass-fallback, .labs-glass-canvas { position: absolute; inset: 0; transition: opacity .9s cubic-bezier(.22,1,.36,1); }
+.labs-glass-fallback { padding: 14%; }
+@media (min-width: 1500px) { .labs-glass { right: calc((100vw - 1280px) / 2 - 40px); } }
+@media (max-width: 1023px) { .labs-glass { width: 60vw; right: -6%; top: 200px; } }
+@media (max-width: 767px) { .labs-glass { width: 92vw; right: 4vw; top: auto; bottom: 90px; } }
+
+/* Product journey: one stage colour per product */
+.labs-stage.stage-acre { background: #d2d9c7; }
+.labs-stage.stage-pinpoints { background: #f0c0a1; }
+.labs-stage.stage-prism { background: #d8d1df; }
+.labs-stage.stage-nod { background: #b3d3c6; }
+.labs-word { font-size: clamp(60px, 6.6vw, 104px); }
+.labs-word-pinpoints { font-size: clamp(48px, 5.2vw, 84px); }
+.journey-art.labs-patch-art { width: 58%; left: auto; right: 5%; bottom: 7%; transform: rotate(-6deg); }
+.labs-patch-art svg, .labs-mobile-patch svg, .labs-use-patch svg { display: block; width: 100%; height: auto; overflow: visible; }
+.journey-visual .labs-patch-art { transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+.journey-visual.is-active .labs-patch-art { transform: rotate(-3deg); }
+.labs-patch-pinpoints { width: 52% !important; bottom: 4% !important; }
+.labs-patch-prism { width: 60% !important; bottom: 10% !important; }
+
+@media (max-width: 899px) {
+  .labs-journey .journey-chapters { grid-template-columns: repeat(2, 1fr); }
+  .labs-chapter-acre .journey-mobile-art { background: #d2d9c7; }
+  .labs-chapter-pinpoints .journey-mobile-art { background: #f0c0a1; }
+  .labs-chapter-prism .journey-mobile-art { background: #d8d1df; }
+  .labs-chapter-nod .journey-mobile-art { background: #b3d3c6; }
+  .labs-mobile-patch { width: 46%; margin-left: auto; margin-right: 8%; }
+}
+@media (max-width: 767px) {
+  .labs-journey .journey-chapter.labs-chapter-acre { background: #e4e9dc; }
+  .labs-journey .journey-chapter.labs-chapter-pinpoints { background: #f6d5bc; }
+  .labs-journey .journey-chapter.labs-chapter-prism { background: #e6e1ec; }
+  .labs-journey .journey-chapter.labs-chapter-nod { background: #c7e1d6; }
+  .labs-mobile-patch { position: absolute; z-index: 2; width: 58%; right: 6%; bottom: 14px; margin: 0; transform: translateY(20px) scale(.9) rotate(-7deg); transition: transform 1s cubic-bezier(.16,1,.3,1); }
+  .mobile-chapter-active .labs-mobile-patch { transform: rotate(-4deg); }
+  .labs-journey .journey-mobile-word { font-size: 64px; }
+  .labs-chapter-pinpoints .journey-mobile-word { font-size: 52px; }
+  .labs-journey .journey-mobile-nav { flex-wrap: wrap; }
+  .labs-journey .journey-mobile-nav button { flex: 1 1 calc(50% - 8px); }
+  .labs-journey .journey-mobile-position span { width: 25%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .labs-journey .journey-chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .labs-mobile-patch { transform: none !important; }
+}
+
+/* Process sheet lays over the gallery like the main site's stacked sheets */
+.landing-v3 .delivery-process { position: relative; border-radius: 40px 40px 0 0; margin-top: -40px; z-index: 3; }
+@media (max-width: 767px) { .landing-v3 .delivery-process { border-radius: 28px 28px 0 0; margin-top: -28px; } }
+
+/* Contact close without the form */
+.labs-contact-grid { grid-template-columns: 1.2fr .8fr; align-items: center; }
+.labs-contact .contact-clouds { opacity: .5; }
+@media (max-width: 1023px) { .labs-contact-grid { grid-template-columns: 1fr 1fr; } .labs-contact-grid .contact-next { grid-column: auto; } }
+@media (max-width: 767px) { .labs-contact-grid { grid-template-columns: 1fr; } }
+
+/* The nav floats over the hero, so product pages need room under it */
+.labs-page-top { padding-top: 96px; }
+
+/* Footer sits over the closing clouds the way the main site's does */
+.labs-footer { position: relative; z-index: 5; background: hsl(var(--background) / .92); }
+
+/* Product motion pieces */
+.labs-scene { margin: 0; width: 100%; }
+.labs-scene-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+.labs-scene-beats { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 18px; font: 500 13px/1.3 Satoshi, sans-serif; color: hsl(var(--ink) / .45); }
+.labs-scene-beats span { display: inline-flex; gap: 8px; align-items: baseline; transition: color .4s ease; position: relative; padding-bottom: 6px; }
+.labs-scene-beats span::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: hsl(var(--ink)); transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.labs-scene-beats span.is-active { color: hsl(var(--ink)); }
+.labs-scene-beats span.is-active::after { transform: scaleX(1); }
+.labs-scene-beats span.is-done { color: hsl(var(--ink) / .7); }
+.labs-scene-beats i { font-style: normal; font-variant-numeric: tabular-nums; font-size: 11px; }
+@media (prefers-reduced-motion: reduce) { .labs-scene-beats span { color: hsl(var(--ink) / .8); } .labs-scene-beats span::after { display: none; } }
+
+/* Internal preview of the motion pieces (/scenes, not linked) */
+.labs-scenes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.labs-scenes-grid > div { border-radius: 28px; padding: 32px 32px 26px; }
+@media (max-width: 899px) { .labs-scenes-grid { grid-template-columns: 1fr; } }
+
+/* Motion pieces carry no grain of their own: they sit under the stage's .card-grain, exactly like the main site */
+.labs-scenes-grid > div { position: relative; overflow: hidden; }
+
+
+/* Product chapters: the motion pieces take the stage */
+.labs-journey .journey-stage.labs-stage { height: 580px; }
+.labs-stage-visual { transform: translateY(40px) scale(.96); }
+.labs-stage-visual.is-active { transform: none; }
+.labs-stage-scene { position: absolute; inset: 70px 22px 66px; display: grid; place-items: center; }
+.labs-stage-scene .labs-scene, .labs-stage-scene .labs-scene-art { width: 100%; height: 100%; }
+.labs-stage-scene .labs-scene-art svg { width: 100%; height: 100%; }
+.labs-stage-top { align-items: center; }
+.labs-stage-id { display: inline-flex; align-items: center; gap: 10px; font: 700 13px/1 Satoshi, sans-serif; color: hsl(var(--ink)); }
+.labs-stage-id i { font-style: normal; font-weight: 500; color: hsl(var(--ink) / .6); padding-left: 10px; border-left: 1px solid hsl(var(--ink) / .2); }
+.labs-stage-patch { width: 34px; display: block; }
+.labs-stage-patch svg { display: block; width: 100%; height: auto; overflow: visible; }
+.labs-stage-beat { display: inline-flex; gap: 10px; align-items: baseline; font: 600 13px/1.4 Satoshi, sans-serif; animation: labs-beat-in .5s cubic-bezier(.22,1,.36,1); }
+.labs-stage-beat i { font-style: normal; font-size: 11px; font-variant-numeric: tabular-nums; color: hsl(var(--ink) / .55); }
+@keyframes labs-beat-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (max-width: 1100px) { .labs-journey .journey-stage.labs-stage { height: 500px; } .labs-stage-scene { inset: 64px 12px 60px; } }
+
+/* Real product proof */
+.labs-real { margin: 28px 0 28px; max-width: 380px; }
+.labs-real-frame { border-radius: 12px; overflow: hidden; background: hsl(var(--paper)); border: 1px solid hsl(var(--line)); box-shadow: 0 1px 0 hsl(var(--ink) / .04), 0 24px 40px -28px rgba(58,36,16,.45); transform: rotate(-1.2deg); transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.labs-real:hover .labs-real-frame { transform: rotate(0) translateY(-3px); }
+.labs-real-bar { display: flex; align-items: center; gap: 5px; height: 24px; padding: 0 10px; background: hsl(var(--cream)); }
+.labs-real-bar i { width: 6px; height: 6px; border-radius: 50%; background: hsl(var(--sand) / .6); }
+.labs-real-bar em { margin-left: 8px; font: 500 10px Satoshi, sans-serif; font-style: normal; color: hsl(var(--ink-soft)); }
+.labs-real img { display: block; width: 100%; height: auto; }
+.labs-real figcaption { display: flex; align-items: center; gap: 8px; margin-top: 12px; font: 500 12px Satoshi, sans-serif; color: hsl(var(--ink-soft)); }
+.labs-real-dot { width: 7px; height: 7px; border-radius: 50%; background: hsl(var(--acre)); box-shadow: 0 0 0 4px hsl(var(--acre) / .15); }
+
+/* Mobile: the piece replaces word and patch */
+@media (max-width: 899px) {
+  .labs-journey .journey-mobile-art.labs-mobile-scene { display: block; height: auto; padding: 18px 10px 10px; }
+  .labs-mobile-scene .labs-scene { position: relative; z-index: 1; }
+}
+@media (max-width: 767px) {
+  .labs-journey .journey-mobile-art.labs-mobile-scene { position: relative; height: auto; padding: 22px 8px 8px; }
+}
