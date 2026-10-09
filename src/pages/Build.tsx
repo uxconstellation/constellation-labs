@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import VentureCard from "@/components/cards/VentureCard";
 import PatchMaker from "@/components/build/PatchMaker";
 import Cta from "@/components/ui/Cta";
+import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import Sweep from "@/components/ui/Sweep";
 import { LINKS, products } from "@/content/products";
 import { gsap, useMotion } from "@/lib/motion";
@@ -37,8 +38,9 @@ export default function Build() {
   return (
     <div ref={root}>
       {/* Hero */}
-      <section className="grain relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] bg-cream pb-16 pt-[120px] md:pb-24 md:pt-[150px]" aria-labelledby="bd-title">
-        <div className="wrap grid items-end gap-12 lg:grid-cols-[1.25fr_.75fr]">
+      <section className="relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] bg-cream pb-16 pt-[120px] md:pb-24 md:pt-[150px]" aria-labelledby="bd-title">
+        <Liquid palette={PALETTES.day} bg="#F3EEE7" wash={0.66} grain={0.11} speed={0.3} scale={2.2} resolution={0.5} className="absolute inset-0 h-full w-full" />
+        <div className="wrap relative grid items-end gap-12 lg:grid-cols-[1.25fr_.75fr]">
           <div>
             <p className="eyebrow bd-fade">For teams</p>
             <h1 id="bd-title" className="mt-6" aria-label="Have the studio build yours.">
@@ -78,8 +80,9 @@ export default function Build() {
       </section>
 
       {/* What we make */}
-      <section aria-labelledby="make-title" className="bg-ink py-28 text-paper md:py-40">
-        <div className="wrap">
+      <section aria-labelledby="make-title" className="relative overflow-hidden bg-ink py-28 text-paper md:py-40">
+        <Liquid palette={PALETTES.night} bg="#160C15" wash={0.62} grain={0.12} speed={0.25} scale={2} resolution={0.5} className="absolute inset-0 h-full w-full" />
+        <div className="wrap relative">
           <h2 id="make-title" className="d-l" data-reveal>What we make.</h2>
           <ul className="mt-14 border-t border-paper/15">
             {MAKE.map((m, i) => (
@@ -115,7 +118,8 @@ export default function Build() {
 
       {/* Patch maker */}
       <section id="patch" aria-labelledby="patch-title" className="scroll-mt-20 px-2 pb-24 md:px-4 md:pb-32">
-        <div className="grain sheet bg-cream px-5 py-14 md:px-16 md:py-20">
+        <div className="sheet relative isolate overflow-hidden bg-cream px-5 py-14 md:px-16 md:py-20">
+          <Liquid palette={PALETTES.day} bg="#F3EEE7" wash={0.74} grain={0.1} speed={0.2} scale={1.6} resolution={0.45} className="absolute inset-0 -z-10 h-full w-full" />
           <div className="wrap !px-0">
             <h2 id="patch-title" className="d-l max-w-[14ch]" data-reveal>Every build gets a patch.</h2>
             <p className="lede mt-8 max-w-[30rem]" data-reveal=".1">Name the thing you want built. We will sew it on the board next to ours.</p>

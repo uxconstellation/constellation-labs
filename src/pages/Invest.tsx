@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Patch from "@/components/patches/Patch";
+import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import StageTrack from "@/components/home/StageTrack";
 import Cta from "@/components/ui/Cta";
 import Sweep from "@/components/ui/Sweep";
+import LiquidSheet, { TONES } from "@/components/ui/LiquidSheet";
 import { LINKS, products, STAGES } from "@/content/products";
 import { gsap, useMotion } from "@/lib/motion";
 import { cn } from "@/lib/utils";
@@ -54,6 +56,9 @@ export default function Invest() {
             </div>
           </div>
           <div className="iv-hand relative mx-auto h-[300px] w-full max-w-[460px] md:h-[400px]" aria-hidden="true">
+            <div className="absolute bottom-[8%] left-1/2 aspect-square w-[118%] -translate-x-1/2">
+              <Liquid shape="disc" palette={PALETTES.night} bg="#160C15" grain={0.13} className="h-full w-full" />
+            </div>
             {products.map((p, i) => (
               <span
                 key={p.slug}
@@ -73,13 +78,13 @@ export default function Invest() {
         <Sweep as="h2" className="mt-6 max-w-[20ch] text-[clamp(34px,5vw,76px)] font-black leading-[1.02] tracking-[-0.045em]" text="A studio sees the same *problem* on ten projects before anyone else sees it once." />
         <ol className="mt-16 grid gap-3 md:mt-24 md:grid-cols-3">
           {WHY.map((w, i) => (
-            <li key={w.t} className="grain sheet flex min-h-[220px] flex-col justify-between bg-cream p-8 md:min-h-[300px] md:p-10" data-reveal={String(i * 0.1)}>
-              <span className="num text-[13px] text-ink-soft">0{i + 1}</span>
+            <LiquidSheet as="li" key={w.t} tone={TONES[i]} className="flex min-h-[220px] flex-col justify-between p-8 md:min-h-[340px] md:p-10" data-reveal={String(i * 0.1)}>
+              <span className={cn("num text-[13px]", i === 0 ? "text-paper/60" : "text-ink-soft")}>0{i + 1}</span>
               <div>
                 <p className="d-s max-w-[14ch]">{w.t}</p>
-                <p className="mt-4 text-[15.5px] leading-relaxed text-ink/75">{w.b}</p>
+                <p className={cn("mt-4 text-[15.5px] leading-relaxed", i === 0 ? "text-paper/80" : "text-ink/80")}>{w.b}</p>
               </div>
-            </li>
+            </LiquidSheet>
           ))}
         </ol>
       </section>
@@ -119,8 +124,9 @@ export default function Invest() {
       </section>
 
       {/* How */}
-      <section aria-labelledby="how-title" className="grain bg-cream py-28 md:py-40">
-        <div className="wrap">
+      <section aria-labelledby="how-title" className="relative overflow-hidden bg-cream py-28 md:py-40">
+        <Liquid palette={PALETTES.ember} bg="#F3EEE7" wash={0.72} grain={0.1} speed={0.2} scale={1.6} resolution={0.45} className="absolute inset-0 h-full w-full" />
+        <div className="wrap relative">
           <h2 id="how-title" className="d-l max-w-[14ch]" data-reveal>How a conversation goes.</h2>
           <ol className="mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-8">
             {STEPS.map((s, i) => (
@@ -136,7 +142,7 @@ export default function Invest() {
 
       {/* Close */}
       <section aria-labelledby="close-title" className="wrap py-28 md:py-40">
-        <div className="grain sheet relative overflow-hidden bg-ink p-8 text-paper md:p-16">
+        <LiquidSheet tone="ink" className="p-8 md:p-16">
           <p className="eyebrow !text-paper/60" data-reveal>Start here</p>
           <h2 id="close-title" className="d-hero mt-6" data-reveal>Talk to Aldo.</h2>
           <div className="mt-10 grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
@@ -148,7 +154,7 @@ export default function Invest() {
               <Cta href={LINKS.studio} variant="line-light">Meet the studio</Cta>
             </div>
           </div>
-        </div>
+        </LiquidSheet>
       </section>
     </div>
   );

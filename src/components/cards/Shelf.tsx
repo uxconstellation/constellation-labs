@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import VentureCard from "./VentureCard";
+import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import { products, type ProductStatus } from "@/content/products";
 import { gsap, useMotion } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 /**
- * Google Labs' experiments shelf, dealt as trading cards. Filter by status, scroll
+ * Google Labs' experiments shelf, dealt as trading cards over the brand liquid. Filter by status, scroll
  * or step through; the last card is always an empty one with your name on it.
  * Scales to any number of ventures.
  */
@@ -43,19 +44,12 @@ export default function Shelf() {
       y: 140, rotate: (i) => (i % 2 ? 14 : -14), opacity: 0, duration: 1.2, stagger: 0.09, ease: "expo.out",
       scrollTrigger: { trigger: r.querySelector(".deal-row"), start: "top 85%", once: true },
     });
-    r.querySelectorAll<HTMLElement>(".blob").forEach((b, i) => {
-      gsap.to(b, { x: i % 2 ? -60 : 70, y: i % 2 ? 40 : -50, rotate: i % 2 ? -25 : 30, duration: 9 + i * 2, ease: "sine.inOut", yoyo: true, repeat: -1 });
-    });
   });
 
   return (
     <section ref={root} id="bench" aria-labelledby="shelf-title" className="relative scroll-mt-10 overflow-hidden bg-cream py-24 md:py-32">
-      {/* Google Labs' floating shapes, in our stage colours */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <span className="blob absolute -left-[8%] top-[34%] h-[46vw] max-h-[620px] w-[46vw] max-w-[620px] rounded-full" style={{ background: "#d2d9c7" }} />
-        <span className="blob absolute -right-[6%] top-[4%] h-[34vw] max-h-[480px] w-[34vw] max-w-[480px] rounded-[38%]" style={{ background: "#f0c0a1" }} />
-        <span className="blob absolute bottom-[-10%] right-[22%] h-[22vw] max-h-[320px] w-[22vw] max-w-[320px] rounded-[30%]" style={{ background: "#d8d1df" }} />
-      </div>
+      {/* The main site's liquid, washed into daylight, with grain */}
+      <Liquid palette={PALETTES.day} bg="#F3EEE7" wash={0.62} grain={0.11} speed={0.35} scale={2.2} resolution={0.5} className="absolute inset-0 h-full w-full" />
 
       <div className="wrap relative">
         <p className="eyebrow text-center" data-reveal>The ventures</p>

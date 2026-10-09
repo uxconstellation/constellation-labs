@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Patch from "@/components/patches/Patch";
+import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import { products } from "@/content/products";
 import { cn } from "@/lib/utils";
 
@@ -29,12 +30,15 @@ export default function Fork({ title = "Two ways in." }: { title?: string }) {
             lean === "build" ? "lg:flex-[0.8]" : lean === "invest" ? "lg:flex-[1.35]" : "lg:flex-1",
           )}
         >
-          <p className="eyebrow !text-paper/60">For investors</p>
-          <p className="d-m mt-5 max-w-[9ch]">Back the next one.</p>
-          <p className="mt-5 max-w-[22rem] text-[16px] leading-relaxed text-paper/75">
+          <div aria-hidden="true" className="pointer-events-none absolute -right-[18%] -top-[28%] aspect-square w-[95%] opacity-90 transition-transform duration-[1200ms] ease-lab group-hover:scale-110">
+            <Liquid shape="disc" palette={PALETTES.night} bg="#160C15" grain={0.12} className="h-full w-full" />
+          </div>
+          <p className="eyebrow relative !text-paper/60">For investors</p>
+          <p className="d-m relative mt-5 max-w-[9ch]">Back the next one.</p>
+          <p className="relative mt-5 max-w-[22rem] text-[16px] leading-relaxed text-paper/75">
             Each product is a company in waiting. See what is on the bench, what each one needs, and what comes next.
           </p>
-          <span className="btn btn-orange mt-auto w-fit">
+          <span className="btn btn-orange relative mt-auto w-fit">
             Invest in Labs <span className="arrow" aria-hidden="true">→</span>
           </span>
           <div className="pointer-events-none absolute -bottom-16 right-[-2%] h-[60%] w-[60%]" aria-hidden="true">
@@ -62,12 +66,13 @@ export default function Fork({ title = "Two ways in." }: { title?: string }) {
             lean === "invest" ? "lg:flex-[0.8]" : lean === "build" ? "lg:flex-[1.35]" : "lg:flex-1",
           )}
         >
-          <p className="eyebrow">For teams</p>
-          <p className="d-m mt-5 max-w-[11ch]">Have the studio build yours.</p>
-          <p className="mt-5 max-w-[22rem] text-[16px] leading-relaxed text-ink/75">
+          <Liquid palette={PALETTES.ember} bg="#F3EEE7" wash={0.6} grain={0.11} speed={0.3} scale={2} resolution={0.5} className="absolute inset-0 h-full w-full" />
+          <p className="eyebrow relative">For teams</p>
+          <p className="d-m relative mt-5 max-w-[11ch]">Have the studio build yours.</p>
+          <p className="relative mt-5 max-w-[22rem] text-[16px] leading-relaxed text-ink/80">
             Labs is what Constellation makes for itself. The same people design and build websites, apps and products for clients.
           </p>
-          <span className="btn btn-ink mt-auto w-fit">
+          <span className="btn btn-ink relative mt-auto w-fit">
             Start a build <span className="arrow" aria-hidden="true">→</span>
           </span>
           <div className="pointer-events-none absolute bottom-8 right-8 w-[clamp(130px,30%,220px)] md:bottom-12 md:right-12" aria-hidden="true">

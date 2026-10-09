@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PatchPile from "./PatchPile";
+import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import { LINKS, products } from "@/content/products";
 
 /** Google Labs' closing move, in our thread: a pile of patches over a full-width wordmark. */
@@ -28,13 +29,13 @@ export default function Footer() {
         </div>
       </div>
       <div className="wrap">
-        <p
-          aria-hidden="true"
-          className="whitespace-nowrap border-t hairline pt-6 font-black leading-[.8] tracking-[-0.065em] text-ink"
-          style={{ fontSize: "clamp(38px, 11.2vw, 161px)" }}
-        >
-          Constellation <span className="text-orange-ink">Labs</span>
-        </p>
+        {/* The wordmark is a window onto the liquid: paper screened over it, ink letters let it through */}
+        <div aria-hidden="true" className="relative isolate mt-0 overflow-hidden border-t hairline pt-6">
+          <Liquid palette={PALETTES.night} bg="#160C15" grain={0.1} speed={0.4} scale={2.4} resolution={0.6} className="absolute inset-x-0 bottom-0 top-6 h-[calc(100%-24px)] w-full" />
+          <p className="relative whitespace-nowrap bg-paper pb-[.04em] font-black leading-[.8] tracking-[-0.065em] text-black mix-blend-screen" style={{ fontSize: "clamp(38px, 11.2vw, 161px)" }}>
+            Constellation Labs
+          </p>
+        </div>
         <div className="flex flex-wrap items-center justify-between gap-4 border-t hairline py-6 text-[13px] text-ink-soft mt-8">
           <span>© {new Date().getFullYear()} Constellation Lab (Pty) Ltd</span>
           <span>Made in George, South Africa</span>

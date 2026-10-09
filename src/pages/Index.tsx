@@ -6,6 +6,8 @@ import StageTrack from "@/components/home/StageTrack";
 import Fork from "@/components/home/Fork";
 import Patch from "@/components/patches/Patch";
 import Sweep from "@/components/ui/Sweep";
+import LiquidSheet, { TONES } from "@/components/ui/LiquidSheet";
+import { cn } from "@/lib/utils";
 import { useMotion } from "@/lib/motion";
 
 /** Why the lab exists. Each reason points at the venture it produced. */
@@ -54,21 +56,21 @@ export default function Index() {
         </div>
         <ol className="mt-14 grid gap-3 md:mt-20 md:grid-cols-3">
           {WHY.map((w, i) => (
-            <li key={w.t} className="grain sheet flex flex-col bg-cream p-8 md:min-h-[340px] md:p-10" data-reveal={String(i * 0.1)}>
-              <span className="num text-[13px] text-ink-soft">0{i + 1}</span>
+            <LiquidSheet as="li" key={w.t} tone={TONES[i]} className="flex flex-col p-8 md:min-h-[380px] md:p-10" data-reveal={String(i * 0.1)}>
+              <span className={cn("num text-[13px]", i === 0 ? "text-paper/60" : "text-ink-soft")}>0{i + 1}</span>
               <p className="d-s mt-6 max-w-[13ch] md:mt-auto md:pt-10">{w.t}</p>
-              <p className="mt-4 text-[15.5px] leading-relaxed text-ink/75">{w.b}</p>
+              <p className={cn("mt-4 text-[15.5px] leading-relaxed", i === 0 ? "text-paper/80" : "text-ink/80")}>{w.b}</p>
               {w.proof.length > 0 && (
-                <div className="mt-6 flex flex-wrap gap-2 border-t hairline pt-5">
+                <div className={cn("mt-6 flex flex-wrap gap-2 border-t pt-5", i === 0 ? "border-paper/15" : "hairline")}>
                   {w.proof.map((x) => (
-                    <Link key={x.slug} to={`/${x.slug}`} className="chip hover:border-ink">
+                    <Link key={x.slug} to={`/${x.slug}`} className="chip text-ink hover:border-ink">
                       <span className="patch -ml-1.5 w-5"><Patch slug={x.slug} /></span>
                       {x.name}
                     </Link>
                   ))}
                 </div>
               )}
-            </li>
+            </LiquidSheet>
           ))}
         </ol>
       </section>

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Patch from "@/components/patches/Patch";
+import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import { SCENES } from "@/components/scenes";
 import StageTrack from "@/components/home/StageTrack";
 import Cta from "@/components/ui/Cta";
@@ -11,6 +12,14 @@ import { gsap, useMotion } from "@/lib/motion";
 import acreShot from "@/assets/real/acre.webp";
 import pinpointsShot from "@/assets/real/pinpoints.webp";
 import NotFound from "./NotFound";
+
+/** Each venture's liquid: its own colour run through the brand's wine and orange. */
+const LIQUID: Partial<Record<Product["slug"], [string, string, string]>> = {
+  acre: ["#2F6B4F", "#FE6E36", "#E9C39E"],
+  pinpoints: ["#8B2252", "#FE6E36", "#F3C9A8"],
+  prism: ["#5B4B8A", "#FE6E36", "#9EDCC6"],
+  nod: ["#173F3F", "#C8753A", "#9EDCC6"],
+};
 
 const REAL: Partial<Record<Product["slug"], { src: string; url: string; caption: string; title: string; eyebrow: string }>> = {
   acre: { src: acreShot, url: "acreprop.lovable.app", eyebrow: "Not a mock-up", title: "It is live. Go and use it.", caption: "The real Acre, running in beta." },
@@ -50,8 +59,9 @@ function Product({ p }: { p: Product }) {
   return (
     <article ref={root as React.RefObject<HTMLElement>}>
       {/* Hero */}
-      <header className="pp-hero grain relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] pb-14 pt-[104px] md:pb-20" style={{ background: stage }}>
-        <div className="wrap">
+      <header className="pp-hero relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] pb-14 pt-[104px] md:pb-20" style={{ background: stage }}>
+        <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg={p.color} wash={0.58} grain={0.12} speed={0.3} scale={2.2} resolution={0.5} className="absolute inset-0 h-full w-full" />
+        <div className="wrap relative">
           <div className="pp-fade flex flex-wrap items-center gap-3">
             <Link to="/#bench" className="eyebrow !text-ink/70 hover:!text-ink">Labs</Link>
             <span className="eyebrow !text-ink/40" aria-hidden="true">/</span>
@@ -90,14 +100,16 @@ function Product({ p }: { p: Product }) {
           <h2 id="watch-title" className="d-l" data-reveal>Watch it work.</h2>
           <p className="lede md:justify-self-end md:text-right" data-reveal=".1">A short loop of {p.name} doing its job. The steps underneath follow along.</p>
         </div>
-        <div className="grain sheet mt-12 px-4 pb-6 pt-8 md:px-14 md:pb-10 md:pt-14" style={{ background: stage }} data-reveal>
-          <div className="mx-auto max-w-[980px]"><ScenePiece /></div>
+        <div className="sheet relative mt-12 overflow-hidden px-4 pb-6 pt-8 md:px-14 md:pb-10 md:pt-14" style={{ background: stage }} data-reveal>
+          <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg={p.color} wash={0.78} grain={0.1} speed={0.2} scale={1.6} resolution={0.45} className="absolute inset-0 h-full w-full" />
+          <div className="relative mx-auto max-w-[980px]"><ScenePiece /></div>
         </div>
       </section>
 
       {/* Problem */}
-      <section aria-labelledby="problem-title" className="bg-ink py-28 text-paper md:py-40">
-        <div className="wrap">
+      <section aria-labelledby="problem-title" className="relative overflow-hidden bg-ink py-28 text-paper md:py-40">
+        <Liquid palette={PALETTES.night} bg="#160C15" wash={0.62} grain={0.12} speed={0.25} scale={2} resolution={0.5} className="absolute inset-0 h-full w-full" />
+        <div className="wrap relative">
           <h2 id="problem-title" className="eyebrow !text-paper/60">The problem</h2>
           <Sweep dark className="mt-8 max-w-[24ch] text-[clamp(30px,4.4vw,66px)] font-black leading-[1.04] tracking-[-0.04em]" text={p.problem} />
         </div>
@@ -171,14 +183,18 @@ function Product({ p }: { p: Product }) {
 
       {/* Use it or back it */}
       <section aria-label={`Use or back ${p.name}`} className="wrap grid gap-3 pb-24 md:grid-cols-2 md:pb-32">
-        <a href={p.cta.href} {...(p.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="group grain sheet flex min-h-[300px] flex-col justify-between p-8 md:p-12" style={{ background: stage }} data-reveal>
+        <a href={p.cta.href} {...(p.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="group sheet relative isolate flex min-h-[300px] flex-col justify-between overflow-hidden p-8 md:p-12" style={{ background: stage }} data-reveal>
+          <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg={p.color} wash={0.6} grain={0.12} speed={0.3} scale={2} resolution={0.45} className="absolute inset-0 -z-10 h-full w-full" />
           <p className="eyebrow !text-ink/70">Use it</p>
           <div>
             <p className="d-m">{p.cta.label}.</p>
             <span className="btn btn-ink mt-6">{p.cta.label} <span className="arrow" aria-hidden="true">→</span></span>
           </div>
         </a>
-        <Link to="/invest" className="group grain sheet flex min-h-[300px] flex-col justify-between bg-ink p-8 text-paper md:p-12" data-reveal=".08">
+        <Link to="/invest" className="group sheet relative isolate flex min-h-[300px] flex-col justify-between overflow-hidden bg-ink p-8 text-paper md:p-12" data-reveal=".08">
+          <div aria-hidden="true" className="absolute -right-[25%] -top-[40%] -z-10 aspect-square w-[90%] transition-transform duration-[1200ms] ease-lab group-hover:scale-110">
+            <Liquid shape="disc" palette={PALETTES.night} bg="#160C15" grain={0.12} className="h-full w-full" />
+          </div>
           <p className="eyebrow !text-paper/60">Back it</p>
           <div>
             <p className="d-m max-w-[14ch]">Talk to us about {p.name}.</p>

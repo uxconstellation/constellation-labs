@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import LabsMark from "@/components/brand/LabsMark";
+import Liquid, { PALETTES } from "@/components/brand/Liquid";
 import Patch from "@/components/patches/Patch";
 import Cta from "@/components/ui/Cta";
 import { products, statusDot } from "@/content/products";
@@ -85,6 +86,7 @@ export default function Hero() {
       .from(r.querySelectorAll(".hero-fade"), { y: 24, opacity: 0, duration: 1.1, stagger: 0.08 }, 0.6)
       .from(r.querySelector(".hero-glass"), { scale: 0.86, opacity: 0, duration: 1.8 }, 0.2)
       .from(r.querySelector(".hero-ring"), { scale: 0.6, opacity: 0, duration: 1.8 }, 0.35)
+      .from(r.querySelector(".hero-disc"), { scale: 0.2, opacity: 0, duration: 2.2 }, 0.1)
       .from(r.querySelectorAll(".hero-patch-in"), { scale: 0, rotate: -40, duration: 1.2, stagger: 0.1, ease: "back.out(1.6)" }, 0.75);
     gsap.to(r.querySelector(".hero-stage"), { yPercent: 10, ease: "none", scrollTrigger: { trigger: r, start: "top top", end: "bottom top", scrub: true } });
   });
@@ -121,6 +123,9 @@ export default function Hero() {
             <svg className="hero-ring absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
               <ellipse cx="50%" cy="50%" rx="47%" ry="29%" fill="none" stroke="hsl(var(--sand))" strokeWidth="1.5" className="dash-ring" transform-origin="center" style={{ transform: "rotate(-14deg)", transformBox: "fill-box" }} />
             </svg>
+            <div className="hero-disc absolute left-1/2 top-1/2 z-[1] aspect-square w-[70%] -translate-x-1/2 -translate-y-1/2">
+              <Liquid shape="disc" palette={PALETTES.day} className="h-full w-full" grain={0.14} speed={0.45} resolution={0.7} />
+            </div>
             <div className="hero-glass absolute left-1/2 top-1/2 z-[2] aspect-square w-[64%] -translate-x-1/2 -translate-y-1/2">
               <div className="absolute inset-[8%] transition-opacity duration-700" style={{ opacity: glassReady ? 0 : 1 }}>
                 <LabsMark className="h-full w-full" title="" />
