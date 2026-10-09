@@ -124,7 +124,7 @@ function Product({ p }: { p: Product }) {
         <h2 id="who-title" className="d-m" data-reveal>Who it's for.</h2>
         <ul className={`mt-10 grid gap-3 ${p.audiences.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
           {p.audiences.map((a, i) => (
-            <li key={a} className="grain sheet flex min-h-[200px] flex-col justify-between p-7 md:p-9" style={{ background: i === 0 ? stage : i === 1 ? "hsl(var(--cream))" : "hsl(var(--mist))" }} data-reveal={String(i * 0.08)}>
+            <li key={a} className="grain sheet flex min-h-[140px] flex-col justify-between p-7 md:min-h-[200px] md:p-9" style={{ background: i === 0 ? stage : i === 1 ? "hsl(var(--cream))" : "hsl(var(--mist))" }} data-reveal={String(i * 0.08)}>
               <span className="num text-[13px] text-ink-soft">0{i + 1}</span>
               <span className="d-s max-w-[14ch]">{a}</span>
             </li>

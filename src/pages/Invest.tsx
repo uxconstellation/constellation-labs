@@ -58,7 +58,7 @@ export default function Invest() {
               <span
                 key={p.slug}
                 className="iv-patch patch absolute bottom-0 left-1/2 w-[46%] origin-bottom"
-                style={{ transform: `translateX(-50%) rotate(${(i - 1.5) * 15}deg)`, filter: "drop-shadow(0 24px 30px rgba(0,0,0,.45))" }}
+                style={{ transform: `translateX(${-50 + (i - 1.5) * 38}%) rotate(${(i - 1.5) * 12}deg) translateY(${Math.abs(i - 1.5) * 8}%)`, filter: "drop-shadow(0 24px 30px rgba(0,0,0,.45))" }}
               >
                 <Patch slug={p.slug} />
               </span>
@@ -73,7 +73,7 @@ export default function Invest() {
         <Sweep as="h2" className="mt-6 max-w-[20ch] text-[clamp(34px,5vw,76px)] font-black leading-[1.02] tracking-[-0.045em]" text="A studio sees the same *problem* on ten projects before anyone else sees it once." />
         <ol className="mt-16 grid gap-3 md:mt-24 md:grid-cols-3">
           {WHY.map((w, i) => (
-            <li key={w.t} className="grain sheet flex min-h-[300px] flex-col justify-between bg-cream p-8 md:p-10" data-reveal={String(i * 0.1)}>
+            <li key={w.t} className="grain sheet flex min-h-[220px] flex-col justify-between bg-cream p-8 md:min-h-[300px] md:p-10" data-reveal={String(i * 0.1)}>
               <span className="num text-[13px] text-ink-soft">0{i + 1}</span>
               <div>
                 <p className="d-s max-w-[14ch]">{w.t}</p>

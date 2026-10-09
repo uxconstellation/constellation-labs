@@ -118,7 +118,7 @@ export default function Build() {
         <div className="grain sheet bg-cream px-5 py-14 md:px-16 md:py-20">
           <div className="wrap !px-0">
             <h2 id="patch-title" className="d-l max-w-[14ch]" data-reveal>Every build gets a patch.</h2>
-            <p className="lede mt-5 max-w-[30rem]" data-reveal=".1">Name the thing you want built. We will sew it on the board next to ours.</p>
+            <p className="lede mt-8 max-w-[30rem]" data-reveal=".1">Name the thing you want built. We will sew it on the board next to ours.</p>
             <div className="mt-14"><PatchMaker emailTo="mailto:aldo@uxconstellation.com" /></div>
           </div>
         </div>

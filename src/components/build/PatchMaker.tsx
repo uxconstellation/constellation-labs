@@ -19,7 +19,7 @@ export default function PatchMaker({ emailTo }: { emailTo: string }) {
   const id = useId().replace(/:/g, "");
   const t = THREADS[thread];
   const label = (name.trim() || "Your product").slice(0, 22);
-  const fs = label.length > 14 ? 24 : label.length > 9 ? 30 : 38;
+  const fs = label.length > 16 ? 20 : label.length > 11 ? 25 : label.length > 7 ? 32 : 40;
   const mail = `${emailTo}?subject=${encodeURIComponent(`A build for ${name.trim() || "my product"}`)}`;
 
   return (
@@ -27,7 +27,6 @@ export default function PatchMaker({ emailTo }: { emailTo: string }) {
       <div className="mx-auto w-full max-w-[420px]">
         <svg viewBox="0 0 400 400" className="w-full overflow-visible patch-shadow" role="img" aria-label={`A patch reading ${label}`}>
           <defs>
-            <path id={`${id}-arc`} d="M 92 214 A 108 108 0 0 0 308 214" />
             <clipPath id={`${id}-in`}><circle cx="200" cy="200" r="150" /></clipPath>
           </defs>
           <g filter="url(#pt-lift)">
@@ -37,14 +36,16 @@ export default function PatchMaker({ emailTo }: { emailTo: string }) {
             <circle cx="200" cy="200" r="156" fill="url(#pt-twill)" />
           </g>
           <g clipPath={`url(#${id}-in)`} filter="url(#pt-emb)">
-            <path d="M200 92 C206 132 222 148 262 154 C222 160 206 176 200 216 C194 176 178 160 138 154 C178 148 194 132 200 92 Z" fill={t.body} style={{ transition: "fill .6s" }} />
-            <path d="M200 92 C206 132 222 148 262 154 C222 160 206 176 200 216 C194 176 178 160 138 154 C178 148 194 132 200 92 Z" fill="url(#pt-satin)" />
+            <g transform="translate(0 -14)">
+              <path d="M200 92 C206 132 222 148 262 154 C222 160 206 176 200 216 C194 176 178 160 138 154 C178 148 194 132 200 92 Z" fill={t.body} style={{ transition: "fill .6s" }} />
+              <path d="M200 92 C206 132 222 148 262 154 C222 160 206 176 200 216 C194 176 178 160 138 154 C178 148 194 132 200 92 Z" fill="url(#pt-satin)" />
+            </g>
           </g>
           <circle cx="200" cy="200" r="144" fill="none" stroke={t.body} strokeWidth="2.4" strokeDasharray="7 6" opacity=".6" style={{ transition: "stroke .6s" }} />
-          <text fontFamily="Satoshi, sans-serif" fontWeight="900" fontSize={fs} letterSpacing="3" fill={t.body} filter="url(#pt-emb)" style={{ transition: "fill .6s" }}>
-            <textPath href={`#${id}-arc`} startOffset="50%" textAnchor="middle">{label.toUpperCase()}</textPath>
+          <text x="200" y="262" textAnchor="middle" fontFamily="Satoshi, sans-serif" fontWeight="900" fontSize={fs} letterSpacing="2" fill={t.body} filter="url(#pt-emb)" style={{ transition: "fill .6s" }}>
+            {label.toUpperCase()}
           </text>
-          <text x="200" y="318" textAnchor="middle" fontFamily="Satoshi, sans-serif" fontWeight="700" fontSize="13" letterSpacing="4" fill="#5E5660">MADE WITH CONSTELLATION</text>
+          <text x="200" y="298" textAnchor="middle" fontFamily="Satoshi, sans-serif" fontWeight="700" fontSize="11.5" letterSpacing="3.5" fill="#5E5660">MADE WITH CONSTELLATION</text>
         </svg>
       </div>
 
