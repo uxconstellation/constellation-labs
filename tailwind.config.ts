@@ -35,7 +35,7 @@ export default {
         card: { DEFAULT: "hsl(var(--paper))", foreground: "hsl(var(--ink))" },
       },
       fontFamily: {
-        display: ["Noken", "Arial Black", "sans-serif"],
+        display: ["Satoshi", "system-ui", "sans-serif"],
         body: ["Satoshi", "system-ui", "sans-serif"],
       },
       borderRadius: { lg: "1.25rem", xl: "1.5rem", "2xl": "2rem" },

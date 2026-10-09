@@ -12,7 +12,7 @@ const LIFT = "url(#pt-lift)";
 const SATIN = "url(#pt-satin)";
 const SATIN2 = "url(#pt-satin2)";
 const TWILL = "url(#pt-twill)";
-const NAME_FONT = "'Noken','Arial Black',sans-serif";
+const NAME_FONT = "Satoshi, 'Helvetica Neue', Arial, sans-serif";
 
 type Sheen = { x: number; y: number } | null;
 
@@ -196,8 +196,24 @@ function Nod({ sheen }: { sheen: Sheen }) {
 
 const ART: Record<ProductSlug, (p: { sheen: Sheen }) => ReactNode> = { acre: Acre, pinpoints: Pinpoints, prism: Prism, nod: Nod };
 
-export default function Patch({ slug, sheen = null, className, title }: { slug: ProductSlug; sheen?: Sheen; className?: string; title?: string }) {
-  const Art = ART[slug];
+/** House patch for a venture that has no bespoke art yet: the star and its initial. */
+function House({ name }: { name: string }) {
+  return (
+    <>
+      <g filter={LIFT}>
+        <circle cx="200" cy="200" r="172" fill="#173F3F" />
+        <circle cx="200" cy="200" r="172" fill="none" stroke="#0E2B2B" strokeWidth="16" strokeDasharray="1.6 2.6" />
+        <circle cx="200" cy="200" r="156" fill="#FBF7F1" />
+        <circle cx="200" cy="200" r="156" fill={TWILL} />
+      </g>
+      <text x="200" y="250" textAnchor="middle" fontFamily={NAME_FONT} fontWeight="900" fontSize="150" fill="#FE6E36" filter={EMB}>{name.charAt(0).toUpperCase()}</text>
+      <circle cx="200" cy="200" r="144" fill="none" stroke="#173F3F" strokeWidth="2.4" strokeDasharray="7 6" opacity=".6" />
+    </>
+  );
+}
+
+export default function Patch({ slug, sheen = null, className, title }: { slug: ProductSlug | string; sheen?: Sheen; className?: string; title?: string }) {
+  const Art = (ART as Record<string, (p: { sheen: Sheen }) => ReactNode>)[slug] ?? (() => <House name={slug} />);
   return (
     <svg viewBox="0 0 400 420" className={className} role={title ? "img" : undefined} aria-label={title} aria-hidden={title ? undefined : true} overflow="visible">
       <Art sheen={sheen} />

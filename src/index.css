@@ -1,85 +1,138 @@
-@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Noken: self-host the licensed file at /public/fonts/noken-bold.woff2 to enable it.
-   Until then headings fall back to Arial Black, same as the main site today. */
-@font-face {
-  font-family: "Noken";
-  src: local("Noken"), url("/fonts/noken-bold.woff2") format("woff2");
-  font-weight: 700 900;
-  font-style: normal;
-  font-display: swap;
-}
-
+/*
+ * Constellation Labs. The Constellation CI on daylight paper.
+ * One family (Satoshi), four stage colours, the main site's grain.
+ */
 @layer base {
   :root {
-    /* Labs light tokens. Constellation CI, turned inside out. */
-    --paper: 0.0 0.0% 100.0%;          /* #FFFFFF page */
-    --mist: 37.5 33.3% 95.3%;          /* #F7F4EF raised surfaces */
-    --cream: 35.0 33.3% 92.9%;         /* #F3EEE7 CI cream, alternate sections */
-    --line: 37.5 25.8% 87.8%;          /* #E8E2D8 hairlines */
-    --ink: 306.0 29.4% 6.7%;           /* #160C15 CI dark, all text */
-    --ink-soft: 288.0 5.5% 35.7%;      /* #5E5660 secondary text, 7.1:1 */
-    --sand: 38.3 20.0% 64.7%;          /* #B7AA93 CI warm grey, decoration only */
-    --orange: 16.8 99.0% 60.4%;        /* #FE6E36 CI orange, fills only, never text */
-    --orange-ink: 17.5 88.3% 40.4%;    /* #C2410C orange for links, 5.2:1 */
-    --teal: 180.0 46.5% 16.9%;         /* #173F3F CI teal, the star */
+    --paper: 37 45% 97%;          /* #FBF8F3 page, warm, never pure white */
+    --mist: 37.5 33.3% 95.3%;     /* #F7F4EF */
+    --cream: 35 33.3% 92.9%;      /* #F3EEE7 */
+    --line: 37.5 25.8% 87.8%;     /* #E8E2D8 */
+    --ink: 306 29.4% 6.7%;        /* #160C15 */
+    --ink-soft: 288 5.5% 35.7%;   /* #5E5660 */
+    --sand: 38.3 20% 64.7%;       /* #B7AA93 decoration only */
+    --orange: 16.8 99% 60.4%;     /* #FE6E36 fills only */
+    --orange-ink: 17.5 88.3% 40.4%; /* #C2410C text on light */
+    --teal: 180 46.5% 16.9%;      /* #173F3F */
 
-    --acre: 152.0 39.0% 30.2%;         /* #2F6B4F */
-    --pinpoints: 16.8 99.0% 60.4%;     /* #FE6E36 */
-    --prism: 231.7 79.5% 71.4%;        /* #7C8CF0, solid stand-in for the spectrum */
-    --nod: 24.9 56.3% 50.6%;           /* #C8753A */
+    --acre: 152 39% 30.2%;
+    --pinpoints: 16.8 99% 60.4%;
+    --prism: 231.7 79.5% 71.4%;
+    --nod: 24.9 56.3% 50.6%;
 
-    /* Aliases the duplicated Constellation landing CSS reads. Same names, Labs values. */
-    --background: var(--paper);
-    --foreground: var(--ink);
-    --primary: var(--orange);
-    --primary-foreground: var(--ink);
-    --accent: var(--cream);
-    --accent-foreground: var(--ink);
-    --card: var(--mist);
-    --card-foreground: var(--ink);
-    --border: var(--line);
+    --stage-acre: #d2d9c7;
+    --stage-pinpoints: #f0c0a1;
+    --stage-prism: #d8d1df;
+    --stage-nod: #b3d3c6;
 
-    --prism-spectrum: linear-gradient(110deg, #fe6e36, #f2b33d 30%, #7fc8a9 55%, #7c8cf0 80%, #c77ddb);
+    --labs-gradient: linear-gradient(100deg, #fe6e36 0%, #f3a27c 34%, #e9c39e 52%, #b9cfae 72%, #9edcc6 100%);
+    --ease-lab: cubic-bezier(.22, 1, .36, 1);
+    --gutter: clamp(16px, 4.4vw, 80px);
   }
 
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     @apply bg-paper font-body text-ink antialiased;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01";
   }
-  h1, h2, h3, h4 { @apply font-display font-bold uppercase; letter-spacing: 0.01em; line-height: 0.98; }
-  ::selection { background: hsl(var(--orange) / 0.35); }
-  :focus-visible { outline: 2px solid hsl(var(--orange-ink)); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3, h4 { font-weight: 900; letter-spacing: -0.04em; line-height: .95; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  ::selection { background: hsl(var(--orange) / .35); }
+  :focus-visible { outline: 2px solid hsl(var(--orange-ink)); outline-offset: 3px; border-radius: 8px; }
+  img, svg { max-width: 100%; }
 
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
+}
+
+@layer components {
+  .wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: var(--gutter); }
+
+  /* Type */
+  .d-xl { font-weight: 900; font-size: clamp(76px, 15.5vw, 260px); line-height: .8; letter-spacing: -0.06em; }
+  .d-hero { font-weight: 900; font-size: clamp(58px, 8.8vw, 150px); line-height: .86; letter-spacing: -0.058em; }
+  .d-l { font-weight: 900; font-size: clamp(46px, 8vw, 132px); line-height: .88; letter-spacing: -0.05em; }
+  .d-m { font-weight: 900; font-size: clamp(34px, 4.8vw, 72px); line-height: .94; letter-spacing: -0.042em; }
+  .d-s { font-weight: 900; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; letter-spacing: -0.03em; }
+  .d-light { font-weight: 300; letter-spacing: -0.045em; }
+  .lede { font-size: clamp(18px, 1.55vw, 22px); line-height: 1.5; color: hsl(var(--ink) / .78); }
+  .body { font-size: 16px; line-height: 1.65; color: hsl(var(--ink-soft)); }
+  .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: hsl(var(--ink-soft)); }
+  .num { font-variant-numeric: tabular-nums; }
+  .gradient-text { background: var(--labs-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* Buttons: the main site's pills */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 700; font-size: 15px; letter-spacing: -.005em; white-space: nowrap; transition: transform .5s var(--ease-lab), background-color .3s, color .3s, border-color .3s, box-shadow .5s var(--ease-lab); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  .btn-orange { background: hsl(var(--orange)); color: hsl(var(--ink)); box-shadow: 0 10px 24px -14px hsl(var(--orange) / .9); }
+  .btn-orange:hover { box-shadow: 0 16px 30px -14px hsl(var(--orange) / .95); }
+  .btn-ink { background: hsl(var(--ink)); color: hsl(var(--paper)); }
+  .btn-line { border: 1.5px solid hsl(var(--ink) / .22); color: hsl(var(--ink)); background: hsl(var(--paper) / .4); }
+  .btn-line:hover { border-color: hsl(var(--ink)); }
+  .btn-line-light { border: 1.5px solid hsl(var(--paper) / .3); color: hsl(var(--paper)); }
+  .btn-line-light:hover { border-color: hsl(var(--paper)); }
+  .btn-sm { min-height: 42px; padding: 0 18px; font-size: 13px; }
+  .btn .arrow { transition: transform .5s var(--ease-lab); }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .chip { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 13px; border-radius: 999px; font-size: 12.5px; font-weight: 700; background: hsl(var(--paper)); border: 1px solid hsl(var(--ink) / .1); }
+  .chip i { width: 7px; height: 7px; border-radius: 50%; }
+
+  /* The main site's card grain */
+  .grain { position: relative; isolation: isolate; }
+  .grain::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit; background-image: url("./assets/card-grain-v3.webp"); background-size: 250px; opacity: .14; mix-blend-mode: multiply; }
+  .grain > * { position: relative; z-index: 2; }
+
+  .sheet { border-radius: clamp(28px, 3vw, 44px); }
+  .hairline { border-color: hsl(var(--ink) / .12); }
+
+  /* Patches as art */
+  .patch svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .patch-shadow { filter: drop-shadow(0 18px 22px rgba(58, 36, 16, .22)) drop-shadow(0 3px 4px rgba(58, 36, 16, .16)); }
+
+  /* Motion pieces */
+  .labs-scene { margin: 0; width: 100%; }
+  .labs-scene-art svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .labs-scene-beats { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; font: 500 13px/1.3 Satoshi, sans-serif; color: hsl(var(--ink) / .45); }
+  .labs-scene-beats span { display: inline-flex; gap: 8px; align-items: baseline; transition: color .4s ease; position: relative; padding-bottom: 7px; }
+  .labs-scene-beats span::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: hsl(var(--ink)); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-lab); }
+  .labs-scene-beats span.is-active { color: hsl(var(--ink)); }
+  .labs-scene-beats span.is-active::after { transform: scaleX(1); }
+  .labs-scene-beats span.is-done { color: hsl(var(--ink) / .7); }
+  .labs-scene-beats i { font-style: normal; font-variant-numeric: tabular-nums; font-size: 11px; }
+  @media (prefers-reduced-motion: reduce) { .labs-scene-beats span { color: hsl(var(--ink) / .8); } .labs-scene-beats span::after { display: none; } }
+
+  /* Word-by-word colour sweep (Google Labs about statement) */
+  .sweep .w { color: hsl(var(--ink) / .16); transition: color .2s linear; }
+  .sweep .w.on { color: hsl(var(--ink)); }
+  .sweep-dark .w { color: hsl(var(--paper) / .2); }
+  .sweep-dark .w.on { color: hsl(var(--paper)); }
+  .sweep .w.hl.on { color: hsl(var(--orange-ink)); }
+  .sweep-dark .w.hl.on { color: hsl(var(--orange)); }
+  @media (prefers-reduced-motion: reduce) { .sweep .w { color: hsl(var(--ink)); } .sweep-dark .w { color: hsl(var(--paper)); } }
+
+  /* Nav link underline */
+  .navlink { position: relative; font-size: 14.5px; font-weight: 500; color: hsl(var(--ink) / .8); padding: 6px 0; }
+  .navlink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease-lab); }
+  .navlink:hover, .navlink[aria-current="page"] { color: hsl(var(--ink)); }
+  .navlink:hover::after, .navlink[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+
+  .marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  .dash-ring { stroke-dasharray: 2 7; }
 }
 
 @layer utilities {
-  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.18em] text-ink-soft; }
-  .bg-prism { background-image: var(--prism-spectrum); }
-}
-
-/* The patch board: cream twill with the main site's card grain */
-@layer components {
-  .patch-board {
-    background:
-      repeating-linear-gradient(135deg, hsl(var(--ink) / .025) 0 2px, transparent 2px 5px),
-      repeating-linear-gradient(45deg, rgb(255 255 255 / .35) 0 1px, transparent 1px 4px),
-      hsl(var(--cream));
-    box-shadow: inset 0 1px 0 #fff, inset 0 -40px 80px -40px hsl(var(--ink) / .08);
-  }
-  .patch-board::after {
-    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35; mix-blend-mode: soft-light;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 128px;
-  }
-  @media (min-width: 768px) { .patch-item { transform: translateY(var(--rest-y, 0)); } }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
 }

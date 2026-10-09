@@ -12,15 +12,14 @@ export default function ScenesPreview() {
     { name: "Nod", bg: "#b3d3c6", el: <NodScene /> },
   ];
   return (
-    <section className="labs-page-top landing-container py-16">
+    <section className="wrap pb-16 pt-28">
       <meta name="robots" content="noindex" />
-      <p className="landing-eyebrow">Internal preview</p>
-      <h1 className="landing-display mb-10">Motion pieces</h1>
-      <div className="labs-scenes-grid">
+      <p className="eyebrow">Internal preview</p>
+      <h1 className="d-l mb-10">Motion pieces</h1>
+      <div className="grid gap-6 md:grid-cols-2">
         {items.map((i) => (
-          <div key={i.name} style={{ background: i.bg }} data-scene={i.name.toLowerCase()}>
-            <div className="card-grain" aria-hidden="true" />
-            <p className="landing-eyebrow mb-4">{i.name}</p>
+          <div key={i.name} className="grain sheet p-8" style={{ background: i.bg }} data-scene={i.name.toLowerCase()}>
+            <p className="eyebrow mb-4">{i.name}</p>
             {i.el}
           </div>
         ))}

@@ -3,6 +3,11 @@
  * Change a URL, status or line of copy here and every page follows.
  */
 
+/**
+ * Adding a venture: append one entry below. Cards, product page, stage track,
+ * nav and footer all follow. A bespoke embroidered patch is optional; without
+ * one the card uses the house patch with the venture's initial.
+ */
 export type ProductSlug = "acre" | "pinpoints" | "prism" | "nod";
 export type ProductStatus = "Beta" | "Early access" | "In development";
 
@@ -13,6 +18,12 @@ export interface Product {
   hook: string;
   /** CSS colour for accents; Prism also uses the spectrum utility. */
   accent: string;
+  /** Card type line, e.g. "Property platform". */
+  kind: string;
+  /** Stage colour: card, sheets and page hero. */
+  color: string;
+  /** Index into STAGES: 0 Idea, 1 Prototype, 2 In use, 3 Beta, 4 Graduated. */
+  stage: 0 | 1 | 2 | 3 | 4;
   cta: { label: string; href: string; external: boolean };
   problem: string;
   capabilities: string[];
@@ -41,6 +52,9 @@ export const products: Product[] = [
     status: "Beta",
     hook: "Buy, sell, rent and manage property in one place.",
     accent: "hsl(var(--acre))",
+    kind: "Property platform",
+    color: "#d2d9c7",
+    stage: 3,
     cta: { label: "Open Acre", href: LINKS.acre, external: true },
     problem:
       "Property transactions in South Africa run across email, WhatsApp, paper and separate verification steps. Nobody, not the buyer, seller, owner or agent, can see where a deal actually stands.",
@@ -62,6 +76,9 @@ export const products: Product[] = [
     status: "Beta",
     hook: "Feedback pinned to the exact spot.",
     accent: "hsl(var(--pinpoints))",
+    kind: "Visual feedback",
+    color: "#f0c0a1",
+    stage: 3,
     cta: { label: "Open Pinpoints", href: LINKS.pinpoints, external: true },
     problem:
       "Review rounds die in email threads and screenshots. \"The button on the second page\" is not feedback anyone can act on.",
@@ -83,6 +100,9 @@ export const products: Product[] = [
     status: "Early access",
     hook: "Your vibe-coded site, editable like Wix.",
     accent: "hsl(var(--prism))",
+    kind: "Headless CMS",
+    color: "#d8d1df",
+    stage: 2,
     cta: { label: "Book a Prism demo", href: LINKS.prismDemo, external: true },
     problem:
       "Sites built with AI tools look great at handover. Then the client wants to change a headline and has to come back to the developer, or worse, open the code.",
@@ -107,6 +127,9 @@ export const products: Product[] = [
     status: "In development",
     hook: "Give the nod. Start the conversation.",
     accent: "hsl(var(--nod))",
+    kind: "In-person networking",
+    color: "#b3d3c6",
+    stage: 1,
     cta: { label: "Join the pilot", href: LINKS.nodPilot, external: true },
     problem:
       "Remote workers sit next to useful people every day in coffee shops and coworking spaces, and never meet them. Walking up cold feels awkward.",
@@ -135,3 +158,11 @@ export const statusDot: Record<ProductStatus, string> = {
   "Early access": "hsl(var(--prism))",
   "In development": "hsl(var(--nod))",
 };
+
+export const STAGES = [
+  { name: "Idea", line: "A problem we keep hitting on client work." },
+  { name: "Prototype", line: "The smallest version that could fix it." },
+  { name: "In use", line: "Running on our own studio work." },
+  { name: "Beta", line: "Open to try, still being shaped." },
+  { name: "Graduated", line: "Its own company and its own home." },
+] as const;
