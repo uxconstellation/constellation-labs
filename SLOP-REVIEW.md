@@ -1,3 +1,25 @@
+## 2026-10-09 FAIL
+artefact: C:\Dev\products\constellation-labs (commit d2a2879, served at http://localhost:5191)  sha256: src/pages/ProductPage.tsx 5f8fdeb4ffbe6f708a69680d735b2c6612712bc20cf26f1dee3254885c9301ee
+medium: web (product pages /acre /pinpoints /prism /nod)  client-facing: yes  stage: final: BRIEF.md
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: shots.mjs on the four product pages at 1440 and 390 (scratchpad r6/, sheets r6/sheet-*.png); keyboard-only runs of the Pinpoints, Prism and Nod experiments (p/kb2.mjs, p/kb3.mjs); pixel AA over liquid (p/liqaa.mjs); horizontal overflow probe (p/ovf.mjs); 2x crops r6/c-*.png
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run
+relative: round 1 flag "product pages are one template" -> fixed: partly. Each page now has one real hands-on experiment, and they differ in mechanic (scroll-run deal, pin and edit, code-vs-page switch, phone room). The hero gestures differ too. The rest of the page is still the same skeleton in the same order: hero, Watch it work, The problem, Try it, What it does, proof, Lab notes, stage track, two doors, Next. Watch it work and Try it now tell the same story twice in a row.
+keyboard: Pinpoints works end to end by keyboard (drop target is role=button/Enter; headline focuses and is editable; swatches, Send and Approve are reachable), with visible focus rings. Prism: switch by Space, headline and intro editable, Swap image reachable; Publish sits before the headline in DOM and visual order, so after editing it is a Shift+Tab back, which works. Nod: switch and Nod buttons reachable, and Enter reaches the mutual sheet. Acre is scroll-driven, so keyboard scrolling runs it. No keyboard blocker.
+overflow: 0 px horizontal overflow and 0 text boxes outside the viewport on all four pages at 390 and 1440.
+claims: hypotheses are framed as beliefs; demo people, bistro, bakery and commit hash are invented and labelled made-up. No invented metrics.
+similar prompt: "interactive product demo section per product, grainy gradient background" -> lands here: partly
+scores: originality 7/10, design quality 7/10, reference fidelity 8/10, craft 7/10
+hard blockers:
+- H4 | /nod experiment: the main switch label fails AA. "Open to chat" (15px bold) and "Tap to change" (12px at 90% opacity) are paper on #C8753A, about 3.1:1 (needs 4.5:1; 15px bold is not large text). The same pair is used for the "Nod sent" pill (12.5px) and the flying nod. NodRoom.tsx:57-58 and :82. This is the control the whole experiment hinges on. | Darken the fill to about #9A5526 (paper on it ≥ 4.6:1), or keep #C8753A and set the label in ink
+taste flags:
+- relative / consistency | The skeleton around the experiment is still identical on all four pages, and Watch it work + Try it duplicate the story | Cut Watch it work where Try it covers it (Pinpoints, Prism and Nod clearly do), or fold the loop into the hero; vary the section order per product
+- AA small print and state labels (not key copy): Acre progress inactive steps "Offer/FICA/Transfer/Sold" at ink/40, about 2.4:1 (AcreDeal.tsx:60); party initials white on #FE6E36, about 2.8:1 (AcreDeal.tsx:70); "Try it · Experiment no. 0X" and "Lab no. 0X" eyebrows 3.6-4.4:1 on liquid; "Use it/Back it" 4.0-4.45:1 | Use ink/60 for inactive steps, ink text on the orange avatar, and darker eyebrows on liquid
+- Pinpoints playground at rest: the dark "Your feedback" panel is a large near-empty slab until a pin drops (r6/sheet-pinpoints.png, row 2) | Show a ghost of the first suggestion card, or shrink the panel until it has content
+- prior flags stand: liquid on most sections, WEB-08 gradient text twice, WEB-05/06 eyebrows and numbering, mobile scene legibility, Plato Coffee named in Nod lab notes, Acre dashboard figures in the proof shot
+- note: scripts/probe-signatures.mjs proves the flows run but does not measure contrast; add the Nod switch pair to probe-liquid.mjs
+
 ## 2026-10-09 PASS
 artefact: C:\Dev\products\constellation-labs (commit 2003fcd, served at http://localhost:5191)  sha256: src/pages/Invest.tsx 6329b3c4f667e1ef387ce294da3b9cc5c48579119fb992c4ea09125b890e34c4
 medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md

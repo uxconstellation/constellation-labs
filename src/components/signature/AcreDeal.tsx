@@ -57,7 +57,7 @@ export default function AcreDeal() {
                   <span className="block h-1.5 overflow-hidden rounded-full bg-ink/10">
                     <span className="block h-full origin-left rounded-full bg-ink" style={{ transform: `scaleX(${Math.max(0, Math.min(1, progress * STEPS.length - i))})` }} />
                   </span>
-                  <span className={cn("mt-2 block text-[12px] font-bold transition-colors", i <= step ? "text-ink" : "text-ink/40")}>{s.name}</span>
+                  <span className={cn("mt-2 block text-[12px] font-bold transition-colors", i <= step ? "text-ink" : "text-ink/70")}>{s.name}</span>
                 </li>
               ))}
             </ol>

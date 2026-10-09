@@ -54,7 +54,7 @@ export default function NodRoom() {
               role="switch"
               aria-checked={open}
               onClick={() => { setOpen((v) => !v); reset(); }}
-              className={cn("mt-4 flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition-colors duration-500", open ? "bg-[#C8753A] text-paper" : "bg-mist text-ink")}
+              className={cn("mt-4 flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition-colors duration-500", open ? "bg-[#9A5526] text-paper" : "bg-mist text-ink")}
             >
               <span><span className="block text-[15px] font-bold">{open ? "Open to chat" : "Working quietly"}</span><span className="block text-[12px] opacity-90">Tap to change</span></span>
               <span className={cn("relative inline-block h-6 w-11 shrink-0 rounded-full transition-colors", open ? "bg-paper/40" : "bg-ink/20")}><span className={cn("absolute top-1 h-4 w-4 rounded-full bg-paper transition-transform duration-500 ease-lab", open ? "translate-x-6" : "translate-x-1")} /></span>
@@ -74,7 +74,7 @@ export default function NodRoom() {
                       type="button"
                       disabled={!can}
                       onClick={() => setSent(p.id)}
-                      className={cn("rounded-full px-3 py-1.5 text-[12.5px] font-bold transition-colors", sent === p.id ? "bg-[#C8753A] text-paper" : "bg-ink text-paper disabled:bg-ink/10 disabled:text-ink/50")}
+                      className={cn("rounded-full px-3 py-1.5 text-[12.5px] font-bold transition-colors", sent === p.id ? "bg-[#9A5526] text-paper" : "bg-ink text-paper disabled:bg-ink/10 disabled:text-ink/50")}
                     >
                       {sent === p.id ? "Nod sent" : "Nod"}
                     </button>
@@ -87,7 +87,7 @@ export default function NodRoom() {
 
           <AnimatePresence>
             {sent && !mutual && (
-              <motion.span key="fly" aria-hidden="true" className="absolute left-[calc(50%-28px)] top-1/2 grid h-14 w-14 place-items-center rounded-full bg-[#C8753A] text-2xl text-paper shadow-lift"
+              <motion.span key="fly" aria-hidden="true" className="absolute left-[calc(50%-28px)] top-1/2 grid h-14 w-14 place-items-center rounded-full bg-[#9A5526] text-2xl text-paper shadow-lift"
                 initial={{ y: 40, scale: 0.4, opacity: 0 }} animate={{ y: [40, -60, 40], scale: [0.4, 1.1, 1], opacity: 1 }} exit={{ opacity: 0, scale: 0.5 }} transition={{ duration: 1.4, ease: "easeInOut" }}>
                 ✓
               </motion.span>

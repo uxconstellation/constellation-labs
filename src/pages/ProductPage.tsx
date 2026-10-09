@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState, type ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import Patch from "@/components/patches/Patch";
 import Liquid, { PALETTES } from "@/components/brand/Liquid";
@@ -25,6 +25,15 @@ const LIQUID: Partial<Record<Product["slug"], [string, string, string]>> = {
 const REAL: Partial<Record<Product["slug"], { src: string; url: string; caption: string; title: string; eyebrow: string }>> = {
   acre: { src: acreShot, url: "acreprop.lovable.app", eyebrow: "Not a mock-up", title: "It is live. Go and use it.", caption: "The real Acre, running in beta." },
   pinpoints: { src: pinpointsShot, url: "pinpoints review", eyebrow: "The real widget", title: "Built, and in beta.", caption: "The real Pinpoints widget, on an invented demo site." },
+};
+
+/** Section order per venture, so no two pages walk the same path. Lead with the strongest moment. */
+const ORDER: Record<string, string[]> = {
+  default: ["problem", "try", "what", "real", "notes", "useback"],
+  acre: ["problem", "try", "what", "real", "notes", "useback"],
+  pinpoints: ["try", "problem", "real", "what", "notes", "useback"],
+  prism: ["problem", "try", "notes", "what", "useback"],
+  nod: ["try", "what", "problem", "notes", "useback"],
 };
 
 export default function ProductPage() {
@@ -65,56 +74,9 @@ function Product({ p }: { p: Product }) {
     if (shot) gsap.fromTo(shot, { rotate: -4, yPercent: 8 }, { rotate: 1, yPercent: -6, ease: "none", scrollTrigger: { trigger: shot, start: "top bottom", end: "bottom top", scrub: true } });
   }, [p.slug]);
 
-  return (
-    <article ref={root as React.RefObject<HTMLElement>}>
-      {/* Hero */}
-      <header className="pp-hero relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] pb-14 pt-[104px] md:pb-20" style={{ background: stage }}>
-        <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg={p.color} wash={0.58} grain={0.12} speed={0.3} scale={2.2} resolution={0.5} className="absolute inset-0 h-full w-full" />
-        <div className="wrap relative">
-          <div className="pp-fade flex flex-wrap items-center gap-3">
-            <Link to="/#bench" className="eyebrow !text-ink/70 hover:!text-ink">Labs</Link>
-            <span className="eyebrow !text-ink/40" aria-hidden="true">/</span>
-            <span className="eyebrow !text-ink/70">Lab no. 0{index + 1}</span>
-            <StatusChip status={p.status} className="ml-1" />
-          </div>
-          <h1 className="pp-title mt-6 overflow-hidden pb-[.08em] font-black leading-[.8] tracking-[-0.068em]" style={{ fontSize: `min(300px, calc((100vw - 2 * var(--gutter)) / ${(p.name.length * 0.58).toFixed(2)}))` }} aria-label={p.name}>
-            {p.name.split("").map((c, k) => <span key={k} aria-hidden="true" className="pp-ch inline-block">{c}</span>)}
-          </h1>
-          <div className="mt-8 grid items-end gap-10 md:grid-cols-[1fr_auto]">
-            <div>
-              <p className="pp-fade d-m max-w-[16ch]">{p.hook}</p>
-              <div className="pp-fade mt-8 flex flex-wrap gap-3">
-                <Cta href={p.cta.href} variant="ink">{p.cta.label}</Cta>
-                <Cta href="#watch" variant="line" arrow={false}>Watch it work ↓</Cta>
-              </div>
-            </div>
-            <div
-              className="pp-patch patch patch-shadow relative mx-auto -mb-6 w-[clamp(150px,22vw,320px)] rotate-[8deg] md:mx-0 md:-mt-10"
-              onPointerMove={(e) => {
-                const r = e.currentTarget.getBoundingClientRect();
-                setSheen({ x: ((e.clientX - r.left) / r.width) * 400, y: ((e.clientY - r.top) / r.height) * 420 });
-              }}
-              onPointerLeave={() => setSheen(null)}
-              aria-hidden="true"
-            >
-              <div className="pp-patch-inner"><Patch slug={p.slug} sheen={sheen} /></div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Watch it work */}
-      <section id="watch" aria-labelledby="watch-title" className="wrap scroll-mt-24 py-24 md:py-32">
-        <div className="grid gap-6 md:grid-cols-[1fr_1.6fr] md:items-end">
-          <h2 id="watch-title" className="d-l" data-reveal>Watch it work.</h2>
-          <p className="lede md:justify-self-end md:text-right" data-reveal=".1">A short loop of {p.name} doing its job. The steps underneath follow along.</p>
-        </div>
-        <div className="sheet relative mt-12 overflow-hidden px-4 pb-6 pt-8 md:px-14 md:pb-10 md:pt-14" style={{ background: stage }} data-reveal>
-          <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg={p.color} wash={0.78} grain={0.1} speed={0.2} scale={1.6} resolution={0.45} className="absolute inset-0 h-full w-full" />
-          <div className="relative mx-auto max-w-[980px]"><ScenePiece /></div>
-        </div>
-      </section>
-
+  const sections: Record<string, ReactNode> = {
+    problem: (
+      <>
       {/* Problem */}
       <section aria-labelledby="problem-title" className="relative overflow-hidden bg-ink py-28 text-paper md:py-40">
         <Liquid palette={PALETTES.night} bg="#160C15" wash={0.62} grain={0.12} speed={0.25} scale={2} resolution={0.5} className="absolute inset-0 h-full w-full" />
@@ -123,10 +85,13 @@ function Product({ p }: { p: Product }) {
           <Sweep dark className="mt-8 max-w-[24ch] text-[clamp(30px,4.4vw,66px)] font-black leading-[1.04] tracking-[-0.04em]" text={p.problem} />
         </div>
       </section>
-
+      </>
+    ),
+    try: (
+      <>
       {/* Try it: each venture's own experiment */}
       {sig && (
-        <section aria-labelledby="try-title" className="relative overflow-clip">
+        <section id="try" aria-labelledby="try-title" className="relative scroll-mt-16 overflow-clip">
           <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg="#F3EEE7" wash={0.7} grain={0.11} speed={0.25} scale={1.8} resolution={0.45} className="absolute inset-0 h-full w-full" />
           <div className="wrap relative pt-24 md:pt-32">
             <p className="eyebrow" data-reveal>Try it · Experiment no. 0{index + 1}</p>
@@ -138,7 +103,10 @@ function Product({ p }: { p: Product }) {
           {sig.fullBleed ? <div className="relative"><sig.Component /></div> : <div className="wrap relative pb-24 pt-12 md:pb-32 md:pt-16"><sig.Component /></div>}
         </section>
       )}
-
+      </>
+    ),
+    what: (
+      <>
       {/* What it does, and who for */}
       <section aria-labelledby="caps-title" className="pp-caps wrap grid gap-14 py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
         <div className="md:sticky md:top-28 md:self-start">
@@ -159,7 +127,10 @@ function Product({ p }: { p: Product }) {
           ))}
         </ol>
       </section>
-
+      </>
+    ),
+    real: (
+      <>
       {/* The real thing */}
       {real && (
         <section aria-labelledby="real-title" className="overflow-hidden bg-cream py-24 md:py-36">
@@ -180,7 +151,10 @@ function Product({ p }: { p: Product }) {
           </div>
         </section>
       )}
-
+      </>
+    ),
+    notes: (
+      <>
       {/* Lab notes */}
       <section aria-labelledby="notes-title" className="wrap py-24 md:py-36">
         <div className="sheet relative isolate overflow-hidden p-7 md:p-14" style={{ background: stage }} data-reveal>
@@ -206,7 +180,10 @@ function Product({ p }: { p: Product }) {
         </div>
         <div className="mt-16"><StageTrack compact highlight={p.slug} /></div>
       </section>
-
+      </>
+    ),
+    useback: (
+      <>
       {/* Use it or back it */}
       <section aria-label={`Use or back ${p.name}`} className="wrap grid gap-3 pb-24 md:grid-cols-2 md:pb-32">
         <a href={p.cta.href} {...(p.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="group sheet relative isolate flex min-h-[300px] flex-col justify-between overflow-hidden p-8 md:p-12" style={{ background: stage }} data-reveal>
@@ -228,6 +205,55 @@ function Product({ p }: { p: Product }) {
           </div>
         </Link>
       </section>
+      </>
+    ),
+  };
+
+  return (
+    <article ref={root as React.RefObject<HTMLElement>}>
+      {/* Hero */}
+      <header className="pp-hero relative overflow-hidden rounded-b-[clamp(28px,3vw,44px)] pb-14 pt-[104px] md:pb-20" style={{ background: stage }}>
+        <Liquid palette={LIQUID[p.slug] ?? PALETTES.day} bg={p.color} wash={0.58} grain={0.12} speed={0.3} scale={2.2} resolution={0.5} className="absolute inset-0 h-full w-full" />
+        <div className="wrap relative">
+          <div className="pp-fade flex flex-wrap items-center gap-3">
+            <Link to="/#bench" className="eyebrow !text-ink/70 hover:!text-ink">Labs</Link>
+            <span className="eyebrow !text-ink/40" aria-hidden="true">/</span>
+            <span className="eyebrow !text-ink/70">Lab no. 0{index + 1}</span>
+            <StatusChip status={p.status} className="ml-1" />
+          </div>
+          <h1 className="pp-title mt-6 overflow-hidden pb-[.08em] font-black leading-[.8] tracking-[-0.068em]" style={{ fontSize: `min(220px, calc((100vw - 2 * var(--gutter)) / ${(p.name.length * 0.58).toFixed(2)}))` }} aria-label={p.name}>
+            {p.name.split("").map((c, k) => <span key={k} aria-hidden="true" className="pp-ch inline-block">{c}</span>)}
+          </h1>
+          <div className="mt-6 grid items-start gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-14">
+            <div className="lg:pt-6">
+              <p className="pp-fade d-m max-w-[16ch]">{p.hook}</p>
+              <div className="pp-fade mt-8 flex flex-wrap gap-3">
+                <Cta href={p.cta.href} variant="ink">{p.cta.label}</Cta>
+                {sig && <Cta href="#try" variant="line" arrow={false}>Try it yourself ↓</Cta>}
+              </div>
+            </div>
+            <div className="pp-fade relative">
+              {/* The motion loop, with the venture's patch sewn onto its corner */}
+              <div className="mx-auto max-w-[min(100%,calc((100svh-330px)*1.36))] rounded-[26px] border border-ink/10 bg-[#FCFAF6]/85 px-4 pb-4 pt-6 shadow-float backdrop-blur md:px-7 md:pb-5 md:pt-7 lg:mr-0">
+                <ScenePiece />
+              </div>
+              <div
+                className="pp-patch patch patch-shadow absolute -left-4 -top-10 w-[clamp(96px,11vw,160px)] rotate-[-10deg] md:-left-12 md:-top-14"
+                onPointerMove={(e) => {
+                  const r = e.currentTarget.getBoundingClientRect();
+                  setSheen({ x: ((e.clientX - r.left) / r.width) * 400, y: ((e.clientY - r.top) / r.height) * 420 });
+                }}
+                onPointerLeave={() => setSheen(null)}
+                aria-hidden="true"
+              >
+                <div className="pp-patch-inner"><Patch slug={p.slug} sheen={sheen} /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {(ORDER[p.slug] ?? ORDER.default).map((k) => <Fragment key={k}>{sections[k]}</Fragment>)}
 
       {/* Next experiment */}
       <Link to={`/${next.slug}`} className="group block overflow-hidden border-t hairline" aria-label={`Next experiment: ${next.name}`}>
