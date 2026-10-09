@@ -1,0 +1,63 @@
+{
+  "tool": "slop-scan",
+  "tellsVersion": "1.1.0",
+  "target": "C:\\Dev\\products\\constellation-labs\\src",
+  "medium": "web",
+  "date": "2026-10-09T15:04:41.746Z",
+  "pass": false,
+  "summary": "slop-scan FAIL [web]: checked 31 files (31 jsx) / 551 elements (520 text lines, 31 files via impeccable, 0 image pairs, 0 video frames); 5 findings (regex:emoji 3, regex:middot-meta 2); FAIL: 5 finding(s)",
+  "denominators": {
+    "files": 31,
+    "textLines": 520,
+    "imagePairs": 0,
+    "videoFrames": 0,
+    "impeccableFiles": 31,
+    "styleLines": 3568,
+    "elements": 551,
+    "byKind": {
+      "html": 0,
+      "jsx": 31,
+      "text": 0,
+      "image": 0,
+      "video": 0,
+      "strip": 0
+    }
+  },
+  "checks": {},
+  "pairing": [],
+  "findings": [
+    {
+      "check": "regex:emoji",
+      "file": "C:\\Dev\\products\\constellation-labs\\src\\components\\layout\\Footer.tsx",
+      "line": 36,
+      "snippet": "uxconstellation.com ↗"
+    },
+    {
+      "check": "regex:emoji",
+      "file": "C:\\Dev\\products\\constellation-labs\\src\\components\\layout\\Nav.tsx",
+      "line": 28,
+      "snippet": "↗"
+    },
+    {
+      "check": "regex:emoji",
+      "file": "C:\\Dev\\products\\constellation-labs\\src\\components\\layout\\Nav.tsx",
+      "line": 96,
+      "snippet": "Visit the studio ↗"
+    },
+    {
+      "check": "regex:middot-meta",
+      "file": "C:\\Dev\\products\\constellation-labs\\src\\components\\scenes\\AcreScene.tsx",
+      "line": 91,
+      "snippet": "George · 3 bed · 2 bath"
+    },
+    {
+      "check": "regex:middot-meta",
+      "file": "C:\\Dev\\products\\constellation-labs\\src\\components\\scenes\\PinpointsScene.tsx",
+      "line": 181,
+      "snippet": "Headline · Button colour · Image"
+    }
+  ],
+  "allowedCount": 0,
+  "allow": [],
+  "errors": []
+}

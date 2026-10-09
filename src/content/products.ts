@@ -39,8 +39,8 @@ export const LINKS = {
   email: "mailto:aldo@uxconstellation.com",
   /** Point acre.constellationlabs.cc at the Acre app, then switch this over. */
   acre: "https://acreprop.lovable.app",
-  /** Replace with the live Pinpoints app URL. */
-  pinpoints: "https://uxconstellation.com/services/custom-project",
+  /** Swap the Pinpoints CTA to the live app URL once it is public. */
+  pinpointsInvite: "mailto:aldo@uxconstellation.com?subject=Pinpoints%20invite",
   prismDemo: "https://uxconstellation.com/contact",
   nodPilot: "mailto:aldo@uxconstellation.com?subject=Nod%20pilot",
 } as const;
@@ -79,7 +79,7 @@ export const products: Product[] = [
     kind: "Visual feedback",
     color: "#f0c0a1",
     stage: 3,
-    cta: { label: "Open Pinpoints", href: LINKS.pinpoints, external: true },
+    cta: { label: "Ask for a Pinpoints invite", href: LINKS.pinpointsInvite, external: true },
     problem:
       "Review rounds die in email threads and screenshots. \"The button on the second page\" is not feedback anyone can act on.",
     capabilities: [
@@ -118,7 +118,7 @@ export const products: Product[] = [
       "Clients who just want to change their opening hours",
     ],
     stack: ["Headless CMS", "React", "Supabase"],
-    now: "Early access, in use on client work.",
+    now: "Early access, running on our own studio work.",
     next: "Self-serve setup.",
   },
   {

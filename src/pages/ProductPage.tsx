@@ -12,9 +12,9 @@ import acreShot from "@/assets/real/acre.webp";
 import pinpointsShot from "@/assets/real/pinpoints.webp";
 import NotFound from "./NotFound";
 
-const REAL: Partial<Record<Product["slug"], { src: string; url: string; caption: string }>> = {
-  acre: { src: acreShot, url: "acreprop.lovable.app", caption: "The real Acre, running in beta." },
-  pinpoints: { src: pinpointsShot, url: "pinpoints review", caption: "The real Pinpoints widget, on a demo site." },
+const REAL: Partial<Record<Product["slug"], { src: string; url: string; caption: string; title: string; eyebrow: string }>> = {
+  acre: { src: acreShot, url: "acreprop.lovable.app", eyebrow: "Not a mock-up", title: "It is live. Go and use it.", caption: "The real Acre, running in beta." },
+  pinpoints: { src: pinpointsShot, url: "pinpoints review", eyebrow: "The real widget", title: "Built, and in beta.", caption: "The real Pinpoints widget, on an invented demo site." },
 };
 
 export default function ProductPage() {
@@ -137,8 +137,8 @@ function Product({ p }: { p: Product }) {
         <section aria-labelledby="real-title" className="overflow-hidden bg-cream py-24 md:py-36">
           <div className="wrap grid items-center gap-14 md:grid-cols-[.8fr_1.2fr]">
             <div>
-              <p className="eyebrow" data-reveal>Not a mock-up</p>
-              <h2 id="real-title" className="d-m mt-5 max-w-[12ch]" data-reveal>It is live. Go and use it.</h2>
+              <p className="eyebrow" data-reveal>{real.eyebrow}</p>
+              <h2 id="real-title" className="d-m mt-5 max-w-[12ch]" data-reveal>{real.title}</h2>
               <p className="lede mt-5 max-w-[26rem]" data-reveal>{real.caption}</p>
               <div className="mt-8" data-reveal><Cta href={p.cta.href} variant="ink">{p.cta.label}</Cta></div>
             </div>

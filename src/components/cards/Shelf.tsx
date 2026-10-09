@@ -61,7 +61,7 @@ export default function Shelf() {
         <p className="eyebrow text-center" data-reveal>The ventures</p>
         <h2 id="shelf-title" className="d-l mt-4 text-center" data-reveal>On the bench.</h2>
         <p className="lede mx-auto mt-5 max-w-[34rem] text-center" data-reveal>
-          Every venture gets a card. Hover one to watch it work, open it to read the whole story.
+          Every venture gets a card. Each one plays a short loop of the product at work. Open a card for the whole story.
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter ventures by stage" data-reveal>
           {statuses.map((s) => (
