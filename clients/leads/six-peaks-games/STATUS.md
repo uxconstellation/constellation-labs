@@ -25,9 +25,9 @@
 - Confirm whether Six Peaks has engaged us; if so move this from `leads/` to `clients/six-peaks-games/`.
 
 ## Review links (private claude.ai artifacts, pre-QA preview, republished in place after fixes)
-- Direction A, The Ascent: https://claude.ai/artifact/LTydSxnFdHQnKaFnRhYYm2
+- Direction A, Bug Hunt (replaces The Ascent at the same link, Version 2): https://claude.ai/artifact/LTydSxnFdHQnKaFnRhYYm2
 - Direction B, Press Start: https://claude.ai/artifact/WroJFLPLrd1KAXx77yAda4
-Publish copies carry distinct titles ("Six Peaks Ascent", "Six Peaks Press Start"); the repo pages keep the SEO title. Files map: `node tools/publish-map.mjs <dir>`.
+Publish copies carry distinct titles ("Six Peaks Bug Hunt", "Six Peaks Press Start"); the repo pages keep the SEO title. Files map: `node tools/publish-map.mjs <dir>`.
 
 ## Found on the live site (worth telling Six Peaks)
 - Two homepage "View Game" links 404: God Breakers (/godbreakers-2/) and Boltgun 2 (/warhammer-40000-boltgun-2/).
@@ -60,3 +60,5 @@ Plan:
 - **Aldo approved the 320px fix:** "yes fix the 320px one too". Press Start's "Tested on" list goes to 3 columns below 380px. Checked: no overflow at 320, 360 and 390 on home, library and the Suzerain dossier; 3x3 icon grid verified by screenshot. Republished (Version 3).
 - **Bug Hunt build done** (duplicate-builder, commit 1a1853d): playable level + manual, play-test 61/61, harness 8/8 runs clean, axe 0 in 32/32 states, contrast 496/496 drawn nodes (worst 4.63:1). Line manager opened both proof contact sheets: level, cards, art resolve, manual, reduced-motion map and mobile all render. Open: `window.__a2` test hook (read-only state; line manager's call: kept for QA, decided before publish). Independent qa-verifier pass running (`qa/QA-REPORT-A2.md`).
 - **Bug Hunt QA: FAIL** (qa-verifier, `qa/QA-REPORT-A2.md`): 6 blockers (mobile run starts off-screen, map pins overlap, HUD clips at 320/360, mobile platform icons lack text, game keys fire in the manual, Stutter zone near Microids' notice), 3 majors, 9 minors. Strong elsewhere: 48/48 dialogs trap and return focus, 1,511 text runs measured (worst 4.63:1), truth 9/9 quotes, 8/8 services, 17/17 titles. Routed to the builder: B1-B6, M1-M3, m1-m5, m7. Line manager rulings: `__a2` hook wrapped in QA-HOOK markers and stripped from the publish copy; m8 copy edits signed off (B precedent); power-up banners lose the timed auto-hide. qa-verifier re-checks before publish.
+- **Bug Hunt re-check: PASS** (qa-verifier, `qa/QA-REPORT-A2.md` Re-check): fixes hold; stripped publish copy 8/8 harness runs clean and a hook-free keyboard run 8/8 bugs, 9/9 partners, 6/6 peaks; regression clean (axe 0 in 30 states, 626 text runs 0 failing, truth 9/9 quotes, 8/8 services, 17/17 cards); scope only `direction-a-bug-hunt/` and `tools/a2-*`, B unchanged. Line manager accepted the Stutter zone at 33 world px (132 screen px) from the Microids notice, 1 px under the 34 px target set in the routing (the builder measured 35); told Aldo. Open nit: dead retry branch in `hideBanner()`.
+- **Published** Bug Hunt to the Direction A link (Version 2), QA-HOOK block stripped from the publish copy (title "Six Peaks Bug Hunt", 124 files, 0 missing).

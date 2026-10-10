@@ -201,3 +201,52 @@ A does not reuse B's HUD brackets, chips-as-checkpoints, hint bar or library-gri
 ## Evidence index (`qa/shots/direction-a-bug-hunt/qa-evidence/`)
 
 `static.json`, `layout.json`, `tabs.json`, `axe-states.json`, `kbplay-{desktop,mobile}.json`, `mobile.json`, `reduced.json`, `dlgx.json`, `dialog-headings.json`, `truth.json`, `bugs.json`, `contrast/` (`meta.json`, `result.json` and the text and background PNGs), `flash-results.txt` (plus sample frames in `flash/`), `sheet-{home,play,manual,log-lost-skies}-{desktop,mobile}.jpg`, `sheet-kb-{desktop,mobile}.jpg`, `sheet-bugctx.jpg`, `bugctx-*.jpg`, `kb-*.jpg`, `m-*.jpg`, `pin-*.jpg`, `hud-*.jpg`, `h1-*.jpg`, `state-*.jpg`, `dlgx-320-ghost.jpg`, `cmp-*.jpg`, `sprites-x3.png`, `b4-platform-strip-a11y.txt`, `b5-keys-outside-game.txt`.
+
+## Re-check: blockers, majors, minors and rulings (96cb1e9 against fdde8ec)
+
+**Re-check verdict: PASS.**
+- All 6 blockers, all 3 majors and minors m1 to m5, m7 and m9 are fixed.
+- The m6 QA-HOOK block strips cleanly, and the stripped copy runs clean.
+- No regressions in the sampled first-pass checks.
+- The diff stays in scope, and B is untouched.
+
+**What I tested**
+- `page.html` at 96cb1e9 (306,295 bytes, md5 `befe06f3…`), which is byte-identical to the working tree.
+- Every number below comes from fresh probes. I did not reuse the builder's numbers or tools.
+- Play was driven with real keys and taps. `__a2` was used only to read state, never `warp()`.
+- Evidence: `qa/shots/direction-a-bug-hunt/qa-evidence/recheck/`.
+
+| Item | Result | Numbers (numerator / denominator) |
+|---|---|---|
+| B1: mobile start | PASS | 4/4 tap and keyboard starts at 390 and 320 (from scrollY 735 and 812) land at scrollY 0, with the HUD and stage 100% in view, the touch controls 100% in view (touch runs) and focus on the stage. 2/2 reduced-motion starts land on the map with focus on its heading. `b1-*.jpg`. |
+| B2: map pins | PASS | 6 widths (320 to 1440), 48 pins each (288 in total). All 288 are named `<button type=button>` elements. 0 overlapping pairs, 0 under 24×24, 0 with a covered centre or edge (3 points each), 0 reaching into the row above. axe `target-size` 0/6. `b2-pins-*.jpg`. |
+| B3: HUD reflow | PASS | 12/12 (6 widths × start and LAUNCH): `scrollWidth` equals `clientWidth`, and 0 HUD items are cut. The plate wraps to 2 rows at start (320, 360) and 3 rows with LAUNCH (320 to 390). `b3-hud-launch-*.jpg`. |
+| B4: platform alt text | PASS | 6/6 widths read 9/9 named list items ("Xbox" … "Android") in the accessibility tree, including 320, 360 and 390. |
+| B5: keys outside the game | PASS | A run-mode reader who clicks manual text can scroll with Space (915 → 1667) and ArrowUp (→ 1627). `D` does not move the tester; `L` does not open the list or move the page. `L` on a focused manual link does nothing. After clicking the game, ArrowRight moves the tester (51 px) and `L` opens the list. `b5.json`. |
+| B6: Stutter placement | PASS | The zone is now `[-40, +20]`. Its last dash ends 33 world px (132 screen px at 4×) from the King of Tokyo notice; it was 5. The other 7 bugs are 34 to 92 px from any title or partner sign. `b6-zoom.jpg`. |
+| M1: report stamp | PASS | 320, 360 and 390: the stamp overlaps 0 figures, rows or headings and sits inline above the heading. 768 to 1440: it sits in the empty space right of "Run report" and touches only that heading's block box, not its text. `m1-report-*.jpg`. |
+| M2: dialog headings | PASS | 370 headings across all 42 in-level dialogs plus help and post, at 320, 390, 768, 1024 and 1440: maximum 3 lines, 0 over. |
+| M3: service → title links | PASS | 32/32 backed by games.json categories, items or focus; 0 underway titles listed. Test Case Management now lists Yooka-Replaylee, God Breakers, Lost Skies and Wild Blue Skies. |
+| m1: Close vs kicker and art | PASS | 0/220 dialog opens at 320 to 1440 have Close overlapping a kicker, heading, card art or logo by more than 1 px. |
+| m2: spawn | PASS | The tester spawns at world 119 (sprite 111 to 127), between the tent (74 to 106) and the sign (131 to 219). 0 px overlap. `m2-spawn.jpg`. |
+| m3: pixel fonts | PASS | 0 CSS rules below 12 px in the page and in the stripped copy. |
+| m4: typewriter quote | PASS | The typed copy is `aria-hidden`, and a full `.sr-only` copy (228 chars) is what the accessibility tree reads. 0 `aria-label` spans. "Back to the run" moves 0 px while typing. |
+| m5: mobile overlays | PASS | At 6/6 widths the HUD List toggle stays clickable while the list is open. The polaroid is smaller on phones. Banner and polaroid sit above the glyph burst (z 25 against 24). |
+| m6: QA-HOOK | PASS | Exactly 1 `/* QA-HOOK:START */` (line 2969) and 1 `/* QA-HOOK:END */` (line 2978). `sed '/QA-HOOK:START/,/QA-HOOK:END/d'` removes 10 lines and leaves 0 `__a2` references; `window.__a2` is `undefined` in the stripped copy. |
+| m7: README | PASS | The README now states the strip check and per-blocker counts, and drops the "32/32" claim. Its route-heading line (740, worst 3) is consistent with my 1,350 measured, worst 3. |
+| m8: copy edits | Signed off | Line manager ruling. Pillar 1 still reads 5/6 verbatim by design. |
+| m9: banners | PASS | A power-up banner is still open after 12.5 s with no interaction. It closes once the tester walks about one screen away (at world 1207 for a power-up at 853, view 360 px). There is no `hideBanner(true)` caller left, so the 2.5 s retry inside `hideBanner()` is unreachable dead code (nit). |
+| (a) Stripped copy: harness | PASS | 8/8 runs (4 routes × 1440 and 390): 0 console errors, 0 failed requests, 0 overflow, axe 0 violations (20 to 32 rules passed, 117 to 1,455 nodes). |
+| (a) Stripped copy: keyboard play | PASS | Desktop and 390, DOM-only and hook-free: Start, Begin, walk and inspect by keys (4 to 5 bugs), the rest by `L` plus Enter on list items, then the flag. Both reach BUGS 8/8 · MET 9/9 · PEAK 6/6, with 8/8 tickets reading DEMO and the run report open. 108 dialogs: focus in 108/108, Esc 108/108, return 108/108. 1,728 Tab presses: 0 reached page content, 0 lacked a visible indicator. 0 console errors, 0 `AudioContext`. |
+| (b) Harness | PASS | `node qa/shoot.mjs direction-a-bug-hunt home,play,manual,log-lost-skies --steps 10`: 8/8 runs clean (0 errors, 0 failed, 0 overflow, axe 0; 20 to 32 rules passed, 117 to 1,460 nodes). `index.html` was regenerated byte-identical to 96cb1e9. |
+| (b) Overflow and route headings | PASS | Overflow 0/24 (6 widths × 4 routes). Route headings: 1,350 measured at 320, 390, 768, 1024 and 1440, maximum 3 lines. |
+| (b) Keyboard, hooked copy | PASS | Desktop and 390, same bot as (a): 8/8, 9/9, 6/6 and report on both. 107 dialogs: focus in, Esc and return 107/107; 0 of 1,712 Tab presses leaked; 0 missing indicators. A separate hook-guided walk logs 8/8 bugs by walking and E alone in 52 s. |
+| (b) Tab audit | PASS | 728 stops (1440×900, 720×450, 390×844, 320×700 × title, run, manual): 0 without an indicator, 0 hidden, 1 partly covered (the stage, 720×450 run, unchanged from the first pass). |
+| (b) axe across states | PASS | 30/30 runs (14 states plus the reduced-motion map, × 2 devices) with 0 violations. |
+| (b) Contrast from pixels | PASS | 626 text runs in 30 states: 0 below the threshold at the median. The worst real case is still white on red, 4.63:1. Three runs dip below at the 5th percentile, all known sampling artefacts: the rotated LAUNCH stamp's box ×2 (median 3.81, large text) and the mobile card's ghost button (median 17.62). |
+| (b) Truth | PASS | Quotes 9/9 in the manual and 9/9 in dialogues; services 8/8 and 8/8; pillar texts 5/6 (signed-off edit); title cards 17/17; focus and platforms 13/13; underway 4/4; ISO adherence; DEMO 8/8 in ticket and card. |
+| (b) Static contract and house law | PASS | Page and stripped copy: 0 forbidden tags (the 7 `<head` hits are `<header>`), `<title>` first, 1 cdnjs gsap 3.12.5 script, Google Fonts only, 0 of 124 asset references missing, 0 fetch calls, 0 em or spaced en dashes, 0 shadows, 0 gradient text, 0 bounce eases, 0 drag handlers, 2/2 forms through `preventDefault`. Sound defaults to off. |
+| (b) Pixels | PASS | I looked at the B1, B3, M1, B6 and B2 frames and the end-of-run frames. No clipping, overlap, empty canvas or broken sprites. |
+| (c) Scope | PASS | `git diff --name-only fdde8ec 96cb1e9` touches only `direction-a-bug-hunt/` (page, index, README, proof) and `tools/a2-*` (build, content, measure, playtest, proof, and the new strip-check). `git diff fdde8ec 96cb1e9 -- direction-b-press-start` is empty. In `page.html`: 35 hunks, all mapped to the items above; the kit JSON is unchanged; `a2-data` changes only in `services` (testcase titles) and `level` (the `zone` on `bug-performance`). |
+
+**Still open (non-blocking):** the dead 2.5 s retry branch in `hideBanner()` (line 2501). Remove it in a later tidy pass.
