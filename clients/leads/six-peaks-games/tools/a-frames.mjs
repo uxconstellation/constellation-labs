@@ -13,7 +13,7 @@ const args = process.argv.slice(2);
 const [hash, device] = args;
 const outArg = args.indexOf('--out');
 const prefix = outArg > -1 ? args[outArg + 1] : hash;
-const targets = args.slice(2).filter((a, i, arr) => a !== '--out' && arr[i - 1] !== '--out');
+const targets = args.slice(2).filter((a, i, arr) => a !== '--out' && a !== '--reduce' && arr[i - 1] !== '--out');
 const DEV = device === 'mobile'
   ? { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }
   : { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 };
