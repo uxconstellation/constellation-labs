@@ -247,6 +247,7 @@ function handLevel(pk) {
       else x = sites[k].x + dx;
     }
     const o = { kind, ref, x, w: kind === 'bug' ? BUGW[ref] : W_[kind] };
+    if (kind === 'bug' && ref === 'performance') o.zone = [-40, 20];   // the stutter zone, kept 34+ px clear of any art
     if (kind === 'bug' && ref === 'testcase' && sites.stairs) { o.x0 = sites.stairs.x; o.foot = sites.stairs.y; }
     objs.push(o);
   }
@@ -258,7 +259,14 @@ function handLevel(pk) {
   const solid = objs.filter((o) => o.kind !== 'power' && o.kind !== 'photo').sort((a, b) => a.x - b.x);
   for (let i = 1; i < solid.length; i++) { const a = solid[i - 1], b = solid[i]; const gap = (b.x - b.w / 2) - (a.x + a.w / 2); if (gap < 4) warn.push(`tight: ${a.ref} | ${b.ref} gap ${gap}`); }
   const art = objs.filter((o) => ['billboard', 'boarded', 'partner'].includes(o.kind));
-  for (const b of objs.filter((o) => o.kind === 'bug')) for (const a of art) { const gap = Math.abs(a.x - b.x) - a.w / 2 - b.w / 2; if (gap < 30) warn.push(`bug ${b.ref} ${Math.round(gap)} px from ${a.ref}`); }
+  // demo faults stay in our own ground: every bug (its stutter zone included) keeps 34+ px from titles and partner signs
+  const ext = (b) => { const l = Math.min(b.x - b.w / 2, b.zone ? b.x + b.zone[0] : 1e9), r = Math.max(b.x + b.w / 2, b.zone ? b.x + b.zone[1] : -1e9); return [l, r]; };
+  STATS.bugGaps = {};
+  for (const b of objs.filter((o) => o.kind === 'bug')) {
+    const [l, r] = ext(b); let min = 1e9;
+    for (const a of art) { const gap = Math.max(a.x - a.w / 2 - r, l - (a.x + a.w / 2)); min = Math.min(min, gap); if (gap < 34) warn.push(`bug ${b.ref} ${Math.round(gap)} px from ${a.ref}`); }
+    STATS.bugGaps[b.ref] = Math.round(min);
+  }
   STATS.warnings = warn;
   return objs;
 }
@@ -573,6 +581,7 @@ console.log(`page.html ${kb(Buffer.byteLength(html))} · data ${kb(JSON.stringif
 if (level) {
   console.log('placement:', JSON.stringify(STATS));
   if (STATS.warnings && STATS.warnings.length) console.log('layout warnings:\n  ' + STATS.warnings.join('\n  ')); else if (STATS.warnings) console.log('layout: 0 warnings');
+  if (STATS.bugGaps) console.log('bug clearances (px to nearest title/partner art): ' + JSON.stringify(STATS.bugGaps));
   const by = {}; for (const o of level.objects) by[o.kind] = (by[o.kind] || 0) + 1;
   console.log('objects:', JSON.stringify(by));
 }

@@ -108,7 +108,25 @@ if (!only || only === 'frames') {
     await btn.dispatchEvent('pointerdown', { pointerId: 1 }); await p3.waitForTimeout(1600); await btn.dispatchEvent('pointerup', { pointerId: 1 });
     await closeToasts(p3); await p3.waitForTimeout(300);
     await shot(p3, '18-mobile-run.jpg');
+    // the run report on a phone (stamp beside the heading, clear of the figures)
+    await listGo(p3, 'bug-rc'); await p3.waitForTimeout(1400); await esc(p3);
+    await p3.waitForFunction(() => window.__a2.dialog === 'dlg-report', null, { timeout: 10000 }).catch(() => {}); await p3.waitForTimeout(1200);
+    await shot(p3, '19-mobile-report.jpg');
     await c3.close();
+  }
+  // 320 px: the HUD plate wrapping in the Launch zone, and the reduced-motion map pins
+  {
+    const { ctx: c4, page: p4 } = await ctxFor({ viewport: { width: 320, height: 700 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+    await p4.goto(base + '#play', { waitUntil: 'networkidle' }); await p4.waitForTimeout(700);
+    await p4.evaluate(() => window.__a2.warp(window.__a2.objects().find((o) => o.id === 'bug-rc').x - 10)); await p4.waitForTimeout(700);
+    await closeToasts(p4); await p4.waitForTimeout(300);
+    await shot(p4, '20-mobile-320-launch-hud.jpg', { x: 0, y: 0, width: 320, height: 700 });
+    await c4.close();
+    const { ctx: c5, page: p5 } = await ctxFor({ viewport: { width: 320, height: 700 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+    await p5.goto(base + '#play', { waitUntil: 'networkidle' }); await p5.waitForTimeout(900);
+    await p5.evaluate(() => { const r = document.querySelectorAll('#map .map-row')[4]; if (r) r.scrollIntoView({ block: 'center' }); }); await p5.waitForTimeout(300);
+    await shot(p5, '21-mobile-320-map-pins.jpg');
+    await c5.close();
   }
 }
 

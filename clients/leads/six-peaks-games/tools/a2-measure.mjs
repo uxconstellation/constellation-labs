@@ -118,6 +118,17 @@ for (const dev of [{ name: 'desktop', viewport: { width: 1440, height: 900 } }, 
     await page.evaluate(() => document.getElementById('mf-comment').scrollIntoView({ block: 'center' })); await run('manual (contact form)');
     await ctx.close();
   }
+  // the reduced-motion level map at phone and desktop widths (WCAG 2.5.8 target size lives here)
+  for (const w of [320, 360, 390, 1440]) {
+    const ctx = await browser.newContext(w < 800 ? { viewport: { width: w, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, reducedMotion: 'reduce' } : { viewport: { width: w, height: 900 }, reducedMotion: 'reduce' });
+    await routeCdn(ctx, ROOT);
+    const page = await ctx.newPage();
+    await page.goto(base + '#play', { waitUntil: 'networkidle' }); await page.waitForTimeout(900);
+    await page.evaluate(axeSrc);
+    const r = await page.evaluate(async () => { const x = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } }); return { v: x.violations.map((v) => `${v.id} (${v.nodes.length}): ${v.nodes[0].target.join(' ')}`), passes: x.passes.length, nodes: x.passes.reduce((s, p) => s + p.nodes.length, 0) }; });
+    res.push({ dev: `reduced ${w}px`, label: 'level map', violations: r.v, passes: r.passes, nodes: r.nodes, incomplete: [], contrast: null });
+    await ctx.close();
+  }
   out.dialogsAxe = res.map((r) => `${r.dev} ${r.label}: ${r.violations.length} violations (${r.passes} rules, ${r.nodes} nodes)${r.violations.length ? ' ' + r.violations.join('; ') : ''}${r.incomplete.length ? ' · incomplete: ' + r.incomplete.join(', ') : ''}`);
   out.contrastSampled = res.filter((r) => r.contrast).map((r) => `${r.dev} ${r.label}: ${r.contrast.measured - r.contrast.fails.length}/${r.contrast.measured} drawn nodes pass of ${r.contrast.of} incomplete (${r.contrast.samples} sample${r.contrast.samples > 1 ? 's' : ''})${r.contrast.worst ? '; worst ' + r.contrast.worst : ''}${r.contrast.skipped ? '; not drawn: ' + r.contrast.skipped : ''}${r.contrast.eyeCheck.length ? ' [' + r.contrast.eyeCheck.join(', ') + ']' : ''}${r.contrast.fails.length ? ' · FAIL ' + r.contrast.fails.join('; ') : ''}`);
 }

@@ -59,7 +59,7 @@ export const SERVICES = [
   { key: 'testcase', name: 'Test Case Management',
     text: 'Designing and maintaining structured test suites to ensure consistent coverage across features, platforms, and releases, helping teams track progress and reduce regression risk.',
     bug: 'Missing Step', fault: 'A staircase with one step gone.',
-    match: ['Coverage', 'Regression'], cats: ['Test Case Management'] },
+    match: [], cats: ['Test Case Management'] },   // category only: a focus word like "Coverage" is not a source for this service
   { key: 'usability', name: 'Usability Testing',
     text: 'Evaluating gameplay flow, readability, onboarding, accessibility considerations, and UI clarity to identify friction points and improve the overall player experience.',
     bug: 'Tiny Text', fault: 'A sign with unreadably small text.',
