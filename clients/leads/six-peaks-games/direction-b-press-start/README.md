@@ -134,6 +134,7 @@ Easing is power2/3, expo and sine; "steps" is used only for the REC blink and ty
   - Prerenders `#home` with the page's own template block (`/*B:T*/ … /*/B:T*/`).
   - Lints for em dashes, spaced en dashes and banned words.
 - `tools/b-probe.mjs`: QA helper (overflow finder, all-hero-slides capture, scripted states).
+- `tools/b-a11y.mjs`: fix-round checks. `reflow` (all 19 routes at 390), `occlusion` (tab through every stop at 390×844, 720×450, 1024×768, 1280×720, 1440×900 and report coverage by the fixed bars), `contrast` (median background luminance inside each text rect, text hidden, on 6 hero slides + 13 shipped dossiers) and `snap` (full-page reduced-motion shots for before/after diffs). Every mode takes `--src <page.html>` to re-check a frozen baseline.
 
 **House-law copy edits** (no new claims):
 - Dani Allum's pull quote and her Wild Blue Skies / Town of Zoz testimonials: the spaced en dash before "they never felt" became a colon ("teams: they never felt").
@@ -150,27 +151,87 @@ Easing is power2/3, expo and sine; "steps" is used only for the REC blink and ty
 - Ambient colour is darkened to L≈26% (the alpha cap stays at 22%). At L≈18% the wash was invisible on the void.
 - Checkpoints are positioned on the art only for the six hero titles. Dossier heroes show the same three focus items as a HUD list, which works for every shipped title.
 
-## QA (final run: `node qa/shoot.mjs direction-b-press-start home,library,game-wild-blue-skies,game-lost-skies,game-king-of-tokyo --steps 12`)
+## Fix round: WCAG 2.2 AA blockers from `qa/QA-REPORT-B.md` (B1, B2, B3) and one approved wording change
 
-| Route | Device | Console errors | Failed requests | Overflow @390 | Axe violations | Axe rules passed / nodes |
-|---|---|---|---|---|---|---|
-| #home | desktop | 0 | 0 | no | 0 | 29 / 1251 |
-| #library | desktop | 0 | 0 | no | 0 | 27 / 533 |
-| #game-wild-blue-skies | desktop | 0 | 0 | no | 0 | 24 / 494 |
-| #game-lost-skies | desktop | 0 | 0 | no | 0 | 24 / 522 |
-| #game-king-of-tokyo | desktop | 0 | 0 | no | 0 | 24 / 253 |
-| #home | mobile | 0 | 0 | no | 0 | 29 / 1212 |
-| #library | mobile | 0 | 0 | no | 0 | 27 / 491 |
-| #game-wild-blue-skies | mobile | 0 | 0 | no | 0 | 24 / 430 |
-| #game-lost-skies | mobile | 0 | 0 | no | 0 | 24 / 458 |
-| #game-king-of-tokyo | mobile | 0 | 0 | no | 0 | 24 / 189 |
+Aldo froze the approved design and cleared only these four items, so nothing else changed: no other visual or content edits, no refactors, no minors (m1 to m8), no performance work (M3). The before/after desktop diff below proves the scope.
 
-Also verified with probes:
-- All 18 hero checkpoints visible with none on a face or logo.
-- An eight-step navigation session (tile → dossier → E/Q → G → back/back/forward → #start): titles, H1 focus and scroll correct, and ScrollTriggers reset per route.
-- The menu is a true modal. GSAP measures `position: fixed` elements by re-parenting them, which drops a modal dialog out of the top layer, so the dialog stays static and its inner panel animates.
+**B1, reflow (WCAG 1.4.10)**
+- Below 900px only, the spec table now uses `table-layout:fixed`, its cells take `min-width:0` and `overflow-wrap:anywhere`, and its chips wrap (`white-space:normal`, `line-height:1.3`). Desktop CSS is untouched.
+- At 390px the seven dossiers that overflowed now measure 390/390: Suzerain (was 495), It's Only Money (465), Service with a Shotgun (457), Godbreakers (421), Lil Gator (413), Town of Zoz (397), Whimel Academy (397).
+
+**B2, focus not obscured (WCAG 2.4.11)**
+- `html{scroll-padding-bottom:80px}` on desktop (the hint bar is 48px tall, 16px off the bottom).
+- `calc(84px + env(safe-area-inset-bottom,0px))` below 900px (the mobile rail is 73px plus the safe area).
+- The existing `scroll-padding-top:calc(var(--top) + 12px)` keeps focus clear of the fixed top bar.
+
+**B3, contrast of small HUD text over key art (WCAG 1.4.3)**
+- **Status line** (hero and dossier): sits on the same `--veil` fill plate the checkpoint chips use. Its offsets moved by the plate padding, so the text stays in place.
+- **Lockup lines** ("with …" and "QA by Six Peaks Games"): sit on the same plate, with negative margins equal to the padding, so the layout and glyph positions are unchanged.
+- **Header band** of the existing hero and dossier top scrims: held at ≥0.85 behind the nav and the REC readout (0.88 → 0.86 over 58px), then the same fade out as before.
+- These are fills only: no shadow, no glow.
+
+**Wording (approved)**: the hero sub is now "Embedded test teams for PC, console and mobile games, from George, South Africa, with natural time zone overlap with Western Europe."
+
+## QA (fix-round gate: `node qa/shoot.mjs direction-b-press-start home,library,<all 17 game-<slug> routes> --steps 2`)
+
+38 runs (19 routes × desktop 1440×900 and mobile 390×844): 0 console errors, 0 failed requests, 0 horizontal overflow (max mobile scrollWidth 390), 0 axe violations. axe rules passed 928, nodes 16,944.
+
+| Route | Desktop: errors / failed / overflow / axe viol. (rules / nodes) | Mobile: errors / failed / overflow / axe viol. (rules / nodes) |
+|---|---|---|
+| #home | 0 / 0 / no / 0 (29 / 1231) | 0 / 0 / no / 0 (29 / 1197) |
+| #library | 0 / 0 / no / 0 (27 / 533) | 0 / 0 / no / 0 (27 / 491) |
+| #game-warhammer-survivors | 0 / 0 / no / 0 (24 / 241) | 0 / 0 / no / 0 (24 / 177) |
+| #game-yooka-replaylee | 0 / 0 / no / 0 (24 / 473) | 0 / 0 / no / 0 (24 / 409) |
+| #game-boltgun-2 | 0 / 0 / no / 0 (24 / 249) | 0 / 0 / no / 0 (24 / 185) |
+| #game-god-breakers | 0 / 0 / no / 0 (24 / 506) | 0 / 0 / no / 0 (24 / 440) |
+| #game-lost-skies | 0 / 0 / no / 0 (24 / 520) | 0 / 0 / no / 0 (24 / 456) |
+| #game-wild-blue-skies | 0 / 0 / no / 0 (24 / 492) | 0 / 0 / no / 0 (24 / 428) |
+| #game-lil-gator | 0 / 0 / no / 0 (24 / 516) | 0 / 0 / no / 0 (24 / 452) |
+| #game-town-of-zoz | 0 / 0 / no / 0 (24 / 512) | 0 / 0 / no / 0 (24 / 448) |
+| #game-witchs-bakery | 0 / 0 / no / 0 (24 / 245) | 0 / 0 / no / 0 (24 / 181) |
+| #game-suzerain | 0 / 0 / no / 0 (24 / 491) | 0 / 0 / no / 0 (24 / 427) |
+| #game-king-of-tokyo | 0 / 0 / no / 0 (24 / 253) | 0 / 0 / no / 0 (24 / 189) |
+| #game-cattle-country | 0 / 0 / no / 0 (24 / 510) | 0 / 0 / no / 0 (24 / 446) |
+| #game-whimel-academy | 0 / 0 / no / 0 (24 / 457) | 0 / 0 / no / 0 (24 / 393) |
+| #game-outrage-fight-fest | 0 / 0 / no / 0 (24 / 513) | 0 / 0 / no / 0 (24 / 449) |
+| #game-service-with-a-shotgun | 0 / 0 / no / 0 (24 / 455) | 0 / 0 / no / 0 (24 / 391) |
+| #game-grave-dodgers | 0 / 0 / no / 0 (24 / 392) | 0 / 0 / no / 0 (24 / 328) |
+| #game-its-only-money | 0 / 0 / no / 0 (24 / 466) | 0 / 0 / no / 0 (24 / 402) |
+
+**B2, tab-stop occlusion** (`node tools/b-a11y.mjs occlusion`, every focus stop on `#home`, coverage of the focused box by `.top`, `.mbar` or `.hints`):
+
+| Viewport | Stops | Fully hidden, before → after | Partly hidden (max), before → after |
+|---|---|---|---|
+| 390×844 | 93 | 4 → **0** | 13 (82%) → 0 |
+| 720×450 (1440×900 at 200%) | 93 | 5 → **0** | 37 (83%) → 18 (13%) |
+| 1024×768 | 103 | 0 → 0 | 12 (19%) → 1 (19%) |
+| 1280×720 | 103 | 0 → 0 | 16 (88%) → 1 (16%) |
+| 1440×900 | 103 | 0 → 0 | 5 (12%) → 0 |
+
+Residual partial overlaps are allowed under 2.4.11 AA:
+- At 720×450 the library tiles are 408px tall, taller than the 286px clear band, so 12% sits under the top bar.
+- At 1024 and 1280 the comment textarea is up to 19% under the hint bar, because Chrome scrolls an editable field only to its caret.
+
+**B3, contrast** (`node tools/b-a11y.mjs contrast`): 418 text boxes over key art, 6 hero slides + 13 shipped dossiers.
+- **Before**: 19 below threshold. My numbers match the verifier's: hero status 3.76 Lost Skies / 2.53 Town of Zoz, "QA by Six Peaks Games" 2.78 / 2.97, dossier status 2.72 Yooka / 3.01 It's Only Money / 3.13 Town of Zoz / 3.51 Cattle Country, nav "Crew" 4.21. The same states also failed for the REC readout (to 2.84), nav "Contact" (to 3.58) and "with The Powell Group…" (4.33).
+- **After**: **0** below threshold. Minimums: status line 16.77, "with …" 16.86, credit 7.81, nav 6.66, REC 6.16.
+- **Tightest margin**: the untouched dossier meta "QA by Six Peaks Games" on Lost Skies at 4.58:1. It is unchanged from before and passes.
+
+**Scope proof** (`node tools/b-a11y.mjs snap`, full-page reduced-motion shots at 1440 wide; two baseline runs are pixel-identical for home and dossier):
+- **`#home`**: 12,786px tall before and after. Only two hero bands differ: y 0–165 (header scrim and status plate) and y 520–645 (new sub wording and lockup plates). Everything below y 645 is pixel-identical.
+- **`#library`**: 0 differing pixels.
+- **`#game-lost-skies`**: only y 6–183 differs (header scrim and status plate). The desktop spec table is pixel-identical (B1 changes mobile only).
+- **Source**:
+  - The authored `page.html` changed in 10 CSS lines (7 edited, 3 added).
+  - The generated home and site JSON changed only in the hero sub.
+  - `tools/b-content.mjs` changed one string.
+
+Earlier checks, unaffected by this round:
+- All 18 hero checkpoints visible.
+- Navigation session: titles, H1 focus, scroll and ScrollTrigger reset correct.
+- The menu is a true modal.
 - Form confirmation, tester view off, reduced motion.
-- Greps: 0 em dashes, 0 spaced en dashes, no Inter/Space Grotesk/Roboto, no shadows, no bounce/elastic/back.
+- Greps: 0 em dashes, 0 spaced en dashes.
 
 **Proof frames** (`proof/`):
 - `01-home-hero-lost-skies-desktop.jpg`
@@ -190,5 +251,5 @@ Also verified with probes:
 - **Coloured partner icons**: three partner "white" logos (Powell, Chuhai, Impossible Home) keep coloured icons; those are the official files.
 - **Inconsistent attributions**: dossier testimonial attributions are printed as on each game page, and the site formats them inconsistently (for example "Dani Allum-Lead Producer").
 - **Checkpoint tuning**: positions were tuned and verified at 1440×900. At other desktop sizes the collision pass may hide a chip rather than overlap copy (never overlaps).
-- **First-load weight**: the six hero keys (about 640 KB together) all load on first visit, because the recent-row thumbnails reuse them.
+- **First-load weight** (corrected figure; the fix is deferred): the verifier measured `#home` at 2.51 MB of images before any scroll on desktop (41 requests). My earlier "about 640 KB" counted only the six hero keys. The fix (QA-REPORT-B M3: thumbnail and logo derivatives, preloading only the next logo) was out of scope for the WCAG fix round.
 - **Preview-only behaviour**: trailers link out to YouTube (no embeds, per rules), and the form never sends (preview, per rules).

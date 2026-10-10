@@ -126,8 +126,8 @@ html:not(.js) .no-js-note{display:block}
 .tofu-box{display:none;position:absolute;left:50%;top:.16em;width:.5em;height:.8em;margin-left:-.25em;border:1.5px solid currentColor;border-radius:1px}
 .tofu.is-bugged .tofu-c{opacity:0}
 .tofu.is-bugged .tofu-box{display:block}
-.stat-iso{transform:translateX(calc(var(--ov-x,0) * -1%))}
-.stat-iso.is-bugged{--ov-x:36;z-index:3}
+.stat-iso{transform:translate(calc(var(--ov-x,0) * -1%),calc(var(--ov-y,0) * -1%))}
+.stat-iso.is-bugged{--ov-x:30;--ov-y:24;z-index:3;outline:1px solid var(--line-2);outline-offset:-1px}
 .missing{position:absolute;inset:0;display:none;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(8,1fr);pointer-events:none}
 .lv-portrait.is-bugged .missing{display:grid}
 .missing i{opacity:0;background:conic-gradient(var(--magenta) 25%,#000 0 50%,var(--magenta) 0 75%,#000 0) 0 0/14px 14px}
@@ -235,7 +235,7 @@ html:not(.js) .no-js-note{display:block}
 .reward-quote figcaption{margin-top:10px;font:500 11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 .btn-text{align-self:flex-start;margin-top:16px;padding:8px 0;background:none;border:0;color:var(--mist);font:600 14px/1 var(--body);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
 .btn-text:hover{color:var(--snow)}
-html:not(.js) #replay{display:none}
+html:not(.js) #replay,html:not(.js) .btn-hint{display:none}
 @media (max-width:899px){
   .reward{grid-template-columns:minmax(0,1fr);min-height:0}
   .reward-art{aspect-ratio:16/11;min-height:0}
@@ -635,7 +635,7 @@ html:not(.js) #replay{display:none}
           const done = () => { el.iso.classList.remove('is-bugged'); el.iso.removeAttribute('style'); el.ret.style.removeProperty('z-index'); };
           if (!MOTION) return done();
           G.set(el.iso, { zIndex: 3 });
-          G.fromTo(el.iso, { '--ov-x': 36 }, { '--ov-x': 0, duration: 0.6, ease: 'power3.out', onComplete: done });
+          G.fromTo(el.iso, { '--ov-x': 30, '--ov-y': 24 }, { '--ov-x': 0, '--ov-y': 0, duration: 0.6, ease: 'power3.out', onComplete: done });
         },
         unplant() { if (this.tl) this.tl.kill(); el.iso.classList.remove('is-bugged'); el.iso.removeAttribute('style'); el.ret.style.removeProperty('z-index'); },
         rect() { return el.iso.getBoundingClientRect(); },
@@ -680,8 +680,8 @@ html:not(.js) #replay{display:none}
       return { x, y, w, h, cx: x + w / 2, cy: y + h / 2 };
     }
 
-    function plantRun() {
-      st.set = pickSet();
+    function plantRun(forced) {
+      st.set = forced && forced.length === 3 ? forced.slice() : pickSet();
       st.lastKey = st.set.slice().sort().join();
       st.active = {};
       st.set.forEach((k) => { st.active[k] = { key: k, id: newId(), found: false, btn: null }; BUGS[k].plant(); });
@@ -901,7 +901,7 @@ html:not(.js) #replay{display:none}
       say('All three bugs reported. ' + summary + ' Reward unlocked.');
       setTimeout(() => Reward.unlock(summary), MOTION ? 900 : 100);
     }
-    function reset() {
+    function reset(forced) {
       Object.keys(BUGS).forEach((k) => BUGS[k].unplant());
       hitsLayer.replaceChildren(); fxSvg.replaceChildren(); fxHtml.replaceChildren();
       ui.tickets.replaceChildren(); ui.empty.hidden = false;
@@ -913,7 +913,7 @@ html:not(.js) #replay{display:none}
       ui.hint.disabled = false;
       level.classList.remove('is-clear');
       hud();
-      plantRun();
+      plantRun(forced);
     }
 
     // ---- input ----

@@ -49,3 +49,9 @@ Plan:
 - Running: reference-scout (board re-scoped to one new Direction A, playable-led), motion-lead (spike re-scoped: bug hunt first, particle mark second, no key-art carousel).
 - **Press Start QA (qa-verifier):** FAIL on 3 AA blockers (mobile reflow on 7 dossiers, focus hidden behind the fixed bars, HUD text contrast over art) + 3 majors + 8 minors. `qa/QA-REPORT-B.md`. Line manager reproduced B1 (Suzerain dossier overflows at 390px).
 - **Aldo's decision:** "Fix blockers only". Scope: B1-B3 plus the hero time-zone wording (back to the site's "natural time zone overlap"). No other change to Press Start. Majors M1-M3 and minors stay open, recorded in the QA report. Fix routed to the Press Start builder; qa-verifier re-checks before republish.
+
+## Round 2 build (2026-10-10)
+- **Press Start fixes done** by its builder (B1 reflow, B2 focus clearance, B3 contrast incl. the top bar over the hero as named in the QA report's B3, hero wording). Builder gate: 38/38 runs clean (home, library, 17 dossiers × 2 devices), 0 axe violations (928 rules, 16,944 nodes), 0 overflow, 0 hidden tab stops at 390/720/1024/1280/1440, 0 of 418 text boxes under 4.5:1. Independent qa-verifier re-check requested before republish.
+- **WebGL spike done** (`prototypes/webgl-spike/`): bug hunt, particle mark, key-art reveal; 0 errors; SwiftShader 36-44 fps. Not published (client branding; line manager's call).
+- **Aldo's rulings on the board:** build Bug Hunt; demo bugs allowed when labelled DEMO and only in our own level; level style **pixel art** (Aldo chose it over the recommended lines-over-photos).
+- **Direction A2 visual plan:** `DIRECTION-A2.md`. Folder: `direction-a-bug-hunt/`. Publishes to the existing Direction A link once QA passes.

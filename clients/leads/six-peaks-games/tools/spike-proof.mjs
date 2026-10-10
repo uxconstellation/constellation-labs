@@ -35,7 +35,17 @@ const URL0 = `http://127.0.0.1:${server.address().port}/${DIR}/index.html`;
 const browser = await chromium.launch();
 const report = { when: new Date().toISOString(), url: URL0, browser: browser.version(), frames: [], runs: {} };
 
+const COUNT_GL = () => {
+  const orig = HTMLCanvasElement.prototype.getContext;
+  window.__glContexts = 0;
+  HTMLCanvasElement.prototype.getContext = function (type, ...rest) {
+    const c = orig.call(this, type, ...rest);
+    if (c && /webgl/i.test(type) && !this.__counted) { this.__counted = true; window.__glContexts++; }
+    return c;
+  };
+};
 async function vendor(ctx) {
+  await ctx.addInitScript(COUNT_GL);
   await ctx.route('https://cdnjs.cloudflare.com/ajax/libs/**', (route) => {
     const u = new URL(route.request().url()).pathname;
     if (u.startsWith('/ajax/libs/gsap/3.12.5/')) return route.fulfill({ status: 200, contentType: 'text/javascript', body: fs.readFileSync(path.join(ROOT, 'node_modules/gsap/dist', path.basename(u))) });
@@ -196,7 +206,28 @@ if (want('frames')) {
   const hidden = await page.evaluate(() => window.__spike.loopRunning);
   await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, get: () => false }); document.dispatchEvent(new Event('visibilitychange')); });
   run.loop = { offscreen: paused, resumedWhenRewardVisible: resumed, runningWhileHidden: hidden };
-  run.meta = await page.evaluate(() => ({ markSource: window.__spike.markSource, contexts: document.querySelectorAll('canvas.gl').length, glPixelRatio: window.__spike.GL.renderer.getPixelRatio(), texW: window.__spike.reward.U.uTexRes.value.x, hunt: window.__spike.hunt.st.state }));
+  run.meta = await page.evaluate(() => ({ markSource: window.__spike.markSource, webglContextsCreated: window.__glContexts, contexts: document.querySelectorAll('canvas.gl').length, glPixelRatio: window.__spike.GL.renderer.getPixelRatio(), texW: window.__spike.reward.U.uTexRes.value.x, hunt: window.__spike.hunt.st.state }));
+  // Replay: Play again re-locks the reward and plants a fresh set; force the three other bug types for the record.
+  await page.evaluate(() => { const r = document.querySelector('#reward').getBoundingClientRect(); window.scrollTo(0, r.top + scrollY - 200); });
+  await sleep(400);
+  await page.click('#replay');
+  await sleep(900);
+  run.replay = await page.evaluate(() => ({ state: window.__spike.hunt.st.state, run: window.__spike.hunt.st.run, set: window.__spike.hunt.st.set, rewardLocked: document.querySelector('#reward').classList.contains('is-locked'), hits: document.querySelectorAll('.hit').length }));
+  await page.evaluate(() => window.__spike.hunt.reset(['texture', 'tofu', 'seam']));
+  await scrollLevel(page);
+  await page.mouse.move(700, 300);
+  await sleep(500);
+  await shot(page, '16-hunt-variant-texture-tofu', 'replay variant: missing texture (portrait) and missing glyph (In-offi?e staff)');
+  const tx = await center(page, '.hit[data-bug="texture"]');
+  await page.mouse.move(tx.x, tx.y, { steps: 5 });
+  await page.mouse.click(tx.x, tx.y);
+  await sleep(520);
+  await shot(page, '16-hunt-variant-texture-fix', 'missing texture streams back in tile by tile');
+  await page.evaluate(() => window.__spike.hunt.reset(['overlap', 'kern', 'texture']));
+  await sleep(400);
+  const ov = await page.evaluate(() => { const r = document.querySelector('.lv-stats').getBoundingClientRect(); return { x: Math.round(r.left - 10), y: Math.round(r.top - 10), width: Math.round(r.width + 20), height: Math.round(r.height + 20) }; });
+  await shot(page, '16-hunt-variant-zfight', 'replay variant: ISO 27001 card z-fighting over its neighbour', ov);
+  run.variants = await page.evaluate(() => ({ set: window.__spike.hunt.st.set, run: window.__spike.hunt.st.run }));
   run.glReadyMs = tReady;
   console.log('loop:', JSON.stringify(run.loop), 'meta:', JSON.stringify(run.meta));
   t0 = 0;
@@ -212,6 +243,7 @@ if (want('frames')) {
   await ready(mp);
   await sleep(4200);
   await shot(mp, '11-mobile-hero', 'mobile hero, 15k points, assembled');
+  mrun.meta = await mp.evaluate(() => ({ dpr: window.devicePixelRatio, glPixelRatio: window.__spike.GL.renderer.getPixelRatio(), canvasPx: [window.__spike.GL.canvas.width, window.__spike.GL.canvas.height], webglContextsCreated: window.__glContexts }));
   await mp.evaluate(() => { const r = document.querySelector('#level').getBoundingClientRect(); window.scrollTo(0, r.top + scrollY - 70); });
   await sleep(700);
   const ms = await center(mp, '.hit[data-bug="seam"]');
@@ -288,6 +320,21 @@ if (want('fallback')) {
     console.log(key, JSON.stringify(run.state), 'errors', run.errors.length, 'failed', run.failed.length);
     await ctx.close();
   }
+}
+
+if (want('fallback')) {
+  const ctx = await browser.newContext({ ...DESKTOP, javaScriptEnabled: false });
+  const page = await ctx.newPage();
+  const run = (report.runs.nojs = {});
+  watch(page, run);
+  await page.goto(URL0, { waitUntil: 'networkidle' });
+  await sleep(600);
+  await shot(page, '17-nojs-hero', 'JavaScript off: static hero still composed and readable');
+  await page.evaluate(() => { const r = document.querySelector('#level').getBoundingClientRect(); window.scrollTo(0, r.top + scrollY - 120); });
+  await sleep(300);
+  await shot(page, '17-nojs-hunt', 'JavaScript off: panel shows the first three bugs statically, no-JS note visible');
+  console.log('nojs errors', run.errors.length, 'failed', run.failed.length);
+  await ctx.close();
 }
 
 /* ---------------- 4. video (webm, <= 15 s) ---------------- */
