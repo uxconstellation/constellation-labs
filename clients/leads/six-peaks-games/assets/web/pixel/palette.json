@@ -1,0 +1,23 @@
+{
+ "night": "#0B0E17",
+ "deep": "#141B2B",
+ "ridge-far": "#3A4A66",
+ "ridge-mid": "#2A3650",
+ "ridge-near": "#1B2436",
+ "snow": "#F2F5F8",
+ "snow-shade": "#B9C6D6",
+ "rock": "#59667A",
+ "grass": "#3E8E4E",
+ "grass-dark": "#245C35",
+ "wood": "#8A5A3B",
+ "wood-dark": "#4C3125",
+ "paper": "#F3E8D2",
+ "ink": "#1A1420",
+ "red": "#E02B20",
+ "red-light": "#FF6A4D",
+ "gold": "#F2B33D",
+ "sky-dawn": "#F08A5D",
+ "magenta": "#FF2BD6",
+ "cyan": "#46D9FF",
+ "white": "#FFFFFF"
+}

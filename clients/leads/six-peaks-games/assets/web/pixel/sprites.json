@@ -1,0 +1,877 @@
+{
+ "image": "sprites.png",
+ "size": {
+  "w": 512,
+  "h": 116
+ },
+ "frames": {
+  "tester_idle_0": {
+   "x": 262,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_idle_1": {
+   "x": 280,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_run_0": {
+   "x": 370,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_run_1": {
+   "x": 388,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_run_2": {
+   "x": 406,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_run_3": {
+   "x": 424,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_run_4": {
+   "x": 442,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_run_5": {
+   "x": 460,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_jump_0": {
+   "x": 334,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_jump_1": {
+   "x": 352,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_inspect_0": {
+   "x": 298,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "tester_inspect_1": {
+   "x": 316,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "bug_functional_0": {
+   "x": 90,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_functional_1": {
+   "x": 108,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_compliance_0": {
+   "x": 54,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_compliance_1": {
+   "x": 72,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_localisation_0": {
+   "x": 126,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_localisation_1": {
+   "x": 144,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_reporting_0": {
+   "x": 234,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_reporting_1": {
+   "x": 252,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_testcase_0": {
+   "x": 270,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_testcase_1": {
+   "x": 288,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_usability_0": {
+   "x": 306,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_usability_1": {
+   "x": 324,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_performance_0": {
+   "x": 162,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_performance_1": {
+   "x": 180,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_rc_0": {
+   "x": 198,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "bug_rc_1": {
+   "x": 216,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "power_excellent": {
+   "x": 378,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "power_priced": {
+   "x": 396,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "power_english": {
+   "x": 360,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "power_timezone": {
+   "x": 432,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "power_culture": {
+   "x": 342,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "power_team": {
+   "x": 414,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "prop_signpost": {
+   "x": 160,
+   "y": 2,
+   "w": 24,
+   "h": 32
+  },
+  "prop_signboard": {
+   "x": 36,
+   "y": 48,
+   "w": 52,
+   "h": 24
+  },
+  "prop_billboard": {
+   "x": 2,
+   "y": 2,
+   "w": 80,
+   "h": 44
+  },
+  "prop_boarded": {
+   "x": 110,
+   "y": 2,
+   "w": 48,
+   "h": 32
+  },
+  "prop_polaroid": {
+   "x": 2,
+   "y": 100,
+   "w": 12,
+   "h": 14
+  },
+  "prop_flag_0": {
+   "x": 208,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "prop_flag_1": {
+   "x": 226,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "prop_tent": {
+   "x": 174,
+   "y": 48,
+   "w": 32,
+   "h": 24
+  },
+  "prop_tree_0": {
+   "x": 186,
+   "y": 2,
+   "w": 16,
+   "h": 32
+  },
+  "prop_tree_1": {
+   "x": 244,
+   "y": 48,
+   "w": 16,
+   "h": 24
+  },
+  "prop_tree_2": {
+   "x": 84,
+   "y": 2,
+   "w": 24,
+   "h": 40
+  },
+  "prop_rock_0": {
+   "x": 16,
+   "y": 100,
+   "w": 16,
+   "h": 12
+  },
+  "prop_rock_1": {
+   "x": 28,
+   "y": 78,
+   "w": 24,
+   "h": 16
+  },
+  "prop_crate": {
+   "x": 450,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "reticle_0": {
+   "x": 468,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "reticle_1": {
+   "x": 486,
+   "y": 78,
+   "w": 16,
+   "h": 16
+  },
+  "tile_grass": {
+   "x": 54,
+   "y": 100,
+   "w": 8,
+   "h": 8
+  },
+  "tile_dirt": {
+   "x": 44,
+   "y": 100,
+   "w": 8,
+   "h": 8
+  },
+  "tile_rock": {
+   "x": 64,
+   "y": 100,
+   "w": 8,
+   "h": 8
+  },
+  "tile_snow": {
+   "x": 74,
+   "y": 100,
+   "w": 8,
+   "h": 8
+  },
+  "tile_checker": {
+   "x": 34,
+   "y": 100,
+   "w": 8,
+   "h": 8
+  },
+  "fault_clip_ground": {
+   "x": 478,
+   "y": 48,
+   "w": 24,
+   "h": 20
+  },
+  "fault_clip_ground_fixed": {
+   "x": 2,
+   "y": 78,
+   "w": 24,
+   "h": 20
+  },
+  "fault_wrong_glyph_sign": {
+   "x": 472,
+   "y": 2,
+   "w": 32,
+   "h": 28
+  },
+  "fault_wrong_glyph_sign_fixed": {
+   "x": 2,
+   "y": 48,
+   "w": 32,
+   "h": 28
+  },
+  "fault_overflow_sign": {
+   "x": 204,
+   "y": 2,
+   "w": 48,
+   "h": 28
+  },
+  "fault_overflow_sign_fixed": {
+   "x": 254,
+   "y": 2,
+   "w": 48,
+   "h": 28
+  },
+  "fault_stairs_missing": {
+   "x": 90,
+   "y": 48,
+   "w": 40,
+   "h": 24
+  },
+  "fault_stairs_missing_fixed": {
+   "x": 132,
+   "y": 48,
+   "w": 40,
+   "h": 24
+  },
+  "fault_tiny_text_sign": {
+   "x": 404,
+   "y": 2,
+   "w": 32,
+   "h": 28
+  },
+  "fault_tiny_text_sign_fixed": {
+   "x": 438,
+   "y": 2,
+   "w": 32,
+   "h": 28
+  },
+  "fault_typo_flag_sign": {
+   "x": 304,
+   "y": 2,
+   "w": 48,
+   "h": 28
+  },
+  "fault_typo_flag_sign_fixed": {
+   "x": 354,
+   "y": 2,
+   "w": 48,
+   "h": 28
+  }
+ },
+ "anims": {
+  "tester_idle": [
+   "tester_idle_0",
+   "tester_idle_1"
+  ],
+  "tester_run": [
+   "tester_run_0",
+   "tester_run_1",
+   "tester_run_2",
+   "tester_run_3",
+   "tester_run_4",
+   "tester_run_5"
+  ],
+  "tester_jump": [
+   "tester_jump_0",
+   "tester_jump_1"
+  ],
+  "tester_inspect": [
+   "tester_inspect_0",
+   "tester_inspect_1"
+  ],
+  "bug_functional": [
+   "bug_functional_0",
+   "bug_functional_1"
+  ],
+  "bug_compliance": [
+   "bug_compliance_0",
+   "bug_compliance_1"
+  ],
+  "bug_localisation": [
+   "bug_localisation_0",
+   "bug_localisation_1"
+  ],
+  "bug_reporting": [
+   "bug_reporting_0",
+   "bug_reporting_1"
+  ],
+  "bug_testcase": [
+   "bug_testcase_0",
+   "bug_testcase_1"
+  ],
+  "bug_usability": [
+   "bug_usability_0",
+   "bug_usability_1"
+  ],
+  "bug_performance": [
+   "bug_performance_0",
+   "bug_performance_1"
+  ],
+  "bug_rc": [
+   "bug_rc_0",
+   "bug_rc_1"
+  ],
+  "prop_flag": [
+   "prop_flag_0",
+   "prop_flag_1"
+  ],
+  "reticle": [
+   "reticle_0",
+   "reticle_1"
+  ]
+ },
+ "animFps": {
+  "tester_idle": 2,
+  "tester_run": 12,
+  "tester_jump": 0,
+  "tester_inspect": 3,
+  "prop_flag": 4,
+  "reticle": 6,
+  "bug_functional": 4,
+  "bug_compliance": 4,
+  "bug_localisation": 4,
+  "bug_reporting": 4,
+  "bug_testcase": 4,
+  "bug_usability": 4,
+  "bug_performance": 4,
+  "bug_rc": 4
+ },
+ "anchors": {
+  "tester_idle_0": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_idle_1": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_run_0": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_run_1": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_run_2": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_run_3": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_run_4": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_run_5": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_jump_0": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_jump_1": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_inspect_0": {
+   "x": 8,
+   "y": 24
+  },
+  "tester_inspect_1": {
+   "x": 8,
+   "y": 24
+  },
+  "bug_functional_0": {
+   "x": 8,
+   "y": 14
+  },
+  "bug_functional_1": {
+   "x": 8,
+   "y": 14
+  },
+  "bug_compliance_0": {
+   "x": 8,
+   "y": 15
+  },
+  "bug_compliance_1": {
+   "x": 8,
+   "y": 15
+  },
+  "bug_localisation_0": {
+   "x": 8,
+   "y": 13
+  },
+  "bug_localisation_1": {
+   "x": 8,
+   "y": 13
+  },
+  "bug_reporting_0": {
+   "x": 8,
+   "y": 14
+  },
+  "bug_reporting_1": {
+   "x": 8,
+   "y": 14
+  },
+  "bug_testcase_0": {
+   "x": 8,
+   "y": 15
+  },
+  "bug_testcase_1": {
+   "x": 8,
+   "y": 15
+  },
+  "bug_usability_0": {
+   "x": 8,
+   "y": 15
+  },
+  "bug_usability_1": {
+   "x": 8,
+   "y": 15
+  },
+  "bug_performance_0": {
+   "x": 8,
+   "y": 13
+  },
+  "bug_performance_1": {
+   "x": 8,
+   "y": 13
+  },
+  "bug_rc_0": {
+   "x": 8,
+   "y": 13
+  },
+  "bug_rc_1": {
+   "x": 8,
+   "y": 13
+  },
+  "power_excellent": {
+   "x": 8,
+   "y": 15
+  },
+  "power_priced": {
+   "x": 8,
+   "y": 15
+  },
+  "power_english": {
+   "x": 8,
+   "y": 14
+  },
+  "power_timezone": {
+   "x": 8,
+   "y": 14
+  },
+  "power_culture": {
+   "x": 8,
+   "y": 14
+  },
+  "power_team": {
+   "x": 8,
+   "y": 15
+  },
+  "prop_signpost": {
+   "x": 12,
+   "y": 32
+  },
+  "prop_signboard": {
+   "x": 26,
+   "y": 24
+  },
+  "prop_billboard": {
+   "x": 40,
+   "y": 44
+  },
+  "prop_boarded": {
+   "x": 24,
+   "y": 32
+  },
+  "prop_polaroid": {
+   "x": 6,
+   "y": 13
+  },
+  "prop_flag_0": {
+   "x": 8,
+   "y": 24
+  },
+  "prop_flag_1": {
+   "x": 8,
+   "y": 24
+  },
+  "prop_tent": {
+   "x": 16,
+   "y": 23
+  },
+  "prop_tree_0": {
+   "x": 8,
+   "y": 32
+  },
+  "prop_tree_1": {
+   "x": 8,
+   "y": 24
+  },
+  "prop_tree_2": {
+   "x": 12,
+   "y": 40
+  },
+  "prop_rock_0": {
+   "x": 8,
+   "y": 11
+  },
+  "prop_rock_1": {
+   "x": 12,
+   "y": 15
+  },
+  "prop_crate": {
+   "x": 8,
+   "y": 16
+  },
+  "reticle_0": {
+   "x": 8,
+   "y": 16
+  },
+  "reticle_1": {
+   "x": 8,
+   "y": 16
+  },
+  "fault_clip_ground": {
+   "x": 12,
+   "y": 12,
+   "note": "row 12 = ground surface; the hole draws over the terrain below it"
+  },
+  "fault_clip_ground_fixed": {
+   "x": 12,
+   "y": 12,
+   "note": "row 12 = ground surface; the hole draws over the terrain below it"
+  },
+  "fault_wrong_glyph_sign": {
+   "x": 16,
+   "y": 28
+  },
+  "fault_wrong_glyph_sign_fixed": {
+   "x": 16,
+   "y": 28
+  },
+  "fault_overflow_sign": {
+   "x": 24,
+   "y": 28
+  },
+  "fault_overflow_sign_fixed": {
+   "x": 24,
+   "y": 28
+  },
+  "fault_stairs_missing": {
+   "x": 0,
+   "y": 24,
+   "note": "bottom-left sits at the foot of a 20px ledge; steps are 8 wide x 4 high, step index 2 is the missing one",
+   "steps": [
+    {
+     "x": 0,
+     "top": 20,
+     "w": 8
+    },
+    {
+     "x": 8,
+     "top": 16,
+     "w": 8
+    },
+    {
+     "x": 16,
+     "top": 12,
+     "w": 8
+    },
+    {
+     "x": 24,
+     "top": 8,
+     "w": 8
+    },
+    {
+     "x": 32,
+     "top": 4,
+     "w": 8
+    }
+   ],
+   "missing": 2
+  },
+  "fault_stairs_missing_fixed": {
+   "x": 0,
+   "y": 24,
+   "note": "bottom-left sits at the foot of a 20px ledge; steps are 8 wide x 4 high, step index 2 is the missing one",
+   "steps": [
+    {
+     "x": 0,
+     "top": 20,
+     "w": 8
+    },
+    {
+     "x": 8,
+     "top": 16,
+     "w": 8
+    },
+    {
+     "x": 16,
+     "top": 12,
+     "w": 8
+    },
+    {
+     "x": 24,
+     "top": 8,
+     "w": 8
+    },
+    {
+     "x": 32,
+     "top": 4,
+     "w": 8
+    }
+   ],
+   "missing": 2
+  },
+  "fault_tiny_text_sign": {
+   "x": 16,
+   "y": 28
+  },
+  "fault_tiny_text_sign_fixed": {
+   "x": 16,
+   "y": 28
+  },
+  "fault_typo_flag_sign": {
+   "x": 24,
+   "y": 28
+  },
+  "fault_typo_flag_sign_fixed": {
+   "x": 24,
+   "y": 28
+  }
+ },
+ "anchorsNote": "anchor = the pixel inside the frame that sits on the ground point (x centre, y = first row below the feet). Faults with a hole or a ledge give their own.",
+ "billboardWindow": {
+  "x": 4,
+  "y": 6,
+  "w": 72,
+  "h": 30
+ },
+ "billboardLegs": {
+  "x": [
+   12,
+   64
+  ],
+  "w": 4,
+  "note": "4px posts; repeat the last sprite row (y=43) to extend a leg down a slope"
+ },
+ "signboardWindow": {
+  "x": 3,
+  "y": 3,
+  "w": 46,
+  "h": 18
+ },
+ "signpostMount": {
+  "x": -14,
+  "y": -6,
+  "note": "partner signpost = prop_signpost, then prop_signboard at (signpost.x-14, signpost.y-6), then sign-<partner>.png centred in signboardWindow"
+ },
+ "bugs": {
+  "bug_functional": {
+   "service": "Functional QA",
+   "name": "Clipper"
+  },
+  "bug_compliance": {
+   "service": "Compliance QA",
+   "name": "Wrong Glyph"
+  },
+  "bug_localisation": {
+   "service": "Functional Localisation QA",
+   "name": "Overflow"
+  },
+  "bug_reporting": {
+   "service": "Bug Reporting & Environment Management",
+   "name": "Ghost"
+  },
+  "bug_testcase": {
+   "service": "Test Case Management",
+   "name": "Missing Step"
+  },
+  "bug_usability": {
+   "service": "Usability Testing",
+   "name": "Tiny Text"
+  },
+  "bug_performance": {
+   "service": "Performance Testing",
+   "name": "Stutter"
+  },
+  "bug_rc": {
+   "service": "Release Candidate Oversight",
+   "name": "Last-minute Regression"
+  }
+ },
+ "powerups": {
+  "power_excellent": "Technically Excellent",
+  "power_priced": "Competitively Priced",
+  "power_english": "Native English Speaking",
+  "power_timezone": "Western Europe Time Zone",
+  "power_culture": "Culturally Aligned",
+  "power_team": "Consistent Dedicated Teams"
+ },
+ "faultSwap": {
+  "fault_clip_ground": "fault_clip_ground_fixed",
+  "fault_wrong_glyph_sign": "fault_wrong_glyph_sign_fixed",
+  "fault_overflow_sign": "fault_overflow_sign_fixed",
+  "fault_stairs_missing": "fault_stairs_missing_fixed",
+  "fault_tiny_text_sign": "fault_tiny_text_sign_fixed",
+  "fault_typo_flag_sign": "fault_typo_flag_sign_fixed"
+ },
+ "facing": "characters and crawling bugs face left except the tester (faces right); flip horizontally for the other way",
+ "saveKey": "E"
+}

@@ -31,41 +31,53 @@ for (const f of ['sprites.png', 'sky.png', 'bg-far.png', 'bg-mid.png', 'title-lo
 const pngSize = (f) => { const b = fs.readFileSync(f); return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) }; };
 const kitImg = {};
 if (exists(PIX)) for (const f of fs.readdirSync(PIX)) {
-  if (/^(billboard|sign)-[a-z0-9-]+\.png$/.test(f) || ['sprites.png', 'sky.png', 'bg-far.png', 'bg-mid.png', 'title-logo.png'].includes(f)) {
+  if (/^(billboard|sign)-[a-z0-9-]+\.png$/.test(f) || ['sprites.png', 'sky.png', 'bg-far.png', 'bg-mid.png', 'title-logo.png', 'level-terrain.png'].includes(f)) {
     kitImg[f] = { src: 'assets/pixel/' + f, ...pngSize(path.join(PIX, f)) };
   }
 }
 kit.ready = !!(kit.sprites && kit.files['sprites.png']);
 
-// Normalise sprites.json into { frames: { name: {x,y,w,h, ax?, ay?} }, atlas: {w,h} }.
+// Normalise sprites.json into { frames: { name: {x,y,w,h, ax?, ay?, ...} }, atlas: {w,h}, meta }.
+// The kit keeps anchors in a separate map ("anchors": the pixel that sits on the ground point) and
+// windows/legs as top-level keys; all of it is carried through.
 function normSprites(js) {
   if (!js) return null;
-  let frames = js.frames || js.sprites || js;
+  const frames = js.frames || js.sprites || js;
+  const anchors = js.anchors || {};
   const out = {};
   const add = (name, f) => {
-    if (!f) return;
+    if (!f || !name) return;
     const r = f.frame || f.rect || f;
     const x = r.x ?? r[0], y = r.y ?? r[1], w = r.w ?? r.width ?? r[2], h = r.h ?? r.height ?? r[3];
     if ([x, y, w, h].some((v) => typeof v !== 'number')) return;
     const o = { x, y, w, h };
-    const piv = f.anchor || f.pivot || f.origin;
-    if (piv && typeof piv.x === 'number') { o.ax = piv.x; o.ay = piv.y; }
-    for (const k of ['window', 'solid', 'hit', 'note']) if (f[k] !== undefined) o[k] = f[k];
+    const piv = anchors[name] || f.anchor || f.pivot || f.origin;
+    if (piv && typeof piv.x === 'number') { o.ax = piv.x; o.ay = piv.y; if (piv.steps) { o.steps = piv.steps; o.missing = piv.missing; } }
     out[name] = o;
   };
   if (Array.isArray(frames)) frames.forEach((f) => add(f.name || f.filename || f.id, f));
   else for (const [k, v] of Object.entries(frames)) { if (k === 'meta') continue; add(k.replace(/\.png$/, ''), v); }
-  const meta = js.meta || {};
-  let atlas = meta.size || js.size || null;
+  let atlas = js.size || (js.meta && js.meta.size) || null;
   if (kitImg['sprites.png']) atlas = { w: kitImg['sprites.png'].w, h: kitImg['sprites.png'].h };
-  return { frames: out, atlas, meta: { ...meta, size: undefined } };
+  const meta = {};
+  for (const k of ['anims', 'animFps', 'billboardWindow', 'billboardLegs', 'signboardWindow', 'boardedWindow', 'signpostMount', 'faultSwap', 'facing', 'saveKey', 'tiles']) if (js[k] !== undefined) meta[k] = js[k];
+  return { frames: out, atlas, meta };
 }
 const SPR = normSprites(kit.sprites);
+function normPeaks(pk) {
+  if (!pk) return null;
+  const g = pk.ground, at = (x) => g[Math.max(0, Math.min(g.length - 1, Math.round(x)))];
+  const pt = (v, d) => (typeof v === 'number' ? { x: v, y: at(v) } : v && typeof v.x === 'number' ? { x: v.x, y: v.y ?? at(v.x) } : d);
+  const peaks = (pk.peaks || []).map((p) => ({ x: p.x, y: p.y ?? at(p.x) }));
+  return { ...pk, peaks, baseCamp: pt(pk.baseCamp, { x: 96, y: at(96) }), summit: pt(pk.summit, peaks[peaks.length - 1]) };
+}
+kit.peaks = normPeaks(kit.peaks);
 const F = SPR ? SPR.frames : {};
 
 // ---------- games ----------
 const gamesRaw = readJSON(path.join(ROOT, 'research', 'games.json'));
 const partnerName = Object.fromEntries(C.PARTNERS.map((p) => [p.slug, p.name]));
+const web = (p) => String(p).replace(/^assets\/web\//, 'assets/');
 const tidy = (s) => String(s).replace(/\s+[–—]\s+/g, ', ').replace(/\s+/g, ' ').trim();
 const games = gamesRaw.map((g, i) => {
   const released = g.status !== 'underway';
@@ -84,9 +96,9 @@ const games = gamesRaw.map((g, i) => {
     partner: tidy(g.card.partner || g.partner), partnerIds: ids,
     focus: released ? g.card.keyTestingFocus.map(tidy) : [],
     platforms: plats, cats, items,
-    logo: { src: g.assets.logo, alt: (C.TITLE_FIX[g.slug] || g.title) + ' logo' },
-    poster: { src: g.assets.poster, w: 405, h: 687 },
-    key: released ? { src: g.assets.key, w: 1900, h: 792 } : null,
+    logo: { src: web(g.assets.logo), alt: (C.TITLE_FIX[g.slug] || g.title) + ' logo' },
+    poster: { src: web(g.assets.poster), w: 405, h: 687 },
+    key: released ? { src: web(g.assets.key), w: 1900, h: 792 } : null,
     billboard: released && kitImg[bb] ? kitImg[bb] : null,
   };
 });
@@ -133,71 +145,117 @@ const ROUTE = [
 // Footprint widths (world px) used for spacing; the engine reads real sprite sizes for drawing.
 const fw = (name, d) => (F[name] ? F[name].w : d);
 const FOOT = {
-  partner: () => fw('signpost', 22), photo: () => 14, billboard: () => fw('billboard', 84), boarded: () => fw('boarded', 52),
-  bug: (k) => ({ functional: 24, compliance: fw('fault_compliance', 30), localisation: fw('fault_localisation', 40), reporting: 20,
-    testcase: fw('fault_testcase', 72), usability: fw('fault_usability', 30), performance: 96, rc: 30 }[k] || 28),
+  partner: () => fw('prop_signboard', 40), photo: () => 14, billboard: () => fw('prop_billboard', 80), boarded: () => fw('prop_boarded', 48),
+  bug: (k) => ({ functional: fw('fault_clip_ground', 24), compliance: fw('fault_wrong_glyph_sign', 32), localisation: fw('fault_overflow_sign', 48), reporting: 20,
+    testcase: fw('fault_stairs_missing', 40) + 8, usability: fw('fault_tiny_text_sign', 32), performance: 72, rc: fw('fault_typo_flag_sign', 48) }[k] || 28),
 };
+const STATS = {};
 function solveLevel(pk) {
   const W = pk.width, H = pk.height || 216, ground = pk.ground;
   const gy = (x) => ground[Math.max(0, Math.min(W - 1, Math.round(x)))];
   const peaks = pk.peaks.map((p, i) => ({ i, x: p.x, y: p.y ?? gy(p.x) }));
   const base = pk.baseCamp || { x: 96, y: gy(96) };
   const summit = pk.summit || peaks[peaks.length - 1];
-  const start = base.x + 84, end = summit.x - 36;
-  // free intervals between reserved zones (peak tops +-22, summit zone)
-  const reserved = peaks.map((p) => [p.x - 22, p.x + 22]).concat([[summit.x - 60, W]]);
-  // assign each non-power object to the gap before its peak, as listed in ROUTE
-  const groups = []; let cur = [];
-  for (const r of ROUTE) { if (r.kind === 'power') { groups.push(cur); cur = []; } else cur.push(r); }
-  if (cur.length) groups[groups.length - 1] = groups[groups.length - 1].concat(cur);
-  const objs = [];
-  const bounds = [];
-  for (let g = 0; g < groups.length; g++) {
-    const a = g === 0 ? start : peaks[g - 1].x + 26;
-    const b = g < peaks.length ? peaks[g].x - 26 : end;
-    bounds.push([a, b]);
-  }
-  // spill: if a gap is too crowded move items forward/back so each gap has room
-  const need = (list) => list.reduce((s, r) => s + FOOT[r.kind](r.ref) + 30, 0);
-  for (let pass = 0; pass < 6; pass++) {
-    for (let g = 0; g < groups.length; g++) {
-      const [a, b] = bounds[g];
-      while (groups[g].length > 1 && need(groups[g]) > (b - a)) {
-        const nx = g + 1 < groups.length && need(groups[g + 1]) < bounds[g + 1][1] - bounds[g + 1][0] - 60 ? g + 1 : (g > 0 ? g - 1 : -1);
-        if (nx < 0) break;
-        if (nx > g) groups[nx].unshift(groups[g].pop()); else groups[nx].push(groups[g].shift());
-      }
-    }
-  }
+  if (pk.sites && pk.sites.stairs) return finishLevel(pk, handLevel(pk), peaks, base, summit, gy);
+  const start = base.x + 84, end = summit.x - 56;
+  // Global placement in route order along a "free track" that skips the peak tops (+-PK px), so the
+  // order of the narrative holds whatever the peak spacing is. Bugs keep a wider berth from partner art.
+  const PK = 20;
+  const zones = peaks.filter((p) => p.x > start && p.x < end).map((p) => [p.x - PK, p.x + PK]).sort((a, b) => a[0] - b[0]);
+  const free = []; let s0 = start;
+  for (const [a, b] of zones) { if (a > s0) free.push([s0, a]); s0 = Math.max(s0, b); }
+  if (end > s0) free.push([s0, end]);
+  const freeLen = free.reduce((s, [a, b]) => s + (b - a), 0);
+  const list = ROUTE.filter((r) => r.kind !== 'power');
+  const isArt = (k) => k === 'billboard' || k === 'partner' || k === 'boarded';
+  const pad = (p, q) => (p && q && ((p.kind === 'bug' && isArt(q.kind)) || (q.kind === 'bug' && isArt(p.kind))) ? 30 : 0);
+  const total = list.reduce((s, r) => s + FOOT[r.kind](r.ref), 0) + list.reduce((s, r, i) => s + pad(list[i - 1], r), 0);
+  // even gaps; negative when the level is too short (objects then overlap evenly instead of piling up)
+  const gapBase = (freeLen - total) / (list.length + 1);
+  // map a distance along the free track to a world x
+  const trackX = (dist) => { for (const [a, b] of free) { if (dist <= b - a) return a + dist; dist -= (b - a); } return end; };
   const slopeAt = (x0, w) => { let mn = 1e9, mx = -1e9; for (let x = Math.round(x0 - w / 2); x <= Math.round(x0 + w / 2); x++) { const v = gy(x); mn = Math.min(mn, v); mx = Math.max(mx, v); } return mx - mn; };
-  for (let g = 0; g < groups.length; g++) {
-    const [a, b] = bounds[g]; const list = groups[g]; if (!list.length) continue;
-    const total = list.reduce((s, r) => s + FOOT[r.kind](r.ref), 0);
-    const gap = Math.max(18, ((b - a) - total) / (list.length + 1));
-    let x = a + gap;
-    for (const r of list) {
-      const w = FOOT[r.kind](r.ref);
-      let cx = x + w / 2;
-      // nudge toward flatter ground within +-14 px, staying in the gap
-      let best = cx, bs = slopeAt(cx, w);
-      for (let d = -14; d <= 14; d += 2) { const c = cx + d; if (c - w / 2 < a || c + w / 2 > b) continue; const s = slopeAt(c, w) + Math.abs(d) * 0.08; if (s < bs) { bs = s; best = c; } }
-      cx = Math.round(best);
-      objs.push({ kind: r.kind, ref: r.ref, x: cx, w, gap: g });
-      x += w + gap;
-    }
-  }
-  for (const p of peaks) objs.push({ kind: 'power', ref: p.i, x: p.x, w: 16, gap: p.i });
-  objs.push({ kind: 'bug', ref: 'rc', x: Math.round(summit.x - 30), w: 30, gap: 5, summit: true });
-  objs.push({ kind: 'flag', ref: 'summit', x: Math.round(summit.x), w: 16, gap: 5 });
-  objs.push({ kind: 'camp', ref: 'tent', x: Math.round(base.x), w: 40, gap: 0 });
-  objs.push({ kind: 'campsign', ref: 'basecamp', x: Math.round(base.x + 44), w: 30, gap: 0 });
+  const inZone = (c, w) => zones.find(([a, b]) => c + w / 2 > a && c - w / 2 < b);
+  const objs = [];
+  let dist = Math.max(0, gapBase);
+  list.forEach((r, i) => {
+    const w = FOOT[r.kind](r.ref);
+    dist += pad(list[i - 1], r);
+    let cx = trackX(dist + w / 2);
+    // keep the footprint off a reserved peak top: slide to the nearer side (local, does not accumulate)
+    const z = inZone(cx, w);
+    if (z) cx = (cx < (z[0] + z[1]) / 2) ? z[0] - w / 2 - 1 : z[1] + w / 2 + 1;
+    // nudge toward flatter ground (+-8 px)
+    let best = cx, bs = slopeAt(cx, w);
+    for (let dd = -8; dd <= 8; dd += 2) { const c = cx + dd; if (inZone(c, w)) continue; const sl = slopeAt(c, w) + Math.abs(dd) * 0.1; if (sl < bs) { bs = sl; best = c; } }
+    objs.push({ kind: r.kind, ref: r.ref, x: Math.round(best), w });
+    dist += w + gapBase;
+  });
+  STATS.gap = Math.round(gapBase * 10) / 10; STATS.freeLen = Math.round(freeLen); STATS.need = Math.round(total);
+  for (const p of peaks) objs.push({ kind: 'power', ref: p.i, x: p.x, w: 16, py: p.y - 22 });
+  objs.push({ kind: 'bug', ref: 'rc', x: Math.round(summit.x - 30), w: 30, summit: true });
+  objs.push({ kind: 'flag', ref: 'summit', x: Math.round(summit.x), w: 16 });
+  objs.push({ kind: 'camp', ref: 'tent', x: Math.round(base.x), w: 40 });
+  objs.push({ kind: 'campsign', ref: 'basecamp', x: Math.round(base.x + 44), w: 30 });
+  return finishLevel(pk, objs, peaks, base, summit, gy);
+}
+function finishLevel(pk, objs, peaks, base, summit, gy) {
+  const W = pk.width, H = pk.height || 216;
   objs.sort((p, q) => p.x - q.x);
   // ids + nearest peak label (for button names such as "near peak 2")
   const near = (x) => { let bi = 0, bd = 1e9; peaks.forEach((p, i) => { const d = Math.abs(p.x - x); if (d < bd) { bd = d; bi = i; } }); return bi + 1; };
   const idOf = (o) => o.kind === 'power' ? 'power-' + C.PILLARS[o.ref].key : o.kind + '-' + o.ref;
   for (const o of objs) { o.id = idOf(o); o.y = gy(o.x); o.near = near(o.x); }
-  return { width: W, height: H, base: { x: base.x, y: base.y ?? gy(base.x) }, summit: { x: summit.x, y: summit.y ?? gy(summit.x) }, peaks, objects: objs };
+  const sites = pk.sites || {};
+  return { width: W, height: H, base: { x: base.x, y: base.y ?? gy(base.x) }, summit: { x: summit.x, y: summit.y ?? gy(summit.x) }, peaks, objects: objs,
+    stairs: sites.stairs || null, parallax: pk.parallax || null, ledges: pk.ledges || [] };
 }
+// Hand-authored route for the artist's level (peaks.json with "sites"): billboards and boarded signs on the
+// meadow flats, signposts (one centre post) on the slopes, bugs on our own props only, and the kit's sites for
+// the clip-ground beetle, the staircase, the summit sign and the six power-ups. Validated below.
+const HAND = [
+  ['camp', 'tent', 110], ['campsign', 'basecamp', 205], ['billboard', 'its-only-money', 300], ['partner', 'watson', 372], ['photo', 'rooftop', 425],
+  ['bug', 'functional', 478], ['billboard', 'yooka-replaylee', 570], ['billboard', 'god-breakers', 660], ['partner', 'scott', 734], ['photo', 'screens', 792],
+  ['bug', 'compliance', 912],
+  ['boarded', 'warhammer-survivors', 1005], ['billboard', 'lost-skies', 1077], ['billboard', 'wild-blue-skies', 1167], ['partner', 'allum', 1242], ['photo', 'desk', 1290],
+  ['bug', 'localisation', 1455],
+  ['billboard', 'lil-gator', 1582], ['partner', 'wales', 1656], ['billboard', 'town-of-zoz', 1730], ['boarded', 'boltgun-2', 1803], ['photo', 'pair', 1850],
+  ['bug', 'reporting', 1995],
+  ['billboard', 'suzerain', 2100], ['partner', 'kyne', 2174], ['billboard', 'cattle-country', 2248], ['photo', 'company', 2318], ['bug', 'testcase', 'site:stairs'],
+  ['bug', 'usability', 2530],
+  ['boarded', 'witchs-bakery', 2612], ['billboard', 'whimel-academy', 2684], ['billboard', 'outrage-fight-fest', 2772], ['partner', 'harfoot', 2846], ['partner', 'avent', 2906],
+  ['bug', 'performance', 3030],
+  ['boarded', 'king-of-tokyo', 3110], ['billboard', 'service-with-a-shotgun', 3178], ['partner', 'fraser', 3250], ['billboard', 'grave-dodgers', 3322], ['partner', 'aikman', 3392],
+  ['bug', 'rc', 'site:summitSign'], ['flag', 'summit', 'site:flag'], ['photo', 'crew', 3527],
+];
+const W_ = { billboard: 80, boarded: 48, partner: 52, photo: 12, camp: 32, campsign: 88, flag: 16 };
+const BUGW = { functional: 24, compliance: 32, localisation: 48, reporting: 16, testcase: 40, usability: 32, performance: 16, rc: 48 };
+function handLevel(pk) {
+  const g = pk.ground, W = pk.width, at = (x) => g[Math.max(0, Math.min(W - 1, Math.round(x)))];
+  const sites = pk.sites || {};
+  const objs = [];
+  for (const [kind, ref, xs] of HAND) {
+    let x = xs;
+    if (xs === 'site:stairs') x = sites.stairs.x + 20;
+    else if (xs === 'site:summitSign') x = sites.summitSign.x;
+    else if (xs === 'site:flag') x = pk.summit.x + 14;
+    const o = { kind, ref, x, w: kind === 'bug' ? BUGW[ref] : W_[kind] };
+    if (kind === 'bug' && ref === 'testcase' && sites.stairs) { o.x0 = sites.stairs.x; o.foot = sites.stairs.y; }
+    objs.push(o);
+  }
+  pk.peaks.forEach((p, i) => { const s = (sites.powerUps || [])[i]; objs.push({ kind: 'power', ref: i, x: s ? s.x : p.x, w: 16, py: s ? s.y : at(p.x) - 22 }); });
+  // validation: wide frames need gentle ground; bugs keep 40 px from partner art; nothing overlaps
+  const warn = [];
+  const span = (x0, w) => { let mn = 1e9, mx = -1e9; for (let x = Math.round(x0); x < x0 + w; x++) { const v = at(x); mn = Math.min(mn, v); mx = Math.max(mx, v); } return mx - mn; };
+  for (const o of objs) if ((o.kind === 'billboard' || o.kind === 'boarded') && span(o.x - o.w / 2, o.w) > 6) warn.push(`${o.kind} ${o.ref} on ${span(o.x - o.w / 2, o.w)} px of slope`);
+  const solid = objs.filter((o) => o.kind !== 'power' && o.kind !== 'photo').sort((a, b) => a.x - b.x);
+  for (let i = 1; i < solid.length; i++) { const a = solid[i - 1], b = solid[i]; const gap = (b.x - b.w / 2) - (a.x + a.w / 2); if (gap < 4) warn.push(`tight: ${a.ref} | ${b.ref} gap ${gap}`); }
+  const art = objs.filter((o) => ['billboard', 'boarded', 'partner'].includes(o.kind));
+  for (const b of objs.filter((o) => o.kind === 'bug')) for (const a of art) { const gap = Math.abs(a.x - b.x) - a.w / 2 - b.w / 2; if (gap < 30) warn.push(`bug ${b.ref} ${Math.round(gap)} px from ${a.ref}`); }
+  STATS.warnings = warn;
+  return objs;
+}
+
 const level = kit.peaks ? solveLevel(kit.peaks) : null;
 
 // ---------- data blob ----------
@@ -214,7 +272,7 @@ const KIT = {
   ready: kit.ready, placeholderPeaks: kit.placeholder,
   images: kitImg,
   sprites: SPR,
-  peaks: kit.peaks ? { width: kit.peaks.width, height: kit.peaks.height, ground: kit.peaks.ground, peaks: kit.peaks.peaks, baseCamp: kit.peaks.baseCamp, summit: kit.peaks.summit } : null,
+  peaks: kit.peaks ? { width: kit.peaks.width, height: kit.peaks.height, ground: kit.peaks.ground, peaks: kit.peaks.peaks, baseCamp: kit.peaks.baseCamp, summit: kit.peaks.summit, surface: kit.peaks.surface || null } : null,
   palette: kit.palette,
   titleBlocks: kit.titleBlocks,
 };
@@ -332,6 +390,12 @@ function manualHTML() {
         <a class="btn btn-ink" href="#play">Play the test run</a>
       </div>
     </div>
+    <div class="m-side">
+    <div class="m-scene" aria-hidden="true">
+      <span class="m-scene-sky"></span>
+      ${spr('prop_tree_2', 3, 'sc-tree')}${spr('prop_signpost', 3, 'sc-post')}${spr('tester_inspect_0', 6, 'sc-tester')}${spr('fault_clip_ground', 6, 'sc-bug')}${spr('reticle_1', 6, 'sc-ret')}
+      <span class="m-scene-ground"></span>
+    </div>
     <nav class="m-toc" aria-label="Manual contents">
       <p class="m-toc-h">Contents</p>
       <ol role="list">
@@ -346,12 +410,13 @@ function manualHTML() {
       <p class="m-toc-tested">Tested on</p>
       ${platRow(allPlats, 'plat-row plat-ink lazy')}
     </nav>
+    </div>
   </div>
 </section>
 
 <section class="m-sec" id="m-why" aria-labelledby="m-why-h">
   <div class="m-wrap">
-    <header class="m-head"><p class="kicker">What we offer</p><h2 class="m-h" id="m-why-h">Why Six Peaks</h2>
+    <header class="m-head"><span class="m-ico">${spr('power_excellent', 3)}</span><p class="kicker">What we offer</p><h2 class="m-h" id="m-why-h">Why Six Peaks</h2>
     <p class="m-intro">Six peaks, six pillars. Each one is a power-up at a summit in the test level.</p></header>
     <ol class="pillars" role="list">
 ${pillars}
@@ -365,7 +430,7 @@ ${pillars}
 
 <section class="m-sec m-sec-alt" id="m-services" aria-labelledby="m-services-h">
   <div class="m-wrap">
-    <header class="m-head"><p class="kicker">Our services</p><h2 class="m-h" id="m-services-h">Services and the bestiary</h2>
+    <header class="m-head"><span class="m-ico">${spr('bug_functional_0', 3)}</span><p class="kicker">Our services</p><h2 class="m-h" id="m-services-h">Services and the bestiary</h2>
     <p class="m-intro">Eight services, eight demo bugs. We planted one of each in our own test level, never in a partner’s game, so you can log them yourself.</p></header>
     <ul class="svcs" role="list">
 ${serviceCards}
@@ -375,7 +440,7 @@ ${serviceCards}
 
 <section class="m-sec" id="m-titles" aria-labelledby="m-titles-h">
   <div class="m-wrap">
-    <header class="m-head"><p class="kicker">Our projects · ${games.length} titles</p><h2 class="m-h" id="m-titles-h">Our projects</h2>
+    <header class="m-head"><span class="m-ico">${spr('prop_flag_0', 2)}</span><p class="kicker">Our projects · ${games.length} titles</p><h2 class="m-h" id="m-titles-h">Our projects</h2>
     <p class="m-intro">${esc(C.PROJECTS_INTRO)}</p></header>
     <ul class="games" role="list">
 ${gameRows}
@@ -385,7 +450,7 @@ ${gameRows}
 
 <section class="m-sec m-sec-alt" id="m-partners" aria-labelledby="m-partners-h">
   <div class="m-wrap">
-    <header class="m-head"><p class="kicker">Our partners · ${C.PARTNERS.length} studios</p><h2 class="m-h" id="m-partners-h">What our partners say</h2></header>
+    <header class="m-head"><span class="m-ico">${spr('prop_signpost', 2)}</span><p class="kicker">Our partners · ${C.PARTNERS.length} studios</p><h2 class="m-h" id="m-partners-h">What our partners say</h2></header>
     <ul class="quotes" role="list">
 ${quoteCards}
     </ul>
@@ -396,7 +461,7 @@ ${quoteCards}
 
 <section class="m-sec" id="m-team" aria-labelledby="m-team-h">
   <div class="m-wrap">
-    <header class="m-head"><p class="kicker">George, Western Cape</p><h2 class="m-h" id="m-team-h">Our dedicated team</h2></header>
+    <header class="m-head"><span class="m-ico">${spr('power_team', 3)}</span><p class="kicker">George, Western Cape</p><h2 class="m-h" id="m-team-h">Our dedicated team</h2></header>
     <ul class="stats" role="list">${stats}</ul>
     <div class="team-grid">
       <figure class="team-photo"><img src="assets/brand/team-1.webp" alt="${esc(C.PHOTOS[0].alt)}" width="1900" height="890" loading="lazy" decoding="async"></figure>
@@ -412,7 +477,7 @@ ${quoteCards}
 <section class="m-sec m-sec-alt" id="m-careers" aria-labelledby="m-careers-h">
   <div class="m-wrap careers">
     <div>
-      <header class="m-head"><p class="kicker">Join the team</p><h2 class="m-h" id="m-careers-h">Careers</h2></header>
+      <header class="m-head"><span class="m-ico">${spr('tester_idle_0', 2)}</span><p class="kicker">Join the team</p><h2 class="m-h" id="m-careers-h">Careers</h2></header>
       ${C.CAREERS.text.map((p) => `<p>${esc(p)}</p>`).join('\n      ')}
       <p><a class="btn btn-red" href="${C.CAREERS.url}" target="_blank" rel="noopener">Apply Now<span class="sr-only"> (opens in a new tab)</span></a></p>
     </div>
@@ -423,7 +488,7 @@ ${quoteCards}
 <section class="m-sec" id="m-contact" aria-labelledby="m-contact-h">
   <div class="m-wrap contact">
     <div>
-      <header class="m-head"><p class="kicker">Book a trial</p><h2 class="m-h" id="m-contact-h">Contact</h2></header>
+      <header class="m-head"><span class="m-ico">${spr('prop_tent', 2)}</span><p class="kicker">Book a trial</p><h2 class="m-h" id="m-contact-h">Contact</h2></header>
       <p>${esc(C.CONTACT.text)}</p>
       ${detailsHTML('mc')}
     </div>
@@ -455,7 +520,7 @@ function indexHTML() {
   return groups.map(([h, fn]) => {
     const items = level.objects.filter(fn);
     return `<div class="idx-group"><h3 class="idx-h">${h} <span>(${items.length})</span></h3><ul role="list">` +
-      items.map((o) => `<li><button class="idx-btn" type="button" data-obj="${o.id}"><span class="idx-label">${esc(label(o))}</span><span class="idx-state" aria-hidden="true"></span></button></li>`).join('') + '</ul></div>';
+      items.map((o) => `<li><button class="idx-btn" type="button" data-obj="${o.id}"><span class="idx-label">${esc(label(o))}</span><span class="idx-state"></span></button></li>`).join('') + '</ul></div>';
   }).join('');
 }
 
@@ -480,15 +545,27 @@ put('manual', manualHTML());
 put('index', indexHTML());
 put('bestiary', bestiaryHTML());
 put('platforms', platRow(allPlats, 'plat-row'));
+put('titlelogo', kitImg['title-logo.png']
+  ? `<img class="t-logo-px" id="t-logo-img" src="${kitImg['title-logo.png'].src}" alt="Six Peaks Games" width="${kitImg['title-logo.png'].w * 3}" height="${kitImg['title-logo.png'].h * 3}" decoding="async">`
+  : '<img class="t-logo-fallback" id="t-logo-img" src="assets/brand/logo-white.webp" alt="Six Peaks Games" width="1864" height="902" decoding="async">');
 put('postform', formHTML('pf', 'Book a trial') + detailsHTML('pc'));
-put('spritevars', SPR && SPR.atlas && kit.files['sprites.png']
-  ? `<style id="a2-sprite-vars">:root{--atlas:url(${kit.files['sprites.png']});--aw:${SPR.atlas.w};--ah:${SPR.atlas.h}}</style>` : '<style id="a2-sprite-vars">:root{--aw:1;--ah:1}</style>');
+{
+  // CSS custom properties for the atlas and the no-JS parallax backdrop (inside the single <style>).
+  let css = SPR && SPR.atlas && kit.files['sprites.png'] ? `:root{--atlas:url(${kit.files['sprites.png']});--aw:${SPR.atlas.w};--ah:${SPR.atlas.h}}` : ':root{--aw:1;--ah:1}';
+  const layers = ['bg-mid.png', 'bg-far.png', 'sky.png'].filter((f) => kit.files[f]);
+  if (layers.length) css += `.game{--bg-layers:${layers.map((f) => 'url(' + kit.files[f] + ')').join(',')};--bg-size:${layers.map(() => 'auto 100%').join(',')};--bg-pos:${layers.map(() => 'left bottom').join(',')}}`;
+  const re = /\/\*a2:spritevars\*\/[\s\S]*?\/\*\/a2:spritevars\*\//;
+  if (!re.test(html)) throw new Error('css marker missing: spritevars');
+  html = html.replace(re, '/*a2:spritevars*/' + css + '/*/a2:spritevars*/');
+}
 putJSON('a2-data', DATA);
 putJSON('a2-kit', KIT);
 fs.writeFileSync(PAGE, html);
 const kb = (n) => (n / 1024).toFixed(1) + ' KB';
 console.log(`page.html ${kb(Buffer.byteLength(html))} · data ${kb(JSON.stringify(DATA).length)} · kit ${kb(JSON.stringify(KIT).length)} · sprites ${SPR ? Object.keys(F).length : 0} frames · level ${level ? level.objects.length + ' objects' : 'none'}${kit.placeholder ? ' (PLACEHOLDER peaks)' : ''}`);
 if (level) {
+  console.log('placement:', JSON.stringify(STATS));
+  if (STATS.warnings && STATS.warnings.length) console.log('layout warnings:\n  ' + STATS.warnings.join('\n  ')); else if (STATS.warnings) console.log('layout: 0 warnings');
   const by = {}; for (const o of level.objects) by[o.kind] = (by[o.kind] || 0) + 1;
   console.log('objects:', JSON.stringify(by));
 }
