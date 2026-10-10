@@ -25,7 +25,7 @@ async function ctxFor(opts = {}) {
   page.on('console', (m) => { if (m.type() === 'error') page.errors.push(m.text()); });
   return { ctx, page };
 }
-const listGo = (page, id) => page.evaluate((id_) => { const b = document.querySelector(`#index .idx-btn[data-obj="${id_}"]`); b.click(); }, id);
+const listGo = async (page, id) => { await page.click('#b-list'); await page.waitForTimeout(350); await page.click(`#index .idx-btn[data-obj="${id}"]`); };
 const esc = async (page) => { await page.keyboard.press('Escape'); await page.waitForTimeout(250); };
 const closeToasts = (page) => page.evaluate(() => { const p = document.getElementById('pola'); if (!p.hidden) document.getElementById('pola-x').click(); const b = document.getElementById('banner'); if (!b.hidden) document.getElementById('banner-x').click(); });
 async function walk(page, ms, key = 'ArrowRight') { await page.focus('#stage'); await page.keyboard.down(key); await page.waitForTimeout(ms); await page.keyboard.up(key); }
@@ -77,7 +77,6 @@ if (!only || only === 'frames') {
   await walk(page, 650); await page.waitForTimeout(500);
   await shot(page, '11-powerup-timezone.jpg');
   // the summit: log the last regression, raise the flag, run report
-  await page.evaluate(() => { const i = document.getElementById('index'); i.classList.add('is-open'); });
   await listGo(page, 'bug-rc'); await page.waitForTimeout(1500);
   await esc(page); await page.waitForTimeout(2600);
   await shot(page, '12-summit-report.jpg');
@@ -136,7 +135,6 @@ if (!only || only === 'video') {
   await page.focus('#stage'); await page.keyboard.down('ArrowRight');
   for (let i = 0; i < 6; i++) { await page.waitForTimeout(250); await page.keyboard.press('Space'); }
   await page.keyboard.up('ArrowRight'); await page.waitForTimeout(800);   // climbing, power-up banner
-  await page.evaluate(() => { const i = document.getElementById('index'); i.classList.add('is-open'); });
   await listGo(page, 'bug-rc'); await page.waitForTimeout(1300);
   await esc(page); await page.waitForTimeout(2300);                    // flag rises, run report
   await page.close();

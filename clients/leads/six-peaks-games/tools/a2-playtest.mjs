@@ -12,6 +12,8 @@ const { server, base } = await serve(ROOT);
 const browser = await chromium.launch({ headless: !process.argv.includes('--headed') });
 const results = [];
 let failures = 0;
+let printed = false;
+process.on('exit', () => { if (!printed) console.log('--- results before the crash ---\n' + results.join('\n')); });
 const ok = (name, cond, detail = '') => { results.push(`${cond ? 'PASS' : 'FAIL'}  ${name}${detail ? '  (' + detail + ')' : ''}`); if (!cond) failures++; };
 
 async function newPage(opts = {}) {
@@ -60,6 +62,7 @@ async function walkTo(page, id, dir = 'ArrowRight', ms = 30000) {
   await page.keyboard.press('Enter');
   await page.waitForTimeout(300);
   ok('Start opens the rules', await page.evaluate(() => !document.getElementById('rules').hidden));
+  ok('rules heading takes focus at once (no hidden entrance)', (await active(page)) === 'rules-h', await active(page));
   await page.focus('#b-begin');
   await page.keyboard.press('Enter');
   await page.waitForTimeout(400);
@@ -69,12 +72,14 @@ async function walkTo(page, id, dir = 'ArrowRight', ms = 30000) {
   ok('stage has focus', (await active(page)) === 'stage');
   ok('HUD starts at BUGS 0/8 · MET 0/9 · PEAK 1/6', /BUGS 0\/8 · MET 0\/9 · PEAK 1\/6/.test(await hudText(page)), await hudText(page));
   ok('aria-live announces the start', /Run started at base camp/.test(await live(page)));
+  ok('HUD live region is polite and atomic', await page.evaluate(() => { const l = document.getElementById('hud-live'); return l.getAttribute('aria-live') === 'polite' && l.getAttribute('aria-atomic') === 'true'; }));
 
   // billboard first: open and close a title card, focus returns
   ok('walk to the It’s Only Money billboard', await walkTo(page, 'billboard-its-only-money'));
   await page.keyboard.press('Enter');
   await page.waitForTimeout(1300);
   ok('Enter opens the title card', (await A(page)).dialog === 'dlg-card');
+  ok('focus moves inside the open card', await page.evaluate(() => document.getElementById('dlg-card').contains(document.activeElement)), await active(page));
   ok('card shows Key Testing Focus verbatim and the partner', await page.evaluate(() => /Open-World Systems & Gameplay Testing/.test(document.getElementById('card-panel').textContent) && /In partnership with Firestoke/.test(document.getElementById('card-panel').textContent.replace(/\s+/g, ' '))));
   ok('key art resolved to the full image', await page.evaluate(() => !!document.querySelector('#card-art img[src$="key.webp"]')));
   await page.keyboard.press('Escape');
@@ -93,20 +98,6 @@ async function walkTo(page, id, dir = 'ArrowRight', ms = 30000) {
   await page.waitForTimeout(300);
   ok('Esc closes the dialogue, focus back on the stage', !(await A(page)).dialog && (await active(page)) === 'stage', await active(page));
 
-  // bug 1
-  ok('walk to bug 1 (Clipper)', await walkTo(page, 'bug-functional'));
-  await page.keyboard.press('e');
-  await page.waitForTimeout(400);
-  ok('ticket printed', await page.evaluate(() => document.querySelectorAll('#tickets .ticket').length) === 1);
-  ok('ticket text', await page.evaluate(() => /BUG #SP-0001 · DEMO/.test(document.querySelector('#tickets .ticket').textContent.toUpperCase())));
-  ok('HUD BUGS 1/8', /BUGS 1\/8/.test(await hudText(page)), await hudText(page));
-  ok('aria-live: bug logged', /Bug SP-0001 logged: Clipper, Functional QA/.test(await live(page)), await live(page));
-  await page.waitForTimeout(900);
-  ok('service card opens with the verbatim service text', (await A(page)).dialog === 'dlg-service' && await page.evaluate(() => /Testing all functional aspects of your game/.test(document.getElementById('svc-panel').textContent)));
-  ok('service card lists real titles', await page.evaluate(() => document.querySelectorAll('#svc-panel .svc-titles li').length) >= 1);
-  await page.keyboard.press('Escape');
-  await page.waitForTimeout(300);
-
   // partner 2
   ok('walk to the second partner sign', await walkTo(page, 'partner-scott'));
   await page.keyboard.press('e');
@@ -114,6 +105,21 @@ async function walkTo(page, id, dir = 'ArrowRight', ms = 30000) {
   ok('HUD MET 2/9', /MET 2\/9/.test(await hudText(page)));
   await page.keyboard.press('Escape');
   await page.waitForTimeout(200);
+
+  // bug 1
+  ok('walk to bug 1 (Clipper)', await walkTo(page, 'bug-functional'));
+  await page.keyboard.press('e');
+  await page.waitForTimeout(400);
+  ok('ticket printed', await page.evaluate(() => document.querySelectorAll('#tickets .ticket').length) === 1);
+  ok('ticket text', await page.evaluate(() => /BUG #SP-0001 · DEMO/.test(((document.querySelector('#tickets .ticket') || {}).textContent || '').toUpperCase())));
+  ok('HUD BUGS 1/8', /BUGS 1\/8/.test(await hudText(page)), await hudText(page));
+  ok('aria-live: bug logged', /Bug SP-0001 logged: Clipper, Functional QA/.test(await live(page)), await live(page));
+  ok('canvas is role=img with the live run summary (debounced)', await page.waitForFunction(() => { const c = document.getElementById('cv'); return c.getAttribute('role') === 'img' && /Bugs logged 1 of 8, partners met 2 of 9/.test(c.getAttribute('aria-label') || ''); }, null, { timeout: 2500 }).then(() => true, () => false), await page.evaluate(() => document.getElementById('cv').getAttribute('aria-label').slice(0, 120)));
+  await page.waitForTimeout(900);
+  ok('service card opens with the verbatim service text', (await A(page)).dialog === 'dlg-service' && await page.evaluate(() => /Testing all functional aspects of your game/.test(document.getElementById('svc-panel').textContent)));
+  ok('service card lists real titles', await page.evaluate(() => document.querySelectorAll('#svc-panel .svc-titles li').length) >= 1);
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(300);
 
   // over the first ledge and summit to bug 2 (power-up on the way)
   ok('jump the ledge and reach bug 2 (Wrong Glyph)', await walkTo(page, 'bug-compliance'));
@@ -133,6 +139,7 @@ async function walkTo(page, id, dir = 'ArrowRight', ms = 30000) {
   await page.keyboard.press('l');
   await page.waitForTimeout(300);
   ok('L opens the list of every object', await page.evaluate(() => document.getElementById('index').classList.contains('is-open') && document.querySelectorAll('#index .idx-btn').length >= 46));
+  ok('focus moves into the list', await page.evaluate(() => !!(document.activeElement && document.activeElement.closest('#index'))), await active(page));
   await page.focus('#index .idx-btn[data-obj="bug-rc"]');
   await page.keyboard.press('Enter');
   await page.waitForTimeout(1400);
@@ -211,6 +218,7 @@ async function walkTo(page, id, dir = 'ArrowRight', ms = 30000) {
 
 await browser.close();
 server.close();
+printed = true;
 console.log(results.join('\n'));
 console.log(`\n${results.length - failures}/${results.length} checks passed`);
 process.exit(failures ? 1 : 0);

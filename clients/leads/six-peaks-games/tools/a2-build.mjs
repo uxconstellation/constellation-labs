@@ -214,19 +214,19 @@ function finishLevel(pk, objs, peaks, base, summit, gy) {
 // meadow flats, signposts (one centre post) on the slopes, bugs on our own props only, and the kit's sites for
 // the clip-ground beetle, the staircase, the summit sign and the six power-ups. Validated below.
 const HAND = [
-  ['camp', 'tent', 110], ['campsign', 'basecamp', 205], ['billboard', 'its-only-money', 300], ['partner', 'watson', 372], ['photo', 'rooftop', 425],
-  ['bug', 'functional', 478], ['billboard', 'yooka-replaylee', 570], ['billboard', 'god-breakers', 660], ['partner', 'scott', 734], ['photo', 'screens', 792],
-  ['bug', 'compliance', 912],
-  ['boarded', 'warhammer-survivors', 1005], ['billboard', 'lost-skies', 1077], ['billboard', 'wild-blue-skies', 1167], ['partner', 'allum', 1242], ['photo', 'desk', 1290],
-  ['bug', 'localisation', 1455],
-  ['billboard', 'lil-gator', 1582], ['partner', 'wales', 1656], ['billboard', 'town-of-zoz', 1730], ['boarded', 'boltgun-2', 1803], ['photo', 'pair', 1850],
-  ['bug', 'reporting', 1995],
-  ['billboard', 'suzerain', 2100], ['partner', 'kyne', 2174], ['billboard', 'cattle-country', 2248], ['photo', 'company', 2318], ['bug', 'testcase', 'site:stairs'],
-  ['bug', 'usability', 2530],
-  ['boarded', 'witchs-bakery', 2612], ['billboard', 'whimel-academy', 2684], ['billboard', 'outrage-fight-fest', 2772], ['partner', 'harfoot', 2846], ['partner', 'avent', 2906],
-  ['bug', 'performance', 3030],
-  ['boarded', 'king-of-tokyo', 3110], ['billboard', 'service-with-a-shotgun', 3178], ['partner', 'fraser', 3250], ['billboard', 'grave-dodgers', 3322], ['partner', 'aikman', 3392],
-  ['bug', 'rc', 'site:summitSign'], ['flag', 'summit', 'site:flag'], ['photo', 'crew', 3527],
+  ['camp', 'tent', 90], ['campsign', 'basecamp', 175], ['billboard', 'its-only-money', 266], ['billboard', 'yooka-replaylee', 350], ['partner', 'watson', 425], ['photo', 'rooftop', 455],
+  ['billboard', 'god-breakers', 'm1+56'], ['partner', 'scott', 'm1+130'], ['bug', 'functional', 'site:clipGround'], ['photo', 'screens', 'm1+254'],
+  ['bug', 'compliance', 'p1+55'],
+  ['boarded', 'warhammer-survivors', 'm2+26'], ['billboard', 'lost-skies', 'm2+100'], ['billboard', 'wild-blue-skies', 'm2+188'], ['partner', 'allum', 'm2+260'], ['photo', 'desk', 'm2+316'],
+  ['bug', 'localisation', 'p2+70'],
+  ['billboard', 'lil-gator', 'm3+44'], ['partner', 'wales', 'm3+118'], ['billboard', 'town-of-zoz', 'm3+192'], ['boarded', 'boltgun-2', 'm3+266'], ['photo', 'pair', 'm3+324'],
+  ['bug', 'reporting', 'p3+70'],
+  ['billboard', 'suzerain', 'm4+43'], ['partner', 'kyne', 'm4+117'], ['billboard', 'cattle-country', 'm4+191'], ['photo', 'company', 'm4+267'], ['bug', 'testcase', 'site:stairs'],
+  ['bug', 'usability', 'p4+56'],
+  ['boarded', 'witchs-bakery', 'm5+26'], ['billboard', 'whimel-academy', 'm5+98'], ['billboard', 'outrage-fight-fest', 'm5+186'], ['partner', 'harfoot', 'm5+260'], ['partner', 'avent', 'm5+322'],
+  ['bug', 'performance', 'p5+50'],
+  ['boarded', 'king-of-tokyo', 'm6+25'], ['billboard', 'service-with-a-shotgun', 'm6+93'], ['partner', 'fraser', 'm6+165'], ['billboard', 'grave-dodgers', 'm6+237'], ['partner', 'aikman', 'm6+311'],
+  ['bug', 'rc', 'site:summitSign'], ['flag', 'summit', 'site:summitFlag'], ['photo', 'crew', 'site:summitFlag+19'],
 ];
 const W_ = { billboard: 80, boarded: 48, partner: 52, photo: 12, camp: 32, campsign: 88, flag: 16 };
 const BUGW = { functional: 24, compliance: 32, localisation: 48, reporting: 16, testcase: 40, usability: 32, performance: 16, rc: 48 };
@@ -235,10 +235,17 @@ function handLevel(pk) {
   const sites = pk.sites || {};
   const objs = [];
   for (const [kind, ref, xs] of HAND) {
+    // positions: absolute (base camp), meadow-relative (m<n>+dx), peak-relative (p<n>+dx) or a kit site
     let x = xs;
-    if (xs === 'site:stairs') x = sites.stairs.x + 20;
-    else if (xs === 'site:summitSign') x = sites.summitSign.x;
-    else if (xs === 'site:flag') x = pk.summit.x + 14;
+    const mm = typeof xs === 'string' && xs.match(/^([mp])(\d)\+(-?\d+)$/);
+    const ss = typeof xs === 'string' && xs.match(/^site:(\w+)(?:\+(-?\d+))?$/);
+    if (mm) x = (mm[1] === 'm' ? pk.meadows[+mm[2] - 1].x0 : pk.peaks[+mm[2] - 1].x) + +mm[3];
+    else if (ss) {
+      const k = ss[1], dx = +(ss[2] || 0);
+      if (k === 'stairs') x = sites.stairs.x + 20;
+      else if (k === 'summitFlag') x = (sites.summitFlag ? sites.summitFlag.x : pk.summit.x + 14) + dx;
+      else x = sites[k].x + dx;
+    }
     const o = { kind, ref, x, w: kind === 'bug' ? BUGW[ref] : W_[kind] };
     if (kind === 'bug' && ref === 'testcase' && sites.stairs) { o.x0 = sites.stairs.x; o.foot = sites.stairs.y; }
     objs.push(o);
