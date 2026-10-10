@@ -58,8 +58,8 @@ Intro: We have supported titles across a diverse range of genres, platforms, and
 |---|---|---|---|---|---|
 | 1 | Warhammer Survivors | Fast-paced roguelite "survivors" game. | Auroch Digital | Project underway, further details on release. | /warhammer-survivors-2/ |
 | 2 | Yooka Re-Playlee | An enhanced open-world 3D collectathon platformer. | Playtonic Friends | Multi-Level Test Coverage · Gameplay Systems Validation · Player Experience | /yooka-replaylee/ |
-| 3 | Warhammer 40,000: Boltgun 2 | A brutal, high-intensity retro FPS set in the Warhammer 40,000 universe. | Auroch Digital | Project underway, further details on release. | /warhammer-40000-boltgun-2/ |
-| 4 | God Breakers | A frenetic co-op action roguelite with fast, chaotic combat. | Thunderful | Multiplayer Network & Crossplay · Gameplay Balance Combat & Systems · Player Experience & Full-Title Quality | /godbreakers-2/ |
+| 3 | Warhammer 40,000: Boltgun 2 | A brutal, high-intensity retro FPS set in the Warhammer 40,000 universe. | Auroch Digital | Project underway, further details on release. | /warhammer-40000-boltgun/ (the homepage card links /warhammer-40000-boltgun-2/, which returns 404) |
+| 4 | God Breakers | A frenetic co-op action roguelite with fast, chaotic combat. | Thunderful | Multiplayer Network & Crossplay · Gameplay Balance Combat & Systems · Player Experience & Full-Title Quality | /godbreakers-game-qa-testing/ (the homepage links /godbreakers-2/, which returns 404) |
 | 5 | Lost Skies | A co-op survival adventure across floating islands above the clouds. | The Powell Group (Humble Games now Balor Games) | Opening Experience · Multiplayer & Co-op · Content Coverage & Regression | /lost-skies-2/ |
 | 6 | Wild Blue Skies | A modern on-rails flight shooter. | The Powell Group (Humble Games now Balor Games) | Core Gameplay Testing · Stability & Polish · Console Compliance & Certification | /wild-blue-skies-2/ |
 | 7 | Lil'Gator Game: In the Dark | A playful open-world adventure starring the adorable Lil Gator. | Playtonic Friends | Critical Path & Stability · Gameplay Systems & Quest Coverage · DLC Mechanics & Console Certification | /lilgator/ |
@@ -134,4 +134,5 @@ Suzerain example (verbatim):
 - Game gallery images per game page, e.g. 2026/03/suzerain-game-image-{1..4}.jpg
 - Partner logos (colour): 2026/01/{humble-games, auroch-digital, impossible-dream, thunderful, powell-group, firestoke, torpor-games, hardball, playtonic-friends, silver-lining, chuhai-labs, bossa-games(-1)}-logo.png, 2026/03/auroch.png, 2026/03/balor-games-logo-merged.png, 2026/04/microids-full.png, 2026/08/supercell-small-logo.png. White versions: 2026/02/{powell, chuchai, firestoke, hardball, thunderful}-white.png
 - Platform icons (white): 2026/01/{xbox-logo, playstation-logo, nintendo-logo, epic-logo, steam-icon, windows-logo, meta-icon-white, apple-icon-white, android-icon-white}.png
-- Portrait game posters show in the desktop project flipbox grid but are injected by deferred CSS; URL not yet resolved (reference-scout task).
+- Portrait game posters (405x687, logo baked in) are flipbox background images in `wp-content/et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css`; captured by reference-scout as `assets/web/games/<slug>/poster.webp`.
+- Key art: the client's own 1920x800 `*-banner-image.jpg` files from the WordPress media library (logo-free; not currently shown on the live site). See `assets/manifest.json`.

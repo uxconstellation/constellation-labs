@@ -1,0 +1,3637 @@
+{
+ "generated": "2026-10-10",
+ "project": "six-peaks-games",
+ "method": {
+  "capture": "ChatCut web_browser (Firecrawl) on https://sixpeaks.games/ with a layout script; JPEG q95 full-page screenshot (PNG screenshots are 256-colour quantized and were rejected); crops via assets/raw/shots/<batch>/pos.json.",
+  "alpha": "Difference matting of black-backed and white-backed copies: alpha = 1 - mean(W-B)/255, colour = B/alpha; values <0.035 -> 0, >0.975 -> 1. Small logos rendered at 2x/4x with image-rendering:pixelated and block-averaged back.",
+  "encoding": "Photos WebP q82 method 6 (max 1920 wide; recipe caps captures at 1900 wide). Logos/icons lossless WebP with alpha. brand/logo-white.png and brand/mark.png are PNG."
+ },
+ "files": [
+  {
+   "file": "assets/web/brand/logo-white.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/05/Six-Peaks-White-Logo.png",
+   "sourceNatural": [
+    1864,
+    902
+   ],
+   "captured": [
+    1864,
+    902
+   ],
+   "output": [
+    1864,
+    902
+   ],
+   "bytes": 33556,
+   "kind": "official",
+   "notes": "White wordmark + mountain range, transparent. Captured at full natural width (stacked black/white backing) and alpha recovered by difference matting; no halo on red/grey checks.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/logo-white.png",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/05/Six-Peaks-White-Logo.png",
+   "sourceNatural": [
+    1864,
+    902
+   ],
+   "captured": [
+    1864,
+    902
+   ],
+   "output": [
+    1864,
+    902
+   ],
+   "bytes": 90041,
+   "kind": "official",
+   "notes": "White wordmark + mountain range, transparent. Captured at full natural width (stacked black/white backing) and alpha recovered by difference matting; no halo on red/grey checks.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/mark.png",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/cropped-six-peaks-favicon-270x270.png",
+   "sourceNatural": [
+    270,
+    270
+   ],
+   "captured": [
+    270,
+    270
+   ],
+   "output": [
+    270,
+    270
+   ],
+   "bytes": 29325,
+   "kind": "official",
+   "notes": "Site icon (WordPress site_icon-270 rendition of 2026/03/cropped-six-peaks-favicon.png, 512x512 master). White disc with black \"SixPeaks GAMES\" lockup; transparent outside the circle.",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/hero-testers.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/banner-image-6-3.jpg",
+   "sourceNatural": [
+    1920,
+    899
+   ],
+   "captured": [
+    1900,
+    890
+   ],
+   "output": [
+    1900,
+    890
+   ],
+   "bytes": 52842,
+   "kind": "official",
+   "notes": "Current desktop hero background (two testers at desks, office behind). Captured at 1900x890 (recipe caps opaque renders at 1900 wide; true size 1920x899).",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/team-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/team-image-1-lighter.jpg",
+   "sourceNatural": [
+    1920,
+    899
+   ],
+   "captured": [
+    1900,
+    890
+   ],
+   "output": [
+    1900,
+    890
+   ],
+   "bytes": 122634,
+   "kind": "official",
+   "notes": "Core team of 7 on the office rooftop with the mountain range (Outeniqua) directly behind: THE group-in-front-of-the-mountains shot. Captured at 1900x890 (recipe caps opaque renders at 1900 wide; true size 1920x899).",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/team-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/team-image-3-lighter.jpg",
+   "sourceNatural": [
+    1920,
+    899
+   ],
+   "captured": [
+    1900,
+    890
+   ],
+   "output": [
+    1900,
+    890
+   ],
+   "bytes": 126376,
+   "kind": "official",
+   "notes": "Same 7 on the rooftop, playful poses; background is trees/buildings with only faint hazy mountains top-left. Captured at 1900x890 (recipe caps opaque renders at 1900 wide; true size 1920x899).",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/team-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/team-image-4.jpg",
+   "sourceNatural": [
+    1920,
+    899
+   ],
+   "captured": [
+    1900,
+    890
+   ],
+   "output": [
+    1900,
+    890
+   ],
+   "bytes": 325060,
+   "kind": "official",
+   "notes": "Whole company (~45 people) on a lawn, mountain range along the horizon under a cloudy sky. Captured at 1900x890 (recipe caps opaque renders at 1900 wide; true size 1920x899).",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/team-5.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/team-image-5.jpg",
+   "sourceNatural": [
+    1920,
+    899
+   ],
+   "captured": [
+    1900,
+    890
+   ],
+   "output": [
+    1900,
+    890
+   ],
+   "bytes": 321368,
+   "kind": "official",
+   "notes": "Whole-company lawn photo, near-identical moment to team-4 with a tighter, left-weighted framing; mountains on the horizon. Captured at 1900x890 (recipe caps opaque renders at 1900 wide; true size 1920x899).",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/vert-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/vert-image-4-1.jpg",
+   "sourceNatural": [
+    864,
+    1092
+   ],
+   "captured": [
+    864,
+    1092
+   ],
+   "output": [
+    864,
+    1092
+   ],
+   "bytes": 68954,
+   "kind": "official",
+   "notes": "Portrait crop used as the current mobile hero background and in a pillar flipbox.",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/vert-9.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/vert-image-9.jpg",
+   "sourceNatural": [
+    864,
+    1092
+   ],
+   "captured": [
+    864,
+    1092
+   ],
+   "output": [
+    864,
+    1092
+   ],
+   "bytes": 58198,
+   "kind": "official",
+   "notes": "Portrait team/office image (homepage).",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/vert-10.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/vert-image-10.jpg",
+   "sourceNatural": [
+    864,
+    1092
+   ],
+   "captured": [
+    864,
+    1092
+   ],
+   "output": [
+    864,
+    1092
+   ],
+   "bytes": 53622,
+   "kind": "official",
+   "notes": "Portrait team/office image (homepage).",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/headshot-jason-ried.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/jason-reid-1.jpg",
+   "sourceNatural": [
+    336,
+    424
+   ],
+   "captured": [
+    336,
+    424
+   ],
+   "output": [
+    336,
+    424
+   ],
+   "bytes": 10758,
+   "kind": "official",
+   "notes": "Jason Ried, Founder & CEO (file is spelled \"reid\").",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/headshot-jason-avent.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/jason-avent-1.jpg",
+   "sourceNatural": [
+    336,
+    424
+   ],
+   "captured": [
+    336,
+    424
+   ],
+   "output": [
+    336,
+    424
+   ],
+   "bytes": 12588,
+   "kind": "official",
+   "notes": "Jason Avent, Founder & Non-Exec Director.",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/headshot-louise-ried.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/louise-reid-1.jpg",
+   "sourceNatural": [
+    336,
+    424
+   ],
+   "captured": [
+    336,
+    424
+   ],
+   "output": [
+    336,
+    424
+   ],
+   "bytes": 16204,
+   "kind": "official",
+   "notes": "Louise Ried, Business Development Director (file is spelled \"reid\").",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/brand/headshot-callan-schroder.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/callan-schroder-2.jpg",
+   "sourceNatural": [
+    336,
+    424
+   ],
+   "captured": [
+    336,
+    424
+   ],
+   "output": [
+    336,
+    424
+   ],
+   "bytes": 14686,
+   "kind": "official",
+   "notes": "Callan Schroder, QA Manager.",
+   "capture": {
+    "batch": "b01-brand",
+    "screenshot": "assets/raw/shots/b01-brand/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/warhammer-survivors/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-survivors-logo.png",
+   "sourceNatural": [
+    792,
+    282
+   ],
+   "captured": [
+    792,
+    282
+   ],
+   "output": [
+    792,
+    282
+   ],
+   "bytes": 165342,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (warhammer-survivors-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/warhammer-survivors/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/warhammer-survivors.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 49214,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_24), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in. PROJECT UNDERWAY: per brief, not for hero use.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/warhammer-survivors/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-survivors-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 153640,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). No on-page gallery exists for this game. PROJECT UNDERWAY: per brief, never use as hero art.",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/yooka-replaylee/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-logo.png",
+   "sourceNatural": [
+    824,
+    314
+   ],
+   "captured": [
+    824,
+    314
+   ],
+   "output": [
+    824,
+    314
+   ],
+   "bytes": 193580,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (yooka-replaylee-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/yooka-replaylee/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/yooka-re-playlee.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 51676,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_26), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/yooka-replaylee/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 87086,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/yooka-replaylee/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 102566,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/yooka-replaylee/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 75344,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/yooka-replaylee/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 103598,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/yooka-replaylee/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 121146,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/boltgun-2/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-40000-boltgun-2-banner-logo.png",
+   "sourceNatural": [
+    538,
+    428
+   ],
+   "captured": [
+    538,
+    428
+   ],
+   "output": [
+    538,
+    428
+   ],
+   "bytes": 224656,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (warhammer-40000-boltgun-2-banner-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/boltgun-2/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-40000-boltgun-2.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 56420,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_28), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in. PROJECT UNDERWAY: per brief, not for hero use.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/boltgun-2/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-40000-boltgun-2-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 136530,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). No on-page gallery exists for this game. PROJECT UNDERWAY: per brief, never use as hero art.",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/god-breakers/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/godbreakers-logo.png",
+   "sourceNatural": [
+    960,
+    286
+   ],
+   "captured": [
+    960,
+    286
+   ],
+   "output": [
+    960,
+    286
+   ],
+   "bytes": 17980,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (godbreakers-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/god-breakers/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/godbreakers-1.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 34020,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_30), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/god-breakers/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 37206,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/god-breakers/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 57918,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/god-breakers/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 70026,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/god-breakers/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 38232,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/god-breakers/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 70408,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/lost-skies/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/lost-skies-logo.png",
+   "sourceNatural": [
+    1874,
+    1234
+   ],
+   "captured": [
+    1874,
+    1234
+   ],
+   "output": [
+    1200,
+    790
+   ],
+   "bytes": 66536,
+   "kind": "official",
+   "notes": "White wordmark from the homepage card (2026/02/lost-skies-logo.png, 1874x1234), downscaled to 1200 wide. The game page itself uses a BLACK variant (2026/03/lost-skies-logo.png, 616x406) that disappears on dark backgrounds; it is kept as logo-black.webp. Downscaled from 1874x1234.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lost-skies/logo-black.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-logo.png",
+   "sourceNatural": [
+    616,
+    406
+   ],
+   "captured": [
+    616,
+    406
+   ],
+   "output": [
+    616,
+    406
+   ],
+   "bytes": 14476,
+   "kind": "official",
+   "notes": "EXTRA: black wordmark exactly as used on the Lost Skies game page; for light backgrounds only.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lost-skies/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-1.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 47654,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_32), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lost-skies/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 63136,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lost-skies/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 122140,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/lost-skies/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 100160,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/lost-skies/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 51514,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lost-skies/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 172058,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). A taller 16:9 version of the same art exists: 2026/02/lost-skies-banner-image-large.jpg (2560x1440). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/wild-blue-skies/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/wild-blue-skies-logo.png",
+   "sourceNatural": [
+    876,
+    433
+   ],
+   "captured": [
+    876,
+    433
+   ],
+   "output": [
+    876,
+    433
+   ],
+   "bytes": 239426,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (wild-blue-skies-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/wild-blue-skies/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/wild-blue-skies.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 49744,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_34), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/wild-blue-skies/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/wild-blue-skies-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 150926,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). No on-page gallery exists for this game.",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/lil-gator/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-logo.png",
+   "sourceNatural": [
+    633,
+    400
+   ],
+   "captured": [
+    633,
+    400
+   ],
+   "output": [
+    633,
+    400
+   ],
+   "bytes": 179408,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (lil-gator-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lil-gator/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/lil-gator-game.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 44570,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_36), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lil-gator/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 44842,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lil-gator/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 38766,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/lil-gator/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 56864,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b04-gallery-a",
+    "screenshot": "assets/raw/shots/b04-gallery-a/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/lil-gator/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 45750,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/lil-gator/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 118902,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/town-of-zoz/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/town-of-zoz-logo.png",
+   "sourceNatural": [
+    962,
+    463
+   ],
+   "captured": [
+    962,
+    463
+   ],
+   "output": [
+    962,
+    463
+   ],
+   "bytes": 304424,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (town-of-zoz-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/town-of-zoz/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/town-of-zoz.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 45574,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_38), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/town-of-zoz/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 51682,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/town-of-zoz/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 54822,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/town-of-zoz/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 43308,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/town-of-zoz/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 60944,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/town-of-zoz/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/town-of-zoz-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 95490,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/witchs-bakery/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/the-withs-bakery-logo.png",
+   "sourceNatural": [
+    734,
+    500
+   ],
+   "captured": [
+    734,
+    500
+   ],
+   "output": [
+    734,
+    500
+   ],
+   "bytes": 294430,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (the-withs-bakery-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/witchs-bakery/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/the-witchs-bakery.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 52406,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_40), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in. PROJECT UNDERWAY: per brief, not for hero use.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/witchs-bakery/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/the-withs-bakery-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 78810,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). No on-page gallery exists for this game. PROJECT UNDERWAY: per brief, never use as hero art.",
+   "capture": {
+    "batch": "b07-banners-a",
+    "screenshot": "assets/raw/shots/b07-banners-a/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/suzerain/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-logo.png",
+   "sourceNatural": [
+    650,
+    126
+   ],
+   "captured": [
+    650,
+    126
+   ],
+   "output": [
+    650,
+    126
+   ],
+   "bytes": 71402,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (suzerain-logo.png); alpha recovered by black/white difference matting. Wordmark is a solid dark bar with gold lettering (opaque rectangle by design).",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/suzerain/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-1.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 25518,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_42), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/suzerain/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 35662,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/suzerain/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 89252,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/suzerain/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 84998,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/suzerain/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 44598,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/suzerain/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 80776,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/king-of-tokyo/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/king-of-tokyo-banner-logo.png",
+   "sourceNatural": [
+    646,
+    500
+   ],
+   "captured": [
+    646,
+    500
+   ],
+   "output": [
+    646,
+    500
+   ],
+   "bytes": 193908,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (king-of-tokyo-banner-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/king-of-tokyo/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/king-of-tokyo.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 57740,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_44), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in. PROJECT UNDERWAY: per brief, not for hero use.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/king-of-tokyo/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/king-of-tokyo-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 201902,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). No on-page gallery exists for this game. PROJECT UNDERWAY: per brief, never use as hero art.",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/cattle-country/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-logo.png",
+   "sourceNatural": [
+    622,
+    474
+   ],
+   "captured": [
+    622,
+    474
+   ],
+   "output": [
+    622,
+    474
+   ],
+   "bytes": 292186,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (cattle-country-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/cattle-country/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/cattle-country.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 37016,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_46), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/cattle-country/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 131986,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/cattle-country/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-5.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    680
+   ],
+   "bytes": 148022,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/cattle-country/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    680
+   ],
+   "bytes": 159884,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/cattle-country/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 129612,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/cattle-country/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 69088,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Library also has cattle-country-banner-image-1.jpg (1920x800, a pixel-art gameplay shot) and -large (1920x1080, logo baked in); this logo-free key art was preferred. Best on-page landscape alternative: shot-2.webp (970x680).",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/whimel-academy/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-logo.png",
+   "sourceNatural": [
+    693,
+    372
+   ],
+   "captured": [
+    693,
+    372
+   ],
+   "output": [
+    693,
+    372
+   ],
+   "bytes": 187328,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (whimel-academy-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/whimel-academy/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/whimel-academy.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 63268,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_48), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/whimel-academy/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 101206,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/whimel-academy/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 108710,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b05-gallery-b",
+    "screenshot": "assets/raw/shots/b05-gallery-b/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/whimel-academy/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 86636,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/whimel-academy/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 91212,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/whimel-academy/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 188976,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/outrage-fight-fest/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/04/outrage-logo-26.png",
+   "sourceNatural": [
+    574,
+    487
+   ],
+   "captured": [
+    574,
+    487
+   ],
+   "output": [
+    574,
+    487
+   ],
+   "bytes": 108524,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (outrage-logo-26.png); alpha recovered by black/white difference matting. This is the newer \"OutRage Fight Fest\" badge used on the game page; the homepage card still uses the older horizontal wordmark 2026/03/outrage-logo.png.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/outrage-fight-fest/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/outrage-fight-fest.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 64070,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_50), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/outrage-fight-fest/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 46620,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/outrage-fight-fest/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 125004,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/outrage-fight-fest/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    546
+   ],
+   "bytes": 111974,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 67px, bottom 67px); no picture content removed.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   },
+   "trim": {
+    "top": 67,
+    "bottom": 67,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/outrage-fight-fest/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 47434,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/outrage-fight-fest/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 132022,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Alternative taller art exists: 2026/02/outrage-banner-image-large.jpg (1857x1062, different composition). Best on-page landscape alternative: shot-2.webp (970x546).",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/service-with-a-shotgun/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-logo.png",
+   "sourceNatural": [
+    475,
+    562
+   ],
+   "captured": [
+    475,
+    562
+   ],
+   "output": [
+    475,
+    562
+   ],
+   "bytes": 146270,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (service-with-a-shotgun-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/service-with-a-shotgun/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/service-with-a-shotgun.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 28502,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_52), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/service-with-a-shotgun/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-1.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 20248,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/service-with-a-shotgun/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-4.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    970,
+    550
+   ],
+   "bytes": 40576,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 65px, bottom 65px); no picture content removed.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   },
+   "trim": {
+    "top": 65,
+    "bottom": 65,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "file": "assets/web/games/service-with-a-shotgun/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-3.jpg",
+   "sourceNatural": [
+    970,
+    680
+   ],
+   "captured": [
+    970,
+    680
+   ],
+   "output": [
+    958,
+    540
+   ],
+   "bytes": 36554,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order. Baked-in black letterbox bars trimmed (top 70px, bottom 70px, left 6px, right 6px); no picture content removed.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   },
+   "trim": {
+    "top": 70,
+    "bottom": 70,
+    "left": 6,
+    "right": 6
+   }
+  },
+  {
+   "file": "assets/web/games/service-with-a-shotgun/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-2.jpg",
+   "sourceNatural": [
+    680,
+    680
+   ],
+   "captured": [
+    680,
+    680
+   ],
+   "output": [
+    680,
+    680
+   ],
+   "bytes": 25454,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/service-with-a-shotgun/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 94348,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Best on-page landscape alternative: shot-2.webp (970x550).",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/grave-dodgers/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/grave-dodgers-logo.png",
+   "sourceNatural": [
+    1044,
+    418
+   ],
+   "captured": [
+    1044,
+    418
+   ],
+   "output": [
+    1044,
+    418
+   ],
+   "bytes": 277032,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (grave-dodgers-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/grave-dodgers/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/grave-dodgers.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 42558,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_54), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/grave-dodgers/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/grave-dodgers-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 78352,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). No on-page gallery exists for this game.",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/games/its-only-money/logo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/its-only-money-logo.png",
+   "sourceNatural": [
+    776,
+    445
+   ],
+   "captured": [
+    776,
+    445
+   ],
+   "output": [
+    776,
+    445
+   ],
+   "bytes": 50660,
+   "kind": "official",
+   "notes": "Transparent wordmark from the game page (its-only-money-logo.png); alpha recovered by black/white difference matting.",
+   "capture": {
+    "batch": "b02-game-logos",
+    "screenshot": "assets/raw/shots/b02-game-logos/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/its-only-money/poster.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/its-only-money-1.jpg",
+   "sourceNatural": [
+    405,
+    687
+   ],
+   "captured": [
+    405,
+    687
+   ],
+   "output": [
+    405,
+    687
+   ],
+   "bytes": 41284,
+   "kind": "official",
+   "notes": "Official portrait poster from the desktop \"Our Projects\" flipbox front (.dsm_flipbox_child_56), resolved from et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css. Native 405x687 (~0.59 aspect, not 2:3); key art with the game logo baked in.",
+   "capture": {
+    "batch": "b03-posters",
+    "screenshot": "assets/raw/shots/b03-posters/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/its-only-money/shot-1.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-1.jpg",
+   "sourceNatural": [
+    678,
+    686
+   ],
+   "captured": [
+    678,
+    686
+   ],
+   "output": [
+    678,
+    686
+   ],
+   "bytes": 44646,
+   "kind": "official",
+   "notes": "Gallery image 1 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/its-only-money/shot-2.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-2.jpg",
+   "sourceNatural": [
+    971,
+    686
+   ],
+   "captured": [
+    971,
+    686
+   ],
+   "output": [
+    971,
+    686
+   ],
+   "bytes": 64368,
+   "kind": "official",
+   "notes": "Gallery image 2 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/its-only-money/shot-3.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-3.jpg",
+   "sourceNatural": [
+    971,
+    686
+   ],
+   "captured": [
+    971,
+    686
+   ],
+   "output": [
+    971,
+    686
+   ],
+   "bytes": 110646,
+   "kind": "official",
+   "notes": "Gallery image 3 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/its-only-money/shot-4.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-4.jpg",
+   "sourceNatural": [
+    678,
+    686
+   ],
+   "captured": [
+    678,
+    686
+   ],
+   "output": [
+    678,
+    686
+   ],
+   "bytes": 48138,
+   "kind": "official",
+   "notes": "Gallery image 4 of 4 in on-page order.",
+   "capture": {
+    "batch": "b06-gallery-c",
+    "screenshot": "assets/raw/shots/b06-gallery-c/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/games/its-only-money/key.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/its-only-money-banner-image.jpg",
+   "sourceNatural": [
+    1920,
+    800
+   ],
+   "captured": [
+    1900,
+    792
+   ],
+   "output": [
+    1900,
+    792
+   ],
+   "bytes": 137590,
+   "kind": "official",
+   "notes": "Client-uploaded game banner key art from the WordPress media library (1920x800, 2.4:1, no logo baked in); it is NOT displayed on the current live game page. Chosen because no on-page gallery image reaches 1600px (gallery max is 970x680). Captured at 1900x792 (recipe cap). Library also has 2026/02/its-only-money-banner.jpg (1920x681). Best on-page landscape alternative: shot-2.webp (971x686).",
+   "capture": {
+    "batch": "b08-banners-b",
+    "screenshot": "assets/raw/shots/b08-banners-b/screenshot.jpg"
+   },
+   "trueSize": [
+    1920,
+    800
+   ]
+  },
+  {
+   "file": "assets/web/partners/humble-games-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/humble-games-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 26462,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/humble-games.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/humble-games-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 5782,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/auroch-digital-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/auroch.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 21716,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/auroch-digital.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/auroch.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 5792,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/impossible-home-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/impossible-dream-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 20440,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/impossible-home.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/impossible-white.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 17632,
+   "kind": "official",
+   "notes": "Supplied white (dark-background) version impossible-white.png, used as-is. NOTE: this supplied file is not pure white; it keeps a full-colour stamp icon. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/thunderful-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/thunderful-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 8660,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/thunderful.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/thunderful-white.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 5612,
+   "kind": "official",
+   "notes": "Supplied white (dark-background) version thunderful-white.png, used as-is. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/supercell-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/08/supercell-small-logo.png",
+   "sourceNatural": [
+    500,
+    500
+   ],
+   "captured": [
+    500,
+    500
+   ],
+   "output": [
+    500,
+    500
+   ],
+   "bytes": 11454,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/supercell.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/08/supercell-small-logo.png",
+   "sourceNatural": [
+    500,
+    500
+   ],
+   "captured": [
+    500,
+    500
+   ],
+   "output": [
+    500,
+    500
+   ],
+   "bytes": 3686,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/powell-group-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/powell-group.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 14248,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/powell-group.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/powell-white.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 11588,
+   "kind": "official",
+   "notes": "Supplied white (dark-background) version powell-white.png, used as-is. NOTE: this supplied file is not pure white; it keeps a cyan \"PG\" icon and cyan \"GROUP\". Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/firestoke-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/firestoke-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 8804,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/firestoke.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/firestoke-white.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 6446,
+   "kind": "official",
+   "notes": "Supplied white (dark-background) version firestoke-white.png, used as-is. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/balor-games-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/balor-games-logo-merged.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 8494,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/balor-games.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/03/balor-games-logo-merged.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 4360,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/torpor-games-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/torpor-games-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 5434,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/torpor-games.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/torpor-games-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 5202,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/hardball-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/hardball-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 3418,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/hardball.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/hardball-white.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 1632,
+   "kind": "official",
+   "notes": "Supplied white (dark-background) version hardball-white.png, used as-is. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/playtonic-friends-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/playtonic-friends-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 36670,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/playtonic-friends.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/playtonic-friends-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 3836,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/microids-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/04/microids-full.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 15716,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/microids.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/04/microids-full.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 3772,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/silver-lining-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/silver-lining-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 31160,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/silver-lining.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/silver-lining-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 3004,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/chuhai-labs-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/chuhai-labs-logo.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 17002,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/chuhai-labs.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/02/chuchai-white.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 17354,
+   "kind": "official",
+   "notes": "Supplied white (dark-background) version chuchai-white.png, used as-is. NOTE: this supplied file is not pure white; it keeps a cyan flask icon. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/bossa-games-colour.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/bossa-games-logo-1.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 36378,
+   "kind": "official",
+   "notes": "Colour logo exactly as in the homepage partner marquee (for light backgrounds). Removed 2 export registration dots (top-left, bottom-right corners) present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/partners/bossa-games.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/bossa-games-logo-1.png",
+   "sourceNatural": [
+    363,
+    141
+   ],
+   "captured": [
+    363,
+    141
+   ],
+   "output": [
+    363,
+    141
+   ],
+   "bytes": 4842,
+   "kind": "recoloured",
+   "notes": "No supplied white file. Recoloured to pure white from the recovered colour logo using an ink mask (alpha x distance-from-white), which equals the plain alpha-mask recolour except that white details inside badges/letters stay knocked out (a plain alpha recolour turned the Bossa, Microids, Playtonic, Silver Lining and Balor marks into solid blobs).",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/xbox.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/xbox-logo.png",
+   "sourceNatural": [
+    59,
+    63
+   ],
+   "captured": [
+    59,
+    63
+   ],
+   "output": [
+    59,
+    63
+   ],
+   "bytes": 908,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 59x63 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/playstation.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/playstation-logo.png",
+   "sourceNatural": [
+    59,
+    63
+   ],
+   "captured": [
+    59,
+    63
+   ],
+   "output": [
+    59,
+    63
+   ],
+   "bytes": 686,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 59x63 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/nintendo.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/nintendo-logo.png",
+   "sourceNatural": [
+    59,
+    63
+   ],
+   "captured": [
+    59,
+    63
+   ],
+   "output": [
+    59,
+    63
+   ],
+   "bytes": 982,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 59x63 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/epic.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/epic-logo.png",
+   "sourceNatural": [
+    59,
+    63
+   ],
+   "captured": [
+    59,
+    63
+   ],
+   "output": [
+    59,
+    63
+   ],
+   "bytes": 1380,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 59x63 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/steam.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/steam-icon.png",
+   "sourceNatural": [
+    59,
+    63
+   ],
+   "captured": [
+    59,
+    63
+   ],
+   "output": [
+    59,
+    63
+   ],
+   "bytes": 860,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 59x63 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/windows.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/windows-logo.png",
+   "sourceNatural": [
+    59,
+    63
+   ],
+   "captured": [
+    59,
+    63
+   ],
+   "output": [
+    59,
+    63
+   ],
+   "bytes": 164,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 59x63 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting. Removed 2 corner registration dots present in the source file.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/meta.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/meta-icon-white.png",
+   "sourceNatural": [
+    55,
+    37
+   ],
+   "captured": [
+    55,
+    37
+   ],
+   "output": [
+    55,
+    37
+   ],
+   "bytes": 758,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 55x37 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/apple.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/apple-icon-white.png",
+   "sourceNatural": [
+    45,
+    53
+   ],
+   "captured": [
+    45,
+    53
+   ],
+   "output": [
+    45,
+    53
+   ],
+   "bytes": 478,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 45x53 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  },
+  {
+   "file": "assets/web/platforms/android.webp",
+   "source": "https://sixpeaks.games/wp-content/uploads/2026/01/android-icon-white.png",
+   "sourceNatural": [
+    44,
+    52
+   ],
+   "captured": [
+    44,
+    52
+   ],
+   "output": [
+    44,
+    52
+   ],
+   "bytes": 490,
+   "kind": "official",
+   "notes": "White icon from the homepage platform strip, native 44x52 (tiny raster; consider SVG for production). Captured at 4x with pixelated scaling and block-averaged back after matting.",
+   "capture": {
+    "batch": "b09-partners-platforms",
+    "screenshot": "assets/raw/shots/b09-partners-platforms/screenshot.jpg"
+   }
+  }
+ ]
+}
