@@ -19,8 +19,9 @@ export const site = {
   eyebrow: 'Game QA Studio · Embedded Game Testing',
   hero: {
     h1: 'Beyond standard QA.',
-    // Direction B spec line, assembled from site facts (embedded approach; console, mobile and PC; George; Western Europe time zone).
-    sub: 'Embedded test teams for PC, console and mobile games, from George, South Africa, on Western Europe’s working hours.',
+    // Direction B spec line, assembled from site facts (embedded approach; console, mobile and PC; George;
+    // "natural time zone overlap" with Western Europe, as the site's pillar words it). Wording approved by Aldo in the fix round.
+    sub: 'Embedded test teams for PC, console and mobile games, from George, South Africa, with natural time zone overlap with Western Europe.',
     siteSub: V('We live and breathe your games with you.'),
   },
   offer: {

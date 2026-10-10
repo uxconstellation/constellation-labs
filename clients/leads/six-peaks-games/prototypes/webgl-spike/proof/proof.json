@@ -1,0 +1,165 @@
+{
+ "runs": {
+  "desktop": {
+   "errors": [],
+   "failed": [],
+   "keyboardFocus": {
+    "focused": "Report visual bug: misaligned letter in the heading",
+    "focusVisible": true
+   },
+   "gapCheck": {
+    "heroBottom": -60,
+    "rewardTop": 1099,
+    "vh": 900
+   },
+   "loop": {
+    "offscreen": {
+     "loopRunning": false,
+     "framesRenderedInLastSecond": 0
+    },
+    "resumedWhenRewardVisible": true,
+    "runningWhileHidden": false
+   },
+   "meta": {
+    "markSource": "canvas",
+    "contexts": 1,
+    "glPixelRatio": 1,
+    "texW": 1900,
+    "hunt": "clear"
+   },
+   "glReadyMs": 488
+  },
+  "mobile": {
+   "errors": [],
+   "failed": []
+  },
+  "perf": {
+   "errors": [],
+   "failed": [],
+   "heroIdle": {
+    "samples": 121,
+    "avgMs": 24.93,
+    "p50": 16.7,
+    "p95": 33.4,
+    "maxMs": 50,
+    "fps": 40.1,
+    "renderedFrames": 122,
+    "renderCpuAvgMs": 0.21,
+    "renderCpuP95": 0.3,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "heroCursor": {
+    "samples": 111,
+    "avgMs": 27.18,
+    "p50": 33.3,
+    "p95": 49.9,
+    "maxMs": 50.1,
+    "fps": 36.8,
+    "renderedFrames": 112,
+    "renderCpuAvgMs": 0.26,
+    "renderCpuP95": 0.4,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "heroExplodeScrubbed": {
+    "samples": 111,
+    "avgMs": 27.18,
+    "p50": 33.3,
+    "p95": 33.4,
+    "maxMs": 50.1,
+    "fps": 36.8,
+    "renderedFrames": 112,
+    "renderCpuAvgMs": 0.2,
+    "renderCpuP95": 0.3,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "rewardView": {
+    "samples": 86,
+    "avgMs": 35.08,
+    "p50": 33.3,
+    "p95": 50,
+    "maxMs": 66.6,
+    "fps": 28.5,
+    "renderedFrames": 87,
+    "renderCpuAvgMs": 0.2,
+    "renderCpuP95": 0.3,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "offscreen": {
+    "samples": 120,
+    "avgMs": 16.67,
+    "p50": 16.7,
+    "p95": 16.7,
+    "maxMs": 16.8,
+    "fps": 60,
+    "renderedFrames": 0,
+    "renderCpuAvgMs": null,
+    "renderCpuP95": null,
+    "loopRunning": false,
+    "dpr": 1,
+    "glPixelRatio": 1
+   }
+  },
+  "reduced": {
+   "errors": [],
+   "failed": [],
+   "state": {
+    "cls": "js",
+    "three": false,
+    "canvases": 0,
+    "markFallbackOpacity": "1"
+   }
+  },
+  "nowebgl": {
+   "errors": [],
+   "failed": [],
+   "state": {
+    "cls": "js",
+    "three": false,
+    "canvases": 0,
+    "markFallbackOpacity": "1"
+   }
+  },
+  "video": {
+   "errors": [],
+   "failed": [],
+   "readyAtS": 0.59,
+   "scriptMs": 13819,
+   "rawDurationS": 15.44,
+   "trimmedLeadS": 0.29,
+   "durationS": 14.92,
+   "bytes": 2910754
+  }
+ },
+ "frames": [
+  {
+   "file": "prototypes/webgl-spike/proof/14-fallback-reduced-hero.jpg",
+   "note": "reduced: composed static hero (logo mark image + type)",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/15-fallback-reduced-reward.jpg",
+   "note": "reduced: game still playable, reward unlocks to the static key art",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/14-fallback-nowebgl-hero.jpg",
+   "note": "nowebgl: composed static hero (logo mark image + type)",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/15-fallback-nowebgl-reward.jpg",
+   "note": "nowebgl: game still playable, reward unlocks to the static key art",
+   "ms": null
+  }
+ ],
+ "when": "2026-10-10T17:33:26.501Z",
+ "browser": "141.0.7390.37"
+}

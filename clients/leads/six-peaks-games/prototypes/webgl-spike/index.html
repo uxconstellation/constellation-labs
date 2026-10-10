@@ -1,0 +1,1487 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Six Peaks WebGL Spike</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wdth,wght@75..112.5,400..700&family=Outfit:wght@400;500;600&family=Unbounded:wght@600;700;800&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --ink:#08090B;--ink-2:#0E1014;--ink-3:#151820;--ink-4:#1B1F27;
+  --line:#242832;--line-2:#363B47;
+  --snow:#F3F1EC;--mist:#B3B7C0;--dim:#8A8F9A;
+  --red:#E02B20;--red-hover:#C9241A;--red-text:#FF5D52;
+  --paper:#ECE8DF;--paper-ink:#141518;--paper-dim:#585B63;--stamp:#C0241B;
+  --magenta:#FF00DC;--focus:#FFFFFF;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Outfit","Segoe UI",system-ui,sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4.4vw,64px);
+  --maxw:1320px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--ink)}
+body{background:var(--ink);color:var(--snow);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:var(--red);color:#fff}
+a{color:inherit}
+img{display:block}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;z-index:50;left:16px;top:-80px;background:var(--snow);color:var(--ink);padding:12px 16px;font:600 15px/1 var(--body);text-decoration:none}
+.skip:focus{top:16px}
+.gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+.site{position:relative;z-index:1}
+
+/* ---------- shared type and controls ---------- */
+.eyebrow{margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mist)}
+.eyebrow-red{color:var(--red-text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;font:600 15px/1 var(--body);letter-spacing:.01em;text-decoration:none;border-radius:2px;border:1px solid transparent;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red-hover)}
+.btn-ghost{background:transparent;color:var(--snow);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--snow)}
+.btn-sm{min-height:40px;padding:0 16px;font-size:14px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---------- top bar ---------- */
+.top{position:absolute;z-index:4;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px var(--gutter)}
+.brand{display:block;text-decoration:none}
+.brand img{height:42px;width:auto}
+.top-nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,30px)}
+.top-link{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mist);text-decoration:none;padding:10px 0}
+.top-link:hover{color:var(--snow)}
+@media (max-width:560px){.top-link{display:none}.brand img{height:36px}}
+
+/* ---------- hero: the particle mark ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(86px + 2vh) var(--gutter) clamp(40px,7vh,84px);overflow:hidden}
+.mark-slot{position:relative;width:min(74vw,1040px);aspect-ratio:1489/378;margin-bottom:clamp(26px,5vh,56px);flex:none}
+@media (max-width:699px){.mark-slot{width:136vw}.hero .eyebrow{font-size:11px;letter-spacing:.08em}}
+.mark-fallback{position:absolute;inset:0;overflow:hidden;transition:opacity .6s ease}
+.mark-fallback img{position:absolute;width:125.185%;max-width:none;height:auto;left:-12.693%;top:-6.878%}
+.gl-pending .mark-fallback,.gl-on .mark-fallback{opacity:0}
+.hero-copy{display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2.2vh,22px);max-width:1200px}
+.h1{margin:0;font:800 clamp(34px,6vw,92px)/1.04 var(--display);letter-spacing:-.035em}
+.h1 .dot,.h1 .sc.dot{color:var(--red)}
+.scramble .sw{display:inline-block;white-space:nowrap}
+.scramble .sc{display:inline-block;text-align:center;white-space:pre}
+.scramble .sc.is-noise{color:var(--red-text)}
+.scramble .sc.is-wait{color:var(--line-2)}
+.lede{margin:0;font:400 clamp(17px,1.5vw,21px)/1.45 var(--body);color:var(--mist)}
+.hero .ctas{justify-content:center;margin-top:6px}
+
+/* ---------- bug hunt ---------- */
+.hunt{position:relative;padding:clamp(80px,13vh,150px) var(--gutter) clamp(64px,10vh,120px)}
+.hunt-inner{max-width:var(--maxw);margin:0 auto}
+.hunt-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px 56px;align-items:end;margin-bottom:clamp(26px,4.5vh,44px)}
+.h2{margin:10px 0 0;font:700 clamp(26px,3.4vw,50px)/1.08 var(--display);letter-spacing:-.03em}
+.hunt-intro{margin:0;color:var(--mist);max-width:52ch}
+.hunt-intro strong{color:var(--snow);font-weight:600}
+.no-js-note{display:none;margin:10px 0 0;color:var(--dim);font-size:15px}
+html:not(.js) .no-js-note{display:block}
+@media (max-width:899px){.hunt-head{grid-template-columns:1fr}}
+
+.hunt-grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(280px,25vw,350px);grid-template-areas:"level bar" "level side";grid-template-rows:auto 1fr;gap:18px 26px;align-items:start}
+
+/* the panel under test */
+.level{grid-area:level;position:relative;background:var(--ink-2);border:1px solid var(--line);padding:clamp(12px,1.5vw,20px);cursor:crosshair;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.level.has-reticle,.level.has-reticle *{cursor:none}
+.lv-strip{display:flex;justify-content:space-between;gap:12px;padding:0 2px 12px;font:500 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.lv-strip .state{color:var(--mist)}
+.level.is-clear .lv-strip .state{color:var(--red-text)}
+.lv-photo{position:relative;margin:0;overflow:hidden;background:var(--ink-3)}
+.lv-photo .lv-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lv-wide{aspect-ratio:2.75}
+.lv-wide .lv-img,.seam img{object-position:50% 46%}
+.lv-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:center;gap:clamp(16px,2.4vw,32px);padding:clamp(16px,2vw,24px) clamp(2px,.8vw,10px)}
+.lv-text{align-self:center}
+.lv-eyebrow{margin:0;font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.lv-h{margin:12px 0 14px;font:700 clamp(22px,2.3vw,34px)/1.16 var(--display);letter-spacing:-.025em}
+.lv-p{margin:0;color:var(--mist);max-width:44ch}
+.lv-portrait{aspect-ratio:5/4}
+.lv-portrait .lv-img{object-position:50% 28%}
+.lv-stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.stat{position:relative;z-index:1;overflow:hidden;background:var(--ink-2);padding:18px 14px 16px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.stat:last-child{border-right:0}
+.stat-v{font:700 clamp(18px,1.85vw,27px)/1.05 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.stat-l{font:500 14px/1.3 var(--body);color:var(--mist)}
+@media (max-width:699px){
+  .lv-body{grid-template-columns:1fr}
+  .lv-portrait{aspect-ratio:16/11}
+  .lv-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+
+/* planted bugs (no-JS shows the first set statically) */
+.seam{position:absolute;inset:0;display:none;pointer-events:none;clip-path:inset(57% 0 32% 0)}
+.seam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateX(calc(var(--seam-x,0) * 1px));opacity:var(--seam-o,1);filter:brightness(1.13) saturate(1.22) hue-rotate(-5deg)}
+.seam::before,.seam::after{content:"";position:absolute;z-index:1;left:0;right:0;height:1px;background:rgba(255,255,255,.62)}
+.seam::before{top:57%}
+.seam::after{top:calc(68% - 1px)}
+.lv-wide.is-bugged .seam{display:block;--seam-x:14}
+.kern{display:inline-block;transform:translateY(calc(var(--kern-y,0) * 1em)) rotate(calc(var(--kern-r,0) * 1deg));transform-origin:50% 75%}
+.kern.is-bugged{--kern-y:.24;--kern-r:11}
+.clip{display:block;transform:translateY(calc(var(--clip-y,0) * 1em))}
+.clip.is-bugged{--clip-y:1.8}
+.tofu{position:relative;display:inline-block}
+.tofu-box{display:none;position:absolute;left:50%;top:.16em;width:.5em;height:.8em;margin-left:-.25em;border:1.5px solid currentColor;border-radius:1px}
+.tofu.is-bugged .tofu-c{opacity:0}
+.tofu.is-bugged .tofu-box{display:block}
+.stat-iso{transform:translateX(calc(var(--ov-x,0) * -1%))}
+.stat-iso.is-bugged{--ov-x:36;z-index:3}
+.missing{position:absolute;inset:0;display:none;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(8,1fr);pointer-events:none}
+.lv-portrait.is-bugged .missing{display:grid}
+.missing i{opacity:0;background:conic-gradient(var(--magenta) 25%,#000 0 50%,var(--magenta) 0 75%,#000 0) 0 0/14px 14px}
+.missing i.on{opacity:1}
+
+/* hit targets, effects, reticle */
+.hits,.fx-html{position:absolute;inset:0;pointer-events:none}
+.hits{z-index:5}
+.hit{position:absolute;pointer-events:auto;margin:0;padding:0;border:0;background:transparent;border-radius:2px;cursor:crosshair;-webkit-tap-highlight-color:transparent}
+.hit:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.fx-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:6}
+.fx-html{z-index:7}
+.miss-tag{position:absolute;transform:translate(-50%,-140%);white-space:nowrap;font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--snow);background:var(--ink);padding:5px 7px}
+.fix-tag{position:absolute;display:flex;align-items:center;gap:5px;transform:translate(-100%,-50%);white-space:nowrap;font:700 10px/1 var(--mono);letter-spacing:.06em;color:var(--red-text);background:var(--ink);padding:4px 6px}
+.fix-tag svg{width:12px;height:12px}
+.hint-ring{position:absolute;border:2px dashed var(--snow);border-radius:50%;transform:translate(-50%,-50%)}
+.reticle{position:absolute;left:0;top:0;width:0;height:0;z-index:8;pointer-events:none;opacity:0;transition:opacity .15s}
+.level.has-reticle.is-aiming .reticle{opacity:1}
+.reticle svg{position:absolute;left:-40px;top:-40px;width:80px;height:80px;overflow:visible}
+.r-ring{fill:none;stroke:var(--snow);stroke-width:1.5;transition:transform .16s ease-out,stroke .12s}
+.r-cross{stroke:var(--snow);stroke-width:1.5;transition:transform .16s ease-out,stroke .12s}
+.r-dot{fill:var(--red);stroke:var(--ink);stroke-width:1}
+.r-ring.r-key,.r-cross.r-key{stroke:rgba(8,9,11,.85);stroke-width:4}
+.reticle.is-locked .r-ring.r-key,.reticle.is-locked .r-cross.r-key{stroke:rgba(8,9,11,.85)}
+.reticle.is-locked .r-ring{stroke:var(--red-text);transform:scale(.66)}
+.reticle.is-locked .r-cross{stroke:var(--red-text);transform:rotate(45deg) scale(.86)}
+.r-trail{position:absolute;left:0;top:0;width:0;height:0;z-index:8;pointer-events:none;opacity:0;transition:opacity .2s}
+.level.has-reticle.is-aiming .r-trail{opacity:1}
+.r-trail span{position:absolute;left:-24px;top:-24px;width:48px;height:48px;border:1px solid rgba(243,241,236,.28);border-radius:50%}
+
+/* HUD: score bar */
+.hud-bar{grid-area:bar;background:var(--ink-2);border:1px solid var(--line);padding:18px 20px 20px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px}
+.hud-found{grid-column:1/-1}
+.hud-label{display:block;font:500 11px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.hud-count{display:flex;align-items:flex-end;gap:16px;margin-top:8px}
+.count{display:flex;align-items:baseline;font:800 clamp(56px,5.6vw,84px)/.9 var(--display);letter-spacing:-.05em}
+.count-roll{position:relative;display:inline-block;overflow:hidden;height:.92em;min-width:.72em}
+.count-roll span{display:block}
+.count-of{font-size:.36em;color:var(--dim);letter-spacing:0;margin-left:4px}
+.pips{display:flex;gap:6px;padding-bottom:8px}
+.pip{width:26px;height:18px}
+.pip path{fill:none;stroke:var(--line-2);stroke-width:1.5;transition:fill .2s,stroke .2s}
+.pip.is-found path{fill:var(--red);stroke:var(--red)}
+.hud-val{display:block;margin-top:6px;font:600 22px/1 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.btn-hint{min-height:40px;padding:0 14px;background:transparent;color:var(--snow);border:1px solid var(--line-2);border-radius:2px;font:600 13px/1 var(--body);cursor:pointer;transition:border-color .2s}
+.btn-hint:hover{border-color:var(--snow)}
+.btn-hint span{color:var(--dim);font:500 11px/1 var(--mono);margin-left:4px}
+.btn-hint[disabled]{opacity:.45;cursor:default}
+
+/* HUD: stats and ticket printer */
+.hud-side{grid-area:side;background:var(--ink-2);border:1px solid var(--line);padding:16px 16px 18px}
+.hud-stats{margin:0 0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hud-stats div{border-top:1px solid var(--line);padding-top:10px}
+.hud-stats dt{font:500 10px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.hud-stats dd{margin:6px 0 0;font:600 17px/1 var(--mono);font-variant-numeric:tabular-nums}
+.printer-head{position:relative;display:flex;align-items:center;gap:10px;background:var(--ink-4);border:1px solid var(--line-2);padding:11px 12px 13px}
+.led{width:8px;height:8px;border-radius:50%;background:#3A3F4A;flex:none}
+.led.is-on{background:var(--red)}
+.printer-name{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+.slot{position:absolute;left:10px;right:10px;bottom:3px;height:3px;background:#030406}
+.tickets{list-style:none;margin:0;padding:0 8px;display:flex;flex-direction:column;gap:10px}
+.tickets-empty{margin:14px 8px 0;font:500 12px/1.5 var(--mono);color:var(--dim)}
+.ticket{position:relative;background:var(--paper);color:var(--paper-ink);padding:12px 14px 20px;font:500 12px/1.55 var(--mono)}
+.ticket::after{content:"";position:absolute;left:0;right:0;bottom:0;height:7px;background:linear-gradient(-45deg,var(--ink-2) 5px,transparent 0) 0 100%/10px 7px repeat-x,linear-gradient(45deg,var(--ink-2) 5px,transparent 0) 0 100%/10px 7px repeat-x}
+.ticket p{margin:0}
+.t-top{display:flex;justify-content:space-between;color:var(--paper-dim);font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px dashed #B9B4A8;padding-bottom:6px;margin-bottom:6px!important}
+.t-id{font-weight:700;font-size:13px;letter-spacing:.02em}
+.t-stamp{display:inline-block;margin-left:6px;padding:2px 6px 1px;border:2px solid var(--stamp);border-radius:2px;color:var(--stamp);font:700 11px/1.2 var(--mono);letter-spacing:.08em;transform:rotate(-7deg)}
+.t-desc{color:var(--paper-dim)}
+.toast{position:fixed;z-index:30;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:none;visibility:hidden;background:var(--paper);color:var(--paper-ink);padding:12px 14px;font:600 12px/1.45 var(--mono);transform:translateY(calc(100% + 32px))}
+@media (max-width:899px){
+  .hunt-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"bar" "level" "side";gap:14px}
+  .hud-bar{position:sticky;top:0;z-index:9;grid-template-columns:auto 1fr auto;align-items:center;padding:10px 12px;gap:12px}
+  .hud-found{grid-column:auto}
+  .hud-found .hud-label,.hud-time .hud-label{font-size:9px}
+  .hud-count{margin-top:2px;gap:10px}
+  .count{font-size:34px}
+  .pips{padding-bottom:4px;gap:4px}
+  .pip{width:18px;height:13px}
+  .hud-time{justify-self:center}
+  .hud-val{font-size:16px;margin-top:4px}
+  .toast{display:block}
+}
+
+/* reward */
+.reward{margin-top:clamp(28px,5vh,56px);display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);border:1px solid var(--line);min-height:clamp(400px,42vw,560px)}
+.reward-art{position:relative;overflow:hidden;min-height:260px}
+.reward-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.js .reward.is-locked .reward-img,.gl-pending .reward-img,.gl-on .reward-img{opacity:0}
+.reward-mosaic{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;opacity:0}
+.js .reward.is-locked .reward-mosaic{opacity:.5}
+.reward-scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,9,11,.9) 0%,rgba(8,9,11,.45) 32%,rgba(8,9,11,0) 58%)}
+.reward-credit{position:absolute;left:clamp(16px,2vw,26px);right:16px;bottom:clamp(14px,2vw,24px);display:flex;align-items:flex-end;gap:16px}
+.reward-logo{width:clamp(78px,8vw,118px);height:auto}
+.reward-credit p{margin:0;display:flex;flex-direction:column;gap:4px;font:500 11px/1.35 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mist)}
+.reward-credit .rc-title{font:700 15px/1.2 var(--body);letter-spacing:0;text-transform:none;color:var(--snow)}
+.reward-copy{background:var(--ink-2);border-left:1px solid var(--line);padding:clamp(22px,3vw,44px);display:flex;flex-direction:column;justify-content:center}
+.reward-h{margin:12px 0 14px;font:700 clamp(22px,2.3vw,34px)/1.14 var(--display);letter-spacing:-.025em}
+.reward-h:focus,.reward-h:focus-visible{outline:none}
+.reward-p,.reward-stats{margin:0;color:var(--mist)}
+.reward-stats{font:500 13px/1.6 var(--mono);color:var(--snow)}
+.reward-progress{margin:18px 0 0;font:600 13px/1 var(--mono);letter-spacing:.06em;color:var(--snow)}
+.reward-quote{margin:20px 0 22px;padding:16px 0 0;border-top:1px solid var(--line)}
+.reward-quote blockquote{margin:0;font:400 16px/1.55 var(--body);color:var(--snow)}
+.reward-quote figcaption{margin-top:10px;font:500 11px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.btn-text{align-self:flex-start;margin-top:16px;padding:8px 0;background:none;border:0;color:var(--mist);font:600 14px/1 var(--body);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.btn-text:hover{color:var(--snow)}
+html:not(.js) #replay{display:none}
+@media (max-width:899px){
+  .reward{grid-template-columns:minmax(0,1fr);min-height:0}
+  .reward-art{aspect-ratio:16/11;min-height:0}
+  .reward-copy{border-left:0;border-top:1px solid var(--line)}
+}
+
+/* footer */
+.foot{position:relative;padding:clamp(64px,11vh,120px) var(--gutter) 40px;border-top:1px solid var(--line);background:var(--ink)}
+.foot-inner{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 64px}
+.foot-lede{margin:16px 0 0;color:var(--mist);max-width:50ch}
+.contact-list{margin:0;display:grid;gap:0}
+.contact-list div{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.contact-list dt{font:500 11px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.contact-list dd{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.contact-list .sel{-webkit-user-select:all;user-select:all}
+.copy{min-height:32px;padding:0 10px;background:transparent;color:var(--mist);border:1px solid var(--line-2);border-radius:2px;font:500 12px/1 var(--mono);cursor:pointer}
+.copy:hover{color:var(--snow);border-color:var(--snow)}
+.foot-note{grid-column:1/-1;margin:24px 0 0;font:500 11px/1.5 var(--mono);letter-spacing:.06em;color:var(--dim)}
+@media (max-width:899px){.foot-inner{grid-template-columns:1fr}.contact-list div{grid-template-columns:96px 1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  .r-trail{display:none}
+  .reticle,.r-ring,.r-cross,.mark-fallback{transition:none}
+}
+</style>
+<script>!function(d){var c=d.documentElement.classList;c.add("js");try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&"WebGLRenderingContext"in window)c.add("gl-pending")}catch(e){}}(document)</script>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="site">
+<header class="top">
+  <a class="brand" href="#top"><img src="assets/brand/logo-white.webp" alt="Six Peaks Games logo" width="1864" height="902"></a>
+  <nav class="top-nav" aria-label="Primary">
+    <a class="top-link" href="#bug-hunt">Bug hunt</a>
+    <a class="top-link" href="#contact">Contact</a>
+    <a class="btn btn-primary btn-sm" href="#contact">Book a trial</a>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="mark-slot" id="mark-slot" aria-hidden="true">
+      <div class="mark-fallback"><img src="assets/brand/logo-white.webp" alt="" width="1864" height="902"></div>
+    </div>
+    <div class="hero-copy">
+      <p class="eyebrow">Game QA Studio · Embedded Game Testing</p>
+      <h1 class="h1" id="hero-title"><span class="sr-only">Beyond standard QA.</span><span class="scramble" id="scramble" aria-hidden="true">Beyond standard QA<span class="dot">.</span></span></h1>
+      <p class="lede">We live and breathe your games with you.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#contact">Book a trial</a>
+        <a class="btn btn-ghost" href="#bug-hunt"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 1.5v6M12 16.5v6M1.5 12h6M16.5 12h6" stroke="currentColor" stroke-width="1.6"/></svg>Play the bug hunt</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hunt" id="bug-hunt" aria-labelledby="hunt-title" tabindex="-1">
+    <div class="hunt-inner">
+      <div class="hunt-head">
+        <div>
+          <p class="eyebrow eyebrow-red">The bug hunt</p>
+          <h2 class="h2" id="hunt-title">Find the three bugs we planted.</h2>
+        </div>
+        <div>
+          <p class="hunt-intro">The panel below is part of this page, and we broke it on purpose. <strong>Aim and click a bug to file a report.</strong> Keyboard: Tab reaches each bug, Enter reports it. The clock starts on your first shot.</p>
+          <p class="no-js-note">The game needs JavaScript. Everything in the panel reads the same without it.</p>
+        </div>
+      </div>
+
+      <div class="hunt-grid">
+        <div class="hud-bar" role="group" aria-label="Score">
+          <div class="hud-found">
+            <span class="hud-label">Bugs reported</span>
+            <div class="hud-count">
+              <span class="count"><span class="count-roll" id="hud-found"><span>0</span></span><span class="count-of">/3</span></span>
+              <span class="pips" aria-hidden="true">
+                <svg class="pip" viewBox="0 0 26 18"><path d="M1 17 9 4l4 5 4-8 8 16z"/></svg>
+                <svg class="pip" viewBox="0 0 26 18"><path d="M1 17 9 4l4 5 4-8 8 16z"/></svg>
+                <svg class="pip" viewBox="0 0 26 18"><path d="M1 17 9 4l4 5 4-8 8 16z"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="hud-time"><span class="hud-label">Time</span><span class="hud-val" id="hud-time">00:00.0</span></div>
+          <button class="btn-hint" id="hint" type="button" aria-label="Hint, adds five seconds">Hint<span>+5 s</span></button>
+        </div>
+
+        <div class="level" id="level">
+          <p class="lv-strip"><span>Panel under test</span><span class="state" id="lv-state">3 bugs live</span></p>
+          <div class="lv-photo lv-wide is-bugged" id="lv-wide">
+            <img class="lv-img" src="assets/brand/team-1.webp" alt="The Six Peaks core team on a rooftop in George, with the mountains behind them" width="1900" height="890" loading="lazy" decoding="async">
+            <div class="seam" aria-hidden="true"><img src="assets/brand/team-1.webp" alt="" width="1900" height="890" loading="lazy" decoding="async"></div>
+          </div>
+          <div class="lv-body">
+            <div class="lv-text">
+              <p class="lv-eyebrow">Our dedicated team</p>
+              <h3 class="lv-h">Small enough to c<span class="kern is-bugged" id="kern">a</span>re, big enough to deliver.</h3>
+              <p class="lv-p">Based in George in the Western Cape, we’re a proudly South African QA Team with a global perspective.</p>
+            </div>
+            <div class="lv-photo lv-portrait" id="lv-portrait">
+              <img class="lv-img" src="assets/brand/vert-9.webp" alt="A Six Peaks tester at her desk" width="864" height="1092" loading="lazy" decoding="async">
+              <div class="missing" id="missing" aria-hidden="true"></div>
+            </div>
+          </div>
+          <ul class="lv-stats">
+            <li class="stat"><span class="stat-v">1-20+</span><span class="stat-l">Team sizes</span></li>
+            <li class="stat"><span class="stat-v">100%</span><span class="stat-l">In-offi<span class="tofu" id="tofu"><span class="tofu-c">c</span><span class="tofu-box" aria-hidden="true"></span></span>e staff</span></li>
+            <li class="stat" id="stat-ret"><span class="stat-v">99%</span><span class="stat-l clip is-bugged" id="clip">Staff retention</span></li>
+            <li class="stat stat-iso" id="stat-iso"><span class="stat-v">ISO 27001</span><span class="stat-l">Security adherence</span></li>
+          </ul>
+          <div class="hits" id="hits"></div>
+          <svg class="fx-svg" id="fx-svg" aria-hidden="true"></svg>
+          <div class="fx-html" id="fx-html" aria-hidden="true"></div>
+          <div class="r-trail" id="r-trail" aria-hidden="true"><span></span></div>
+          <div class="reticle" id="reticle" aria-hidden="true">
+            <svg viewBox="-40 -40 80 80"><circle class="r-ring r-key" r="17"/><g class="r-cross r-key"><path d="M0 -29V-9M0 9V29M-29 0H-9M9 0H29"/></g><circle class="r-ring" r="17"/><g class="r-cross"><path d="M0 -29V-9M0 9V29M-29 0H-9M9 0H29"/></g><circle class="r-dot" r="2.2"/></svg>
+          </div>
+        </div>
+
+        <div class="hud-side">
+          <dl class="hud-stats">
+            <div><dt>Shots</dt><dd id="hud-shots">0</dd></div>
+            <div><dt>Accuracy</dt><dd id="hud-acc">--</dd></div>
+            <div><dt>Best</dt><dd id="hud-best">--</dd></div>
+          </dl>
+          <div class="printer">
+            <div class="printer-head" aria-hidden="true"><span class="led" id="led"></span><span class="printer-name">Ticket printer</span><span class="slot"></span></div>
+            <ol class="tickets" id="tickets" aria-label="Filed bug tickets"></ol>
+            <p class="tickets-empty" id="tickets-empty">No tickets yet. Every report prints here.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward" id="reward" role="region" aria-label="Bug hunt reward">
+        <div class="reward-art" id="reward-art">
+          <img class="reward-img" id="reward-img" src="assets/games/outrage-fight-fest/key.webp" alt="OutRage: Fight Fest key art" width="1900" height="792" loading="lazy" decoding="async">
+          <canvas class="reward-mosaic" id="reward-mosaic" aria-hidden="true"></canvas>
+          <div class="reward-scrim" aria-hidden="true"></div>
+          <div class="reward-credit">
+            <img class="reward-logo" src="assets/games/outrage-fight-fest/logo.webp" alt="OutRage: Fight Fest logo" width="574" height="487" loading="lazy" decoding="async">
+            <p><span class="rc-title">OutRage: Fight Fest</span><span>In partnership with Hardball</span><span>QA by Six Peaks Games</span></p>
+          </div>
+        </div>
+        <div class="reward-copy">
+          <div id="reward-locked" hidden>
+            <p class="eyebrow eyebrow-red">Reward locked</p>
+            <h3 class="reward-h">Report all three bugs to unlock this.</h3>
+            <p class="reward-p">Clear the panel and the art comes into focus.</p>
+            <p class="reward-progress"><span id="reward-progress">0</span> of 3 reported</p>
+          </div>
+          <div id="reward-clear">
+            <p class="eyebrow eyebrow-red">Level clear</p>
+            <h3 class="reward-h" id="reward-title" tabindex="-1">Good eye. Imagine what our testers find.</h3>
+            <p class="reward-stats" id="reward-stats">Three planted bugs, three reports.</p>
+            <figure class="reward-quote">
+              <blockquote>“Six Peaks showed a degree of technical expertise that is hard to find in external QA vendors. They quickly became a core part of our QA operations and could be relied on not just to hunt bugs, but critically also be arbiters of game quality, healthy development processes, integration with production, and build and release management.”</blockquote>
+              <figcaption>Dylan Harfoot, QA Manager (Hardball Games)</figcaption>
+            </figure>
+            <div class="ctas">
+              <a class="btn btn-primary" href="#contact">Book a trial</a>
+              <a class="btn btn-ghost" href="https://wkf.ms/4s5yyRp" target="_blank" rel="noopener">Apply now</a>
+            </div>
+            <button class="btn-text" id="replay" type="button">Play again</button>
+          </div>
+        </div>
+      </div>
+      <p class="sr-only" id="hunt-live" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" id="contact" tabindex="-1" aria-labelledby="contact-title">
+  <div class="foot-inner">
+    <div>
+      <p class="eyebrow eyebrow-red">Contact</p>
+      <h2 class="h2" id="contact-title">Book a trial</h2>
+      <p class="foot-lede">If you’re looking for a QA partner that will go beyond standard QA, delivering high-quality, rigorous testing as an extension of your team, then please get in touch! We’d love to discuss how we can support your game!</p>
+    </div>
+    <dl class="contact-list">
+      <div><dt>Email</dt><dd><span class="sel" id="c-email">contact@sixpeaks.games</span><button class="copy" type="button" data-copy="c-email">Copy</button></dd></div>
+      <div><dt>Phone</dt><dd><span class="sel" id="c-phone">+27 83 244 8880</span><button class="copy" type="button" data-copy="c-phone">Copy</button></dd></div>
+      <div><dt>Head office</dt><dd>Joubert Plaza 2, Office 24, Corner of Meade and Market, George</dd></div>
+      <div><dt>Careers</dt><dd><a href="https://wkf.ms/4s5yyRp" target="_blank" rel="noopener">Apply now</a></dd></div>
+    </dl>
+    <p class="foot-note">WebGL spike for Six Peaks Games by Constellation. A prototype, not the live site: nothing here sends data.</p>
+  </div>
+</footer>
+<div class="toast" id="toast" aria-hidden="true"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  'use strict';
+  const d = document, html = d.documentElement;
+  const $ = (s, r) => (r || d).querySelector(s);
+  const $$ = (s, r) => Array.from((r || d).querySelectorAll(s));
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const G = window.gsap || null;
+  const ST = window.ScrollTrigger || null;
+  if (G && ST) G.registerPlugin(ST);
+  const MOTION = !!G && !REDUCED;
+  const THREE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const pick = (arr) => arr[(Math.random() * arr.length) | 0];
+  const shuffle = (arr) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // Shared uniform holders exist before three.js loads, so GSAP and ScrollTrigger can drive them from the start.
+  const P = { assemble: { value: 0 }, explode: { value: 0 }, mouseStrength: { value: 0 } };
+  const R = { reveal: { value: 0 }, zoom: { value: 1.1 }, hover: { value: 0 } };
+
+  // Perf probe: rAF deltas and CPU time per rendered frame, read by the proof script.
+  const perf = { frames: 0, deltas: [], cpu: [], push(dt, cpu) { this.frames++; this.deltas.push(dt); this.cpu.push(cpu); if (this.deltas.length > 600) { this.deltas.shift(); this.cpu.shift(); } }, reset() { this.deltas = []; this.cpu = []; } };
+  const spike = (window.__spike = { perf, ready: false, P, R });
+
+  /* ---------------- headline decode ---------------- */
+  function scrambleHeadline() {
+    const el = $('#scramble');
+    if (!el || !MOTION) return;
+    const text = el.textContent;
+    const glyphs = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&+=?/<>';
+    el.textContent = '';
+    const cells = [];
+    text.split(' ').forEach((word, wi, words) => {
+      const w = d.createElement('span');
+      w.className = 'sw';
+      for (const ch of word) {
+        const s = d.createElement('span');
+        s.className = 'sc' + (ch === '.' ? ' dot' : '');
+        s.textContent = ch;
+        w.appendChild(s);
+        cells.push({ el: s, ch });
+      }
+      el.appendChild(w);
+      if (wi < words.length - 1) el.appendChild(d.createTextNode(' '));
+    });
+    cells.forEach((c) => { c.w = c.el.getBoundingClientRect().width; });
+    cells.forEach((c, i) => {
+      c.el.style.width = c.w + 'px';
+      c.start = i * 0.034 + Math.random() * 0.1;
+      c.end = c.start + 0.32 + Math.random() * 0.42;
+      c.next = 0;
+      c.el.textContent = glyphs[(Math.random() * glyphs.length) | 0];
+      c.el.classList.add('is-wait');
+    });
+    const total = Math.max(...cells.map((c) => c.end));
+    const proxy = { t: 0 };
+    // GSAP rounds tweened values to 6 decimals, so the last glyph is also resolved on completion.
+    const resolve = (c) => { if (c.done) return; c.done = true; c.el.textContent = c.ch; c.el.classList.remove('is-noise', 'is-wait'); c.el.style.width = ''; };
+    G.to(proxy, {
+      t: total, duration: total, ease: 'none', delay: 0.15,
+      onComplete: () => cells.forEach(resolve),
+      onUpdate() {
+        const t = proxy.t;
+        for (const c of cells) {
+          if (c.done) continue;
+          if (t >= c.end - 1e-4) { resolve(c); continue; }
+          if (t >= c.next) {
+            c.el.textContent = glyphs[(Math.random() * glyphs.length) | 0];
+            if (t >= c.start) { c.el.classList.add('is-noise'); c.el.classList.remove('is-wait'); }
+            c.next = t + 0.05;
+          }
+        }
+      },
+    });
+  }
+
+  /* ---------------- scroll helpers ---------------- */
+  function scrollToEl(el, block) {
+    const r = el.getBoundingClientRect();
+    let y = r.top + scrollY;
+    if (block === 'center') y -= Math.max(0, (innerHeight - r.height) / 2);
+    scrollTo({ top: Math.max(0, y), behavior: MOTION ? 'smooth' : 'auto' });
+  }
+  d.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const t = id && d.getElementById(id);
+    if (!t) return;
+    e.preventDefault();
+    scrollToEl(t, 'start');
+    const focusTarget = id === 'top' ? $('#main') : t;
+    if (focusTarget && focusTarget.focus) focusTarget.focus({ preventScroll: true });
+  });
+
+  /* ---------------- copy buttons ---------------- */
+  $$('[data-copy]').forEach((btn) => btn.addEventListener('click', () => {
+    const src = d.getElementById(btn.dataset.copy);
+    const text = src ? src.textContent.trim() : '';
+    const done = (msg) => { btn.textContent = msg; setTimeout(() => { btn.textContent = 'Copy'; }, 1800); };
+    const select = () => { const range = d.createRange(); range.selectNodeContents(src); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range); done('Selected'); };
+    try { navigator.clipboard.writeText(text).then(() => done('Copied'), select); } catch (err) { select(); }
+  }));
+
+  /* ======================================================================
+     BUG HUNT (DOM only, so the star mechanic never depends on WebGL)
+     ====================================================================== */
+  const Hunt = (() => {
+    const level = $('#level');
+    if (!level) return null;
+    const hitsLayer = $('#hits'), fxSvg = $('#fx-svg'), fxHtml = $('#fx-html');
+    const reticle = $('#reticle'), trail = $('#r-trail');
+    const ui = {
+      found: $('#hud-found'), time: $('#hud-time'), shots: $('#hud-shots'), acc: $('#hud-acc'), best: $('#hud-best'),
+      hint: $('#hint'), tickets: $('#tickets'), empty: $('#tickets-empty'), led: $('#led'), live: $('#hunt-live'),
+      toast: $('#toast'), pips: $$('.pip'), progress: $('#reward-progress'), state: $('#lv-state'),
+    };
+    const el = {
+      wide: $('#lv-wide'), seamImg: $('.seam img'), kern: $('#kern'), clip: $('#clip'), tofu: $('#tofu'),
+      tofuC: $('#tofu .tofu-c'), tofuBox: $('#tofu .tofu-box'), iso: $('#stat-iso'), ret: $('#stat-ret'),
+      portrait: $('#lv-portrait'), missing: $('#missing'),
+    };
+    const SVGNS = 'http://www.w3.org/2000/svg';
+    const BEST_KEY = 'sixpeaks-bughunt-best';
+    const readBest = () => { try { const v = +localStorage.getItem(BEST_KEY); return v > 0 ? v : 0; } catch (e) { return 0; } };
+    const writeBest = (v) => { try { localStorage.setItem(BEST_KEY, String(v)); } catch (e) { /* storage blocked: keep in memory */ } };
+
+    // Missing-texture tiles: bottom rows fully, plus a ragged row above.
+    const tiles = [];
+    for (let i = 0; i < 48; i++) { const t = d.createElement('i'); el.missing.appendChild(t); tiles.push(t); }
+    const tileOn = (i) => { const r = (i / 6) | 0, c = i % 6; return r >= 5 || (r === 4 && c !== 2 && c !== 5) || (r === 3 && (c === 0 || c === 4)); };
+
+    const sub = (box, top, h) => ({ left: box.left, top: box.top + box.height * top, width: box.width, height: box.height * h });
+    const BUGS = {
+      seam: {
+        region: 'photo', name: 'Texture seam', where: 'team photo', sev: 'Minor', hint: 'the team photo',
+        label: 'Report visual bug: texture seam across the team photo',
+        plant() {
+          el.wide.classList.add('is-bugged');
+          if (!MOTION) return;
+          const tl = G.timeline({ repeat: -1 });
+          [[14, 1, 0.9], [9, 1, 0.1], [16, 0, 0.06], [14, 1, 1.3], [-6, 1, 0.07], [14, 1, 0.55], [11, 0.4, 0.06], [14, 1, 0.8]]
+            .forEach(([x, o, hold]) => { tl.set(el.seamImg, { '--seam-x': x, '--seam-o': o }); tl.to({}, { duration: hold }); });
+          this.tl = tl;
+        },
+        fix() {
+          if (this.tl) this.tl.kill();
+          const done = () => { el.wide.classList.remove('is-bugged'); el.seamImg.style.removeProperty('--seam-x'); el.seamImg.style.removeProperty('--seam-o'); el.seamImg.style.removeProperty('filter'); };
+          if (!MOTION) return done();
+          G.to(el.seamImg, { '--seam-x': 0, '--seam-o': 1, filter: 'brightness(1) saturate(1) hue-rotate(0deg)', duration: 0.5, ease: 'power3.out', onComplete: done });
+        },
+        unplant() { if (this.tl) this.tl.kill(); el.wide.classList.remove('is-bugged'); el.seamImg.removeAttribute('style'); },
+        rect() { return sub(el.wide.getBoundingClientRect(), 0.57, 0.11); },
+      },
+      kern: {
+        region: 'heading', name: 'Misaligned glyph', where: 'section heading', sev: 'Minor', hint: 'the heading',
+        label: 'Report visual bug: misaligned letter in the heading',
+        plant() { el.kern.classList.add('is-bugged'); },
+        fix() {
+          const done = () => { el.kern.classList.remove('is-bugged'); el.kern.removeAttribute('style'); };
+          if (!MOTION) return done();
+          G.fromTo(el.kern, { '--kern-y': 0.24, '--kern-r': 11 }, { '--kern-y': 0, '--kern-r': 0, duration: 0.6, ease: 'power3.out', onComplete: done });
+        },
+        unplant() { el.kern.classList.remove('is-bugged'); el.kern.removeAttribute('style'); },
+        rect() { return el.kern.getBoundingClientRect(); },
+      },
+      clip: {
+        region: 'stats', name: 'Clipped label', where: 'staff retention stat', sev: 'Minor', hint: 'the stats row',
+        label: 'Report visual bug: clipped text in the staff retention stat',
+        plant() { el.clip.classList.add('is-bugged'); },
+        fix() {
+          const done = () => { el.clip.classList.remove('is-bugged'); el.clip.removeAttribute('style'); };
+          if (!MOTION) return done();
+          G.fromTo(el.clip, { '--clip-y': 1.8 }, { '--clip-y': 0, duration: 0.55, ease: 'power3.out', onComplete: done });
+        },
+        unplant() { el.clip.classList.remove('is-bugged'); el.clip.removeAttribute('style'); },
+        rect() { const r = el.ret.getBoundingClientRect(); return sub(r, 0.48, 0.52); },
+      },
+      tofu: {
+        region: 'stats', name: 'Missing glyph', where: 'in-office stat', sev: 'Minor', hint: 'the stats row',
+        label: 'Report visual bug: missing character in the in-office stat',
+        plant() { el.tofu.classList.add('is-bugged'); },
+        fix() {
+          const done = () => { el.tofu.classList.remove('is-bugged'); el.tofuBox.removeAttribute('style'); el.tofuC.removeAttribute('style'); };
+          if (!MOTION) return done();
+          G.timeline({ onComplete: done })
+            .to(el.tofuBox, { scale: 0, opacity: 0, duration: 0.24, ease: 'power2.in' })
+            .fromTo(el.tofuC, { opacity: 0, y: -6 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' }, 0.14);
+        },
+        unplant() { el.tofu.classList.remove('is-bugged'); el.tofuBox.removeAttribute('style'); el.tofuC.removeAttribute('style'); },
+        rect() { return el.tofu.getBoundingClientRect(); },
+      },
+      overlap: {
+        region: 'stats', name: 'Z-fighting overlap', where: 'ISO 27001 stat', sev: 'Minor', hint: 'the stats row',
+        label: 'Report visual bug: two stat cards fighting for the same space',
+        plant() {
+          el.iso.classList.add('is-bugged');
+          if (!MOTION) return;
+          const tl = G.timeline({ repeat: -1 });
+          [[3, 1, 0.5], [1, 3, 0.08], [3, 1, 0.12], [1, 3, 0.06], [3, 1, 0.9], [1, 3, 0.1]]
+            .forEach(([a, b, hold]) => { tl.set(el.iso, { zIndex: a }); tl.set(el.ret, { zIndex: b }); tl.to({}, { duration: hold }); });
+          this.tl = tl;
+        },
+        fix() {
+          if (this.tl) this.tl.kill();
+          const done = () => { el.iso.classList.remove('is-bugged'); el.iso.removeAttribute('style'); el.ret.style.removeProperty('z-index'); };
+          if (!MOTION) return done();
+          G.set(el.iso, { zIndex: 3 });
+          G.fromTo(el.iso, { '--ov-x': 36 }, { '--ov-x': 0, duration: 0.6, ease: 'power3.out', onComplete: done });
+        },
+        unplant() { if (this.tl) this.tl.kill(); el.iso.classList.remove('is-bugged'); el.iso.removeAttribute('style'); el.ret.style.removeProperty('z-index'); },
+        rect() { return el.iso.getBoundingClientRect(); },
+      },
+      texture: {
+        region: 'portrait', name: 'Missing texture', where: 'tester photo', sev: 'Major', hint: 'the tester photo',
+        label: 'Report visual bug: missing texture on the tester photo',
+        plant() { el.portrait.classList.add('is-bugged'); tiles.forEach((t, i) => { t.removeAttribute('style'); t.classList.toggle('on', tileOn(i)); }); },
+        fix() {
+          const on = tiles.filter((t) => t.classList.contains('on'));
+          const done = () => { el.portrait.classList.remove('is-bugged'); tiles.forEach((t) => { t.classList.remove('on'); t.removeAttribute('style'); }); };
+          if (!MOTION) return done();
+          G.to(on, { opacity: 0, duration: 0.16, ease: 'steps(2)', stagger: { each: 0.022, from: 'random' }, onComplete: done });
+        },
+        unplant() { el.portrait.classList.remove('is-bugged'); tiles.forEach((t) => { t.classList.remove('on'); t.removeAttribute('style'); }); },
+        rect() { const r = el.portrait.getBoundingClientRect(); return sub(r, 0.4, 0.6); },
+      },
+    };
+    const REGIONS = { photo: ['seam'], heading: ['kern'], portrait: ['texture'], stats: ['clip', 'tofu', 'overlap'] };
+    const ORDER = ['photo', 'heading', 'portrait', 'stats'];
+
+    const st = { state: 'ready', run: 0, set: [], active: {}, found: 0, shots: 0, hits: 0, t0: 0, penalty: 0, end: 0, timer: 0, best: readBest(), lastKey: '' };
+
+    function pickSet() {
+      if (st.run === 0) return ['seam', 'kern', 'clip'];
+      let set, key, tries = 0;
+      do {
+        const regs = shuffle(ORDER).slice(0, 3);
+        set = regs.map((r) => pick(REGIONS[r]));
+        key = set.slice().sort().join();
+      } while (key === st.lastKey && tries++ < 12);
+      return set;
+    }
+    const newId = () => { let id; do { id = 'SP-' + (2000 + ((Math.random() * 7999) | 0)); } while (Object.values(st.active).some((b) => b.id === id)); return id; };
+
+    function levelBox() { const r = level.getBoundingClientRect(); return { left: r.left + level.clientLeft, top: r.top + level.clientTop, width: level.clientWidth, height: level.clientHeight }; }
+    function toLevel(r, pad) {
+      const L = levelBox(); pad = pad || 0;
+      let x = r.left - L.left - pad, y = r.top - L.top - pad, w = r.width + pad * 2, h = r.height + pad * 2;
+      if (w < 36) { x -= (36 - w) / 2; w = 36; }
+      if (h < 36) { y -= (36 - h) / 2; h = 36; }
+      return { x, y, w, h, cx: x + w / 2, cy: y + h / 2 };
+    }
+
+    function plantRun() {
+      st.set = pickSet();
+      st.lastKey = st.set.slice().sort().join();
+      st.active = {};
+      st.set.forEach((k) => { st.active[k] = { key: k, id: newId(), found: false, btn: null }; BUGS[k].plant(); });
+      const ordered = st.set.slice().sort((a, b) => ORDER.indexOf(BUGS[a].region) - ORDER.indexOf(BUGS[b].region));
+      ordered.forEach((k) => {
+        const b = d.createElement('button');
+        b.type = 'button'; b.className = 'hit'; b.dataset.bug = k;
+        b.setAttribute('aria-label', BUGS[k].label);
+        b.addEventListener('click', (e) => { e.stopPropagation(); report(k, e); });
+        b.addEventListener('pointerenter', () => reticle.classList.add('is-locked'));
+        b.addEventListener('pointerleave', () => reticle.classList.remove('is-locked'));
+        hitsLayer.appendChild(b);
+        st.active[k].btn = b;
+      });
+      positionHits();
+      ui.state.textContent = '3 bugs live';
+    }
+    function positionHits() {
+      Object.values(st.active).forEach((b) => {
+        if (!b.btn) return;
+        const r = toLevel(BUGS[b.key].rect(), 6);
+        Object.assign(b.btn.style, { left: r.x + 'px', top: r.y + 'px', width: r.w + 'px', height: r.h + 'px' });
+      });
+    }
+
+    // ---- HUD ----
+    const fmt = (ms) => { const t = Math.max(0, ms) / 1000; const m = Math.floor(t / 60); const s = t - m * 60; return String(m).padStart(2, '0') + ':' + s.toFixed(1).padStart(4, '0'); };
+    const elapsed = () => (st.t0 ? (st.end || performance.now()) - st.t0 : 0) + st.penalty;
+    function tick() { ui.time.textContent = fmt(elapsed()); }
+    function start() {
+      if (st.state !== 'ready') return;
+      st.state = 'playing'; st.t0 = performance.now();
+      st.timer = setInterval(tick, 100);
+    }
+    function rollCount(n) {
+      const old = ui.found.firstElementChild;
+      const nu = d.createElement('span'); nu.textContent = String(n);
+      if (!MOTION) { ui.found.replaceChildren(nu); return; }
+      nu.style.position = 'absolute'; nu.style.left = '0'; nu.style.top = '0';
+      ui.found.appendChild(nu);
+      G.fromTo(nu, { yPercent: 100 }, { yPercent: 0, duration: 0.42, ease: 'power3.out', onComplete: () => { nu.removeAttribute('style'); if (old && old.parentNode) old.remove(); } });
+      if (old) G.to(old, { yPercent: -100, duration: 0.42, ease: 'power3.out' });
+    }
+    function hud() {
+      ui.shots.textContent = String(st.shots);
+      ui.acc.textContent = st.shots ? Math.round((st.hits / st.shots) * 100) + '%' : '--';
+      ui.best.textContent = st.best ? fmt(st.best) : '--';
+      ui.pips.forEach((p, i) => p.classList.toggle('is-found', i < st.found));
+      ui.progress.textContent = String(st.found);
+    }
+    const say = (msg) => { ui.live.textContent = ''; setTimeout(() => { ui.live.textContent = msg; }, 30); };
+
+    // ---- effects ----
+    function svg(tag, attrs) { const n = d.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); fxSvg.appendChild(n); return n; }
+    function shockwave(x, y, hit) {
+      if (!MOTION) return;
+      const c = svg('circle', { cx: x, cy: y, r: 6, fill: 'none', stroke: hit ? '#FF5D52' : '#B3B7C0', 'stroke-width': hit ? 3 : 2 });
+      G.to(c, { attr: { r: hit ? 58 : 30, 'stroke-width': 0.5 }, opacity: 0, duration: hit ? 0.55 : 0.4, ease: 'power2.out', onComplete: () => c.remove() });
+    }
+    function scribble(r) {
+      const cx = r.cx, cy = r.cy;
+      const rx = Math.min(r.w / 2 + 14, (levelBox().width / 2 - 6) / 1.08), ry = r.h / 2 + 12;
+      const rot = rand(-0.5, -0.2), turns = 1.1, n = 54, seed = rand(0, 6);
+      let dd = '';
+      for (let i = 0; i <= n; i++) {
+        const t = i / n, a = rot + t * turns * Math.PI * 2;
+        const wob = 1 + Math.sin(t * 7 + seed) * 0.035 + (t - 0.5) * 0.07;
+        dd += (i ? 'L' : 'M') + (cx + Math.cos(a) * rx * wob).toFixed(1) + ' ' + (cy + Math.sin(a) * ry * wob).toFixed(1);
+      }
+      const p = svg('path', { d: dd, fill: 'none', stroke: '#FF5D52', 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+      const len = p.getTotalLength();
+      p.style.strokeDasharray = len; p.style.strokeDashoffset = MOTION ? len : 0;
+      if (MOTION) G.to(p, { strokeDashoffset: 0, duration: 0.42, ease: 'power2.out' });
+      return p;
+    }
+    function fixTag(r, id) {
+      const L = levelBox();
+      const t = d.createElement('div');
+      t.className = 'fix-tag';
+      t.innerHTML = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 6.5 4.6 9.5 10.5 2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>' + id;
+      t.style.left = clamp(((r.x + r.w) / L.width) * 100, 12, 100) + '%';
+      t.style.top = clamp((r.y / L.height) * 100, 2, 98) + '%';
+      fxHtml.appendChild(t);
+      if (MOTION) { G.set(t, { xPercent: -100, yPercent: -50, x: 0, y: 0 }); G.from(t, { opacity: 0, x: 8, duration: 0.3, ease: 'power3.out' }); }
+    }
+    function missTag(x, y) {
+      const t = d.createElement('div');
+      t.className = 'miss-tag'; t.textContent = 'No repro';
+      t.style.left = x + 'px'; t.style.top = y + 'px';
+      fxHtml.appendChild(t);
+      if (!MOTION) { setTimeout(() => t.remove(), 900); return; }
+      G.set(t, { xPercent: -50, yPercent: -140, x: 0, y: 0 });
+      G.fromTo(t, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.18, ease: 'power2.out' });
+      G.to(t, { opacity: 0, y: -10, duration: 0.5, delay: 0.7, ease: 'power2.in', onComplete: () => t.remove() });
+    }
+    function shake() {
+      if (!MOTION) return;
+      G.fromTo(level, { x: 0 }, { keyframes: { x: [0, -7, 6, -4, 2, 0] }, duration: 0.3, ease: 'power2.out', clearProps: 'transform' });
+    }
+    function printTicket(b, at) {
+      const bug = BUGS[b.key];
+      const li = d.createElement('li');
+      li.className = 'ticket';
+      li.innerHTML = '<p class="t-top"><span>Six Peaks QA</span><span>+' + fmt(at) + '</span></p>' +
+        '<p class="t-id">BUG #' + b.id + ' <span class="t-stamp">REPORTED</span></p>' +
+        '<p class="t-meta">Severity: ' + bug.sev + ' · Repro: 100%</p>' +
+        '<p class="t-desc">' + bug.name + ' · ' + bug.where + '</p>';
+      ui.empty.hidden = true;
+      const olds = Array.from(ui.tickets.children);
+      const before = olds.map((o) => o.getBoundingClientRect().top);
+      ui.tickets.prepend(li);
+      showToast('BUG #' + b.id + ' REPORTED · Severity: ' + bug.sev + ' · Repro: 100%');
+      if (!MOTION) return;
+      olds.forEach((o, i) => { const dy = before[i] - o.getBoundingClientRect().top; if (dy) G.fromTo(o, { y: dy }, { y: 0, duration: 0.5, ease: 'power3.out' }); });
+      ui.led.classList.add('is-on');
+      G.fromTo(li, { clipPath: 'inset(0% 0% 100% 0%)', y: -16 }, { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.62, ease: 'power2.out', clearProps: 'clipPath', onComplete: () => ui.led.classList.remove('is-on') });
+      const stamp = $('.t-stamp', li);
+      G.fromTo(stamp, { scale: 2.1, opacity: 0, rotation: -20 }, { scale: 1, opacity: 1, rotation: -7, duration: 0.2, delay: 0.5, ease: 'power4.in',
+        onComplete: () => G.fromTo(li, { x: -3 }, { x: 0, duration: 0.2, ease: 'power2.out' }) });
+    }
+    let toastTween = null;
+    if (MOTION && ui.toast) G.set(ui.toast, { y: 0, yPercent: 160, autoAlpha: 0 });
+    function showToast(msg) {
+      if (!ui.toast || getComputedStyle(ui.toast).display === 'none') return;
+      ui.toast.textContent = msg;
+      if (!MOTION) { Object.assign(ui.toast.style, { transform: 'none', visibility: 'visible' }); clearTimeout(showToast.t); showToast.t = setTimeout(() => { ui.toast.style.transform = ''; ui.toast.style.visibility = ''; }, 2400); return; }
+      if (toastTween) toastTween.kill();
+      toastTween = G.timeline()
+        .set(ui.toast, { autoAlpha: 1 })
+        .fromTo(ui.toast, { yPercent: 160 }, { yPercent: 0, duration: 0.35, ease: 'power3.out' })
+        .to(ui.toast, { yPercent: 160, duration: 0.3, ease: 'power2.in' }, '+=2')
+        .set(ui.toast, { autoAlpha: 0 });
+    }
+
+    // ---- core loop ----
+    function report(k, e) {
+      if (st.state === 'clear') return;
+      const b = st.active[k];
+      if (!b || b.found) return;
+      start();
+      st.shots++; st.hits++; st.found++;
+      b.found = true;
+      const r = toLevel(BUGS[k].rect(), 0);
+      const L = levelBox();
+      const fromKey = !e || e.detail === 0;
+      const x = fromKey ? r.cx : e.clientX - L.left, y = fromKey ? r.cy : e.clientY - L.top;
+      // Keep keyboard focus in the game: hand it to the next live bug before this one goes away.
+      const wasFocused = d.activeElement === b.btn;
+      b.btn.remove(); b.btn = null;
+      reticle.classList.remove('is-locked');
+      shockwave(x, y, true);
+      shake();
+      const ring = scribble(r);
+      rollCount(st.found);
+      hud();
+      const at = elapsed();
+      setTimeout(() => printTicket(b, at), MOTION ? 160 : 0);
+      setTimeout(() => BUGS[k].fix(), MOTION ? 320 : 0);
+      setTimeout(() => {
+        fixTag(r, b.id);
+        if (MOTION) G.to(ring, { opacity: 0, duration: 0.6, ease: 'power2.out', onComplete: () => ring.remove() }); else ring.remove();
+      }, MOTION ? 1100 : 600);
+      say('Bug ' + b.id + ' reported. ' + BUGS[k].name + ', severity ' + BUGS[k].sev + '. ' + st.found + ' of 3 found.');
+      if (wasFocused) {
+        const next = Object.values(st.active).find((o) => o.btn);
+        if (next) next.btn.focus({ preventScroll: true });
+      }
+      if (st.found >= 3) clearLevel();
+    }
+    function miss(e) {
+      if (st.state === 'clear') return;
+      start();
+      st.shots++;
+      const L = levelBox();
+      const x = e.clientX - L.left, y = e.clientY - L.top;
+      shockwave(x, y, false);
+      missTag(x, y);
+      hud();
+    }
+    function hint() {
+      if (st.state === 'clear') return;
+      const left = Object.values(st.active).filter((b) => !b.found);
+      if (!left.length) return;
+      start();
+      st.penalty += 5000; tick();
+      const b = pick(left);
+      const r = toLevel(BUGS[b.key].rect(), 0);
+      const L = levelBox();
+      const size = clamp(Math.max(r.w, r.h) * 1.15 + 70, 110, Math.min(L.width, 420));
+      const ring = d.createElement('div');
+      ring.className = 'hint-ring';
+      ring.style.width = ring.style.height = size + 'px';
+      ring.style.left = clamp(r.cx + rand(-0.18, 0.18) * size, size / 2, L.width - size / 2) + 'px';
+      ring.style.top = clamp(r.cy + rand(-0.18, 0.18) * size, size / 2, L.height - size / 2) + 'px';
+      fxHtml.appendChild(ring);
+      say('Hint: look at ' + BUGS[b.key].hint + '. Five seconds added.');
+      if (!MOTION) { setTimeout(() => ring.remove(), 2400); return; }
+      G.set(ring, { xPercent: -50, yPercent: -50, x: 0, y: 0 });
+      G.timeline({ onComplete: () => ring.remove() })
+        .fromTo(ring, { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power3.out' })
+        .to(ring, { rotation: 90, duration: 1.6, ease: 'none' }, 0)
+        .to(ring, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 1.7);
+    }
+    function clearLevel() {
+      st.state = 'clear';
+      st.end = performance.now();
+      clearInterval(st.timer); tick();
+      const total = elapsed();
+      const isBest = !st.best || total < st.best;
+      if (isBest) { st.best = total; writeBest(total); }
+      hud();
+      level.classList.add('is-clear');
+      ui.state.textContent = 'All clear';
+      ui.hint.disabled = true;
+      const acc = Math.round((st.hits / st.shots) * 100);
+      const summary = '3 of 3 reported in ' + fmt(total) + ', ' + acc + '% accuracy' + (st.penalty ? ', ' + st.penalty / 5000 + ' hint' + (st.penalty > 5000 ? 's' : '') : '') + '. ' + (isBest ? 'New best.' : 'Best ' + fmt(st.best) + '.');
+      say('All three bugs reported. ' + summary + ' Reward unlocked.');
+      setTimeout(() => Reward.unlock(summary), MOTION ? 900 : 100);
+    }
+    function reset() {
+      Object.keys(BUGS).forEach((k) => BUGS[k].unplant());
+      hitsLayer.replaceChildren(); fxSvg.replaceChildren(); fxHtml.replaceChildren();
+      ui.tickets.replaceChildren(); ui.empty.hidden = false;
+      clearInterval(st.timer);
+      Object.assign(st, { state: 'ready', found: 0, shots: 0, hits: 0, t0: 0, penalty: 0, end: 0 });
+      st.run++;
+      ui.found.replaceChildren(Object.assign(d.createElement('span'), { textContent: '0' }));
+      ui.time.textContent = fmt(0);
+      ui.hint.disabled = false;
+      level.classList.remove('is-clear');
+      hud();
+      plantRun();
+    }
+
+    // ---- input ----
+    level.addEventListener('click', (e) => { if (!e.target.closest('.hit')) miss(e); });
+    ui.hint.addEventListener('click', hint);
+    let fine = false;
+    const qx = MOTION ? G.quickTo(trail, 'x', { duration: 0.22, ease: 'power3.out' }) : null;
+    const qy = MOTION ? G.quickTo(trail, 'y', { duration: 0.22, ease: 'power3.out' }) : null;
+    level.addEventListener('pointermove', (e) => {
+      fine = e.pointerType === 'mouse' || e.pointerType === 'pen';
+      level.classList.toggle('has-reticle', fine);
+      if (!fine) return;
+      const L = levelBox();
+      const x = e.clientX - L.left, y = e.clientY - L.top;
+      reticle.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+      if (qx) { qx(x); qy(y); } else trail.style.transform = reticle.style.transform;
+      level.classList.add('is-aiming');
+    });
+    level.addEventListener('pointerleave', () => { level.classList.remove('is-aiming'); reticle.classList.remove('is-locked'); });
+    level.addEventListener('pointerdown', (e) => {
+      if (!fine || !MOTION) return;
+      G.fromTo(reticle.firstElementChild, { scale: 0.82 }, { scale: 1, duration: 0.25, ease: 'power3.out', transformOrigin: '50% 50%' });
+    });
+    if ('ResizeObserver' in window) new ResizeObserver(() => positionHits()).observe(level);
+    addEventListener('resize', positionHits);
+
+    plantRun();
+    hud();
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(positionHits);
+    addEventListener('load', positionHits);
+    return { st, BUGS, reset, report, positionHits, level };
+  })();
+
+  let updateLoopSafe = () => {};
+
+  /* ======================================================================
+     REWARD PANEL (locked mosaic teaser, unlocks into the key-art reveal)
+     ====================================================================== */
+  const Reward = (() => {
+    const box = $('#reward'), art = $('#reward-art'), mosaic = $('#reward-mosaic'), img = $('#reward-img');
+    const locked = $('#reward-locked'), cleared = $('#reward-clear'), stats = $('#reward-stats'), title = $('#reward-title');
+    const COLS = 34;
+    const FOCUS = [0.5, 0.42];
+    const source = new Image();
+    source.decoding = 'async';
+    let sourceReady = false;
+    const ready = new Promise((res) => { source.onload = () => { sourceReady = true; res(source); }; source.onerror = () => res(null); });
+    let requested = false;
+    function load() { if (!requested) { requested = true; source.src = 'assets/games/outrage-fight-fest/key.webp'; } return ready; }
+    function drawMosaic() {
+      if (!sourceReady) return;
+      const w = art.clientWidth, h = art.clientHeight;
+      if (!w || !h) return;
+      const rows = Math.max(1, Math.round(COLS * h / w));
+      mosaic.width = COLS; mosaic.height = rows;
+      const cx = mosaic.getContext('2d');
+      const va = w / h, iw = source.naturalWidth, ih = source.naturalHeight, ta = iw / ih;
+      let sw = va > ta ? iw : ih * va, sh = va > ta ? iw / va : ih;
+      sw /= R.zoom.value; sh /= R.zoom.value;
+      const sx = clamp(FOCUS[0] * iw - sw / 2, 0, iw - sw), sy = clamp(FOCUS[1] * ih - sh / 2, 0, ih - sh);
+      cx.imageSmoothingEnabled = true;
+      cx.drawImage(source, sx, sy, sw, sh, 0, 0, COLS, rows);
+    }
+    const api = { view: null };
+    function lock() {
+      box.classList.add('is-locked');
+      locked.hidden = false; cleared.hidden = true;
+      R.reveal.value = 0; R.zoom.value = 1.1;
+      mosaic.removeAttribute('style'); img.removeAttribute('style');
+      if (api.view) { if (api.view.tween) api.view.tween.kill(); if (api.view.drift) api.view.drift.kill(); api.view.tween = null; api.view.enabled = false; updateLoopSafe(); }
+    }
+    function fallbackReveal() {
+      if (!MOTION) { img.style.opacity = '1'; mosaic.style.opacity = '0'; return; }
+      G.set(img, { opacity: 1 });
+      G.fromTo(img, { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'power3.inOut' });
+      G.to(mosaic, { opacity: 0, duration: 1, ease: 'power2.inOut' });
+    }
+    function whenVisible(el, ratio, maxMs) {
+      return new Promise((res) => {
+        let done = false;
+        const fin = () => { if (!done) { done = true; io.disconnect(); res(); } };
+        const io = new IntersectionObserver((es) => { if (es.some((x) => x.intersectionRatio >= ratio)) fin(); }, { threshold: [0, ratio] });
+        io.observe(el);
+        setTimeout(fin, maxMs);
+      });
+    }
+    async function unlock(summary) {
+      stats.textContent = summary;
+      await load();
+      const r = box.getBoundingClientRect();
+      if (r.top < 0 || r.bottom > innerHeight) { scrollToEl(box, 'center'); await whenVisible(art, 0.75, 1500); }
+      if (api.view && !api.view.ok && !GL.failed) await api.view.prepare();
+      box.classList.remove('is-locked');
+      locked.hidden = true; cleared.hidden = false;
+      title.focus({ preventScroll: true });
+      if (api.view && api.view.ok && !GL.failed) api.view.reveal(); else fallbackReveal();
+      if (MOTION) G.from(Array.from(cleared.children), { y: 18, opacity: 0, duration: 0.55, stagger: 0.07, ease: 'power3.out', delay: 0.15 });
+    }
+    function replay() {
+      lock();
+      Hunt.reset();
+      scrollToEl($('#level'), 'center');
+      $('#bug-hunt').focus({ preventScroll: true });
+    }
+    if (Hunt) {
+      lock();
+      $('#replay').addEventListener('click', replay);
+      // Fetch the art only once the player is heading to the hunt.
+      const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); load().then(drawMosaic); } }, { rootMargin: '600px 0px' });
+      io.observe(box);
+      addEventListener('resize', () => { clearTimeout(drawMosaic.t); drawMosaic.t = setTimeout(drawMosaic, 150); });
+    }
+    return Object.assign(api, { unlock, lock, load, source, art, mosaic, img, FOCUS, COLS, drawMosaic });
+  })();
+
+  /* ======================================================================
+     WEBGL STAGE: one renderer, one fixed canvas, scissored views
+     ====================================================================== */
+  const GL = { renderer: null, canvas: null, views: [], running: false, raf: 0, last: 0, W: 0, H: 0, failed: false };
+  spike.GL = GL;
+
+  function glFail(reason) {
+    if (GL.failed) return;
+    GL.failed = true;
+    spike.glFailReason = reason;
+    stopLoop();
+    if (GL.canvas) GL.canvas.style.display = 'none';
+    html.classList.remove('gl-pending', 'gl-on');
+    html.classList.add('gl-off');
+    if (Reward.view) Reward.view.ok = false;
+    // An unlocked reward that was waiting on WebGL falls back to the static image.
+    if ($('#reward') && !$('#reward').classList.contains('is-locked')) { Reward.img.style.opacity = '1'; Reward.mosaic.style.opacity = '0'; }
+  }
+  function loadScript(src) {
+    return new Promise((res, rej) => { const s = d.createElement('script'); s.src = src; s.async = true; s.onload = res; s.onerror = () => rej(new Error('script ' + src)); d.head.appendChild(s); });
+  }
+  function loadImage(src) {
+    return new Promise((res, rej) => { const i = new Image(); i.decoding = 'async'; i.onload = () => res(i); i.onerror = () => rej(new Error('image ' + src)); i.src = src; });
+  }
+  function resize() {
+    if (!GL.renderer) return;
+    GL.W = innerWidth; GL.H = innerHeight;
+    GL.renderer.setSize(GL.W, GL.H, false);
+  }
+  function clearCanvas() {
+    if (!GL.renderer) return;
+    const r = GL.renderer;
+    r.setScissorTest(false); r.setViewport(0, 0, GL.W, GL.H); r.clear();
+  }
+  function frame(now) {
+    GL.raf = requestAnimationFrame(frame);
+    const dt = GL.last ? now - GL.last : 16.7;
+    GL.last = now;
+    const c0 = performance.now();
+    const r = GL.renderer;
+    r.setScissorTest(false);
+    r.setViewport(0, 0, GL.W, GL.H);
+    r.clear();
+    r.setScissorTest(true);
+    for (const v of GL.views) {
+      if (!v.enabled || !v.inView) continue;
+      const b = v.el.getBoundingClientRect();
+      if (b.bottom <= 0 || b.top >= GL.H || b.width < 2 || b.height < 2) continue;
+      const y = GL.H - b.bottom;
+      r.setViewport(b.left, y, b.width, b.height);
+      r.setScissor(b.left, y, b.width, b.height);
+      v.render(b, Math.min(dt, 100) / 1000, now / 1000);
+    }
+    perf.push(dt, performance.now() - c0);
+  }
+  function startLoop() { if (GL.running || GL.failed) return; GL.running = true; GL.last = 0; GL.raf = requestAnimationFrame(frame); }
+  function stopLoop() { if (!GL.running) return; GL.running = false; cancelAnimationFrame(GL.raf); clearCanvas(); }
+  function updateLoop() {
+    const want = !d.hidden && GL.views.some((v) => v.enabled && v.inView);
+    if (want) startLoop(); else stopLoop();
+    spike.loopRunning = GL.running;
+  }
+  spike.updateLoop = updateLoop;
+  updateLoopSafe = updateLoop;
+  d.addEventListener('visibilitychange', updateLoop);
+  const viewIO = 'IntersectionObserver' in window ? new IntersectionObserver((es) => {
+    es.forEach((e) => { const v = GL.views.find((x) => x.el === e.target); if (v) v.inView = e.isIntersecting; });
+    updateLoop();
+  }) : null;
+  function addView(v) { v.inView = false; GL.views.push(v); if (viewIO) viewIO.observe(v.el); else v.inView = true; updateLoop(); return v; }
+
+  /* ---------------- view 1: the Six Peaks mark in particles ---------------- */
+  const PARTICLE_VS = `
+    uniform float uTime;
+    uniform float uAssemble;
+    uniform float uExplode;
+    uniform float uScale;
+    uniform vec2 uMouse;
+    uniform float uMouseStrength;
+    uniform float uAspect;
+    uniform float uPixelRatio;
+    uniform float uSize;
+    attribute vec3 aScatter;
+    attribute vec4 aSeed;
+    varying float vAlpha;
+    varying float vRed;
+    float easeInOutCubic(float t) { return t < 0.5 ? 4.0 * t * t * t : 1.0 - pow(-2.0 * t + 2.0, 3.0) * 0.5; }
+    void main() {
+      float isDust = step(1.5, aSeed.w);
+      float isRed = step(0.5, aSeed.w) * (1.0 - isDust);
+      float ph = aSeed.y * 6.28318;
+      float t = clamp(uAssemble * 1.7 - aSeed.z, 0.0, 1.0);
+      float e = easeInOutCubic(t) * (1.0 - isDust);
+      float ca = cos(uTime * 0.12), sa = sin(uTime * 0.12);
+      vec3 sc = vec3(aScatter.x * ca - aScatter.z * sa, aScatter.y, aScatter.x * sa + aScatter.z * ca);
+      vec3 p = mix(sc, position, e);
+      vec3 dir = position - sc;
+      vec3 side = normalize(vec3(-dir.y, dir.x, 0.0) + vec3(0.0001));
+      p += side * sin(e * 3.14159) * (0.22 + aSeed.x * 0.4) * (1.0 - isDust);
+      vec3 drift = vec3(sin(uTime * 0.31 + ph), cos(uTime * 0.27 + ph * 1.3), sin(uTime * 0.21 + ph * 0.7));
+      p += drift * mix(0.09, 0.0035, e);
+      p.x += sin(uTime * 0.05 + ph) * 0.25 * isDust;
+      vec3 outDir = normalize(vec3(position.x, position.y * 1.7 + 0.25, 0.0) + aScatter * 0.5 + vec3(0.0, 0.0, 0.35));
+      p += outDir * uExplode * (0.35 + aSeed.x * 2.3) * (1.0 - isDust * 0.6);
+      vec4 mv = modelViewMatrix * vec4(p * uScale, 1.0);
+      vec4 clip = projectionMatrix * mv;
+      vec2 ndc = clip.xy / clip.w;
+      vec2 dd = (ndc - uMouse) * vec2(uAspect, 1.0);
+      float dist = length(dd);
+      float f = smoothstep(0.26, 0.0, dist) * uMouseStrength * (1.0 - uExplode);
+      vec2 nd = dd / max(dist, 0.0001);
+      ndc += (nd * 0.085 + vec2(-nd.y, nd.x) * 0.03) * vec2(1.0 / uAspect, 1.0) * f;
+      clip.xy = ndc * clip.w;
+      gl_Position = clip;
+      float size = uSize * (0.55 + aSeed.x * 0.9) * mix(1.0, 0.7, isDust);
+      size *= 1.0 + isRed * 0.3 * sin(uTime * 2.3 + ph);
+      float depth = -mv.z;
+      gl_PointSize = min(size * uPixelRatio * (6.0 / max(depth, 0.1)), 24.0 * uPixelRatio);
+      vAlpha = mix(0.92, 0.32, isDust) * (0.62 + 0.38 * aSeed.x) * smoothstep(0.9, 2.6, depth);
+      vRed = isRed;
+    }`;
+  const PARTICLE_FS = `
+    uniform vec3 uWhite;
+    uniform vec3 uRed;
+    varying float vAlpha;
+    varying float vRed;
+    void main() {
+      float r = length(gl_PointCoord - 0.5);
+      float a = (1.0 - smoothstep(0.36, 0.5, r)) * vAlpha;
+      if (a < 0.01) discard;
+      gl_FragColor = vec4(mix(uWhite, uRed, vRed), a);
+    }`;
+  // Simplified ridge of the logo mountain (normalised, x -1..1, y up); only used if canvas sampling is blocked.
+  const RIDGE = [-1, -0.2534, -0.8414, -0.209, -0.6868, -0.0571, -0.5645, 0.0974, -0.4906, 0.037, -0.3065, 0.1714, -0.1935, 0.1015, -0.0417, 0.2534, 0.0847, 0.119, 0.203, 0.1956, 0.3091, 0.0759, 0.3831, 0.1042, 0.4852, -0.0034, 0.5457, 0.0423, 0.6331, -0.0464, 0.8468, -0.2103, 1, -0.2534];
+
+  async function sampleMark() {
+    // Read the bright pixels of the mountain band of the real logo through a 2D canvas.
+    const img = await loadImage('assets/brand/logo-white.webp');
+    const W = 932, H = Math.round((W * img.naturalHeight) / img.naturalWidth);
+    const cv = d.createElement('canvas'); cv.width = W; cv.height = H;
+    const cx = cv.getContext('2d', { willReadFrequently: true });
+    cx.drawImage(img, 0, 0, W, H);
+    const data = cx.getImageData(0, 0, W, H).data;
+    const yMax = Math.floor(H * 0.47);
+    const A = (x, y) => data[(y * W + x) * 4 + 3];
+    const fill = [], edge = [];
+    let x0 = W, x1 = 0, y0 = H, y1 = 0;
+    for (let y = 1; y < yMax; y++) for (let x = 1; x < W - 1; x++) {
+      if (A(x, y) <= 140) continue;
+      fill.push(x, y);
+      if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+      if (A(x - 1, y) <= 140 || A(x + 1, y) <= 140 || A(x, y - 1) <= 140 || A(x, y + 1) <= 140) edge.push(x, y);
+    }
+    if (fill.length < 2000) throw new Error('mark sample too small');
+    const cxm = (x0 + x1 + 1) / 2, cym = (y0 + y1 + 1) / 2, hw = (x1 - x0 + 1) / 2;
+    const norm = (arr) => { const out = new Float32Array(arr.length); for (let i = 0; i < arr.length; i += 2) { out[i] = (arr[i] + 0.5 - cxm) / hw; out[i + 1] = -(arr[i + 1] + 0.5 - cym) / hw; } return out; };
+    return { fill: norm(fill), edge: norm(edge), jitter: 1 / hw, source: 'canvas' };
+  }
+  function polygonMark() {
+    const inside = (x, y) => { let c = false; for (let i = 0, j = RIDGE.length - 2; i < RIDGE.length; j = i, i += 2) { const xi = RIDGE[i], yi = RIDGE[i + 1], xj = RIDGE[j], yj = RIDGE[j + 1]; if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
+    const fill = [], edge = [];
+    while (fill.length < 60000) { const x = rand(-1, 1), y = rand(-0.2534, 0.2534); if (inside(x, y)) fill.push(x, y); }
+    for (let i = 0; i < RIDGE.length - 2; i += 2) for (let k = 0; k < 60; k++) { const t = k / 60; edge.push(RIDGE[i] + (RIDGE[i + 2] - RIDGE[i]) * t, RIDGE[i + 1] + (RIDGE[i + 3] - RIDGE[i + 1]) * t); }
+    return { fill: new Float32Array(fill), edge: new Float32Array(edge), jitter: 0.002, source: 'polygon' };
+  }
+
+  async function createParticles() {
+    const hero = $('#top'), slot = $('#mark-slot');
+    let mark;
+    try { mark = await sampleMark(); } catch (e) { mark = polygonMark(); }
+    spike.markSource = mark.source;
+    const small = innerWidth < 700 || matchMedia('(pointer: coarse)').matches;
+    const N = small ? 15000 : 24000;
+    const NM = Math.round(N * 0.9);
+    const pos = new Float32Array(N * 3), scat = new Float32Array(N * 3), seed = new Float32Array(N * 4);
+    for (let i = 0; i < N; i++) {
+      let tx, ty, tz, type;
+      const u = rand(-1, 1), th = rand(0, Math.PI * 2), rr = 0.55 + Math.pow(Math.random(), 0.8) * 1.65, s = Math.sqrt(1 - u * u);
+      let sx = s * Math.cos(th) * rr * 1.35, sy = u * rr * 0.72 + 0.05, sz = s * Math.sin(th) * rr;
+      if (i < NM) {
+        const src = Math.random() < 0.22 && mark.edge.length ? mark.edge : mark.fill;
+        const k = ((Math.random() * (src.length / 2)) | 0) * 2;
+        tx = src[k] + rand(-0.5, 0.5) * mark.jitter; ty = src[k + 1] + rand(-0.5, 0.5) * mark.jitter; tz = rand(-0.025, 0.025);
+        type = Math.random() < 0.065 ? 1 : 0;
+      } else {
+        type = 2;
+        sx = rand(-2.9, 2.9); sy = rand(-1.25, 1.35); sz = rand(-2.4, 0.9);
+        tx = sx; ty = sy; tz = sz;
+      }
+      pos.set([tx, ty, tz], i * 3);
+      scat.set([sx, sy, sz], i * 3);
+      const delay = type === 2 ? 0 : ((tx + 1) / 2) * 0.42 + Math.random() * 0.26;
+      seed.set([Math.random(), Math.random(), delay, type], i * 4);
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute('aScatter', new THREE.BufferAttribute(scat, 3));
+    geo.setAttribute('aSeed', new THREE.BufferAttribute(seed, 4));
+    const U = {
+      uTime: { value: 0 }, uAssemble: P.assemble, uExplode: P.explode, uScale: { value: 1 },
+      uMouse: { value: new THREE.Vector2(9, 9) }, uMouseStrength: P.mouseStrength, uAspect: { value: 1 },
+      uPixelRatio: { value: GL.renderer.getPixelRatio() }, uSize: { value: small ? 1.7 : 2.3 },
+      uWhite: { value: new THREE.Color('#F3F1EC') }, uRed: { value: new THREE.Color('#E02B20') },
+    };
+    const mat = new THREE.ShaderMaterial({ uniforms: U, vertexShader: PARTICLE_VS, fragmentShader: PARTICLE_FS, transparent: true, depthTest: false, depthWrite: false });
+    const points = new THREE.Points(geo, mat);
+    points.frustumCulled = false;
+    const scene = new THREE.Scene();
+    scene.add(points);
+    const FOV = 35, CZ = 6;
+    const camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 100);
+    camera.position.set(0, 0, CZ);
+    const tanH = Math.tan((FOV * Math.PI) / 360);
+    const mouse = { x: 9, y: 9, tx: 9, ty: 9, rx: 0, ry: 0 };
+    hero.addEventListener('pointermove', (e) => {
+      const b = hero.getBoundingClientRect();
+      mouse.tx = ((e.clientX - b.left) / b.width) * 2 - 1;
+      mouse.ty = -(((e.clientY - b.top) / b.height) * 2 - 1);
+      if (mouse.x > 5) { mouse.x = mouse.tx; mouse.y = mouse.ty; }
+      if (!mouse.on) { mouse.on = true; if (G) G.to(P.mouseStrength, { value: 1, duration: 0.5, ease: 'power2.out', overwrite: true }); else P.mouseStrength.value = 1; }
+    });
+    hero.addEventListener('pointerleave', () => { mouse.on = false; if (G) G.to(P.mouseStrength, { value: 0, duration: 0.8, ease: 'power2.out', overwrite: true }); else P.mouseStrength.value = 0; });
+    const view = {
+      id: 'particles', el: hero, enabled: true, U, points, camera, mouse, frozen: false,
+      render(b, dt, t) {
+        if (!this.frozen) U.uTime.value = t;
+        camera.aspect = b.width / b.height;
+        camera.updateProjectionMatrix();
+        U.uAspect.value = camera.aspect;
+        const vh = 2 * CZ * tanH, vw = vh * camera.aspect;
+        const s = slot.getBoundingClientRect();
+        U.uScale.value = (s.width / b.width) * (vw / 2);
+        points.position.set(((s.left + s.width / 2 - b.left) / b.width - 0.5) * vw, -((s.top + s.height / 2 - b.top) / b.height - 0.5) * vh, 0);
+        const k = 1 - Math.pow(0.001, dt);
+        mouse.x += (mouse.tx - mouse.x) * k * 1.6; mouse.y += (mouse.ty - mouse.y) * k * 1.6;
+        U.uMouse.value.set(mouse.x, mouse.y);
+        const px = mouse.x > 5 ? 0 : mouse.x, py = mouse.y > 5 ? 0 : mouse.y;
+        mouse.rx += (py * -0.06 - mouse.rx) * k; mouse.ry += (px * 0.1 - mouse.ry) * k;
+        points.rotation.set(mouse.rx, mouse.ry + P.explode.value * 0.35, P.explode.value * 0.06);
+        GL.renderer.render(scene, camera);
+      },
+    };
+    return addView(view);
+  }
+
+  /* ---------------- view 2: reward key-art reveal ---------------- */
+  const REVEAL_VS = `
+    varying vec2 vUv;
+    void main() { vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
+  const REVEAL_FS = `
+    uniform sampler2D uTex;
+    uniform vec2 uTexRes;
+    uniform vec2 uViewRes;
+    uniform vec2 uFocus;
+    uniform float uZoom;
+    uniform float uReveal;
+    uniform float uCols;
+    uniform float uTime;
+    uniform vec2 uMouse;
+    uniform vec2 uVel;
+    uniform float uHover;
+    uniform float uDim;
+    uniform vec3 uBg;
+    uniform vec3 uRed;
+    varying vec2 vUv;
+    float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+    float vnoise(vec2 p) {
+      vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f);
+      return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
+    }
+    float fbm(vec2 p) { float s = 0.0; float a = 0.5; for (int i = 0; i < 4; i++) { s += a * vnoise(p); p = p * 2.03 + 17.17; a *= 0.5; } return s / 0.9375; }
+    vec2 cover(vec2 uv) {
+      float va = uViewRes.x / uViewRes.y; float ta = uTexRes.x / uTexRes.y;
+      vec2 s = va > ta ? vec2(1.0, ta / va) : vec2(va / ta, 1.0);
+      s /= uZoom;
+      vec2 o = clamp(uFocus - s * 0.5, vec2(0.0), vec2(1.0) - s);
+      return o + clamp(uv, 0.0, 1.0) * s;
+    }
+    vec3 art(vec2 uv) { return texture2D(uTex, cover(uv)).rgb; }
+    vec3 mosaic(vec2 uv, vec2 asp) {
+      vec2 cells = vec2(uCols, max(1.0, floor(uCols / asp.x + 0.5)));
+      return mix(uBg, art((floor(uv * cells) + 0.5) / cells), uDim);
+    }
+    void main() {
+      vec2 uv = vUv;
+      vec2 asp = vec2(uViewRes.x / uViewRes.y, 1.0);
+      float grain = (hash(uv * uViewRes + fract(uTime * 7.0) * 61.0) - 0.5) * 0.03;
+      // Settled states skip the noise field entirely (uniform branch, cheap on every GPU).
+      if (uReveal <= 0.0005) { gl_FragColor = vec4(mosaic(uv, asp) + grain, 1.0); return; }
+      if (uReveal >= 0.9995) {
+        vec2 dm0 = (uv - uMouse) * asp;
+        float fall0 = smoothstep(0.32, 0.0, length(dm0)) * uHover;
+        vec2 uv0 = uv - (dm0 / asp) * fall0 * 0.045 + uVel * fall0;
+        vec2 sp0 = uVel * (0.35 + fall0) * 0.6;
+        vec3 c0 = uHover > 0.001 ? vec3(art(uv0 + sp0).r, art(uv0).g, art(uv0 - sp0).b) : art(uv);
+        gl_FragColor = vec4(c0 + grain, 1.0);
+        return;
+      }
+      float n = fbm(uv * asp * 2.6 + 3.1);
+      float field = mix(n, uv.x * 0.8 + (1.0 - uv.y) * 0.2, 0.45);
+      float edge = 0.16;
+      float p = mix(-edge, 1.0 + edge, uReveal);
+      float aa = fwidth(field) * 1.5;
+      float m = 1.0 - smoothstep(p - aa, p + aa, field);
+      float live = step(0.0005, uReveal) * step(uReveal, 0.9995);
+      float band = (1.0 - smoothstep(0.0, edge, abs(field - p))) * live;
+      vec2 dm = (uv - uMouse) * asp;
+      float fall = smoothstep(0.32, 0.0, length(dm)) * uHover;
+      vec2 uvS = uv - (dm / asp) * fall * 0.045 + uVel * fall;
+      float ang = n * 6.28318;
+      vec2 disp = vec2(cos(ang), sin(ang)) * band * 0.03;
+      vec2 blk = floor(uv * vec2(32.0, 14.0));
+      float rnd = hash(blk + floor(uTime * 14.0));
+      disp.x += (rnd - 0.5) * 0.09 * band * step(0.55, rnd);
+      vec2 split = uVel * (0.35 + fall) * 0.6 + vec2(band * 0.014, 0.0);
+      vec3 sharp = vec3(art(uvS + disp + split).r, art(uvS + disp).g, art(uvS + disp - split).b);
+      vec3 col = mix(mosaic(uv, asp), sharp, m);
+      float line = (1.0 - smoothstep(0.0, aa * 1.2, abs(field - p))) * live;
+      col = mix(col, uRed, line);
+      gl_FragColor = vec4(col + grain, 1.0);
+    }`;
+
+  function createRewardView() {
+    const art = Reward.art;
+    const U = {
+      uTex: { value: null }, uTexRes: { value: new THREE.Vector2(1900, 792) }, uViewRes: { value: new THREE.Vector2(1, 1) },
+      uFocus: { value: new THREE.Vector2(Reward.FOCUS[0], 1 - Reward.FOCUS[1]) }, uZoom: R.zoom, uReveal: R.reveal, uCols: { value: Reward.COLS },
+      uTime: { value: 0 }, uMouse: { value: new THREE.Vector2(0.5, 0.5) }, uVel: { value: new THREE.Vector2(0, 0) }, uHover: R.hover,
+      uDim: { value: 0.5 }, uBg: { value: new THREE.Color('#0E1014') }, uRed: { value: new THREE.Color('#E02B20') },
+    };
+    const mat = new THREE.ShaderMaterial({ uniforms: U, vertexShader: REVEAL_VS, fragmentShader: REVEAL_FS, depthTest: false, depthWrite: false });
+    mat.extensions.derivatives = true;
+    const scene = new THREE.Scene();
+    const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat);
+    quad.frustumCulled = false;
+    scene.add(quad);
+    const cam = new THREE.Camera();
+    const vel = { x: 0, y: 0, tx: 0, ty: 0 }, last = { x: -1, y: -1 };
+    art.addEventListener('pointermove', (e) => {
+      const b = art.getBoundingClientRect();
+      const x = (e.clientX - b.left) / b.width, y = 1 - (e.clientY - b.top) / b.height;
+      if (last.x >= 0) { vel.tx += (x - last.x) * 0.6; vel.ty += (y - last.y) * 0.6; }
+      last.x = x; last.y = y;
+      U.uMouse.value.set(x, y);
+      if (!vel.on) { vel.on = true; if (G) G.to(R.hover, { value: 1, duration: 0.4, overwrite: true }); else R.hover.value = 1; }
+    });
+    art.addEventListener('pointerleave', () => { last.x = -1; vel.on = false; if (G) G.to(R.hover, { value: 0, duration: 0.6, overwrite: true }); else R.hover.value = 0; });
+    const view = {
+      id: 'reward', el: art, enabled: false, ok: false, U, tween: null, frozen: false,
+      async prepare() {
+        const img = await Reward.load();
+        if (!img) return false;
+        const tex = new THREE.Texture(img);
+        tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.LinearFilter; tex.generateMipmaps = false;
+        tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;
+        tex.needsUpdate = true;
+        U.uTex.value = tex;
+        U.uTexRes.value.set(img.naturalWidth, img.naturalHeight);
+        this.ok = true;
+        return true;
+      },
+      reveal() {
+        if (!this.ok) return;
+        this.enabled = true;
+        updateLoop();
+        R.reveal.value = 0;
+        if (!MOTION) { R.reveal.value = 1; R.zoom.value = 1; Reward.mosaic.style.opacity = '0'; return; }
+        // The DOM mosaic hands over to the identical-looking WebGL mosaic, then the dissolve runs.
+        G.to(Reward.mosaic, { opacity: 0, duration: 0.25, ease: 'none' });
+        this.tween = G.to(R.reveal, { value: 1, duration: 1.9, ease: 'power2.inOut', delay: 0.25 });
+        this.drift = G.to(R.zoom, { value: 1, duration: 6, ease: 'sine.out', delay: 0.25 });
+      },
+      render(b, dt, t) {
+        if (!this.frozen) U.uTime.value = t;
+        U.uViewRes.value.set(b.width, b.height);
+        const k = 1 - Math.pow(0.002, dt);
+        vel.x += (vel.tx - vel.x) * k; vel.y += (vel.ty - vel.y) * k;
+        vel.tx *= Math.pow(0.02, dt); vel.ty *= Math.pow(0.02, dt);
+        U.uVel.value.set(clamp(vel.x, -0.03, 0.03), clamp(vel.y, -0.03, 0.03));
+        GL.renderer.render(scene, cam);
+      },
+    };
+    return addView(view);
+  }
+
+  /* ---------------- boot ---------------- */
+  async function initGL() {
+    if (!html.classList.contains('gl-pending')) return;
+    const watchdog = setTimeout(() => { if (!spike.ready) glFail('timeout'); }, 9000);
+    try {
+      if (!window.THREE) await loadScript(THREE_URL);
+      const canvas = d.createElement('canvas');
+      canvas.className = 'gl';
+      canvas.setAttribute('aria-hidden', 'true');
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, stencil: false, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+      renderer.setClearColor(0x08090b, 1);
+      renderer.autoClear = false;
+      GL.renderer = renderer; GL.canvas = canvas;
+      canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); glFail('context lost'); });
+      d.body.insertBefore(canvas, d.body.firstChild);
+      resize();
+      addEventListener('resize', resize);
+      const particles = await createParticles();
+      spike.particles = particles;
+      Reward.view = createRewardView();
+      spike.reward = Reward.view;
+      clearTimeout(watchdog);
+      if (GL.failed) return;
+      html.classList.remove('gl-pending');
+      html.classList.add('gl-on');
+      spike.ready = true;
+      // Assemble the first time the hero is on screen.
+      const go = () => {
+        if (!MOTION) { P.assemble.value = 1; return; }
+        particles.tween = G.to(P.assemble, { value: 1, duration: 3.2, ease: 'power2.out' });
+      };
+      if (particles.inView || $('#top').getBoundingClientRect().bottom > 0) go();
+      else { const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); go(); } }); io.observe($('#top')); }
+      // Texture for the reward is prepared when the hunt is near, so unlocking never waits on a download.
+      const near = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { near.disconnect(); Reward.view.prepare(); } }, { rootMargin: '900px 0px' });
+      near.observe($('#reward'));
+    } catch (err) {
+      clearTimeout(watchdog);
+      glFail(String(err && err.message || err));
+    }
+  }
+
+  /* ---------------- scroll choreography ---------------- */
+  function initScroll() {
+    if (!MOTION || !ST) return;
+    const mm = G.matchMedia();
+    mm.add('(min-width: 900px)', () => {
+      const tl = G.timeline({ scrollTrigger: { trigger: '#top', start: 'top top', end: '+=75%', pin: true, scrub: 0.7 } });
+      tl.to(P.explode, { value: 1, ease: 'power1.in', duration: 1 }, 0)
+        .to('.hero-copy', { yPercent: -22, opacity: 0, ease: 'power2.in', duration: 0.8 }, 0.1);
+    });
+    mm.add('(max-width: 899px)', () => {
+      G.timeline({ scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: 0.5 } })
+        .to(P.explode, { value: 1, ease: 'power1.in', duration: 1 }, 0);
+    });
+    const refresh = () => ST.refresh();
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(refresh);
+    addEventListener('load', refresh);
+  }
+
+  if (d.fonts && d.fonts.ready && MOTION) d.fonts.ready.then(scrambleHeadline); else scrambleHeadline();
+  initScroll();
+  initGL();
+  spike.hunt = Hunt;
+  spike.rewardPanel = Reward;
+})();
+</script>
+
+</body></html>
