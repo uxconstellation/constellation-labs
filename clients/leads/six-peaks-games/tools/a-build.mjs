@@ -128,8 +128,7 @@ function filterTags(g) {
 function parseAttribution(a) {
   // "Dani Allum Lead Producer (The Powell Group / Humble)" and variants: keep verbatim text,
   // split only where the site's own punctuation makes it unambiguous.
-  const s = clean(a).replace(/^(\S+ \S+)-(?=[A-Z])/, '$1, ');
-  return s;
+  return clean(a).replace(/^(\S+ \S+)-(?=[A-Z])/, '$1, ').replace(/^(\S+ [^\s,]+) (?=[A-Z][a-z])/, '$1, ');
 }
 
 const G = GAMES.map((g) => {
@@ -146,7 +145,7 @@ const G = GAMES.map((g) => {
     scope: (g.scope || '').split(/\n\n+/).map(clean).filter(Boolean).map(endStop),
     publisher: clean(g.publisher), developer: clean(g.developer), mode: pipes(g.gameMode), genre: pipes(g.genre),
     platforms: (g.platforms || []).map(platformOf), model: (g.engagementModel || []).map(clean),
-    services, trailer: g.trailerUrl ? { url: g.trailerUrl, title: clean(g.trailerTitle || '') } : null,
+    services, trailer: g.trailerUrl ? { url: g.trailerUrl, title: clean(String(g.trailerTitle || '').replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '')) } : null,
     testimonials: released ? (g.testimonials || []).map((t) => ({ q: stripQuotes(t.quote).split(/\n\n+/).map((p) => p.trim()).filter(Boolean), by: parseAttribution(t.attribution) })) : [],
     tags: filterTags(g),
     logo: asset(a.logo), poster: asset(a.poster), key: asset(a.key), shots,
@@ -205,7 +204,10 @@ const HOME_TESTIMONIALS = [
 ];
 const PARTNERS = ['Humble Games', 'Auroch Digital', 'Impossible Home', 'Thunderful', 'Supercell', 'The Powell Group', 'Firestoke', 'Balor Games', 'Torpor Games', 'Hardball', 'Playtonic Friends', 'Microids', 'Silver Lining Interactive', 'Chuhai Labs', 'Bossa Games'];
 const PLATFORM_STRIP = [['xbox', 'Xbox'], ['playstation', 'PlayStation'], ['nintendo', 'Nintendo'], ['epic', 'Epic Games'], ['steam', 'Steam'], ['windows', 'Windows'], ['meta', 'Meta'], ['apple', 'Apple'], ['android', 'Android']];
-const FEATURED = ['lost-skies', 'wild-blue-skies', 'suzerain', 'lil-gator', 'outrage-fight-fest'];
+// Featured summits (released only), chosen from qa/asset-contact-sheet.jpg: five partners, five genres,
+// key art that holds a 21:9 band. Focal x% keeps the subject in frame on the 4:5 mobile crop.
+const FEATURED = ['lost-skies', 'god-breakers', 'suzerain', 'lil-gator', 'outrage-fight-fest'];
+const FOCAL = { 'lost-skies': 36, 'god-breakers': 46, suzerain: 50, 'lil-gator': 66, 'outrage-fight-fest': 56, 'wild-blue-skies': 62, 'cattle-country': 64, 'service-with-a-shotgun': 72, 'its-only-money': 44, 'yooka-replaylee': 46 };
 
 // ---------- SVG: the range ----------
 const RIDGE_COLORS = ['var(--ridge-1)', 'var(--ridge-2)', 'var(--ridge-3)', 'var(--ridge-4)', 'var(--ridge-5)', 'var(--ridge-6)'];
@@ -244,10 +246,12 @@ function heroRange() {
   return layers.join('') + route;
 }
 function basecampRange() {
-  // A quieter copy of the skyline for the dawn horizon at base camp (fills only).
-  const crests = R.allCrests();
-  return `<svg viewBox="0 0 ${R.VB.w} ${R.VB.h}" preserveAspectRatio="xMidYMax meet" focusable="false">` +
-    R.RIDGES.map((r, i) => `<path d="${R.fillD(crests[i], R.VB.h + 40)}" style="fill:${RIDGE_COLORS[i]}"/>`).join('') +
+  // A quieter, wider (8:1) copy of the skyline for the dawn horizon at base camp (fills only),
+  // drawn from the same seeded ridges so the summit and flag match the hero.
+  const X0 = -1400, X1 = R.VB.w + 1400, bottom = R.VB.h + 40;
+  const d = (pts) => R.crestD(pts) + `L${X1} ${bottom}L${X0} ${bottom}Z`;
+  return `<svg viewBox="${X0} 0 ${X1 - X0} ${R.VB.h}" preserveAspectRatio="xMidYMax meet" focusable="false">` +
+    R.RIDGES.map((r, i) => `<path d="${d(R.crestPoints(r, X0, X1))}" style="fill:${RIDGE_COLORS[i]}"/>`).join('') +
     `<g class="bc-flag" transform="translate(${R.SUMMIT.x} ${R.SUMMIT.y})"><path class="flag-pole" d="M0 0V-70"/><path class="flag-cloth" d="M0 -70L52 -57L0 -44Z"/></g>` +
     `<circle class="bc-ring" cx="${R.SUMMIT.x}" cy="${R.SUMMIT.y}" r="120"/></svg>`;
 }
@@ -302,8 +306,8 @@ function summits() {
     const art = g.key || g.shots[0] || g.poster;
     const logo = g.logo ? img(g.logo, `${g.title} logo`, { lazy: true }) : `<span class="chapter-name display">${esc(g.title)}</span>`;
     return `<article class="chapter" id="summit-${slug}" aria-labelledby="ch-${slug}">` +
-      `<div class="chapter-art">${art ? img(art, `${g.title} key art`, { lazy: true }) : ''}<div class="chapter-fog" aria-hidden="true"></div></div>` +
-      `<div class="chapter-body wrap"><div class="chapter-head"><p class="mono chapter-status">Summit reached</p><h3 class="chapter-logo" id="ch-${slug}">${logo}</h3>` +
+      `<div class="chapter-art" style="--fx:${FOCAL[slug] ?? 50}%">${art ? img(art, `${g.title} key art`, { lazy: true }) : ''}<div class="chapter-fog" aria-hidden="true"></div></div>` +
+      `<div class="chapter-body wrap"><div class="chapter-head"><p class="mono eyebrow chapter-status">Summit reached</p><h3 class="chapter-logo" id="ch-${slug}">${logo}</h3>` +
       `<p class="chapter-one">${esc(g.oneLiner)}</p><a class="link-arrow" href="#log-${slug}">Read the expedition log<span class="sr">: ${esc(g.title)}</span></a></div>` +
       `<dl class="spec"><div><dt class="mono">Partner</dt><dd>${esc(g.partner)}</dd></div><div><dt class="mono">Genre</dt><dd>${esc(g.genre.join(' · '))}</dd></div>` +
       `<div><dt class="mono">Platforms</dt><dd>${platformIcons(g, false)}</dd></div>` +
@@ -312,8 +316,8 @@ function summits() {
 }
 function logbookGrid() {
   const tile = (g) => {
-    const thumb = g.poster || g.key;
-    return `<li class="lb-tile${g.released ? '' : ' is-underway'}"><a href="#log-${g.slug}"><span class="lb-thumb">${thumb ? img(thumb, `${g.title} key art`, { lazy: true }) : ''}</span>` +
+    const thumb = g.poster;
+    return `<li class="lb-tile${g.released ? '' : ' is-underway'}"><a href="#log-${g.slug}"><span class="lb-thumb">${thumb ? img(thumb, `${g.title} poster`, { lazy: true }) : ''}</span>` +
       `<span class="lb-meta"><span class="lb-title">${esc(g.title)}</span><span class="lb-partner">with ${esc(g.partnerShort)}</span>${g.released ? '' : '<span class="mono lb-chip">In progress</span>'}</span></a></li>`;
   };
   const rel = G.filter((g) => g.released), up = G.filter((g) => !g.released);
@@ -329,22 +333,16 @@ function reports() {
 }
 function partners() {
   const items = PARTNERS.map((n) => ({ n, a: partnerLogo(n) }));
-  const li = (p, dup) => `<li${dup ? ' class="dup" aria-hidden="true"' : ''}>${p.a ? img(p.a, dup ? '' : `${p.n} logo`, { lazy: true }) : `<span>${esc(p.n)}</span>`}</li>`;
+  const li = (p, dup) => `<li${dup ? ' class="dup" aria-hidden="true"' : ''}>${p.a ? img(p.a, dup ? '' : `${p.n} logo`, { lazy: true, cls: p.a.w === p.a.h ? 'sq' : '' }) : `<span>${esc(p.n)}</span>`}</li>`;
   const rowA = items.slice(0, 8), rowB = items.slice(8);
   const row = (r) => `<div class="mq-row"><ul class="mq-track">${r.map((p) => li(p, false)).join('')}${r.map((p) => li(p, true)).join('')}</ul></div>`;
   return row(rowA) + row(rowB);
 }
 function brand(rel) { return asset(rel); }
 function teamPhoto() {
-  // The manifest notes which team photo stands in front of the Outeniqua range.
-  let pick = null;
-  if (MANIFEST) {
-    const s = JSON.stringify(MANIFEST);
-    const m = s.match(/(team-\d)\.webp[^}]{0,400}?(mountain|outeniqua)/i) || s.match(/(mountain|outeniqua)[^}]{0,400}?(team-\d)\.webp/i);
-    if (m) pick = (m[1].startsWith('team') ? m[1] : m[2]);
-  }
-  const a = brand(`assets/brand/${pick || 'team-3'}.webp`) || brand('assets/brand/team-1.webp');
-  return a ? img(a, 'The Six Peaks team in George, with the Outeniqua range behind', { lazy: true }) : '';
+  // assets/manifest.json: team-1 is the core team on the rooftop with the Outeniqua range directly behind.
+  const a = brand('assets/brand/team-1.webp');
+  return a ? img(a, 'The Six Peaks core team on the studio rooftop in George, with the Outeniqua range behind', { lazy: true }) : '';
 }
 const MANAGERS = [
   ['Jason Ried', 'Founder & CEO', 'headshot-jason-ried', 'https://www.linkedin.com/in/jasonried/'],
@@ -361,7 +359,7 @@ function managers() {
 }
 function careersPhoto() {
   const a = brand('assets/brand/vert-9.webp') || brand('assets/brand/vert-10.webp') || brand('assets/brand/vert-4.webp');
-  return a ? img(a, 'Six Peaks testers at work in the George studio', { lazy: true }) : '';
+  return a ? img(a, 'A Six Peaks tester at work in the studio', { lazy: true }) : '';
 }
 function logoImg(h) {
   const a = brand('assets/brand/logo-white.webp') || brand('assets/brand/logo-white.png');
@@ -379,7 +377,7 @@ function runtimeData() {
     platforms: g.platforms.map((p) => [p.name, p.icon && asset(`assets/platforms/${p.icon}.webp`) ? `assets/platforms/${p.icon}.webp` : null]),
     model: g.model, services: g.released ? g.services : [], trailer: g.released ? g.trailer : null, testimonials: g.testimonials, tags: g.tags,
     img: { logo: pick(g.logo), poster: pick(g.poster), key: g.released ? pick(g.key) : null, shots: g.released ? g.shots.map(pick) : [] },
-    partnerLogo: pick(g.partnerLogo),
+    partnerLogo: pick(g.partnerLogo), fx: FOCAL[g.slug] ?? 50,
   }));
   const json = JSON.stringify({ games, camps: CAMPS.map((c) => c.stage) });
   return json.replace(/</g, '\\u003c');

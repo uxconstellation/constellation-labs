@@ -64,19 +64,21 @@ export const RIDGES = [
 
 const STEP = 10;
 const SUMMIT_FADE = 70;
-export function crestPoints(r) {
-  const base = spline(r.pts);
+export function crestPoints(r, x0 = 0, x1 = VB.w) {
+  // Outside the art-directed span the profile continues as a gently varying shoulder.
+  const ext = [[-2100, r.pts[0][1] + 18], [-1050, r.pts[0][1] + 6], ...r.pts, [VB.w + 1050, r.pts[r.pts.length - 1][1] + 8], [VB.w + 2100, r.pts[r.pts.length - 1][1] + 20]];
+  const base = spline(x0 < 0 || x1 > VB.w ? ext : r.pts);
   const n = noise1D(r.seed);
   const c = noise1D(r.seed * 7 + 3);
   const out = [];
-  for (let x = 0; x <= VB.w; x += STEP) {
+  for (let x = x0; x <= x1; x += STEP) {
     // Detail fades out right at the summit so the flag sits on a clean point.
     const k = r.id === 3 ? Math.min(1, Math.abs(x - SUMMIT.x) / SUMMIT_FADE) : 1;
     let y = base(x) - (ridgedFbm(n, x * r.freq) - 0.45) * r.amp * k + c(x / 22) * r.crag * k;
     out.push([x, Math.round(y * 10) / 10]);
   }
   if (r.id === 3) {
-    const i = Math.round(SUMMIT.x / STEP);
+    const i = Math.round((SUMMIT.x - x0) / STEP);
     out[i] = [SUMMIT.x, SUMMIT.y];
     // Keep the summit the single highest point of the whole range.
     for (const p of out) if (p[0] !== SUMMIT.x && p[1] < SUMMIT.y + 6) p[1] = SUMMIT.y + 6 + Math.abs(p[0] - SUMMIT.x) * 0.15;
@@ -84,7 +86,7 @@ export function crestPoints(r) {
   return out;
 }
 let _cache = null;
-export function allCrests() { return _cache || (_cache = RIDGES.map(crestPoints)); }
+export function allCrests() { return _cache || (_cache = RIDGES.map((r) => crestPoints(r))); }
 export function crestAt(ridgeIndex, x) {
   const pts = allCrests()[ridgeIndex];
   const i = Math.max(0, Math.min(pts.length - 2, Math.floor(x / STEP)));
@@ -137,7 +139,7 @@ export function nextPeak() {
 // Six-peak glyph: the six crest lines, cropped around the massif, at small scale.
 // Each crest takes its stroke from a CSS custom property so one <use> instance can
 // light a single ridge (style="--g3: var(--route-hi)").
-export const GLYPH_VB = { x: 520, y: 40, w: 1880, h: 640 };
+export const GLYPH_VB = { x: 520, y: -40, w: 1880, h: 720 };
 export function glyphMarkup() {
   const lines = RIDGES.map((r, ri) => {
     const pts = allCrests()[ri].filter((p, i) => i % 3 === 0 && p[0] >= GLYPH_VB.x - 20 && p[0] <= GLYPH_VB.x + GLYPH_VB.w + 20);

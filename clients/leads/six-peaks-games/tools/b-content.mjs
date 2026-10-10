@@ -130,14 +130,16 @@ export const site = {
   underwayLine: 'Project underway, further details on release.',
 };
 
-// Hero rotation: six released titles with strong landscape art (chosen from qa/asset-contact-sheet.jpg).
-// cps: checkpoint positions as fractions of the KEY ART image (x, y), placed on calm areas, never on faces or logos.
-// pos: CSS object-position for the art (desktop); mpos: object-position on mobile.
+// Hero rotation: six released titles whose 2.4:1 key art leaves a calm zone right of the copy column
+// (chosen from a simulated 1440x846 crop of all 13 shipped keys; OutRage and Wild Blue Skies were dropped:
+// faces and characters fill both calm zones, so checkpoints would cover them).
+// cps: checkpoint positions as fractions of the KEY ART image (x, y) on calm areas, never on faces or logos.
+// s: preferred chip side ('r' = chip right of the reticle, 'l' = left). pos/mpos: object-position desktop/mobile.
 export const heroes = [
-  { slug: 'lost-skies', pos: '50% 50%', mpos: '60% 50%', cps: [{ x: 0.62, y: 0.30 }, { x: 0.78, y: 0.52 }, { x: 0.58, y: 0.66 }] },
-  { slug: 'wild-blue-skies', pos: '50% 50%', mpos: '55% 50%', cps: [{ x: 0.64, y: 0.28 }, { x: 0.80, y: 0.48 }, { x: 0.60, y: 0.64 }] },
-  { slug: 'suzerain', pos: '50% 50%', mpos: '50% 50%', cps: [{ x: 0.62, y: 0.30 }, { x: 0.78, y: 0.50 }, { x: 0.60, y: 0.66 }] },
-  { slug: 'lil-gator', pos: '50% 50%', mpos: '50% 50%', cps: [{ x: 0.62, y: 0.30 }, { x: 0.78, y: 0.50 }, { x: 0.60, y: 0.66 }] },
-  { slug: 'outrage-fight-fest', pos: '50% 50%', mpos: '50% 50%', cps: [{ x: 0.62, y: 0.30 }, { x: 0.78, y: 0.50 }, { x: 0.60, y: 0.66 }] },
-  { slug: 'town-of-zoz', pos: '50% 50%', mpos: '50% 50%', cps: [{ x: 0.62, y: 0.30 }, { x: 0.78, y: 0.50 }, { x: 0.60, y: 0.66 }] },
+  { slug: 'lost-skies', pos: '50% 50%', mpos: '46% 50%', cps: [{ x: 0.56, y: 0.22, s: 'r' }, { x: 0.68, y: 0.37, s: 'l' }, { x: 0.60, y: 0.50, s: 'r' }] },
+  { slug: 'god-breakers', pos: '50% 50%', mpos: '40% 50%', cps: [{ x: 0.66, y: 0.19, s: 'r' }, { x: 0.785, y: 0.34, s: 'l' }, { x: 0.785, y: 0.48, s: 'l' }] },
+  { slug: 'suzerain', pos: '50% 50%', mpos: '46% 50%', cps: [{ x: 0.585, y: 0.24, s: 'r' }, { x: 0.63, y: 0.38, s: 'r' }, { x: 0.60, y: 0.50, s: 'r' }] },
+  { slug: 'whimel-academy', pos: '50% 50%', mpos: '50% 50%', cps: [{ x: 0.56, y: 0.30, s: 'r' }, { x: 0.74, y: 0.44, s: 'l' }, { x: 0.605, y: 0.58, s: 'l' }] },
+  { slug: 'lil-gator', pos: '50% 50%', mpos: '82% 50%', cps: [{ x: 0.665, y: 0.20, s: 'l' }, { x: 0.64, y: 0.34, s: 'l' }, { x: 0.66, y: 0.50, s: 'l' }] },
+  { slug: 'town-of-zoz', pos: '50% 50%', mpos: '60% 50%', cps: [{ x: 0.52, y: 0.20, s: 'r' }, { x: 0.72, y: 0.34, s: 'l' }, { x: 0.55, y: 0.48, s: 'r' }] },
 ];

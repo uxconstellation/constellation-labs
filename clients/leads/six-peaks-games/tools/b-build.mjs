@@ -136,6 +136,7 @@ const games = rawGames.map((g, i) => {
   });
   const partnerIds = Object.keys(PARTNER_RX).filter(id => PARTNER_RX[id].test([g.partner, g.developer, g.publisher].join(' ')));
   const partnerShort = String(g.partner).replace(/\s*\(.*\)\s*$/, '').trim();
+  const leadPartner = Object.keys(PARTNER_RX).find(id => PARTNER_RX[id].test(String(g.partner).replace(/\(.*\)/, '')));
   const out = {
     i, slug: g.slug, title: g.title, oneLiner: houseDash(g.oneLiner, g.slug + ' one-liner'), partner: g.partner, partnerShort, partnerIds,
     publisher: houseDash(g.publisher, g.slug + ' publisher'), developer: houseDash(g.developer, g.slug + ' developer'), gameMode: houseDash(g.gameMode, g.slug + ' game mode'), genre: String(g.genre || '').split('|').map(s => s.trim()).filter(Boolean).join(' · '),
@@ -150,6 +151,7 @@ const games = rawGames.map((g, i) => {
       shots: (a.shots || []).map((s, k) => asset(s, `${g.slug} shot ${k + 1}`)).filter(Boolean),
     },
     reviews,
+    partnerLogo: leadPartner ? { ...partnerLogo(leadPartner), alt: baseSite.partners.find(p => p.id === leadPartner).name + ' logo' } : null,
   };
   if (!out.img.key && out.img.shots.length && out.status === 'released') { out.img.key = out.img.shots[0]; notes.push(`${g.slug}: no key.webp, using shot-1 as key art`); }
   return out;
@@ -167,21 +169,23 @@ const SVC_MATCH = {
   performance: (c, items) => /performance/i.test(c) || items.some(it => /performance testing/i.test(it)),
   rc: (c) => /release (candidate|prep)/i.test(c),
 };
-// preferred pairing per slot (first match that has the service and a shot wins)
+// pairing per slot: key art (1900 wide) of titles NOT in the hero rotation, so the page shows more of the catalogue
 const PAIR = {
-  functional: ['lost-skies', 'yooka-replaylee'], compliance: ['lil-gator', 'cattle-country'], loc: ['suzerain', 'town-of-zoz'],
-  bugs: ['outrage-fight-fest', 'god-breakers'], cases: ['town-of-zoz', 'yooka-replaylee'], usability: ['whimel-academy', 'cattle-country'],
-  performance: ['god-breakers', 'its-only-money'], rc: ['its-only-money', 'service-with-a-shotgun'],
+  functional: ['yooka-replaylee'], compliance: ['cattle-country'], loc: ['whimel-academy'], bugs: ['outrage-fight-fest'],
+  cases: ['yooka-replaylee', 'cattle-country', 'outrage-fight-fest'], usability: ['service-with-a-shotgun'], performance: ['its-only-money', 'grave-dodgers'], rc: ['grave-dodgers', 'its-only-money'],
 };
+const heroSlugs = new Set(baseHeroes.map(h => h.slug));
 const loadout = {};
 const usedPairs = new Set();
-baseSite.services.forEach(s => {
-  const used = games.filter(g => g.status === 'released' && g.services.some(x => SVC_MATCH[s.key](x.category, x.items))).map(g => g.slug);
-  const prefs = (PAIR[s.key] || []).concat(used);
-  const slug = prefs.find(sl => used.includes(sl) && G[sl].img.shots.length && !usedPairs.has(sl)) || prefs.find(sl => used.includes(sl) && G[sl].img.key) || used[0];
+const usedBy = Object.fromEntries(baseSite.services.map(s => [s.key, games.filter(g => g.status === 'released' && g.services.some(x => SVC_MATCH[s.key](x.category, x.items))).map(g => g.slug)]));
+// assign scarcest slots first so as many slots as possible show a title that is not already in the hero rotation
+const order = baseSite.services.map(s => s.key).sort((p, q) => usedBy[p].filter(sl => !heroSlugs.has(sl)).length - usedBy[q].filter(sl => !heroSlugs.has(sl)).length);
+order.forEach(key => {
+  const used = usedBy[key];
+  const ok = sl => used.includes(sl) && G[sl].img.key && !usedPairs.has(sl);
+  const slug = (PAIR[key] || []).find(sl => ok(sl) && !heroSlugs.has(sl)) || used.find(sl => ok(sl) && !heroSlugs.has(sl)) || (PAIR[key] || []).find(ok) || used.find(ok) || used[0];
   usedPairs.add(slug);
-  const g = G[slug];
-  loadout[s.key] = { used, slug, shot: (g.img.shots[1] || g.img.shots[0] || g.img.key) };
+  loadout[key] = { used, slug, shot: G[slug].img.key };
 });
 
 // ---------- site ----------
