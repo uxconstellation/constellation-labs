@@ -7,12 +7,12 @@
 | # | Stage | Owner | Artifact | State |
 |---|---|---|---|---|
 | 0 | Frame | line manager | `BRIEF.md` | done |
-| 1 | Research + capture | reference-scout | `research/site-content.md` (line manager, live capture), `research/games.json`, `assets/manifest.json` | in progress |
+| 1 | Research + capture | reference-scout | `research/site-content.md` (line manager, live capture), `research/games.json`, `assets/manifest.json` (150 files), contact sheets | done; line manager checked the asset sheet |
 | 1.5 | Mood board | design-lead | the two direction prototypes stand in as the direction boards for Aldo's sign-off | pending |
 | 3 | Visual plan | line manager | `DIRECTION-A.md`, `DIRECTION-B.md`, `DUPLICATION.md`, `BUILD-RULES.md` | done |
-| 5 | Build | duplicate-builder ×2 | `direction-a-ascent/page.html`, `direction-b-press-start/page.html` | queued (waits on stage 1 assets) |
+| 5 | Build | duplicate-builder ×2 | `direction-a-ascent/page.html`, `direction-b-press-start/page.html` + READMEs + proof frames | done; builder QA clean (0 errors, 0 failed requests, 0 overflow, 0 axe) |
 | 6-7 | Design + copy review | impeccable + humanizer roles | review notes | pending |
-| 8 | QA | qa-verifier | `qa/QA-REPORT.md` | pending |
+| 8 | QA | qa-verifier ×2 | `qa/QA-REPORT-A.md`, `qa/QA-REPORT-B.md` | in progress |
 | 9 | Close | line manager | review links + PR | pending |
 
 ## Facts established
@@ -23,3 +23,13 @@
 ## Open decisions for Aldo
 - Pick a direction (or a merge) after review.
 - Confirm whether Six Peaks has engaged us; if so move this from `leads/` to `clients/six-peaks-games/`.
+
+## Review links (private claude.ai artifacts, pre-QA preview, republished in place after fixes)
+- Direction A, The Ascent: https://claude.ai/artifact/LTydSxnFdHQnKaFnRhYYm2
+- Direction B, Press Start: https://claude.ai/artifact/WroJFLPLrd1KAXx77yAda4
+Publish copies carry distinct titles ("Six Peaks Ascent", "Six Peaks Press Start"); the repo pages keep the SEO title. Files map: `node tools/publish-map.mjs <dir>`.
+
+## Found on the live site (worth telling Six Peaks)
+- Two homepage "View Game" links 404: God Breakers (/godbreakers-2/) and Boltgun 2 (/warhammer-40000-boltgun-2/).
+- God Breakers and Cattle Country pages link to a staging host (dev1.stubblestudios.com).
+- Media library holds unannounced material (a Clash of Clans poster, a "Devil Jam" set). Not used anywhere.
