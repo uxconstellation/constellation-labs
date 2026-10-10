@@ -50,6 +50,11 @@ const base = `http://127.0.0.1:${server.address().port}/${dir}/index.html`;
 
 // 3. Browser. cdnjs is blocked from this container, so serve pinned GSAP files locally.
 const GSAP_DIST = path.join(ROOT, 'node_modules', 'gsap', 'dist');
+// three.js: only the exact pinned UMD build is vendored (npm three@0.128.0 == cdnjs r128).
+// Any other three.js path or version falls through to a 404, so a wrong pin still fails the run.
+const THREE_VENDORED = {
+  '/ajax/libs/three.js/r128/three.min.js': path.join(ROOT, 'node_modules', 'three', 'build', 'three.min.js'),
+};
 const browser = await chromium.launch();
 const outDir = path.join(ROOT, 'qa', 'shots', dir);
 fs.mkdirSync(outDir, { recursive: true });
@@ -65,6 +70,12 @@ for (const dev of DEVICES) {
     const file = path.join(GSAP_DIST, path.basename(new URL(route.request().url()).pathname));
     if (fs.existsSync(file)) return route.fulfill({ status: 200, contentType: 'text/javascript', body: fs.readFileSync(file) });
     return route.fulfill({ status: 404, body: 'not vendored: ' + file });
+  });
+  await ctx.route('https://cdnjs.cloudflare.com/ajax/libs/three.js/**', async route => {
+    const p = new URL(route.request().url()).pathname;
+    const file = THREE_VENDORED[p];
+    if (file && fs.existsSync(file)) return route.fulfill({ status: 200, contentType: 'text/javascript', body: fs.readFileSync(file) });
+    return route.fulfill({ status: 404, body: 'not vendored: ' + p });
   });
   for (const h of hashes) {
     const page = await ctx.newPage();
