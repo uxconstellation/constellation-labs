@@ -42,3 +42,8 @@ Plan:
 2. motion-lead: WebGL tech spike with real assets (key-art shader transitions, particle Six Peaks mark, bug-hunt interaction) at `prototypes/webgl-spike/` (in progress).
 3. Aldo picks from the board (Playable vs Cinematic, or both).
 4. Rebuild on the chosen references; qa-verifier; republish to the same two links.
+
+## Round 2 decision (2026-10-10)
+- **Direction B, Press Start: APPROVED and FROZEN.** Aldo, verbatim: "press start is good, don't touch that". Frozen at commit `cfdbd65` (`direction-b-press-start/page.html`) and published at https://claude.ai/artifact/WroJFLPLrd1KAXx77yAda4. No agent edits it. Any QA findings on B are reported to Aldo, never applied without his word.
+- **Direction A is replaced.** The Ascent (v1) is superseded; kept in git history and at its link until the new A ships. The new A must reach "award winning gaming" and stay structurally different from B (playable, not catalogue). qa-verifier on v1 A stopped (moot).
+- Running: reference-scout (board re-scoped to one new Direction A, playable-led), motion-lead (spike re-scoped: bug hunt first, particle mark second, no key-art carousel).
