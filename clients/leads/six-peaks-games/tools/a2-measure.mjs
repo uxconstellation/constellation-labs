@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { wrapPage, serve, routeCdn } from './a2-serve.mjs';
+import { sampleContrast } from './a2-contrast.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 wrapPage(ROOT);
@@ -62,108 +63,6 @@ for (const dev of [{ name: 'desktop', viewport: { width: 1440, height: 900 } }, 
   await ctx.close();
 }
 }
-// contrast from pixels for the nodes axe cannot decide. Motion is frozen (game loop, GSAP, CSS animations);
-// screenshot A hides all text, screenshot B shows only the audited nodes' own text. Pixels that differ are the
-// glyphs actually drawn; A at those pixels is the real background under them (scrims, canvas, dither, overlaps).
-async function freeze(page, on) {
-  await page.evaluate((on_) => {
-    if (on_) {
-      Object.defineProperty(document, 'hidden', { get: () => true, configurable: true });
-      document.dispatchEvent(new Event('visibilitychange'));
-      if (window.gsap) window.gsap.globalTimeline.pause();
-      const st = document.createElement('style'); st.setAttribute('data-a2-freeze', '');
-      st.textContent = '*,*::before,*::after{animation-play-state:paused!important;transition:none!important}';
-      document.head.appendChild(st);
-    } else {
-      delete document.hidden;
-      document.dispatchEvent(new Event('visibilitychange'));
-      if (window.gsap) window.gsap.globalTimeline.resume();
-      document.querySelectorAll('style[data-a2-freeze]').forEach((n) => n.remove());
-    }
-  }, on);
-}
-async function sampleContrast(page, sels) {
-  await freeze(page, true);
-  try {
-    const info = await page.evaluate((sels_) => sels_.map((sel, idx) => {
-      const el = document.querySelector(sel); if (!el) return { sel, skip: 'not found' };
-      const cs = getComputedStyle(el);
-      if (cs.visibility !== 'visible') return { sel, skip: 'not rendered (visibility)' };
-      let op = 1; for (let n = el; n && n.nodeType === 1; n = n.parentElement) op *= parseFloat(getComputedStyle(n).opacity);
-      if (op < 0.05) return { sel, skip: 'not rendered (opacity 0)' };
-      const field = el.matches('input,textarea,select');
-      if (field && !el.value && 'value' in el && el.tagName !== 'SELECT') { el.dataset.a2Val = '1'; el.value = 'Sample text 0123'; }
-      const rects = [];
-      const clip = (q) => { const x = Math.max(0, q.left), y = Math.max(0, q.top), x1 = Math.min(innerWidth, q.right), y1 = Math.min(innerHeight, q.bottom); return x1 - x > 1 && y1 - y > 1 ? { x, y, x1, y1 } : null; };
-      if (field) { const b = el.getBoundingClientRect(); const q = clip({ left: b.left + 2, top: b.top + 2, right: b.right - 18, bottom: b.bottom - 2 }); if (q) rects.push(q); }
-      else for (const t of el.childNodes) {
-        if (t.nodeType !== 3 || !t.textContent.trim()) continue;
-        const r = document.createRange(); r.selectNodeContents(t);
-        for (const q of r.getClientRects()) { const c = clip(q); if (c) rects.push(c); }
-      }
-      if (!rects.length) return { sel, skip: 'off-screen (or no own text)' };
-      const hit = rects.some((q) => { const h = document.elementFromPoint((q.x + q.x1) / 2, (q.y + q.y1) / 2); return h && (h === el || el.contains(h)); });
-      const c = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
-      c.clearRect(0, 0, 1, 1); c.fillStyle = '#000'; c.fillStyle = cs.color; c.fillRect(0, 0, 1, 1);
-      const [R, G, B, A] = c.getImageData(0, 0, 1, 1).data;
-      el.setAttribute('data-a2-k', String(idx)); el.style.setProperty('--a2-col', cs.color);
-      const fs = parseFloat(cs.fontSize), fw = parseInt(cs.fontWeight, 10) || 400;
-      return { sel, k: idx, rects, hit, color: [R, G, B, (A / 255) * op], need: fs >= 24 || (fs >= 18.66 && fw >= 700) ? 3 : 4.5 };
-    }), sels);
-    const live = info.filter((n) => !n.skip);
-    if (!live.length) return info.map((n) => ({ sel: n.sel, skip: n.skip }));
-    const hide = await page.addStyleTag({ content: '*,*::before,*::after,*::placeholder{color:transparent!important;-webkit-text-fill-color:transparent!important;caret-color:transparent!important}' });
-    await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
-    const a = (await page.screenshot({ type: 'png' })).toString('base64');
-    // nodes whose glyph boxes overlap are shown in separate screenshots, so every glyph pixel has one owner
-    const touch = (r1, r2) => r1.some((p_) => r2.some((q) => p_.x < q.x1 + 2 && q.x < p_.x1 + 2 && p_.y < q.y1 + 2 && q.y < p_.y1 + 2));
-    const groups = [];
-    for (const n of live) { let g = groups.find((G) => G.every((m) => !touch(m.rects, n.rects))); if (!g) { g = []; groups.push(g); } g.push(n); n.group = groups.indexOf(g); }
-    const bs = [];
-    for (const g of groups) {
-      const show = await page.addStyleTag({ content: g.map((n) => `[data-a2-k="${n.k}"]`).join(',') + '{color:var(--a2-col)!important;-webkit-text-fill-color:var(--a2-col)!important}' });
-      await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
-      bs.push((await page.screenshot({ type: 'png' })).toString('base64'));
-      await show.evaluate((n) => n.remove());
-    }
-    await hide.evaluate((n) => n.remove());
-    const res = await page.evaluate(async ({ a_, bs_, info_ }) => {
-      const load = async (s_) => { const img = new Image(); img.src = 'data:image/png;base64,' + s_; await img.decode(); const cv = document.createElement('canvas'); cv.width = img.naturalWidth; cv.height = img.naturalHeight; const cx = cv.getContext('2d', { willReadFrequently: true }); cx.drawImage(img, 0, 0); return cx; };
-      const A = await load(a_), Bs = []; for (const b_ of bs_) Bs.push(await load(b_));
-      const k = A.canvas.width / innerWidth;
-      const lin = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
-      const L = (r, g, b) => 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
-      return info_.map((n) => {
-        if (n.skip) return { sel: n.sel, skip: n.skip };
-        const B = Bs[n.group];
-        const ratios = [];
-        let area = 0;
-        for (const q of n.rects) {
-          const x0 = Math.floor(q.x * k), y0 = Math.floor(q.y * k), w = Math.max(1, Math.floor((q.x1 - q.x) * k)), h = Math.max(1, Math.floor((q.y1 - q.y) * k));
-          const da = A.getImageData(x0, y0, w, h).data, db = B.getImageData(x0, y0, w, h).data;
-          area += w * h;
-          for (let i = 0; i < da.length; i += 4) {
-            if (Math.abs(da[i] - db[i]) + Math.abs(da[i + 1] - db[i + 1]) + Math.abs(da[i + 2] - db[i + 2]) < 24) continue;   // not a glyph pixel
-            const al = n.color[3];
-            const l1 = L(n.color[0] * al + da[i] * (1 - al), n.color[1] * al + da[i + 1] * (1 - al), n.color[2] * al + da[i + 2] * (1 - al)), l2 = L(da[i], da[i + 1], da[i + 2]);
-            ratios.push((Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05));
-          }
-        }
-        if (ratios.length < 6) return { sel: n.sel, skip: n.hit ? 'no glyphs drawn (check by eye)' : 'covered by another layer' };
-        ratios.sort((x, y) => x - y);
-        return { sel: n.sel, need: n.need, min: ratios[0], p2: ratios[Math.floor(ratios.length * 0.02)], px: ratios.length, area };
-      });
-    }, { a_: a, bs_: bs, info_: info.map((n) => { const m = live.find((x) => x.sel === n.sel && x.k === n.k); return m ? { ...n, group: m.group } : n; }) });
-    return res;
-  } finally {
-    await page.evaluate(() => {
-      document.querySelectorAll('[data-a2-k]').forEach((el) => { el.removeAttribute('data-a2-k'); el.style.removeProperty('--a2-col'); });
-      document.querySelectorAll('[data-a2-val]').forEach((el) => { el.value = ''; delete el.dataset.a2Val; });
-    });
-    await freeze(page, false);
-  }
-}
-
 // 3. axe with every dialog open (desktop and mobile), plus the rules screen and the open list
 {
   const axeSrc = fs.readFileSync(path.join(ROOT, 'node_modules', 'axe-core', 'axe.min.js'), 'utf8');

@@ -172,6 +172,7 @@ a{color:inherit}
 .b-svc{font:400 14px/1.3 var(--f-body);color:var(--snow-shade)}
 .controls{margin:0;padding:0;list-style:none;display:grid;gap:12px;font:400 16px/1.45 var(--f-body);color:var(--snow)}
 .controls b{display:block;font:700 12px/1.3 var(--f-hud);text-transform:uppercase;color:var(--snow-shade);letter-spacing:.04em}
+.k-ar svg{display:block}
 .controls kbd{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 5px;margin:0 2px;background:var(--snow);color:var(--ink);font:700 12px/1 var(--f-hud);vertical-align:1px}
 .rules-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 
@@ -520,11 +521,13 @@ dialog.dlg::backdrop{background:var(--scrim)}
   .printer{right:auto;left:var(--gut);width:calc(100% - 2 * var(--gut))}
   .touch:not([hidden]){position:relative;order:3;bottom:auto;padding:12px var(--gut);background:var(--night)}
   .rotate-note:not([hidden]){display:block;order:4;margin:0;padding:0 var(--gut) 14px;background:var(--night);font:400 13px/1.3 var(--f-hud);color:var(--snow-shade);text-transform:uppercase}
-  .banner{bottom:8px;width:calc(100% - 2 * var(--gut));min-width:0;padding:12px 14px 14px;gap:2px 12px}
+  .banner{bottom:8px;width:calc(100% - 2 * var(--gut));min-width:0;max-height:calc(100% - 16px);overflow:auto;padding:10px 12px 12px;gap:2px 0;grid-template-columns:1fr}
+  .banner .spr{display:none}
   .banner-k{padding-right:0}
-  .banner-h{font-size:21px}
-  .banner-t{font-size:16px;line-height:1.45}
-  .banner-x{position:static;grid-column:2;justify-self:start;margin-top:10px}
+  .banner-h{font-size:19px}
+  .banner-t{font-size:15px;line-height:1.4}
+  .banner-clocks{grid-column:1;margin-top:4px}
+  .banner-x{position:static;grid-column:1;justify-self:start;margin-top:8px}
   .printer{bottom:8px}
   .printer .ticket:not(:first-child){display:none}
   .pola{bottom:8px;width:min(260px,calc(100% - 2 * var(--gut)))}
@@ -564,7 +567,7 @@ dialog.dlg::backdrop{background:var(--scrim)}
     <canvas id="cv" width="384" height="216" role="img" aria-label="The Six Peaks test level: six snowy peaks shaped like the Six Peaks logo, with billboards, partner signposts and eight planted demo bugs."></canvas>
     <div class="printer" id="printer" hidden><div class="printer-slot" aria-hidden="true"></div><ol class="tickets" id="tickets" aria-label="Bug tickets printed this run"></ol></div>
     <div class="prompt" id="prompt" aria-hidden="true" hidden><kbd>E</kbd><span id="prompt-t">Inspect</span></div>
-    <div class="hint" id="hint" hidden><span><kbd>←</kbd><kbd>→</kbd> run</span><span><kbd>Space</kbd> jump</span><span><kbd>E</kbd> inspect</span><span><kbd>L</kbd> list</span><span><b>Mouse:</b> click a bug when the reticle locks</span></div>
+    <div class="hint" id="hint" hidden><span><kbd class="k-ar"><svg viewBox="0 0 5 5" width="10" height="10" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M2 0h1v5H2zM1 1h1v3H1zM0 2h5v1H0z"/></svg><span class="sr-only">Left arrow</span></kbd><kbd class="k-ar"><svg viewBox="0 0 5 5" width="10" height="10" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M2 0h1v5H2zM3 1h1v3H3zM0 2h5v1H0z"/></svg><span class="sr-only">Right arrow</span></kbd> run</span><span><kbd>Space</kbd> jump</span><span><kbd>E</kbd> inspect</span><span><kbd>L</kbd> list</span><span><b>Mouse:</b> click a bug when the reticle locks</span></div>
     <div class="banner" id="banner" role="region" aria-label="Power-up" hidden>
       <i class="spr" id="banner-spr" style="--w:16;--h:16;--s:3" aria-hidden="true"></i>
       <p class="banner-k" id="banner-k"></p>
@@ -625,7 +628,7 @@ dialog.dlg::backdrop{background:var(--scrim)}
         <div class="panel"><h3 class="panel-h">Bestiary: one demo bug per service</h3><!--a2:bestiary--><ul class="bestiary" role="list"><li><i class="spr b-glyph" style="--x:90;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Clipper</span><span class="b-svc">Functional QA</span></li><li><i class="spr b-glyph" style="--x:54;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Wrong Glyph</span><span class="b-svc">Compliance QA</span></li><li><i class="spr b-glyph" style="--x:126;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Overflow</span><span class="b-svc">Functional Localisation QA</span></li><li><i class="spr b-glyph" style="--x:234;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Ghost</span><span class="b-svc">Bug Reporting &amp; Environment Management</span></li><li><i class="spr b-glyph" style="--x:270;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Missing Step</span><span class="b-svc">Test Case Management</span></li><li><i class="spr b-glyph" style="--x:306;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Tiny Text</span><span class="b-svc">Usability Testing</span></li><li><i class="spr b-glyph" style="--x:162;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Stutter</span><span class="b-svc">Performance Testing</span></li><li><i class="spr b-glyph" style="--x:198;--y:78;--w:16;--h:16;--s:3" aria-hidden="true"></i><span class="b-name">Last-minute Regression</span><span class="b-svc">Release Candidate Oversight</span></li></ul><!--/a2:bestiary--></div>
         <div class="panel"><h3 class="panel-h">Controls</h3>
           <ul class="controls" role="list">
-            <li><b>Keys</b><kbd>←</kbd><kbd>→</kbd> or <kbd>A</kbd><kbd>D</kbd> run. <kbd>Space</kbd>, <kbd>W</kbd> or <kbd>↑</kbd> jump. <kbd>E</kbd> or <kbd>Enter</kbd> inspect. <kbd>L</kbd> lists every object. <kbd>Esc</kbd> steps back out.</li>
+            <li><b>Keys</b><kbd class="k-ar"><svg viewBox="0 0 5 5" width="10" height="10" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M2 0h1v5H2zM1 1h1v3H1zM0 2h5v1H0z"/></svg><span class="sr-only">Left arrow</span></kbd><kbd class="k-ar"><svg viewBox="0 0 5 5" width="10" height="10" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M2 0h1v5H2zM3 1h1v3H3zM0 2h5v1H0z"/></svg><span class="sr-only">Right arrow</span></kbd> or <kbd>A</kbd><kbd>D</kbd> run. <kbd>Space</kbd>, <kbd>W</kbd> or <kbd class="k-ar"><svg viewBox="0 0 5 5" width="10" height="10" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="currentColor" d="M2 0h1v5H2zM1 1h3v1H1zM0 2h5v1H0z"/></svg><span class="sr-only">Up arrow</span></kbd> jump. <kbd>E</kbd> or <kbd>Enter</kbd> inspect. <kbd>L</kbd> lists every object. <kbd>Esc</kbd> steps back out.</li>
             <li><b>Touch</b>The on-screen buttons: left, right, jump and inspect.</li>
             <li><b>Mouse</b>Aim the reticle at a bug. When it locks, click to log it.</li>
             <li><b>No game needed</b>Every bug, sign and billboard is also a button in the list, and the manual below the level has everything.</li>
@@ -1334,7 +1337,7 @@ const fmt = (t) => { const s = Math.floor(t); return String(Math.floor(s / 60)).
 let liveT = 0;
 function say(msg) { E.live.textContent = ''; clearTimeout(liveT); liveT = setTimeout(() => { E.live.textContent = msg; }, 60); }
 const rnd = (() => { let s = 1337; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; })();
-function hash(n) { n = (n << 13) ^ n; return 1 - ((n * (n * n * 15731 + 789221) + 1376312589) & 0x7fffffff) / 1073741824; }
+function hash(n) { n = (n << 13) ^ n; return 1 - ((Math.imul(n, (Math.imul(Math.imul(n, n), 15731) + 789221) | 0) + 1376312589) & 0x7fffffff) / 1073741824; }   // 32-bit maths (plain * overflows past 2^53)
 function vnoise(x) { const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f); return lerp(hash(i), hash(i + 1), u); }
 const loadImage = (src) => new Promise((res) => { const i = new Image(); i.decoding = 'async'; i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
 const frame = (n) => FR[n] || null;
@@ -1512,21 +1515,33 @@ function decorate(t) {
   const trees = ['prop_tree_0', 'prop_tree_1', 'prop_tree_2'].filter((n) => FR[n]);
   const rocks = ['prop_rock_0', 'prop_rock_1'].filter((n) => FR[n]);
   if (!trees.length && !rocks.length) return;
-  const busy = OBJ.map((o) => { const r = objRect(o) || { x: o.x - 10, w: 20 }; return [r.x - 8, r.x + r.w + 8]; })
+  // pines may stand beside boards and billboards (drawn behind them, as in the style frame); bugs, pickups,
+  // partner signs and the peak tops keep a clear margin
+  const busy = OBJ.map((o) => { const r = objRect(o) || { x: o.x - 10, w: 20 }; const m = o.kind === 'billboard' || o.kind === 'boarded' || o.kind === 'camp' || o.kind === 'campsign' ? -6 : 8; return [r.x - m, r.x + r.w + m]; })
     .concat(PEAKS.map((p) => [p.x - 24, p.x + 24]), [[STAIRS.x0 - 8, STAIRS.x0 + STAIRS.w + 30]]);
   const free = (a, b) => !busy.some(([p, q]) => b > p && a < q);
+  S.deco = { trees: 0, rocks: 0 };
+  const green = trees.filter((n) => n !== 'prop_tree_2'), snowy = FR.prop_tree_2 ? 'prop_tree_2' : trees[0];
+  const snowRock = FR.prop_rock_1 ? 'prop_rock_1' : rocks[0];
   let x = 18;
   while (x < WW - 18) {
     const h = Math.abs(hash(x * 31 + 7));
     const g = GROUND[x];
-    const flat = Math.abs(GROUND[Math.max(0, x - 4)] - GROUND[Math.min(WW - 1, x + 4)]) < 6;
+    const slope = Math.abs(GROUND[Math.max(0, x - 4)] - GROUND[Math.min(WW - 1, x + 4)]);
     let n = null;
     const sf = SURF ? SURF[x] : (g > 150 ? 'g' : g > 112 ? 'r' : 's');
-    if (sf === 'g') n = h < 0.7 ? trees[Math.floor(h * 97) % trees.length] : rocks[Math.floor(h * 31) % rocks.length];
-    else if (sf === 'r') n = h < 0.45 ? rocks[Math.floor(h * 31) % rocks.length] : null;
+    if (sf === 'g') n = h < 0.72 ? (green.length ? green[Math.floor(h * 97) % green.length] : snowy) : rocks[Math.floor(h * 31) % rocks.length];
+    else if (sf === 'r') n = h < 0.34 ? snowy : h < 0.58 ? snowRock : null;
+    else n = h < 0.2 ? snowy : h < 0.34 ? snowRock : null;
     const f = n && FR[n];
-    if (f && flat && free(x - f.w / 2, x + f.w / 2)) blitA(n, x, GROUND[x] + (n.startsWith('prop_rock') ? 1 : 0), h > 0.5, t);
-    x += 14 + Math.floor(Math.abs(hash(x * 13 + 3)) * (g > 150 ? 26 : 48));
+    const isRock = n && n.startsWith('prop_rock');
+    // trees take slopes up to ~1:1 and sit on the lowest ground under the trunk; rocks want flatter ground
+    if (f && slope < (isRock ? 6 : 9) && free(x - f.w / 2, x + f.w / 2)) {
+      const gy = Math.max(GROUND[Math.max(0, x - 1)], GROUND[x], GROUND[Math.min(WW - 1, x + 1)]);
+      blitA(n, x, isRock ? GROUND[x] + 1 : gy + (slope > 3 ? 1 : 0), h > 0.5, t);
+      S.deco[isRock ? 'rocks' : 'trees']++;
+    }
+    x += (sf === 'g' ? 13 : 18) + Math.floor(Math.abs(hash(x * 13 + 3)) * (sf === 'g' ? 24 : 40));
   }
 }
 const skyCv = d.createElement('canvas');
@@ -1661,12 +1676,15 @@ function wantBoardLogo(slug) {
   const g = GAMES[slug]; if (!g) return;
   loadImage(g.logo.src).then((img) => {
     if (!img) return;
-    const bw = 28, bh = 12, r = Math.min(bw / img.width, bh / img.height);
+    // the real logo in its own colours, area-averaged down to the notice (halving steps), with crisp alpha edges
+    const bw = 28, bh = 13, r = Math.min(bw / img.width, bh / img.height);
     const w = Math.max(1, Math.round(img.width * r)), h = Math.max(1, Math.round(img.height * r));
+    let src = img, sw = img.width, sh = img.height;
+    while (sw / 2 >= w * 2) { const c2 = d.createElement('canvas'); c2.width = Math.round(sw / 2); c2.height = Math.round(sh / 2); const t2 = c2.getContext('2d'); t2.imageSmoothingEnabled = true; t2.imageSmoothingQuality = 'high'; t2.drawImage(src, 0, 0, c2.width, c2.height); src = c2; sw = c2.width; sh = c2.height; }
     const c = d.createElement('canvas'); c.width = w; c.height = h; const t = c.getContext('2d');
-    t.imageSmoothingEnabled = true; t.drawImage(img, 0, 0, w, h);
-    const id = t.getImageData(0, 0, w, h), p = id.data, [r1, g1, b1] = hex(C.ink);
-    for (let i = 0; i < p.length; i += 4) { const on = p[i + 3] > 110; p[i] = r1; p[i + 1] = g1; p[i + 2] = b1; p[i + 3] = on ? 255 : 0; }
+    t.imageSmoothingEnabled = true; t.imageSmoothingQuality = 'high'; t.drawImage(src, 0, 0, w, h);
+    const id = t.getImageData(0, 0, w, h), p = id.data;
+    for (let i = 0; i < p.length; i += 4) p[i + 3] = p[i + 3] > 110 ? 255 : 0;
     t.putImageData(id, 0, 0);
     boardLogo[slug] = c;
     if (S.mode === 'map') buildMap(); else if (!looping() && S.ready) render();
@@ -1729,13 +1747,13 @@ function drawObject(o, tm, layer) {
       wantBoardLogo(o.ref);
       const lg = boardLogo[o.ref];
       if (r && blit('prop_boarded', r.x, r.y)) {
-        // a paper notice with the title's logo in ink, nailed behind a diagonal plank: boarded up until release
+        // the kit's planks stay visible either side; a paper notice with the title's logo is pinned over them
         const wn = META.boardedWindow || { x: 9, y: 4, w: 30, h: 15 };
-        ctx.fillStyle = C.ink; ctx.fillRect(r.x + wn.x - 1, r.y + wn.y - 1, wn.w + 2, wn.h + 2);
+        ctx.fillStyle = C.ink; ctx.fillRect(r.x + wn.x - 1, r.y + wn.y - 1, wn.w + 2, wn.h + 3);
         ctx.fillStyle = C.paper; ctx.fillRect(r.x + wn.x, r.y + wn.y, wn.w, wn.h);
-        if (lg) ctx.drawImage(lg, r.x + wn.x + Math.floor((wn.w - lg.width) / 2), r.y + wn.y + Math.floor((wn.h - lg.height) / 2));
-        for (let i = 0; i < 40; i++) { const px = r.x + 4 + i, py = r.y + 3 + Math.floor(i * 0.42); ctx.fillStyle = C.woodDark; ctx.fillRect(px, py - 1, 1, 1); ctx.fillRect(px, py + 3, 1, 1); ctx.fillStyle = C.wood; ctx.fillRect(px, py, 1, 3); }
-        ctx.fillStyle = C.snowShade; ctx.fillRect(r.x + 6, r.y + 5, 1, 1); ctx.fillRect(r.x + 41, r.y + 19, 1, 1);
+        ctx.fillStyle = C.snowShade; ctx.fillRect(r.x + wn.x, r.y + wn.y + wn.h, wn.w, 1);
+        if (lg) ctx.drawImage(lg, r.x + wn.x + Math.floor((wn.w - lg.width) / 2), r.y + wn.y + 1 + Math.floor((wn.h - 1 - lg.height) / 2));
+        ctx.fillStyle = C.rock; ctx.fillRect(r.x + wn.x + 1, r.y + wn.y + 1, 1, 1); ctx.fillRect(r.x + wn.x + wn.w - 2, r.y + wn.y + 1, 1, 1);
       } else {
         const x0 = cx - 25, y0 = by - 40;
         ctx.fillStyle = C.woodDark; ctx.fillRect(x0 + 6, y0 + 20, 3, 20); ctx.fillRect(x0 + 41, y0 + 20, 3, 20);
@@ -2037,13 +2055,20 @@ function drawWipe() {
   ctx.fillStyle = ditherPattern(lv, C.night); ctx.fillRect(0, 0, VW, VH);
 }
 function drawDawn(cx, cy) {
-  const who = S.mode === 'run' ? P : GHOST;
-  const prog = clamp((who.x - BASE.x) / Math.max(1, SUMMIT.x - BASE.x), 0, 1);
-  const lv = Math.round(prog * prog * 6); if (lv <= 0) return;
-  const top = (VH >= WH ? VH - WH : -cy) + 92;     // world y 92..150, the band behind the far ridge
-  ctx.fillStyle = ditherPattern(Math.min(16, lv), C.dawn); ctx.fillRect(0, top + 22, VW, 36);
-  if (lv > 2) { ctx.fillStyle = ditherPattern(lv - 2, C.dawn); ctx.fillRect(0, top, VW, 22); }
-  if (lv > 4) { ctx.fillStyle = ditherPattern(lv - 4, C.gold); ctx.fillRect(0, top + 40, VW, 18); }
+  // sunrise on launch: once the last regression is logged and the flag goes up, a glow rises from the
+  // horizon behind the far ridge (the climb itself stays at night, as in the style frame)
+  if (!RUN.flag || !(S.mode === 'run' || S.mode === 'paused')) return;
+  const k = MOTION ? clamp(S.dawnT || 0, 0, 1) : 1;
+  if (k <= 0) return;
+  const base = (VH >= WH ? VH - WH : -cy) + 152;   // world y 152: the horizon, hidden behind the far ridge
+  const H = 68;
+  for (let r = 0; r < H; r += 2) {
+    const t = 1 - r / H;                             // 1 at the horizon, 0 at the top of the glow
+    const lv = Math.round(15 * k * t * t);
+    if (lv < 1) continue;
+    ctx.fillStyle = ditherPattern(lv, t > 0.7 ? C.gold : C.dawn);
+    ctx.fillRect(0, base - r - 2, VW, 2);
+  }
 }
 // ---------------------------------------------------------------- render
 let T = 0;
@@ -2101,6 +2126,7 @@ function update(dt) {
   stepParts(dt);
   for (const o of OBJ) if (o.done && o.fixT < 1) o.fixT = Math.min(1, o.fixT + dt / 0.55);
   if (RUN.flag && S.flagT < 1) S.flagT = Math.min(1, S.flagT + dt / 1.1);
+  if (RUN.flag && (S.dawnT || 0) < 1) S.dawnT = Math.min(1, (S.dawnT || 0) + dt / 2.4);
   if (S.mode === 'title' || S.mode === 'rules') { attract(dt); return; }
   if (S.mode !== 'run') return;
   if (hitstop > 0) { hitstop -= dt; return; }
@@ -2307,7 +2333,7 @@ function logBug(o, via) {
   const t = printTicket(o, n);
   burst(o);
   if (o.ref === 'testcase') buildSolids();
-  if (o.ref === 'rc') { RUN.flag = true; S.flagT = 0; setTimeout(launchConfetti, MOTION ? 600 : 0); }
+  if (o.ref === 'rc') { RUN.flag = true; S.flagT = 0; S.dawnT = 0; setTimeout(launchConfetti, MOTION ? 600 : 0); }
   hud(true);
   say(`Bug ${t.id} logged: ${SVC[o.ref].bug}, ${SVC[o.ref].name}. Demo fault fixed. Bugs ${n} of 8.`);
   if (S.mode === 'map') { buildMap(); openService(o, n, via); return; }
@@ -2912,7 +2938,7 @@ async function boot() {
 }
 boot();
 // expose a small read-only probe for the play-test and proof scripts
-win.__a2 = { get mode() { return S.mode; }, get run() { return { bugs: RUN.bugs.slice(), met: [...RUN.met], visited: [...RUN.visited], peaks: [...RUN.peaks], photos: [...RUN.photos], peak: RUN.peak, time: RUN.time, finished: RUN.finished }; }, get player() { return { x: P.x, y: P.y, ground: P.ground }; }, get view() { return { w: VW, h: VH, scale: SC }; }, objects: () => OBJ.map((o) => ({ id: o.id, kind: o.kind, x: o.x, done: o.done })), get near() { return near ? near.id : null; }, get dialog() { return S.dialog ? S.dialog.id : null; }, get loop() { return looping(); },
+win.__a2 = { get mode() { return S.mode; }, get deco() { return S.deco; }, get run() { return { bugs: RUN.bugs.slice(), met: [...RUN.met], visited: [...RUN.visited], peaks: [...RUN.peaks], photos: [...RUN.photos], peak: RUN.peak, time: RUN.time, finished: RUN.finished }; }, get player() { return { x: P.x, y: P.y, ground: P.ground }; }, get view() { return { w: VW, h: VH, scale: SC }; }, objects: () => OBJ.map((o) => ({ id: o.id, kind: o.kind, x: o.x, done: o.done })), get near() { return near ? near.id : null; }, get dialog() { return S.dialog ? S.dialog.id : null; }, get loop() { return looping(); },
   // test hook for the proof scripts: move the tester (no interaction)
   warp(x) { if (S.mode !== 'run') return false; P.x = clamp(x, 8, WW - 8); P.y = gAt(P.x); P.vx = P.vy = 0; P.rx = P.x; P.ry = P.y; snapCamera(P); cam.x = clamp(P.x - VW * 0.45, 0, Math.max(0, WW - VW)); return true; },
   peaks: () => PEAKS.map((p) => p.x),
