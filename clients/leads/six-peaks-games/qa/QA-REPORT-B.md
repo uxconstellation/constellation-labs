@@ -161,3 +161,72 @@
     - **Rule:** Claims only what the site says.
 
 **Re-verify after the fixes.** Run the harness again over all 17 dossiers plus `home` and `library`. Repeat the keyboard pass at 390×844 and 720×450, and the HUD contrast measurement on all 6 slides and 13 dossiers. Then update the README QA table and the first-load figure.
+
+## Re-check: blockers B1 to B3 and the hero wording (b5d7e52 against baseline cfdbd65)
+
+**Re-check verdict: PASS.**
+- B1, B2 and B3 are fixed.
+- The `page.html` diff contains only those fixes and the approved wording change.
+- The harness is clean.
+- I logged one new finding below. It is not a regression: home overflows at 320px, and that overflow is already in the baseline. It is also outside the approved scope.
+
+**What I tested**
+- The working-tree `direction-b-press-start/page.html`, which is byte-identical to b5d7e52 (md5 1e98b35f…). The baseline cfdbd65 (md5 2731eaa7…) is the build the first pass judged.
+- All checks use fresh probes; I did not use the builder's numbers.
+- Negative controls: I re-ran the B2 and B3 methods on the baseline and they reproduce the original failures.
+
+| Check | Result | Numbers |
+|---|---|---|
+| B1: reflow at 390px | PASS | All 19 routes (home, library and the 17 dossiers) have scrollWidth = clientWidth = 390, and the layout viewport stays the size of the visible screen. 165 chips checked: 0 clipped (no text, cell, viewport or ancestor overflow). 821 spec-sheet words checked: 0 broken mid-word. The 4 words that wrap (Co-operative, On-rails, Farm-lite, Wave-Based) all break at their hyphen. On the Suzerain first paint, the Menu button's right edge is at 374 and the Book-a-trial bar's top is at 771, so both are on screen. Evidence: `qa-evidence/recheck-b1-*.jpg`. |
+| B2: focus not obscured | PASS | 12 runs, 765 tab stops, 0 fully hidden behind a fixed bar. Each stop is hit-tested at 35 points with `elementFromPoint`, so z-order counts. 39 stops are partly hidden, which AA allows: 36 at 720×450 (at most 40%) and 3 on desktop (11% to 20%). The baseline control, using the same method, found 6 of 96 hidden at 390×844 and 5 of 96 at 720×450, which are the original B2 stops. Per-size results are in the breakdown under this table. |
+| B3: contrast over art | PASS | I measured 170 text boxes by sampling the pixels behind each one with its text made transparent. 0 fall below 4.5:1, even against the lightest 5% of background pixels. The baseline, measured the same way, had 60 of 170 below. Minimums per element are in the breakdown under this table. |
+| Scope | PASS | `git diff cfdbd65 b5d7e52 -- …/page.html` shows 11 hunks and 20 changed lines; each one is mapped under this table. The games JSON and the runtime JS are identical; the site JSON differs only in `hero.sub`. No scope creep in `page.html`. Elsewhere in `direction-b-press-start/` the range touches only the README, the regenerated `index.html` (it equals the wrapped `page.html`) and 4 proof frames. |
+| Harness | PASS | `node qa/shoot.mjs direction-b-press-start home,library,game-suzerain --steps 12` gave 6 runs (3 routes × 2 devices). Errors 0/6, failed requests 0/6 and axe violations 0/6, with 160 rules passed and 4,401 nodes. Overflow 0/6; mobile Suzerain is now 390 wide, down from 495. The harness regenerated `index.html` byte-identical to the committed copy. |
+| Hero wording | PASS | The new sub reads "…from George, South Africa, with natural time zone overlap with Western Europe." It traces to the site's "Western Europe Time Zone" pillar, which resolves m8. |
+
+**B2 per-size results.** Each cell is stops fully hidden / stops tabbed. 1024 is 1024×768, 1280 is 1280×720 and 1440 is 1440×900; blank cells were not run.
+
+| Route | 390×844 | 720×450 (200% zoom) | 1024 | 1280 | 1440 |
+|---|---|---|---|---|---|
+| home | 0/96 | 0/96 | 0/106 | 0/106 | 0/106 |
+| library | 0/43 | 0/43 | 0/51 | | |
+| game-suzerain | 0/24 | 0/24 | | 0/35 | 0/35 |
+
+**B3 minimums.** Each value is the lowest contrast against the lightest 5% of background pixels; the threshold is 4.5:1.
+
+| Element | Desktop | Mobile |
+|---|---|---|
+| Hero status line (6 slides) | 16.3:1 | 16.1:1 |
+| Hero partner line (6 slides) | 16.3:1 | 17.8:1 |
+| "QA by Six Peaks Games" (6 slides) | 7.6:1 | hidden on mobile |
+| Top-bar nav over the hero (30 boxes) | 6.5:1 | hidden on mobile |
+| Top-bar nav over the dossiers (65 boxes) | 6.9:1 | hidden on mobile |
+| REC readout, hero | 6.0:1 | hidden on mobile |
+| REC readout, dossiers | 5.9:1 | hidden on mobile |
+| Dossier status line (13 shipped titles) | 16.4:1 | 15.1:1 |
+
+The detailed scores are in `qa-evidence/recheck-b3-contrast-{fixed,baseline}.txt`.
+
+**Scope mapping.** Every changed line in `page.html` belongs to one of the approved items:
+
+| Item | Line | Change |
+|---|---|---|
+| B2 | 31 | `scroll-padding-bottom: 80px` on desktop |
+| B2 | 116 | `scroll-padding-bottom: calc(84px + safe-area)` at 899px and below |
+| B3 | 165 | Hero top scrim darkened to .88/.86 over the first 58px |
+| B3 | 179 | `.hero__with` gets the veil plate |
+| B3 | 181 | `.hero__credit` gets the veil plate |
+| B3 | 191 | `.tv__status` gets the veil plate |
+| B3 | 239 | Mobile position of the `.tv__status` plate |
+| B3 | 526 | Dossier top scrim darkened |
+| B1 | 568 | At 899px and below: `.spec{table-layout:fixed}`, `overflow-wrap:anywhere`, `.spec .chip{white-space:normal}` |
+| Wording | 707, 824 | Hero sub in the markup and in the site JSON |
+
+**New finding: home overflows at 320px. Not a regression and outside the approved scope.**
+- **What:** At 320px wide, the width WCAG 1.4.10 measures at, `#home` overflows by 27px. The "Tested on" strip's 5-column grid pushes the Steam label to x = 346. The cause is `.tested__list{grid-template-columns:repeat(5,1fr)}` at 899px and below.
+- **Baseline:** The baseline cfdbd65 is identical. My first pass measured overflow only at 390, so it missed this.
+- **Clean at 320:** All 17 dossiers and the library (the Suzerain table fix holds there too). Home is clean at 360.
+- **Suggested fix:** `repeat(auto-fit,minmax(56px,1fr))`, or 3 columns below 360px.
+- **Severity:** It is an AA reflow failure, so under L4 it counts as a blocker if brought into scope. Line manager to schedule.
+
+**Still open from the first pass (not in this round's scope):** M1 (the hint bar still sits over the Tested-on strip at rest), M2, M3, and m1 to m7. m8 is resolved.

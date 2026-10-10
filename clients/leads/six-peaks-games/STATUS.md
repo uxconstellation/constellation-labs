@@ -55,3 +55,5 @@ Plan:
 - **WebGL spike done** (`prototypes/webgl-spike/`): bug hunt, particle mark, key-art reveal; 0 errors; SwiftShader 36-44 fps. Not published (client branding; line manager's call).
 - **Aldo's rulings on the board:** build Bug Hunt; demo bugs allowed when labelled DEMO and only in our own level; level style **pixel art** (Aldo chose it over the recommended lines-over-photos).
 - **Direction A2 visual plan:** `DIRECTION-A2.md`. Folder: `direction-a-bug-hunt/`. Publishes to the existing Direction A link once QA passes.
+- **Press Start re-check: PASS** (qa-verifier, independent): B1 0/19 routes overflow at 390px; B2 0/765 tab stops fully hidden; B3 0/170 sampled text boxes under 4.5:1 (baseline 60); diff in scope (11 hunks, 20 lines); harness 6/6 clean. **Republished** to https://claude.ai/artifact/WroJFLPLrd1KAXx77yAda4 (Version 2).
+- **New AA finding for Aldo (outside the approved round):** at 320px wide, Press Start's home overflows by 27px (the "Tested on" strip's 5-column grid). Present in the frozen baseline too. Fix waits on Aldo's word.
