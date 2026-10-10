@@ -266,6 +266,9 @@ section{position:relative}
   .tested__in{flex-direction:column;align-items:flex-start;gap:16px}
   .tested__list{display:grid;grid-template-columns:repeat(5,1fr);row-gap:18px;width:100%}
 }
+@media (max-width:379px){
+  .tested__list{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:8px}
+}
 
 /* ===== Library grid (basement project grid) ===== */
 .lib{position:relative}

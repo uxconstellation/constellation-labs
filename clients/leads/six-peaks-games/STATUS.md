@@ -57,3 +57,4 @@ Plan:
 - **Direction A2 visual plan:** `DIRECTION-A2.md`. Folder: `direction-a-bug-hunt/`. Publishes to the existing Direction A link once QA passes.
 - **Press Start re-check: PASS** (qa-verifier, independent): B1 0/19 routes overflow at 390px; B2 0/765 tab stops fully hidden; B3 0/170 sampled text boxes under 4.5:1 (baseline 60); diff in scope (11 hunks, 20 lines); harness 6/6 clean. **Republished** to https://claude.ai/artifact/WroJFLPLrd1KAXx77yAda4 (Version 2).
 - **New AA finding for Aldo (outside the approved round):** at 320px wide, Press Start's home overflows by 27px (the "Tested on" strip's 5-column grid). Present in the frozen baseline too. Fix waits on Aldo's word.
+- **Aldo approved the 320px fix:** "yes fix the 320px one too". Press Start's "Tested on" list goes to 3 columns below 380px. Checked: no overflow at 320, 360 and 390 on home, library and the Suzerain dossier; 3x3 icon grid verified by screenshot. Republished (Version 3).
