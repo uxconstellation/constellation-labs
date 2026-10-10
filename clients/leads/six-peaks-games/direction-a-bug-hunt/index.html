@@ -212,6 +212,11 @@ a{color:inherit}
 .pin.k-bug{border-color:var(--magenta)}
 .pin.k-power{border-color:var(--gold)}
 .pin.is-done{background:var(--snow);color:var(--ink)}
+.pin.pin-r{transform:translate(-100%,-100%)}
+.pin.pin-l{transform:translate(0,-100%)}
+.pin-r .pin-tip{left:auto;right:0;transform:none}
+.pin-l .pin-tip{left:0;transform:none}
+.map-row{overflow:visible}
 .pin .pin-tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--night);border:2px solid var(--snow-shade);padding:5px 8px;font:400 13px/1.2 var(--f-body);color:var(--snow);display:none;z-index:2}
 .pin:hover .pin-tip,.pin:focus-visible .pin-tip{display:block}
 
@@ -2656,9 +2661,19 @@ function buildMap() {
       b.style.left = ((o.x - x0) / rowW * 100) + '%'; b.style.top = (Math.max(0, rr.y - top) / h * 100) + '%';
       const tag = { bug: 'Bug', partner: 'Sign', billboard: 'Title', boarded: 'Title', power: 'Peak ' + (o.ref + 1), photo: 'Photo', camp: 'Post', flag: 'Flag' }[o.kind] || 'Go';
       b.innerHTML = `<span aria-hidden="true">${tag}</span><span class="pin-tip" aria-hidden="true">${esc(labelFor(o))}</span>`;
+      const lp = (o.x - x0) / rowW;
+      if (lp > 0.93) b.classList.add('pin-r'); else if (lp < 0.05) b.classList.add('pin-l');
       row.appendChild(b);
     }
     E.mapRows.appendChild(row);
+    // keep pins apart: lift a pin until it clears the ones already placed (24 px targets, WCAG 2.5.8)
+    const placed = [];
+    for (const b of $$('.pin', row)) {
+      let r = b.getBoundingClientRect(), lift = 0;
+      const hit = () => placed.some((q) => r.left < q.right + 4 && r.right > q.left - 4 && r.top < q.bottom + 4 && r.bottom > q.top - 4);
+      while (hit() && lift < 120) { lift += 14; b.style.marginTop = -lift + 'px'; r = b.getBoundingClientRect(); }
+      placed.push(r);
+    }
   }
   updateIndex();
 }
