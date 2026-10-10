@@ -33,3 +33,12 @@ Publish copies carry distinct titles ("Six Peaks Ascent", "Six Peaks Press Start
 - Two homepage "View Game" links 404: God Breakers (/godbreakers-2/) and Boltgun 2 (/warhammer-40000-boltgun-2/).
 - God Breakers and Cattle Country pages link to a staging host (dev1.stubblestudios.com).
 - Media library holds unannounced material (a Clash of Clans poster, a "Devil Jam" set). Not used anywhere.
+
+## Round 2 (2026-10-10): Aldo's verdict on v1
+Verbatim: "This isn't giving award winning gaming"
+Diagnosis (line manager): v1 used no real-time WebGL (current Awwwards games-category winners run Three.js/WebGL + GSAP, e.g. Ink Games SOTD 14 Oct 2025); the games sat in grids instead of being experienced; too much UI chrome; nothing playable. Root cause: stage 1.5 (mood board from real award-winning references) was skipped to move fast.
+Plan:
+1. reference-scout: capture 6-8 verified award-winning gaming sites, `research/references/*`, board at `research/reference-board/` (in progress).
+2. motion-lead: WebGL tech spike with real assets (key-art shader transitions, particle Six Peaks mark, bug-hunt interaction) at `prototypes/webgl-spike/` (in progress).
+3. Aldo picks from the board (Playable vs Cinematic, or both).
+4. Rebuild on the chosen references; qa-verifier; republish to the same two links.
