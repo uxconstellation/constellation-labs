@@ -3,7 +3,8 @@
 name = "constellation-labs-review"
 main = "./worker/index.ts"
 compatibility_date = "2026-09-01"
-account_id = "14433850716ebaf371127d380c2d0673" # Aldo@uxconstellation.com's Account
+workers_dev = true # keep the review URL alive alongside the custom domain
+account_id ="14433850716ebaf371127d380c2d0673" # Aldo@uxconstellation.com's Account
 
 [assets]
 directory = "./dist"

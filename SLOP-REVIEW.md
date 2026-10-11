@@ -1,3 +1,38 @@
+## 2026-10-11 PASS
+artefact: C:\Dev\products\constellation-labs\dist (source commit b76e49f + uncommitted wrangler.toml change, production publish build)  sha256: dist/index.html fc07e250065ff0cafcc3b24a5b6c4d4ecfedb9c33ca761ec20da24ca7f6972c8
+medium: web (8 routes + /contact)  client-facing: yes  stage: final: BRIEF.md (production launch)
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: no re-render needed. The round 11 PASS render (b76e49f) stands. `git diff b76e49f -- . ':!STATUS.md' ':!SLOP-REVIEW.md'` shows only wrangler.toml: `workers_dev = true` added, plus a whitespace change on the account_id line. src, worker, vite.config, index.html, package.json and public have no changes. A fresh `vite build` into scratch is byte-identical to dist/ (diff -rq clean). Keeping workers_dev leaves the review URL live; the Worker's noindex covers workers.dev hosts, so the review URL stays out of search.
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run (no copy change)
+relative: round 11 PASS -> carried: deploy config only
+similar prompt: unchanged (partly)
+scores: originality 6/10, design quality 7/10, reference fidelity 7/10, craft 7/10
+hard blockers:
+none
+taste flags:
+- round 11 flags stand (see below), including one live test enquiry through /api/contact after launch
+- gate note: PASS with 3 or more taste flags, so show Aldo the render before calling it done
+
+## 2026-10-11 PASS
+artefact: C:\Dev\products\constellation-labs (commit b76e49f, dev server http://localhost:5191)  sha256: src/pages/Contact.tsx 65c9988cc2029e004b8f3fa1769c5efbd050d4cb0949f1fd667bcd6203a50459
+medium: web (/contact)  client-facing: yes  stage: final: BRIEF.md (production launch)
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: /contact send-failure state at 1440 (prism, invest, nod) and 390 (prism) with pixel contrast against the real ground (p/link.mjs); computed card style (p/card.mjs); keyboard walk and empty submit (p/contact.mjs); focused textarea (p/ring.mjs, r9/ring.png)
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run
+relative: round 10 FAIL (fallback link 2.5:1) -> fixed: yes. The card computes rgb(252,250,246) at 1440 and 390. "Email Aldo directly" measures min 4.55, p10 4.66, median 4.71 on rendered pixels (grain lowers it from the builder's flat 4.97). Legend 6.2-6.4:1. Email input now has aria-invalid=true and aria-describedby pointing at the error. Fields show a 3px rgba(194,65,12,.35) ring plus an ink border on focus.
+similar prompt: unchanged (partly)
+scores: originality 6/10, design quality 7/10, reference fidelity 7/10, craft 7/10
+hard blockers:
+none
+taste flags:
+- link margin is thin: 4.55:1 at the worst grain pixel; any lighter grain or card tint drops it under AA | Use ink with an orange underline, or #A8380A
+- focus stays on Send after an email error | Move focus to the email field
+- prior flags stand: liquid on most sections, WEB-08 gradient text twice, Plato Coffee in Nod lab notes, Acre dashboard figures, mobile contact page without a patch
+- the /api/contact send path was not exercised by this reviewer; builder reports probe-contact 8/8 under wrangler dev. Send one live test enquiry after launch
+- gate note: PASS with 3 or more taste flags, so show Aldo the render before calling it done
+
 ## 2026-10-11 FAIL
 artefact: C:\Dev\products\constellation-labs (commit dfbdeb1, dev server http://localhost:5191)  sha256: src/pages/Contact.tsx e8c0e30b934c278aa92fc53c05a08bd5ffd8075901ef9e08e87f6cc5addfb61c; worker/index.ts 38c3d9a1c60bb8fc9bd6c1359769f9c78588418ad390c4e1b565a5fc72c38268
 medium: web (/contact new; Prism and Nod switches)  client-facing: yes  stage: final: BRIEF.md (production launch)

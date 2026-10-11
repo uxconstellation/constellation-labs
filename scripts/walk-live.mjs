@@ -3,7 +3,7 @@ import { createRequire } from "node:module";
 const require = createRequire("C:/Dev/_refs/design-library/.tools/package.json");
 const { chromium } = require("playwright");
 const base = process.argv[2]; const shot = process.argv[3];
-const routes = ["/", "/acre", "/pinpoints", "/prism", "/nod", "/invest", "/build", "/no-such-experiment"];
+const routes = ["/", "/acre", "/pinpoints", "/prism", "/nod", "/invest", "/build", "/contact", "/no-such-experiment"];
 const b = await chromium.launch({ args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
 let ok = 0;
 for (const r of routes) {
