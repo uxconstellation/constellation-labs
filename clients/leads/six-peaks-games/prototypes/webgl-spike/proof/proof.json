@@ -1,0 +1,389 @@
+{
+ "when": "2026-10-10T17:39:10.526Z",
+ "url": "http://127.0.0.1:38247/prototypes/webgl-spike/index.html",
+ "browser": "141.0.7390.37",
+ "frames": [
+  {
+   "file": "prototypes/webgl-spike/proof/01-mark-assemble-1.jpg",
+   "note": "particles assembling, uAssemble=0.201",
+   "ms": 771
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/01-mark-assemble-2.jpg",
+   "note": "particles assembling, uAssemble=0.573",
+   "ms": 1299
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/01-mark-assemble-3.jpg",
+   "note": "particles assembling, uAssemble=0.818",
+   "ms": 1861
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/01-mark-assemble-4.jpg",
+   "note": "particles assembling, uAssemble=0.957",
+   "ms": 2616
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/01-mark-assemble-5.jpg",
+   "note": "particles assembling, uAssemble=0.999",
+   "ms": 3475
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/01-mark-assemble-6.jpg",
+   "note": "particles assembling, uAssemble=1",
+   "ms": 4914
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/02-mark-repulsion.jpg",
+   "note": "cursor repulsion over the main peak",
+   "ms": 6640
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/02-mark-repulsion-crop.jpg",
+   "note": "repulsion close-up",
+   "ms": 6816
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/03-mark-explode-1.jpg",
+   "note": "scrolled 220px into the pin, uExplode=0.106",
+   "ms": 8351
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/03-mark-explode-2.jpg",
+   "note": "scrolled 460px into the pin, uExplode=0.464",
+   "ms": 9811
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/03-mark-explode-3.jpg",
+   "note": "scrolled 675px into the pin, uExplode=1",
+   "ms": 11324
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/03-mark-reform.jpg",
+   "note": "scrolled back to top: mark reformed, uExplode=0",
+   "ms": 13125
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/04-hunt-aim.jpg",
+   "note": "crosshair reticle in the panel under test",
+   "ms": 14216
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/04-hunt-lock.jpg",
+   "note": "reticle locks on over the texture seam",
+   "ms": 14661
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/05-hunt-miss.jpg",
+   "note": "miss: grey ring and \"No repro\"",
+   "ms": 14933
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/06-hunt-hit-1a.jpg",
+   "note": "hit: shockwave, shake, annotation drawing",
+   "ms": 15260
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/06-hunt-hit-1b.jpg",
+   "note": "ticket printing, seam snapping back",
+   "ms": 15934
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/06-hunt-hit-1c.jpg",
+   "note": "fixed: seam gone, SP tag left, 1/3",
+   "ms": 16889
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/07-hunt-keyboard-focus.jpg",
+   "note": "keyboard: bug reachable as a button with a visible focus ring",
+   "ms": 17200
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/07-hunt-hit-2.jpg",
+   "note": "keyboard report: letter drops into place, 2/3",
+   "ms": 18558
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/08-hunt-hit-3.jpg",
+   "note": "third report, counter rolls to 3/3",
+   "ms": 19147
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/09-reward-reveal-1.jpg",
+   "note": "key-art reveal, uReveal=0",
+   "ms": 22804
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/09-reward-reveal-2.jpg",
+   "note": "key-art reveal, uReveal=0.2",
+   "ms": 23502
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/09-reward-reveal-3.jpg",
+   "note": "key-art reveal, uReveal=0.4",
+   "ms": 24055
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/09-reward-reveal-4.jpg",
+   "note": "key-art reveal, uReveal=0.55",
+   "ms": 24614
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/09-reward-reveal-5.jpg",
+   "note": "key-art reveal, uReveal=0.7",
+   "ms": 25118
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/09-reward-reveal-6.jpg",
+   "note": "key-art reveal, uReveal=0.85",
+   "ms": 25598
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/09-reward-reveal-7.jpg",
+   "note": "key-art reveal, uReveal=1",
+   "ms": 26031
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/10-reward-clear.jpg",
+   "note": "level clear: \"Good eye. Imagine what our testers find.\" with Book a trial + Apply now",
+   "ms": 27776
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/10-reward-cursor.jpg",
+   "note": "cursor distortion and RGB split on the revealed art",
+   "ms": 28495
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/16-hunt-variant-texture-tofu.jpg",
+   "note": "replay variant: missing texture (portrait) and missing glyph (In-offi?e staff)",
+   "ms": 34047
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/16-hunt-variant-texture-fix.jpg",
+   "note": "missing texture streams back in tile by tile",
+   "ms": 34714
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/16-hunt-variant-zfight.jpg",
+   "note": "replay variant: ISO 27001 card z-fighting over its neighbour",
+   "ms": 35152
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/11-mobile-hero.jpg",
+   "note": "mobile hero, 15k points, assembled",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/12-mobile-hunt-toast.jpg",
+   "note": "mobile: sticky score bar, ticket toast after a tap",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/13-mobile-reward.jpg",
+   "note": "mobile: reward revealed",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/14-fallback-reduced-hero.jpg",
+   "note": "reduced: composed static hero (logo mark image + type)",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/15-fallback-reduced-reward.jpg",
+   "note": "reduced: game still playable, reward unlocks to the static key art",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/14-fallback-nowebgl-hero.jpg",
+   "note": "nowebgl: composed static hero (logo mark image + type)",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/15-fallback-nowebgl-reward.jpg",
+   "note": "nowebgl: game still playable, reward unlocks to the static key art",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/17-nojs-hero.jpg",
+   "note": "JavaScript off: static hero still composed and readable",
+   "ms": null
+  },
+  {
+   "file": "prototypes/webgl-spike/proof/17-nojs-hunt.jpg",
+   "note": "JavaScript off: panel shows the first three bugs statically, no-JS note visible",
+   "ms": null
+  }
+ ],
+ "runs": {
+  "desktop": {
+   "errors": [],
+   "failed": [],
+   "keyboardFocus": {
+    "focused": "Report visual bug: misaligned letter in the heading",
+    "focusVisible": true
+   },
+   "gapCheck": {
+    "heroBottom": -60,
+    "rewardTop": 1099,
+    "vh": 900
+   },
+   "loop": {
+    "offscreen": {
+     "loopRunning": false,
+     "framesRenderedInLastSecond": 0
+    },
+    "resumedWhenRewardVisible": true,
+    "runningWhileHidden": false
+   },
+   "meta": {
+    "markSource": "canvas",
+    "webglContextsCreated": 1,
+    "contexts": 1,
+    "glPixelRatio": 1,
+    "texW": 1900,
+    "hunt": "clear"
+   },
+   "replay": {
+    "state": "ready",
+    "run": 1,
+    "set": [
+     "overlap",
+     "texture",
+     "kern"
+    ],
+    "rewardLocked": true,
+    "hits": 3
+   },
+   "variants": {
+    "set": [
+     "overlap",
+     "kern",
+     "texture"
+    ],
+    "run": 3
+   },
+   "glReadyMs": 409
+  },
+  "mobile": {
+   "errors": [],
+   "failed": [],
+   "meta": {
+    "dpr": 2,
+    "glPixelRatio": 1.5,
+    "canvasPx": [
+     585,
+     1266
+    ],
+    "webglContextsCreated": 1
+   }
+  },
+  "perf": {
+   "errors": [],
+   "failed": [],
+   "heroIdle": {
+    "samples": 110,
+    "avgMs": 27.57,
+    "p50": 33.3,
+    "p95": 33.4,
+    "maxMs": 50.1,
+    "fps": 36.3,
+    "renderedFrames": 111,
+    "renderCpuAvgMs": 0.29,
+    "renderCpuP95": 0.5,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "heroCursor": {
+    "samples": 131,
+    "avgMs": 23.15,
+    "p50": 16.7,
+    "p95": 33.4,
+    "maxMs": 50.1,
+    "fps": 43.2,
+    "renderedFrames": 132,
+    "renderCpuAvgMs": 0.17,
+    "renderCpuP95": 0.3,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "heroExplodeScrubbed": {
+    "samples": 131,
+    "avgMs": 23.03,
+    "p50": 16.7,
+    "p95": 33.4,
+    "maxMs": 49.9,
+    "fps": 43.4,
+    "renderedFrames": 132,
+    "renderCpuAvgMs": 0.13,
+    "renderCpuP95": 0.3,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "rewardView": {
+    "samples": 95,
+    "avgMs": 31.75,
+    "p50": 33.3,
+    "p95": 50,
+    "maxMs": 50.1,
+    "fps": 31.5,
+    "renderedFrames": 96,
+    "renderCpuAvgMs": 0.17,
+    "renderCpuP95": 0.3,
+    "loopRunning": true,
+    "dpr": 1,
+    "glPixelRatio": 1
+   },
+   "offscreen": {
+    "samples": 120,
+    "avgMs": 16.67,
+    "p50": 16.7,
+    "p95": 16.8,
+    "maxMs": 16.8,
+    "fps": 60,
+    "renderedFrames": 0,
+    "renderCpuAvgMs": null,
+    "renderCpuP95": null,
+    "loopRunning": false,
+    "dpr": 1,
+    "glPixelRatio": 1
+   }
+  },
+  "reduced": {
+   "errors": [],
+   "failed": [],
+   "state": {
+    "cls": "js",
+    "three": false,
+    "canvases": 0,
+    "markFallbackOpacity": "1"
+   }
+  },
+  "nowebgl": {
+   "errors": [],
+   "failed": [],
+   "state": {
+    "cls": "js",
+    "three": false,
+    "canvases": 0,
+    "markFallbackOpacity": "1"
+   }
+  },
+  "nojs": {
+   "errors": [],
+   "failed": []
+  },
+  "video": {
+   "errors": [],
+   "failed": [],
+   "readyAtS": 0.44,
+   "scriptMs": 13320,
+   "rawDurationS": 15,
+   "trimmedLeadS": 0.1,
+   "durationS": 14.92,
+   "bytes": 2884820
+  }
+ }
+}

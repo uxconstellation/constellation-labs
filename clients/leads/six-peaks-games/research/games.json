@@ -1,0 +1,2699 @@
+[
+  {
+    "slug": "warhammer-survivors",
+    "title": "Warhammer Survivors",
+    "url": "https://sixpeaks.games/warhammer-survivors-2/",
+    "oneLiner": "Fast-paced roguelite “survivors” game.",
+    "partner": "Auroch Digital",
+    "publisher": "Auroch Digital",
+    "developer": "Auroch Digital",
+    "gameMode": "Single Player",
+    "genre": "Action | Roguelite | Horde Survival | Bullet Heaven",
+    "platforms": [
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [],
+    "scope": "Warhammer Survivors is a fast-paced roguelite “survivors” game featuring iconic champions from the Warhammer 40,000 and Warhammer: Age of Sigmar universes.\n\nSix Peaks Games is currently supporting Auroch Digital with rigorous QA, working alongside the team to protect stability, gameplay quality and the overall player experience as development progresses.",
+    "servicesProvided": [],
+    "trailerUrl": "",
+    "status": "underway",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-survivors-logo.png",
+      "gallery": []
+    },
+    "statusNote": "Project underway – further details on release",
+    "trailerTitle": "",
+    "platformLinks": [],
+    "publisherLinks": [],
+    "developerLinks": [
+      {
+        "name": "Auroch Digital",
+        "url": "https://www.aurochdigital.com/"
+      }
+    ],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Warhammer 40,000: Boltgun 2",
+        "url": "https://sixpeaks.games/warhammer-40000-boltgun-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/03/auroch.png"
+    ],
+    "testimonials": [],
+    "card": {
+      "title": "Warhammer Survivors",
+      "oneLiner": "Fast-paced roguelite “survivors” game.",
+      "partner": "Auroch Digital",
+      "keyTestingFocus": [
+        "Project underway – further details on release."
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/warhammer-survivors.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/04/warhammer-survivors-mob-1.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/warhammer-survivors/logo.webp",
+      "poster": "assets/web/games/warhammer-survivors/poster.webp",
+      "key": "assets/web/games/warhammer-survivors/key.webp",
+      "shots": []
+    },
+    "notes": []
+  },
+  {
+    "slug": "yooka-replaylee",
+    "title": "Yooka-Replaylee",
+    "url": "https://sixpeaks.games/yooka-replaylee/",
+    "oneLiner": "An enhanced open-world 3D collectathon platformer.",
+    "partner": "Playtonic Friends",
+    "publisher": "Playtonic Friends | PM Studios",
+    "developer": "Playtonic Friends",
+    "gameMode": "Single Player",
+    "genre": "Explorer | 3D Platformer | Collectathon | Puzzle | Arcade",
+    "platforms": [
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Multi-Level Test Coverage",
+      "Gameplay & Progression Validation",
+      "Player Experience"
+    ],
+    "scope": "Yooka-Replaylee is an open-world 3D collectathon platformer that sends Yooka and Laylee on a treasure-hunting adventure packed with new moves, fresh challenges and hidden secrets.\n\nFollowing the success of Cattle Country, Playtonic Friends partnered with Six Peaks Games again to support simultaneous multi-level testing, validating gameplay systems, level content and progression while keeping player experience front of mind.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Controller, Hardware & Device Testing"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Exploratory & Edge Case Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Test Case Review & Refinement",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Error Prevention & Recovery Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep and Support",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Release Readiness & Risk Oversight"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=spXZHz4ZXUY",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-2.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-replaylee-game-image-1.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Yooka-Replaylee | Official Launch Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/2448020/YookaReplaylee/"
+      }
+    ],
+    "publisherLinks": [],
+    "developerLinks": [
+      {
+        "name": "Playtonic Friends",
+        "url": "https://www.playtonicgames.com/"
+      }
+    ],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Cattle Country",
+        "url": "https://sixpeaks.games/cattle-country-2/"
+      },
+      {
+        "name": "Lil’Gator",
+        "url": "https://sixpeaks.games/lilgator/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/playtonic-friends-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Six Peaks have become my first point of call whenever outsourcing needs appear. Their breadth of knowledge and consistently high-quality work ensures that whatever project they’re given is delivered on time and with a level of confidence that’s rare in the space. The team are always eager to dive into any project, and fully immerse themselves within the normal development pipeline. Their responsiveness to adapting conditions and pivots in direction are handled with aplomb, and they’re always willing to go the extra mile to ensure a project is looked after. I can’t recommend working with Six Peaks enough!”",
+        "attribution": "Liam Wales Publishing Producer (Playtonic)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/01/playtonic-friends-logo-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Yooka Re-Playlee",
+      "oneLiner": "An enhanced open-world 3D collectathon platformer.",
+      "partner": "Playtonic Friends",
+      "keyTestingFocus": [
+        "Multi-Level Test Coverage",
+        "Gameplay Systems Validation",
+        "Player Experience"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/yooka-re-playlee.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/yooka-re-playlee-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/yooka-replaylee/logo.webp",
+      "poster": "assets/web/games/yooka-replaylee/poster.webp",
+      "key": "assets/web/games/yooka-replaylee/key.webp",
+      "shots": [
+        "assets/web/games/yooka-replaylee/shot-1.webp",
+        "assets/web/games/yooka-replaylee/shot-2.webp",
+        "assets/web/games/yooka-replaylee/shot-3.webp",
+        "assets/web/games/yooka-replaylee/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "Page Key Testing Focus says \"Gameplay & Progression Validation\"; homepage card says \"Gameplay Systems Validation\"."
+    ]
+  },
+  {
+    "slug": "boltgun-2",
+    "title": "Warhammer 40,000: Boltgun 2",
+    "url": "https://sixpeaks.games/warhammer-40000-boltgun/",
+    "oneLiner": "A brutal, high-intensity retro FPS set in the Warhammer 40,000 universe.",
+    "partner": "Auroch Digital",
+    "publisher": "Big Fan Games | Devolver Digital",
+    "developer": "Auroch Digital",
+    "gameMode": "Single Player",
+    "genre": "Action | Boomer Shooter | Retro/FPS",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [],
+    "scope": "Warhammer 40,000: Boltgun 2 is a brutal, fast-paced retro FPS that continues the original game’s story through a branching single-player campaign in the grimdark Warhammer 40,000 universe.\n\nWhile supporting Auroch Digital on Warhammer Survivors, Six Peaks Games was also brought on to provide QA for Warhammer 40,000: Boltgun 2, working as an extension of the team throughout development.",
+    "servicesProvided": [],
+    "trailerUrl": "",
+    "status": "underway",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-40000-boltgun-2-banner-logo.png",
+      "gallery": []
+    },
+    "statusNote": "Project underway – further details on release.",
+    "trailerTitle": "",
+    "platformLinks": [
+      {
+        "name": "Playstation",
+        "url": "https://store.playstation.com/en-us/concept/10017203"
+      },
+      {
+        "name": "XBOX",
+        "url": "https://www.xbox.com/en-US/games/store/warhammer-40000-boltgun-2/9nstz0d3bp0j"
+      },
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/3115160/Warhammer_40000_Boltgun_2/"
+      }
+    ],
+    "publisherLinks": [],
+    "developerLinks": [
+      {
+        "name": "Auroch Digital",
+        "url": "https://www.aurochdigital.com/"
+      }
+    ],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Warhammer Survivors",
+        "url": "https://sixpeaks.games/warhammer-survivors-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/03/auroch.png"
+    ],
+    "testimonials": [],
+    "card": {
+      "title": "Warhammer 40 000: Boltgun 2",
+      "oneLiner": "A brutal, high-intensity retro FPS set in the Warhammer 40,000 universe.",
+      "partner": "Auroch Digital",
+      "keyTestingFocus": [
+        "Project underway – further details on release."
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-40000-boltgun-2.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/warhammer-40000-boltgun-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/boltgun-2/logo.webp",
+      "poster": "assets/web/games/boltgun-2/poster.webp",
+      "key": "assets/web/games/boltgun-2/key.webp",
+      "shots": []
+    },
+    "notes": [
+      "The homepage also links /warhammer-40000-boltgun-2/ (and the Warhammer Survivors page links there under Other Titles With Partner); that URL returns 404. The working page is /warhammer-40000-boltgun/."
+    ]
+  },
+  {
+    "slug": "god-breakers",
+    "title": "Godbreakers",
+    "url": "https://sixpeaks.games/godbreakers-game-qa-testing/",
+    "oneLiner": "A frenetic co-op action roguelite with fast, chaotic combat.",
+    "partner": "Thunderful",
+    "publisher": "Thunderful",
+    "developer": "To The Sky",
+    "gameMode": "Single Player | 1–4 Player Online Co-op",
+    "genre": "Action | Roguelike | Hack-and-Slash",
+    "platforms": [
+      "Playstation",
+      "Epic",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional"
+    ],
+    "keyTestingFocus": [
+      "Multiplayer",
+      "Network & Crossplay",
+      "Gameplay Balance",
+      "Combat & Systems",
+      "Player Experience",
+      "Full-Title Quality"
+    ],
+    "scope": "Godbreakers is a fast-paced co-op action roguelite where players absorb enemy powers, chain abilities and fight through chaotic runs across shifting worlds, with a strong focus on responsiveness, balance and replayability.\n\nSix Peaks Games partnered with Thunderful to deliver broad functional, network and selective compliance testing across the full title, focusing on multiplayer as well as Epic and Steam crossplay, while also providing feedback on balance, art, first-time user experience, and new weapons and systems.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing",
+          "Online Multiplayer Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "Online Services & Entitlement Testing",
+          "System Messaging & Error Handling",
+          "Legal, UI & Submission Compliance"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing",
+          "Text Display & UI Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Candidate Oversight",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Online, Stability & Performance Testing",
+          "Release Readiness & Risk Oversight",
+          "Post-Release Support"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting",
+          "Playtest Support"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=Toj_5VRgz7c",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/godbreakers-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/god-breakers-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "GODBREAKERS | OFFICIAL REVEAL TRAILER | DEMO OUT NOW!",
+    "platformLinks": [
+      {
+        "name": "Playstation",
+        "url": "https://store.playstation.com/en-us/product/EP5360-PPSA32175_00-0245312423848881"
+      },
+      {
+        "name": "Epic",
+        "url": "https://store.epicgames.com/en-US/p/godbreakers-dbc2e9"
+      },
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/2687400/GODBREAKERS/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Thunderful",
+        "url": "https://thunderfulgames.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/thunderful-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“We’ve enjoyed a great relationship with Six Peaks on the GODBREAKERS project. They were enthusiastic and knowledgeable from day one, working to a reliably high standard. Timezone alignment is a bonus, and English as a first language means nuanced instructions are understood first time.”",
+        "attribution": "Dean Scott, Senior External Producer (Thunderful)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/05/thunderful-white-300x117-1.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "God Breakers",
+      "oneLiner": "A frenetic co-op action roguelite with fast, chaotic combat.",
+      "partner": "Thunderful",
+      "keyTestingFocus": [
+        "Multiplayer Network & Crossplay",
+        "Gameplay Balance Combat & Systems",
+        "Player Experience & Full-Title Quality"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/03/godbreakers-1.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/04/godbreakers-mob-1.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/god-breakers/logo.webp",
+      "poster": "assets/web/games/god-breakers/poster.webp",
+      "key": "assets/web/games/god-breakers/key.webp",
+      "shots": [
+        "assets/web/games/god-breakers/shot-1.webp",
+        "assets/web/games/god-breakers/shot-2.webp",
+        "assets/web/games/god-breakers/shot-3.webp",
+        "assets/web/games/god-breakers/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "The homepage project card links /godbreakers-2/, which returns 404. The working page is /godbreakers-game-qa-testing/ (found via the WordPress REST API).",
+      "Key Testing Focus on the page is pipe-split into 6 tokens; the homepage card groups the same words into 3 lines (see card.keyTestingFocus).",
+      "QA Engagement Model lists only Embedded | Functional (no Compliance), unlike the other 16 pages.",
+      "Get In Touch link points at the staging host dev1.stubblestudios.com.",
+      "Live page repeats an item under \"Functional Loc QA\": Text Display & UI Localization Testing (kept verbatim below; dedupe when rendering)."
+    ]
+  },
+  {
+    "slug": "lost-skies",
+    "title": "Lost Skies",
+    "url": "https://sixpeaks.games/lost-skies-2/",
+    "oneLiner": "A co-op survival adventure across floating islands above the clouds.",
+    "partner": "The Powell Group (Humble Games now Balor Games)",
+    "publisher": "The Powell Group (Humble Games now Balor Games)",
+    "developer": "Bossa Games",
+    "gameMode": "Single Player | 1-6 Player Online Co-Op",
+    "genre": "Action | Adventure | Openworld Co-operative Survival",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Opening Experience",
+      "Multiplayer & Co-op",
+      "Content Coverage & Regression"
+    ],
+    "scope": "Lost Skies is a co-op survival adventure set across floating islands, where players explore ruins, uncover lost technology, craft skyships and face the dangers of a shattered world above the clouds.\n\nSix Peaks Games partnered with Bossa Games and The Powell Group early in development, providing rigorous QA to refine quality, strengthen core mechanics and improve the player experience.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing",
+          "Online Multiplayer Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing",
+          "Text Display & UI Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Test Case Review & Refinement",
+          "Test Suite & Pack Management",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Error Prevention & Recovery Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep and Support",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Online, Stability & Performance Testing",
+          "Release Readiness & Risk Oversight",
+          "Post-Release Support"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting",
+          "Playtest Support"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=8W7hP04qhk4",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Lost Skies: Gameplay Reveal Trailer | Bossa Studios ☁️",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1931180/Lost_Skies/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Humble Games now Balor Games",
+        "url": "https://balorgames.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Wild Blue Skies",
+        "url": "https://sixpeaks.games/wild-blue-skies-2/"
+      },
+      {
+        "name": "Town of Zoz",
+        "url": "https://sixpeaks.games/town-of-zoz-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/powell-group.png",
+      "https://sixpeaks.games/wp-content/uploads/2026/01/humble-games-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Six Peaks Games has proven to be an indispensable partner. Their professional, English-speaking teams are committed to excellence, consistently elevating our projects with their keen attention to detail and dedication. They have far exceeded our expectations in every regard.”",
+        "attribution": "Dani Allum Lead Producer (The Powell Group / Humble)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/powell-white-300x117.png",
+          "https://sixpeaks.games/wp-content/uploads/2026/01/humble-games-logo-300x117.png"
+        ]
+      },
+      {
+        "quote": "“We were lucky enough to get Jason and his Six Peaks team partnered with us by our publisher. It was a great fit from the start. They integrated well into our team and never felt like a separate entity. From start to finish they owned the QA process for us, were both super professional, enthusiastic and also fed back like genuine players of the game. Having them on board made the game better. I will definitely be calling on them again in the future!”",
+        "attribution": "Anthony Kyne, Head of Studio (Bossa Games)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/01/bossa-games-logo-1-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Lost Skies",
+      "oneLiner": "A co-op survival adventure across floating islands above the clouds.",
+      "partner": "The Powell Group (Humble Games now Balor Games)",
+      "keyTestingFocus": [
+        "Opening Experience",
+        "Multiplayer & Co-op",
+        "Content Coverage & Regression"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-1.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/lost-skies-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/lost-skies/logo.webp",
+      "poster": "assets/web/games/lost-skies/poster.webp",
+      "key": "assets/web/games/lost-skies/key.webp",
+      "shots": [
+        "assets/web/games/lost-skies/shot-1.webp",
+        "assets/web/games/lost-skies/shot-2.webp",
+        "assets/web/games/lost-skies/shot-3.webp",
+        "assets/web/games/lost-skies/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "The homepage uses an older, larger logo file (2026/02/lost-skies-logo.png); the game page uses 2026/03/lost-skies-logo.png.",
+      "Live page repeats an item under \"Functional Loc QA\": Text Display & UI Localization Testing (kept verbatim below; dedupe when rendering)."
+    ]
+  },
+  {
+    "slug": "wild-blue-skies",
+    "title": "Wild Blue Skies",
+    "url": "https://sixpeaks.games/wild-blue-skies-2/",
+    "oneLiner": "A modern on-rails flight shooter.",
+    "partner": "The Powell Group (Humble Games now Balor Games)",
+    "publisher": "The Powell Group ( Humble Games now Balor Games)",
+    "developer": "Chuhai Labs",
+    "gameMode": "Single Player",
+    "genre": "Action | Adventure | On-rails Shooter | Arcade",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Core Gameplay Testing",
+      "Stability & Polishe",
+      "Console Compliance & Certification"
+    ],
+    "scope": "Wild Blue Skies is a modern on-rails action adventure inspired by classic ’90s arcade flight shooters, featuring cinematic missions, dogfights and a vibrant anime-style world.\n\nSix Peaks Games worked closely with The Powell Group and Chuhai Labs to deliver functional and compliance QA, helping strengthen core gameplay, surface critical issues early, provide player-centric feedback, and support the title through final console certification preparation.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Certification Testing",
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling",
+          "Legal, UI & Submission Compliance"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Audio, Subtitle & Voice Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing",
+          "Text Display & UI Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Level Serialization Testing",
+          "Test Case Review & Refinement",
+          "Test Suite & Pack Management",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Error Prevention & Recovery Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep & Support",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Release Readiness & Risk Oversight",
+          "Post-Release Support"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=tnaAZSTnOng",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/wild-blue-skies-logo.png",
+      "gallery": []
+    },
+    "statusNote": "",
+    "trailerTitle": "Wild Blue Skies | Extended Gameplay Trailer",
+    "platformLinks": [
+      {
+        "name": "XBOX",
+        "url": "https://www.xbox.com/en-us/games/store/wild-blue-skies/9plvs5p1zsrx"
+      },
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1921490/Wild_Blue_Skies/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Humble Games now Balor Games",
+        "url": "https://balorgames.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Lost Skies",
+        "url": "https://sixpeaks.games/lost-skies-2/"
+      },
+      {
+        "name": "Town of Zoz",
+        "url": "https://sixpeaks.games/town-of-zoz-2/"
+      },
+      {
+        "name": "Grave Dodger",
+        "url": "https://sixpeaks.games/grave-dodgers-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/powell-group.png",
+      "https://sixpeaks.games/wp-content/uploads/2026/01/humble-games-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Six Peaks Games provided exceptional QA support across multiple titles during my time as a Publishing Producer at The Powell Group. They consistently impressed with their professionalism and work ethic. What set them apart was their ability to truly integrate with our development teams – they never felt like an external vendor, but rather like an extension of our own staff. They’re excellent at matching the right people to each project, which made all the difference in quality and efficiency. I’d highly recommend them to any studio looking for a reliable, high-quality QA partnership.”",
+        "attribution": "Dani Allum Lead Producer (The Powell Group / Humble Games)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/powell-white-300x117.png",
+          "https://sixpeaks.games/wp-content/uploads/2026/01/humble-games-logo-300x117.png"
+        ]
+      },
+      {
+        "quote": "“The entire QA team at Six Peaks quickly became an invaluable extension of the Wild Blue Skies development team, and it’s hard to imagine the project’s success without their involvement. From thorough bug reporting and reliable regression testing to thoughtful, player-focused gameplay feedback, their contributions consistently exceeded expectations. Six Peaks set a new benchmark for what we look for in a quality assurance partner, and we would gladly work with them again. ”",
+        "attribution": "Zach Aikman, Technical Director (Chuhai Labs)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/chuchai-white-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Wild Blue Skies",
+      "oneLiner": "A modern on-rails flight shooter.",
+      "partner": "The Powell Group (Humble Games now Balor Games)",
+      "keyTestingFocus": [
+        "Core Gameplay Testing",
+        "Stability & Polish",
+        "Console Compliance & Certification"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/02/wild-blue-skies.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/04/wild-blue-skies-mob-1.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/wild-blue-skies/logo.webp",
+      "poster": "assets/web/games/wild-blue-skies/poster.webp",
+      "key": "assets/web/games/wild-blue-skies/key.webp",
+      "shots": []
+    },
+    "notes": [
+      "No gallery on the live page. Key Testing Focus reads \"Stability & Polishe\" on the page (card reads \"Stability & Polish\").",
+      "Live page repeats an item under \"Functional Loc QA\": Text Display & UI Localization Testing (kept verbatim below; dedupe when rendering)."
+    ]
+  },
+  {
+    "slug": "lil-gator",
+    "title": "Lil Gator Game: In the Dark",
+    "url": "https://sixpeaks.games/lilgator/",
+    "oneLiner": "A playful open-world adventure starring the adorable Lil Gator.",
+    "partner": "Playtonic Friends",
+    "publisher": "Playtonic Friends",
+    "developer": "MegaWobble",
+    "gameMode": "Single Player",
+    "genre": "Wholesome Adventure | Exploration | Cozy",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Nintendo Switch",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Critical Path & Stability",
+      "Gameplay Systems & Quest Coverage",
+      "DLC Mechanics & Console Certification"
+    ],
+    "scope": "Lil Gator Game: In the Dark is a wholesome adventure built around playful exploration, climbing and questing in a charming open world.\n\nSix Peaks Games worked closely with the team to deliver functional and compliance QA across the DLC and Gator of the Year Edition, creating and expanding test coverage, carrying out structured, exploratory and stress testing, extensively testing New Game Plus, and supporting console certification across the different platforms.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Certification Testing",
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling",
+          "Legal, UI & Submission Compliance"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing",
+          "Text Display & UI Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Level Serialization Testing",
+          "Test Case Review & Refinement",
+          "Test Suite & Pack Management",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Error Prevention & Recovery Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep and Support",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Release Readiness & Risk Oversight",
+          "Post-Release Support"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=MCLLwnmiIsw",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-banner-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Lil Gator Game: In the Dark | Launch Trailer",
+    "platformLinks": [
+      {
+        "name": "Playstation",
+        "url": "https://store.playstation.com/en-us/product/UP1057-PPSA17454_00-0803400151216654"
+      },
+      {
+        "name": "XBOX",
+        "url": "https://www.xbox.com/en-us/games/store/lil-gator-game-in-the-dark/9n0rpmb7x17f"
+      },
+      {
+        "name": "Nintendo Switch",
+        "url": "https://www.nintendo.com/en-za/Games/Nintendo-Switch-games/Lil-Gator-Game-Gator-of-the-Year-Edition-3001769.html"
+      },
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/3205060/Lil_Gator_Game_In_the_Dark/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Playtonic Friends",
+        "url": "https://www.playtonicgames.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Yooka-Replaylee",
+        "url": "https://sixpeaks.games/yooka-replaylee/"
+      },
+      {
+        "name": "Cattle Country",
+        "url": "https://sixpeaks.games/cattle-country-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/playtonic-friends-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Six Peaks have become my first point of call whenever outsourcing needs appear. Their breadth of knowledge and consistently high-quality work ensures that whatever project they’re given is delivered on time and with a level of confidence that’s rare in the space. The team are always eager to dive into any project, and fully immerse themselves within the normal development pipeline. Their responsiveness to adapting conditions and pivots in direction are handled with aplomb, and they’re always willing to go the extra mile to ensure a project is looked after. I can’t recommend working with Six Peaks enough!”",
+        "attribution": "Liam Wales Publishing Producer (Playtonic)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/01/playtonic-friends-logo-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Lil’Gator Game: In the Dark",
+      "oneLiner": "A playful open-world adventure starring the adorable Lil Gator.",
+      "partner": "Playtonic Friends",
+      "keyTestingFocus": [
+        "Critical Path & Stability",
+        "Gameplay Systems & Quest Coverage",
+        "DLC Mechanics & Console Certification"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/lil-gator-game.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/lil-gator-game-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/lil-gator/logo.webp",
+      "poster": "assets/web/games/lil-gator/poster.webp",
+      "key": "assets/web/games/lil-gator/key.webp",
+      "shots": [
+        "assets/web/games/lil-gator/shot-1.webp",
+        "assets/web/games/lil-gator/shot-2.webp",
+        "assets/web/games/lil-gator/shot-3.webp",
+        "assets/web/games/lil-gator/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "Live page repeats an item under \"Functional Loc QA\": Text Display & UI Localization Testing (kept verbatim below; dedupe when rendering)."
+    ]
+  },
+  {
+    "slug": "town-of-zoz",
+    "title": "Town of Zoz",
+    "url": "https://sixpeaks.games/town-of-zoz-2/",
+    "oneLiner": "A heartfelt action RPG of combat, cooking and village life.",
+    "partner": "The Powell Group & Balor Games",
+    "publisher": "The Powell Group & Balor Games (were Humble Games)",
+    "developer": "Studio Pixanoh",
+    "gameMode": "Single Player",
+    "genre": "Action | Adventure | RPG | Cooking | Farm-lite",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Gameplay Systems & Progression",
+      "System Integration & Reliability",
+      "Platform Compliance & Certification"
+    ],
+    "scope": "Town of Zoz is a narrative-driven action RPG blending combat, cooking and light farming in a vibrant fantasy world. Players follow Ito, a shaman chef returning home to help restore his town.\n\nFollowing successful work on Wild Blue Skies and Lost Skies, The Powell Group again partnered with Six Peaks Games for QA support on Town of Zoz, with Six Peaks working closely with the studio as well as Balor Games to provide embedded support and actionable feedback throughout development.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Certification Testing",
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling",
+          "Legal, UI & Submission Compliance"
+        ]
+      },
+      {
+        "category": "Functional Localization QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Audio, Subtitle & Voice Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Test Case Review & Refinement",
+          "Test Suite & Pack Management",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Error Prevention & Recovery Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep and Support",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Release Readiness & Risk Oversight"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=gwgvylr7s9w",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/town-of-zoz-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/05/town-of-zoz-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Town of Zoz - Official Gameplay Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1748110/Town_of_Zoz/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "The Powell Group",
+        "url": "https://powellgroupconsulting.com/"
+      },
+      {
+        "name": "Balor Games",
+        "url": "https://balorgames.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Lost Skies",
+        "url": "https://sixpeaks.games/lost-skies-2/"
+      },
+      {
+        "name": "Wild Blue Skies",
+        "url": "https://sixpeaks.games/wild-blue-skies-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/powell-group.png",
+      "https://sixpeaks.games/wp-content/uploads/2026/03/balor-games-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Six Peaks Games provided exceptional QA support across multiple titles during my time as a Publishing Producer at The Powell Group. They consistently impressed with their professionalism and work ethic. What set them apart was their ability to truly integrate with our development teams – they never felt like an external vendor, but rather like an extension of our own staff. They’re excellent at matching the right people to each project, which made all the difference in quality and efficiency. I’d highly recommend them to any studio looking for a reliable, high-quality QA partnership.”",
+        "attribution": "Dani Allum-Lead Producer (The Powell Group / Humble)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/powell-white-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Town of Zoz",
+      "oneLiner": "A heartfelt action RPG of combat, cooking and village life.",
+      "partner": "The Powell Group & Balor Games",
+      "keyTestingFocus": [
+        "Gameplay Systems & Progression",
+        "System Integration & Reliability",
+        "Platform Compliance & Certification"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/town-of-zoz.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/town-of-zoz-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/town-of-zoz/logo.webp",
+      "poster": "assets/web/games/town-of-zoz/poster.webp",
+      "key": "assets/web/games/town-of-zoz/key.webp",
+      "shots": [
+        "assets/web/games/town-of-zoz/shot-1.webp",
+        "assets/web/games/town-of-zoz/shot-2.webp",
+        "assets/web/games/town-of-zoz/shot-3.webp",
+        "assets/web/games/town-of-zoz/shot-4.webp"
+      ]
+    },
+    "notes": []
+  },
+  {
+    "slug": "witchs-bakery",
+    "title": "The Witch’s Bakery",
+    "url": "https://sixpeaks.games/the-witchs-bakery-2/",
+    "oneLiner": "A cozy adventure RPG set in a magical modern Paris.",
+    "partner": "Silver Lining Interactive",
+    "publisher": "Silver Lining Interactive",
+    "developer": "Sunny Lab",
+    "gameMode": "Single Player",
+    "genre": "Cozy | RPG | Adventure | Life Sim",
+    "platforms": [
+      "Nintendo Switch",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [],
+    "scope": "The Witch’s Bakery is a cozy adventure RPG set in a magical modern Paris, blending bakery management, exploration and relationship-building.\n\nFollowing Service with a Shotgun, Silver Lining Interactive partnered again with Six Peaks Games for QA support on The Witch’s Bakery, with Six Peaks providing embedded support and actionable feedback throughout the project.",
+    "servicesProvided": [],
+    "trailerUrl": "",
+    "status": "underway",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/the-withs-bakery-logo.png",
+      "gallery": []
+    },
+    "statusNote": "Project underway – further details on release",
+    "trailerTitle": "",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/2967950/The_Witchs_Bakery/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Silver Lining Interactive",
+        "url": "https://silverliningint.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Service with a Shotgun",
+        "url": "https://sixpeaks.games/service-with-a-shotgun-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/silver-lining-logo.png"
+    ],
+    "testimonials": [],
+    "card": {
+      "title": "The Witch’s Bakery",
+      "oneLiner": "A cozy adventure RPG set in a magical modern Paris.",
+      "partner": "Silver Lining Interactive",
+      "keyTestingFocus": [
+        "Project underway – further details on release"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/02/the-witchs-bakery.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/the-witchs-bakery-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/witchs-bakery/logo.webp",
+      "poster": "assets/web/games/witchs-bakery/poster.webp",
+      "key": "assets/web/games/witchs-bakery/key.webp",
+      "shots": []
+    },
+    "notes": []
+  },
+  {
+    "slug": "suzerain",
+    "title": "Suzerain",
+    "url": "https://sixpeaks.games/suzerain-2/",
+    "oneLiner": "A political narrative expansion centred on high-stakes decisions and branching storylines.",
+    "partner": "Torpor Games",
+    "publisher": "Torpor Games",
+    "developer": "Torpor Games",
+    "gameMode": "Single Player",
+    "genre": "Political Narrative RPG | Political Sim | Strategy",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Nintendo Switch",
+      "Steam (DLC)",
+      "Steam",
+      "iOS",
+      "Android"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Branching Narrative & Decision Testing",
+      "Console Functionality & Gamepad Accessibility",
+      "Exploratory Testing & Player Issue Investigation"
+    ],
+    "scope": "Suzerain and its Kingdom of Rizia expansion are political narrative experiences built around high-stakes choices, strategic rule and consequence-driven storytelling.\n\nSix Peaks Games worked closely with Torpor Games to provide functional QA support across the base game and expansion, covering narrative paths, core systems and platform-specific functionality through focused test planning, exploratory testing and player issue investigation, with particular attention to console coverage, gamepad accessibility and stability across all tested platforms.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing",
+          "Text Display & UI Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Test Case Review & Refinement",
+          "Test Suite & Pack Management",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep and Support",
+        "items": [
+          "Fix Verification & Regression Testing"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=ehi9GUV9sro",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Suzerain: Kingdom of Rizia | Official Xbox Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam (DLC)",
+        "url": "https://store.steampowered.com/app/1207650/Suzerain/"
+      },
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1207650/Suzerain/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Torpor Games",
+        "url": "https://www.torporgames.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/torpor-games-logo.png"
+    ],
+    "testimonials": [],
+    "card": {
+      "title": "Suzerain",
+      "oneLiner": "A political narrative expansion centred on high-stakes decisions and branching storylines.",
+      "partner": "Torpor Games",
+      "keyTestingFocus": [
+        "Branching Narrative & Decision Testing",
+        "Console Functionality & Gamepad Accessibility",
+        "Exploratory Testing & Player Issue Investigation"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-1.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/suzerain-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/suzerain/logo.webp",
+      "poster": "assets/web/games/suzerain/poster.webp",
+      "key": "assets/web/games/suzerain/key.webp",
+      "shots": [
+        "assets/web/games/suzerain/shot-1.webp",
+        "assets/web/games/suzerain/shot-2.webp",
+        "assets/web/games/suzerain/shot-3.webp",
+        "assets/web/games/suzerain/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "Platforms include iOS and Android plus \"Steam (DLC)\".",
+      "Live page repeats an item under \"Functional Loc QA\": Text Display & UI Localization Testing (kept verbatim below; dedupe when rendering)."
+    ]
+  },
+  {
+    "slug": "king-of-tokyo",
+    "title": "King of Tokyo",
+    "url": "https://sixpeaks.games/king-of-tokyo/",
+    "oneLiner": "Fast-paced monster-brawling board game set in Tokyo.",
+    "partner": "Microids",
+    "publisher": "Microids",
+    "developer": "Breakfirst",
+    "gameMode": "Single Player | Local Multiplayer",
+    "genre": "Board Game | Card Battler | 3D Strategy",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Nintendo Switch",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [],
+    "scope": "King of Tokyo is a fast-paced board game where giant monsters battle for control of Tokyo, using dice-driven actions to attack rivals, gain energy and race for victory.\n\nMicroids partnered with Six Peaks Games on King of Tokyo, with Six Peaks working closely with the team to provide embedded QA support and clear, actionable feedback throughout the project.",
+    "servicesProvided": [],
+    "trailerUrl": "",
+    "status": "underway",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/king-of-tokyo-banner-logo.png",
+      "gallery": []
+    },
+    "statusNote": "Project underway – further details on release",
+    "trailerTitle": "",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/3232870/King_of_Tokyo__Richard_Garfield/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Microids",
+        "url": "https://www.microids.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/03/microids.png"
+    ],
+    "testimonials": [],
+    "card": {
+      "title": "King Of Tokyo",
+      "oneLiner": "Fast-paced monster-brawling board game set in Tokyo.",
+      "partner": "Microids",
+      "keyTestingFocus": [
+        "Project underway – further details on release"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/03/king-of-tokyo.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/king-of-tokyo-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/king-of-tokyo/logo.webp",
+      "poster": "assets/web/games/king-of-tokyo/poster.webp",
+      "key": "assets/web/games/king-of-tokyo/key.webp",
+      "shots": []
+    },
+    "notes": []
+  },
+  {
+    "slug": "cattle-country",
+    "title": "Cattle Country",
+    "url": "https://sixpeaks.games/cattle-country-2/",
+    "oneLiner": "Cozy cowboy adventure life simulation.",
+    "partner": "Playtonic Friends",
+    "publisher": "Playtonic Friends",
+    "developer": "Castle Pixel",
+    "gameMode": "Single Player",
+    "genre": "Cozy | Wild West | Adventure | Life Sim",
+    "platforms": [
+      "Playstation",
+      "XBOX",
+      "Nintendo Switch",
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Gameplay System Validation",
+      "Player Experience",
+      "Platform Compliance & Stability"
+    ],
+    "scope": "Cattle Country is a cozy cowboy adventure life simulation that blends wholesome frontier living with light adventure mechanics.\n\nSix Peaks Games partnered with Playtonic Friends and Castle Pixel to provide dedicated QA support throughout development, helping to safeguard gameplay stability, platform compliance and overall player experience as the title progressed toward release.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Console Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling",
+          "Legal, UI & Submission Compliance"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Test Case Review & Refinement",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Candidate Oversight",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Release Readiness & Risk Oversight",
+          "Post-Release Support"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=qttnZq5qOb4",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-5.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/cattle-country-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Cattle Country | Launch Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/2818150/Cattle_Country/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Playtonic Friends",
+        "url": "https://www.playtonicgames.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Yooka-Replaylee",
+        "url": "https://dev1.stubblestudios.com/yooka-replaylee/"
+      },
+      {
+        "name": "Lil’Gator",
+        "url": "https://dev1.stubblestudios.com/lilgator/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/playtonic-friends-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Working with Six Peaks has been a fantastic experience! The QA quality has been consistently high, and the team has been incredibly responsive and adaptable to all our development needs. Responsiveness and enthusiasm has encapsulated the Six Peaks experience from first contact to final delivery. I highly recommend them as an outsourcing partner for your titles!”",
+        "attribution": "Liam Wales Publishing Producer (Playtonic)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/05/playtonic-friends-logo-300x117-1.png"
+        ]
+      },
+      {
+        "quote": "“Working with Six Peaks was a great experience. They were an excellent QA partner throughout the development of Cattle Country, consistently delivering clear, thoughtful, and actionable feedback. Bug reports were well-written, easy to reproduce, and saved our team a lot of time.\n\nJust as important, communication was smooth and reliable on both sides. They were quick to respond to requests and always open to discussion when questions came up. That back and forth made a real difference and helped the game improve over the course of the project.\n\nCattle Country is a better game because of Six Peaks, and we would happily work with them again.”",
+        "attribution": "Rob Maher, Developer (Castle Pixel)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/05/castle-pixel-logo-300x125-1.jpg"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Cattle Country",
+      "oneLiner": "Cozy cowboy adventure life simulation.",
+      "partner": "Playtonic Friends",
+      "keyTestingFocus": [
+        "Gameplay Systems Validation",
+        "Player Experience",
+        "Platform Compliance & Stability"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/cattle-country.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/04/cattle-country-mob-1.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/cattle-country/logo.webp",
+      "poster": "assets/web/games/cattle-country/poster.webp",
+      "key": "assets/web/games/cattle-country/key.webp",
+      "shots": [
+        "assets/web/games/cattle-country/shot-1.webp",
+        "assets/web/games/cattle-country/shot-2.webp",
+        "assets/web/games/cattle-country/shot-3.webp",
+        "assets/web/games/cattle-country/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "Other Titles With Partner links and Get In Touch point at the staging host dev1.stubblestudios.com.",
+      "Gallery uses game images 1, 5, 4, 2 (no image 3 on the page)."
+    ]
+  },
+  {
+    "slug": "whimel-academy",
+    "title": "Whimel Academy",
+    "url": "https://sixpeaks.games/whimel-academy-2/",
+    "oneLiner": "A cozy magic school sim about student life and shaping your future.",
+    "partner": "Impossible Home",
+    "publisher": "Impossible Home",
+    "developer": "Impossible Home",
+    "gameMode": "Single Player Indie | Simulation | Visual Novel | Life Sim",
+    "genre": "2D Life Sim | Cozy | Time Management | Dating Sim",
+    "platforms": [
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Community Bug Investigation",
+      "Save & Build Compatibility",
+      "Ending & Asset Combination Coverage"
+    ],
+    "scope": "Whimel Academy is a cozy magic school sim where players balance studying, jobs, friendships and romance, with 30+ endings and many possible paths.\n\nSix Peaks Games supported Impossible Home with focused functional QA, investigating community-reported issues, validating build changes, and testing progression across endings, save states and asset combinations, while also providing player-focused feedback",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing",
+          "Text Display & UI Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep and Support",
+        "items": [
+          "Fix Verification & Regression Testing",
+          "Post-Release Support"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=f1BAo2KQ_oA",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Whimel Academy Out Now",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/2377250/Whimel_Academy/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Impossible Home",
+        "url": "https://www.impossiblehome.games/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/impossible-dream-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“I’ve had a great time working with Six Peaks. Communication with them had been smooth and responsive from the start, the pricing was fair and transparent, and the QA service by the team was very professional. On every step, Six Peaks was easy to work with and happy to customize the process for my need. I couldn’t be happier with them.”",
+        "attribution": "Brinley Zhao, Founder (Impossible Home)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/impossible-white-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Whimel Academy",
+      "oneLiner": "A cozy magic school sim about student life and shaping your future.",
+      "partner": "Impossible Home",
+      "keyTestingFocus": [
+        "Community Bug Investigation",
+        "Save & Build Compatibility",
+        "Ending & Asset Combination Coverage"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/whimel-academy.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/whimel-academy-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/whimel-academy/logo.webp",
+      "poster": "assets/web/games/whimel-academy/poster.webp",
+      "key": "assets/web/games/whimel-academy/key.webp",
+      "shots": [
+        "assets/web/games/whimel-academy/shot-1.webp",
+        "assets/web/games/whimel-academy/shot-2.webp",
+        "assets/web/games/whimel-academy/shot-3.webp",
+        "assets/web/games/whimel-academy/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "Game Mode field reads \"Single Player Indie | Simulation | Visual Novel | Life Sim\" on the live page (genre-like words in the mode slot).",
+      "Live page repeats an item under \"Functional Loc QA\": Text Display & UI Localization Testing (kept verbatim below; dedupe when rendering)."
+    ]
+  },
+  {
+    "slug": "outrage-fight-fest",
+    "title": "OutRage: Fight Fest",
+    "url": "https://sixpeaks.games/outrage-fightfest/",
+    "oneLiner": "A multiplayer party brawler with physics-driven 16-player mayhem.",
+    "partner": "Hardball",
+    "publisher": "Silver Lining Interactive",
+    "developer": "Hardball",
+    "gameMode": "Multiplayer",
+    "genre": "3D Action | Multiplayer | Beat ’em Up | Party Brawler",
+    "platforms": [
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Multiplayer Sync & Stability",
+      "Gameplay Fluidity & Combat Feel",
+      "Embedded QA Integration"
+    ],
+    "scope": "OutRage: Fight Fest is a fast-paced multiplayer party brawler built around chaotic physics, outrageous weapons and large-scale online combat for up to 16 players.\n\nHardball Games enlisted Six Peaks’ expertise to build and lead a team that functioned as an integrated QA department embedded directly into the development process of OutRage: Fight Fest. Beyond day-to-day testing, the team actively influenced gameplay refinements, helping to fine-tune character balance, hitbox accuracy, and combat pacing, and took on full QA leadership following the departure of Hardball’s QA Manager.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing",
+          "Local Multiplayer Testing",
+          "Online Multiplayer Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "Online Services & Entitlement Testing",
+          "System Messaging & Error Handling"
+        ]
+      },
+      {
+        "category": "Functional Loc QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing",
+          "Text Display & UI Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Build & Environment Setup",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Test Case Management",
+        "items": [
+          "Test Plan Delivery",
+          "Test Plan Execution",
+          "Test Case Review & Refinement",
+          "Test Suite & Pack Management",
+          "Coverage & Traceability",
+          "Test Case Maintenance"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Candidate Oversight",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Online, Stability & Performance Testing",
+          "Release Readiness & Risk Oversight"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting",
+          "Playtest Support"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=3f8x4BwqAww",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/04/outrage-logo-26.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/outrage-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "OutRage: Fight Fest - Launch Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/2307870/OutRage_Fight_Fest/"
+      }
+    ],
+    "publisherLinks": [],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "The Witch’s Bakery",
+        "url": "https://sixpeaks.games/the-witchs-bakery-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/hardball-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Working with Six Peaks is just like adding more members to your internal team. They integrated seamlessly with us at Hardball and were consistently excellent in every discipline.”",
+        "attribution": "Jason Avent, CEO (Hardball Games)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/hardball-white-300x117.png"
+        ]
+      },
+      {
+        "quote": "“Six Peaks showed a degree of technical expertise that is hard to find in external QA vendors.\n\nThey quickly became a core part of the QA operations, which would not have been possible had their team not had a level of expertise in how QA functions within games development overall. As such, they could be relied on not just to hunt out bugs, but critically also be arbiters of game quality, healthy development processes, integration with production, and build and release management.”",
+        "attribution": "Dylan Harfoot, QA Manager (Hardball Games)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/hardball-white-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "OutRage: Fight Fest",
+      "oneLiner": "A multiplayer party brawler with physics-driven 16-player mayhem.",
+      "partner": "Hardball",
+      "keyTestingFocus": [
+        "Multiplayer Sync & Stability",
+        "Gameplay Fluidity & Combat Feel",
+        "Embedded QA Integration"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/outrage-fight-fest.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/04/outrage-fight-fest-mob-1.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/outrage-fight-fest/logo.webp",
+      "poster": "assets/web/games/outrage-fight-fest/poster.webp",
+      "key": "assets/web/games/outrage-fight-fest/key.webp",
+      "shots": [
+        "assets/web/games/outrage-fight-fest/shot-1.webp",
+        "assets/web/games/outrage-fight-fest/shot-2.webp",
+        "assets/web/games/outrage-fight-fest/shot-3.webp",
+        "assets/web/games/outrage-fight-fest/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "The homepage uses 2026/03/outrage-logo.png; the game page uses 2026/04/outrage-logo-26.png.",
+      "Publisher is Silver Lining Interactive; partner/developer is Hardball.",
+      "Live page repeats an item under \"Functional Loc QA\": Text Display & UI Localization Testing (kept verbatim below; dedupe when rendering)."
+    ]
+  },
+  {
+    "slug": "service-with-a-shotgun",
+    "title": "Service with a Shotgun",
+    "url": "https://sixpeaks.games/service-with-a-shotgun-2/",
+    "oneLiner": "A mash up of visual novel storytelling and chaotic wave game shooting.",
+    "partner": "Silver Lining Interactive",
+    "publisher": "Silver Lining Interactive",
+    "developer": "Nolyn Vansyckle",
+    "gameMode": "Single Player",
+    "genre": "Action | Arcade Wave-Based Shooter",
+    "platforms": [
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Demo Launch Readiness",
+      "Steam Deck Compatibility",
+      "Full-Game Progression & Gold Master Support"
+    ],
+    "scope": "Service with a Shotgun is a fast-paced action game where players battle fires, enemies and environmental hazards across a chaotic solo adventure. Its varied gameplay demands strong stability, progression flow and performance across PC and Steam Deck.\n\nSix Peaks Games provided focused functional QA support across the project, helping prepare the demo for launch, support Steam Deck Verified goals and strengthen the game ahead of Gold Master release. Scope included bug reporting and verification, chapter-based coverage, full completion playthroughs, Steam Achievement validation and broader gameplay feedback.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Performance Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "UI & Interaction Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Prep & Support",
+        "items": [
+          "Final Build & Submission Validation",
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing",
+          "Release Readiness & Risk Oversight"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=8feNtE7ODAA",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-4.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-game-image-2.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "Service With A Shotgun | Release Date Announcement Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/3777020/Service_with_a_Shotgun/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Silver Lining Interactive",
+        "url": "https://silverliningint.com/"
+      }
+    ],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [
+      {
+        "name": "The Witch’s Bakery",
+        "url": "https://sixpeaks.games/the-witchs-bakery-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/silver-lining-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“The team at Six Peak provided excellent QA services for our recent title Service with a Shotgun. Their team was professional, thorough, and highly knowledgeable. They found critical bugs we would have missed, which significantly improved the final product’s quality.\n\nWorking with them was a seamless experience. They communicated clearly and delivered detailed reports on time. We highly recommend Six Peak Games to any studio looking for reliable and high-quality QA support.”",
+        "attribution": "Daniel Fraser, Producer (Silver Lining interactive)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/01/silver-lining-logo-300x117.png"
+        ]
+      },
+      {
+        "quote": "“Six Peaks Games was my first experience working with QA, and I couldn’t have asked for a better first. Kind and professional, without holding back any punches when needed.\n\nSix Peak Games was signed on to work on my game on the tail end of May and I have kept in contact with them since. A very kind and talented group of people with plenty of A-Players on their team. Plenty of design flaws were course-corrected from their suggestions as well as minor and major bugs within the game. Again, I can’t sing their praises enough nor could I have asked for a better QA team for my first.”",
+        "attribution": "Nolyn Vansyckle, Game Creator and Developer",
+        "logos": []
+      }
+    ],
+    "card": {
+      "title": "Service with a Shotgun",
+      "oneLiner": "A mash up of visual novel storytelling and chaotic wave game shooting.",
+      "partner": "Silver Lining Interactive",
+      "keyTestingFocus": [
+        "Demo Launch Readiness",
+        "Steam Deck Compatibility",
+        "Full-Game Progression & Gold Master Support"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/02/service-with-a-shotgun.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/service-with-a-shotgun-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/service-with-a-shotgun/logo.webp",
+      "poster": "assets/web/games/service-with-a-shotgun/poster.webp",
+      "key": "assets/web/games/service-with-a-shotgun/key.webp",
+      "shots": [
+        "assets/web/games/service-with-a-shotgun/shot-1.webp",
+        "assets/web/games/service-with-a-shotgun/shot-2.webp",
+        "assets/web/games/service-with-a-shotgun/shot-3.webp",
+        "assets/web/games/service-with-a-shotgun/shot-4.webp"
+      ]
+    },
+    "notes": []
+  },
+  {
+    "slug": "grave-dodgers",
+    "title": "Grave Dodgers",
+    "url": "https://sixpeaks.games/grave-dodgers-2/",
+    "oneLiner": "A 2D pixel-art dodgeball brawler for 2–4 players.",
+    "partner": "Chuhai Labs",
+    "publisher": "Chuhai Labs",
+    "developer": "Chuhai Labs",
+    "gameMode": "2 – 4 Player Local Multiplayer",
+    "genre": "Action | 2D Fighter | Dodgeball Party Brawler | Pixel Graphics",
+    "platforms": [
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Multiplayer Stability",
+      "Soak Testing",
+      "Performance & Gameplay Flow"
+    ],
+    "scope": "Grave Dodgers is a chaotic 2D pixel-art dodgeball brawler for 2–4 players, where friends throw, dodge and parry their way through a silly version of hell.\n\nFollowing Six Peaks Games’ work on Wild Blue through publisher Silver Lining Interactive, developer Chuhai Labs chose to partner with the team directly on its self-published title Grave Dodgers. The engagement focused on multiplayer stability, soak testing, performance coverage and player-focused feedback ahead of release.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Local Multiplayer Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Candidate Oversight",
+        "items": [
+          "Fix Verification & Regression Testing"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=eqxzv9NWBec",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/grave-dodgers-logo.png",
+      "gallery": []
+    },
+    "statusNote": "",
+    "trailerTitle": "Grave Dodgers Announcement Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/2928110/Grave_Dodgers/"
+      }
+    ],
+    "publisherLinks": [
+      {
+        "name": "Chuhai Labs",
+        "url": "https://chuhailabs.com/"
+      }
+    ],
+    "developerLinks": [
+      {
+        "name": "Chuhai Labs",
+        "url": "https://chuhailabs.com/"
+      }
+    ],
+    "otherTitlesWithPartner": [
+      {
+        "name": "Wild Blue",
+        "url": "https://sixpeaks.games/wild-blue-skies-2/"
+      }
+    ],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/chuhai-labs-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "The Six Peaks team were efficient and a joy to work with on Grave Dodgers! After their amazing work on Wild Blue Skies, we knew they were who we needed for our next title! Through excellent bug reporting, feedback, and great communication, they exceeded our expectations at every turn. We would love to work with them again!",
+        "attribution": "Kinsey Burke, Producer (Chuhai Labs)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/chuchai-white-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "Grave Dodgers",
+      "oneLiner": "A 2D pixel-art dodgeball brawler for 2–4 players.",
+      "partner": "Chuhai Labs",
+      "keyTestingFocus": [
+        "Multiplayer Stability",
+        "Soak Testing",
+        "Performance & Gameplay Flow"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/01/grave-dodgers.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/03/grave-dodgers-mob.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/grave-dodgers/logo.webp",
+      "poster": "assets/web/games/grave-dodgers/poster.webp",
+      "key": "assets/web/games/grave-dodgers/key.webp",
+      "shots": []
+    },
+    "notes": [
+      "No gallery on the live page. Scope says the earlier Wild Blue work was \"through publisher Silver Lining Interactive\", but the Wild Blue Skies page names The Powell Group as publisher."
+    ]
+  },
+  {
+    "slug": "its-only-money",
+    "title": "It’s Only Money",
+    "url": "https://sixpeaks.games/its-only-money-2/",
+    "oneLiner": "A chaotic open-world co-op sandbox of disruption and mayhem.",
+    "partner": "Firestoke",
+    "publisher": "Firestoke",
+    "developer": "Unusual Suspects Studios",
+    "gameMode": "Single Player | Co-op | Online Co-Op | Multiplayer",
+    "genre": "Action | RPG | Crime Sim | Openworld",
+    "platforms": [
+      "Steam"
+    ],
+    "engagementModel": [
+      "Embedded",
+      "Functional",
+      "Compliance"
+    ],
+    "keyTestingFocus": [
+      "Open-World Systems & Gameplay Testing",
+      "Co-op & Multiplayer Testing",
+      "Progression",
+      "Stability & Player Flow Testing"
+    ],
+    "scope": "It’s Only Money is a chaotic open-world co-op sandbox where players fight, steal and scheme their way through Rockhaven in a bid to take back the city.\n\nSix Peaks Games worked closely with Firestoke and Usual Suspects Studios to provide dedicated QA support across the project, helping test and refine gameplay systems, troubleshoot issues and support overall polish ahead of launch. Our focus was on helping ensure the experience felt stable, engaging and consistent across the game’s open-world sandbox.",
+    "servicesProvided": [
+      {
+        "category": "Functional QA",
+        "items": [
+          "Core Feature Testing",
+          "Player Flow & Progression Testing",
+          "UI & Interaction Testing",
+          "Build Verification & Change Validation",
+          "Configuration & Coverage Testing",
+          "Exploratory & Edge Case Testing",
+          "Online Multiplayer Testing"
+        ]
+      },
+      {
+        "category": "Compliance QA",
+        "items": [
+          "Account, Save & System State Testing",
+          "Controller, Hardware & Device Testing",
+          "System Messaging & Error Handling"
+        ]
+      },
+      {
+        "category": "Functional Localization QA",
+        "items": [
+          "Text Display & UI Localization Testing",
+          "Layout, Formatting & Language Presentation Testing",
+          "Gameplay-Critical Localization Testing",
+          "Audio, Subtitle & Voice Localization Testing",
+          "Localization Change Validation",
+          "Exploratory & Edge Case Localization Testing"
+        ]
+      },
+      {
+        "category": "Bug Reporting & Environment Management",
+        "items": [
+          "Issue Reproduction & Verification",
+          "Defect Tracking & Triage Support",
+          "Reporting & QA Communication",
+          "Environment Troubleshooting & Test Support"
+        ]
+      },
+      {
+        "category": "Usability Testing",
+        "items": [
+          "Onboarding & First-Use Testing",
+          "Navigation & Player Flow Testing",
+          "Task Completion & Ease-of-Use Testing",
+          "Accessibility & Clarity Testing",
+          "Error Prevention & Recovery Testing",
+          "Consistency & Cognitive Load Testing",
+          "Friction Point & Satisfaction Testing",
+          "Exploratory Usability Testing"
+        ]
+      },
+      {
+        "category": "Release Candidate Oversight",
+        "items": [
+          "Launch Flow & Critical Path Testing",
+          "Fix Verification & Regression Testing",
+          "Platform, Patch & Configuration Testing"
+        ]
+      },
+      {
+        "category": "Additional Support",
+        "items": [
+          "Ad Hoc Support",
+          "Process Improvement",
+          "Feedback Reporting"
+        ]
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=fO4Uf93Sgbs",
+    "status": "released",
+    "images": {
+      "logo": "https://sixpeaks.games/wp-content/uploads/2026/03/its-only-money-logo.png",
+      "gallery": [
+        "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-1.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-2.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-3.jpg",
+        "https://sixpeaks.games/wp-content/uploads/2026/02/its-only-money-image-4.jpg"
+      ]
+    },
+    "statusNote": "",
+    "trailerTitle": "It's Only Money 1.0 Launch Trailer",
+    "platformLinks": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1415220/Its_Only_Money/"
+      }
+    ],
+    "publisherLinks": [],
+    "developerLinks": [],
+    "otherTitlesWithPartner": [],
+    "partnerLogos": [
+      "https://sixpeaks.games/wp-content/uploads/2026/01/firestoke-logo.png"
+    ],
+    "testimonials": [
+      {
+        "quote": "“Partnering with Six Peaks Games for QA on ‘It’s Only Money’ was instrumental in our success. Their attention to detail and commitment to quality significantly enhanced our project, ensuring a flawless final product. Six Peaks proved to be a thorough and reliable QA partner, and we highly recommend their services for top-notch quality assurance.”",
+        "attribution": "Calum Watson Technical Production Manager (Firestoke Games)",
+        "logos": [
+          "https://sixpeaks.games/wp-content/uploads/2026/02/firestoke-white-300x117.png"
+        ]
+      }
+    ],
+    "card": {
+      "title": "It’s Only Money",
+      "oneLiner": "A chaotic open-world co-op sandbox of disruption and mayhem.",
+      "partner": "Firestoke",
+      "keyTestingFocus": [
+        "Open-World Systems & Gameplay Testing",
+        "Co-op & Multiplayer Testing",
+        "Progression, Stability & Player Flow Testing"
+      ],
+      "source": "homepage project flipbox back (desktop)"
+    },
+    "homepageImages": {
+      "poster": "https://sixpeaks.games/wp-content/uploads/2026/03/its-only-money-1.jpg",
+      "mobileCard": "https://sixpeaks.games/wp-content/uploads/2026/04/its-only-money-mob-1.jpg",
+      "source": "et-cache/1035/et-core-unified-tb-474-tb-477-deferred-1035.min.css"
+    },
+    "assets": {
+      "logo": "assets/web/games/its-only-money/logo.webp",
+      "poster": "assets/web/games/its-only-money/poster.webp",
+      "key": "assets/web/games/its-only-money/key.webp",
+      "shots": [
+        "assets/web/games/its-only-money/shot-1.webp",
+        "assets/web/games/its-only-money/shot-2.webp",
+        "assets/web/games/its-only-money/shot-3.webp",
+        "assets/web/games/its-only-money/shot-4.webp"
+      ]
+    },
+    "notes": [
+      "Scope says \"Usual Suspects Studios\"; Developer field says \"Unusual Suspects Studios\".",
+      "Key Testing Focus on the page splits \"Progression | Stability & Player Flow Testing\" into two tokens; the card reads \"Progression, Stability & Player Flow Testing\"."
+    ]
+  }
+]

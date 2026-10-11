@@ -1,0 +1,902 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Six Peaks Reference Board</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen&display=swap">
+<style>
+/* Layout: a QA test plan for references. Eight cases (frames left, notes right on wide screens), then the Direction A spec on an editor grid. Single dark theme. */
+:root {
+  color-scheme: dark;
+  --ground: #0B0E12;
+  --panel: #12171D;
+  --panel-2: #19202A;
+  --line: #2A3440;
+  --grid: #161D26;
+  --ink: #EEF2F5;
+  --muted: #A3AEBA;
+  --amber: #F5B83D;
+  --mint: #63D9A0;
+  --magenta: #FF5CBC;
+  --void: #000000;
+  --scrim: rgba(4, 6, 9, 0.92);
+  --display: "Bricolage Grotesque", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --pixel: "Silkscreen", "JetBrains Mono", ui-monospace, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+  --max: 1240px;
+  --fs-h1: clamp(2.5rem, 7vw, 5.6rem);
+  --fs-h2: clamp(1.9rem, 4.2vw, 3.3rem);
+  --fs-h3: clamp(1.55rem, 2.8vw, 2.25rem);
+  --fs-lede: clamp(1.1rem, 1.6vw, 1.3rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9rem;
+  --fs-label: 0.72rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--ground); }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 400 var(--fs-body)/1.55 var(--body); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+a { color: var(--ink); text-decoration-color: var(--amber); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.label { font: 500 var(--fs-label)/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.skip { position: absolute; left: -9999px; top: 8px; background: var(--amber); color: var(--void); padding: 8px 12px; font: 700 var(--fs-small)/1 var(--mono); }
+.skip:focus { left: var(--gutter); }
+
+/* Masthead */
+.masthead { padding-block: clamp(36px, 7vw, 88px) clamp(28px, 4vw, 48px); border-bottom: 1px solid var(--line); }
+.masthead .wrap { display: grid; gap: 22px; }
+.masthead h1 { font: 800 var(--fs-h1)/0.92 var(--display); font-stretch: 75%; letter-spacing: -0.01em; max-width: 20ch; }
+.lede { font-size: var(--fs-lede); line-height: 1.5; color: var(--ink); max-width: 62ch; }
+.brief-row { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .brief-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); align-items: start; } }
+.verdict { margin: 0; border: 1px solid var(--line); background: var(--panel); padding: 18px 20px; display: grid; gap: 10px; }
+.verdict blockquote { margin: 0; font: 700 clamp(1.35rem, 2.4vw, 1.75rem)/1.2 var(--display); font-stretch: 85%; }
+.scope { display: grid; gap: 10px; color: var(--muted); max-width: 66ch; }
+.scope strong { color: var(--ink); font-weight: 600; }
+
+/* Index */
+.index { padding-block: 28px; border-bottom: 1px solid var(--line); }
+.index .wrap { display: grid; gap: 16px; }
+.index-groups { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .index-groups { grid-template-columns: 2.2fr 1fr 1fr 1.2fr; } }
+.index-group { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.index-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.index-group a { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; padding: 8px 10px; border: 1px solid var(--line); background: var(--panel); text-decoration: none; }
+.index-group a:hover { border-color: var(--amber); }
+.index-group a span:first-child { font-weight: 600; min-width: 0; }
+.index-group a span:last-child { font: 500 var(--fs-label)/1.3 var(--mono); color: var(--amber); white-space: nowrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: var(--fs-small); }
+.legend span { display: inline-flex; gap: 8px; align-items: center; }
+
+/* Badges */
+.badges { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.badge { display: inline-flex; align-items: center; gap: 7px; font: 500 var(--fs-label)/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 8px; border: 1px solid var(--line); border-radius: 3px; color: var(--ink); background: var(--ground); }
+.badge.award { border-color: var(--amber); color: var(--amber); }
+.badge.real { border-color: var(--mint); color: var(--mint); }
+.badge.thin { border-color: var(--magenta); color: var(--magenta); }
+.swatch { width: 12px; height: 12px; flex: none; display: inline-block; }
+.swatch.real { background: var(--mint); }
+.swatch.thin { background: conic-gradient(var(--magenta) 25%, var(--void) 0 50%, var(--magenta) 0 75%, var(--void) 0) 0 0 / 6px 6px; outline: 1px solid var(--magenta); }
+
+/* Groups and cards */
+.group { padding-block: clamp(36px, 6vw, 64px) 8px; }
+.group > .wrap { display: grid; gap: 18px; }
+.group-head { display: grid; gap: 8px; max-width: 70ch; }
+.group-head h2 { font: 800 var(--fs-h2)/1 var(--display); font-stretch: 75%; }
+.group-head p { color: var(--muted); }
+.cards { display: grid; gap: clamp(18px, 2.4vw, 28px); }
+.ref { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "frames" "notes"; gap: 20px; padding: clamp(16px, 2.4vw, 28px); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; scroll-margin-top: 16px; }
+@media (min-width: 1000px) {
+  .ref { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-template-areas: "frames head" "frames notes"; column-gap: 32px; row-gap: 22px; align-items: start; }
+}
+.ref-head { grid-area: head; display: grid; gap: 12px; min-width: 0; }
+.ref-head .role { color: var(--amber); }
+.ref-head h3 { font: 800 var(--fs-h3)/1 var(--display); font-stretch: 80%; letter-spacing: -0.005em; }
+.ref-head .what { color: var(--muted); max-width: 60ch; }
+.capnote { font-size: var(--fs-small); color: var(--muted); }
+.thinbox { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--magenta); padding: 10px 12px; font-size: var(--fs-small); color: var(--ink); }
+.thinbox .swatch { margin-top: 4px; }
+.meta { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; margin: 0; font-size: var(--fs-small); }
+.meta dt { font: 500 var(--fs-label)/1.9 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.ref-frames { grid-area: frames; display: grid; gap: 10px; min-width: 0; }
+.ref-frames figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
+.ref-frames figcaption { font-size: 0.8rem; line-height: 1.4; color: var(--muted); }
+.ref-frames figcaption b { font: 500 0.68rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); font-weight: 500; margin-right: 4px; }
+a.shot { display: block; border: 1px solid var(--line); background: var(--void); line-height: 0; }
+a.shot:hover { border-color: var(--amber); }
+a.shot img { display: block; width: 100%; height: auto; }
+.thumbs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 560px) { .thumbs[data-n="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.thumbs[data-n="1"] { grid-template-columns: minmax(0, 1fr); }
+.thumbs a.shot { aspect-ratio: 16 / 10; overflow: hidden; }
+.thumbs a.shot img { height: 100%; object-fit: cover; }
+.thumbs[data-n="1"] a.shot { aspect-ratio: auto; }
+.thumbs[data-n="1"] a.shot img { height: auto; }
+.ref-notes { grid-area: notes; display: grid; gap: 16px; min-width: 0; }
+.ref-notes h4 { font: 500 var(--fs-label)/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); }
+.sig { display: grid; gap: 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+.sig p { font-size: 1.125rem; line-height: 1.5; }
+.steal { display: grid; gap: 8px; }
+.steal ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.steal li { position: relative; padding-left: 20px; max-width: 62ch; }
+.steal li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 7px; height: 7px; background: var(--amber); }
+
+/* Direction A */
+.direction { margin-top: clamp(40px, 7vw, 80px); padding-block: clamp(40px, 7vw, 88px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background-color: var(--ground); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 40px 40px; }
+.direction > .wrap { display: grid; gap: clamp(28px, 4vw, 44px); }
+.dir-head { display: grid; gap: 14px; }
+.dir-head h2 { font: 800 clamp(3rem, 9vw, 6.4rem)/0.9 var(--display); font-stretch: 75%; letter-spacing: -0.01em; }
+.dir-sub { font: 700 clamp(1.4rem, 3vw, 2.2rem)/1.1 var(--display); font-stretch: 85%; color: var(--amber); text-wrap: balance; }
+.dir-head .lede { max-width: 64ch; }
+.peaks { width: 100%; max-width: 720px; height: auto; display: block; }
+.peaks .ridge { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+.peaks .cp { fill: var(--amber); }
+.peaks .bug { fill: var(--magenta); }
+.peaks .bugk { fill: var(--void); }
+.block { display: grid; gap: 14px; }
+.block > h3 { font: 800 clamp(1.45rem, 2.6vw, 2rem)/1.05 var(--display); font-stretch: 80%; }
+.block > p { color: var(--muted); max-width: 70ch; }
+.refpair { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .refpair { grid-template-columns: 1fr 1fr; } }
+.refslot { background: var(--panel); border: 1px solid var(--line); padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.refslot .label { color: var(--amber); }
+.refslot strong { font: 700 1.3rem/1.15 var(--display); font-stretch: 85%; }
+.refslot p { color: var(--muted); font-size: var(--fs-small); }
+.also { font-size: var(--fs-small); color: var(--muted); max-width: 90ch; }
+.also b { color: var(--ink); font-weight: 600; }
+.compare { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .compare { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); } }
+.tree { background: var(--panel); border: 1px solid var(--line); padding: 18px 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.tree.frozen { background: var(--ground); }
+.tree-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline; }
+.tree-head h4 { font: 800 1.35rem/1.1 var(--display); font-stretch: 85%; }
+.tree ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 10px; }
+.tree li { counter-increment: s; display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 4px; }
+.tree li::before { content: counter(s); font: 500 0.8rem/1.6 var(--mono); color: var(--amber); }
+.tree.frozen li::before { color: var(--muted); }
+.tree li b { font-weight: 600; }
+.tree li span { color: var(--muted); font-size: var(--fs-small); display: block; }
+.axis { font: 500 0.8rem/1.4 var(--mono); color: var(--muted); }
+.diffs { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-width: 80ch; }
+.diffs li { position: relative; padding-left: 20px; }
+.diffs li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 7px; height: 7px; background: var(--amber); }
+.mech { display: grid; gap: 18px; grid-template-columns: 1fr; }
+@media (min-width: 960px) { .mech { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: st; display: grid; gap: 12px; }
+.steps li { counter-increment: st; display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 4px; }
+.steps li::before { content: counter(st); font: 700 1rem/1.5 var(--pixel); color: var(--amber); }
+.steps li b { font-weight: 600; }
+.hud { display: flex; flex-wrap: wrap; gap: 8px; }
+.hud span { font: 400 0.95rem/1 var(--pixel); letter-spacing: 0.04em; padding: 8px 10px; background: var(--void); border: 1px solid var(--line); color: var(--ink); }
+.hud span b { color: var(--amber); font-weight: 400; }
+.ticket { background: var(--panel); border: 1px solid var(--line); display: grid; }
+.ticket-top { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line); font: 500 var(--fs-label)/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.ticket-top .sev { color: var(--amber); }
+.ticket-body { padding: 14px; display: grid; gap: 12px; }
+.ticket-body h4 { font: 700 1.15rem/1.3 var(--body); }
+.ticket dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; font-size: var(--fs-small); }
+.ticket dt { font: 500 var(--fs-label)/1.9 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.ticket dd { margin: 0; min-width: 0; }
+.ticket dd ol { margin: 0; padding-left: 1.2em; }
+.proves { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 6px; font-size: var(--fs-small); }
+.proves q { color: var(--ink); }
+.note { font-size: 0.82rem; color: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: var(--fs-small); }
+caption { text-align: left; padding: 12px 14px; color: var(--muted); font-size: 0.85rem; caption-side: bottom; border-top: 1px solid var(--line); }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font: 500 var(--fs-label)/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); background: var(--ground); }
+td:first-child { font-weight: 600; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+.twocol { display: grid; gap: 18px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .twocol { grid-template-columns: 1fr 1fr; align-items: start; } }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.list li { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--line); background: var(--panel); }
+.list li b { font-weight: 600; }
+.list li span { color: var(--muted); font-size: var(--fs-small); }
+.ruling li { border-color: var(--magenta); }
+
+/* Footer */
+.foot { padding-block: 36px 56px; }
+.foot .wrap { display: grid; gap: 10px; color: var(--muted); font-size: var(--fs-small); max-width: var(--max); }
+.foot p { max-width: 90ch; }
+
+/* Lightbox */
+dialog.lb { width: min(1400px, 96vw); max-height: 94vh; padding: 0; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+dialog.lb::backdrop { background: var(--scrim); }
+.lb-inner { display: grid; gap: 0; }
+.lb-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+.lb-bar .label { color: var(--ink); }
+.lb-ctrls { display: flex; gap: 6px; }
+.lb button { font: 500 var(--fs-label)/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); background: var(--panel-2); border: 1px solid var(--line); padding: 9px 12px; cursor: pointer; }
+.lb button:hover { border-color: var(--amber); }
+.lb-img { display: block; width: 100%; height: auto; max-height: calc(94vh - 120px); object-fit: contain; background: var(--void); }
+.lb figcaption { padding: 10px 14px 14px; font-size: var(--fs-small); color: var(--muted); }
+.lb figure { margin: 0; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<a class="skip" href="#main">Skip to the references</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="label">Six Peaks Games redesign · round 2 · reference board · captured 10 Oct 2026</p>
+    <h1>Playable references for Six Peaks</h1>
+    <div class="brief-row">
+      <figure class="verdict">
+        <blockquote>“This isn't giving award winning gaming.”</blockquote>
+        <figcaption class="label">Aldo, on the first two directions</figcaption>
+      </figure>
+      <div class="scope">
+        <p class="lede">Eight award-winning sites, captured from the live web, that point the new Direction A at one idea: the Six Peaks site is a game you play, and playing it shows what a QA studio does.</p>
+        <p><strong>Scope.</strong> Direction B, Press Start, is approved and frozen. This board is the reference chain for a new Direction A that replaces The Ascent and must be structurally different from B's catalogue. Every award below was read on the site's own Awwwards page on 10 October 2026.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="index" aria-label="On this board">
+  <div class="wrap">
+    <div class="index-groups">
+      <div class="index-group">
+        <p class="label">Playable winners</p>
+        <ul>
+          <li><a href="#ref-undead-fish-studio"><span>Undead Fish Studio</span><span>HM · content-ref</span></a></li>
+          <li><a href="#ref-lepopee-steven-dieu"><span>L'épopée de Steven Dieu</span><span>HM · craft-ref</span></a></li>
+          <li><a href="#ref-beige-force"><span>BEIGE FORCE!!</span><span>HM</span></a></li>
+          <li><a href="#ref-lacoste-ace-breaker"><span>Lacoste Ace Breaker</span><span>SOTD · DEV</span></a></li>
+          <li><a href="#ref-the-tie-break"><span>The Tie-break</span><span>SOTD · DEV</span></a></li>
+          <li><a href="#ref-superplay"><span>SuperPlay</span><span>HM</span></a></li>
+        </ul>
+      </div>
+      <div class="index-group">
+        <p class="label">Craft reference</p>
+        <ul>
+          <li><a href="#ref-ink-games"><span>Ink Games</span><span>SOTD</span></a></li>
+        </ul>
+      </div>
+      <div class="index-group">
+        <p class="label">B2B services analog</p>
+        <ul>
+          <li><a href="#ref-overworld-audio"><span>Overworld Audio</span><span>HM · DEV</span></a></li>
+        </ul>
+      </div>
+      <div class="index-group">
+        <p class="label">Proposal</p>
+        <ul>
+          <li><a href="#direction-a"><span>Direction A: Bug Hunt</span><span>new</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="swatch real" aria-hidden="true"></i>REAL: the live site rendered in our capture.</span>
+      <span><i class="swatch thin" aria-hidden="true"></i>THIN: the live site did not render, so the frames are Awwwards' own images and the live layout is not cited.</span>
+      <span>Select any frame to see it large.</span>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<section class="group" aria-labelledby="g-playable">
+  <div class="wrap">
+    <div class="group-head">
+      <h2 id="g-playable">Playable winners</h2>
+      <p>Sites where the visitor plays. Ordered by how directly each one maps to a QA studio that sells to producers and QA leads.</p>
+    </div>
+    <div class="cards">
+
+      <article class="ref" id="ref-undead-fish-studio" data-gallery>
+        <header class="ref-head">
+          <p class="label role">Playable · content-ref for Direction A</p>
+          <h3>Undead Fish Studio</h3>
+          <p class="what">A creative AI studio in Oslo whose front page is a playable pixel-art town. It is a services studio, not a game studio, which is the point: it does a services studio's jobs as a game.</p>
+          <ul class="badges">
+            <li class="badge award">Honorable Mention · 4 Sep 2026</li>
+            <li class="badge real"><i class="swatch real" aria-hidden="true"></i>REAL capture</li>
+          </ul>
+          <p class="capnote">Title screen, world and traditional site rendered live. Detail frames are Awwwards element images.</p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>In-house (Awwwards creator christian-mansfeldt)</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/undead-fish-studio" target="_blank" rel="noopener">awwwards.com/sites/undead-fish-studio</a></dd>
+            <dt>Live</dt><dd><a href="https://undead-fish.com/en" target="_blank" rel="noopener">undead-fish.com/en</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/undead-fish-studio-2.jpg" data-caption="Live, after ENTER: the street with STUDIO, POST and CINEMA, the MET 0/7 counter, an NPC dialogue, and the CLICK FOR TRADITIONAL SITE exit."><img src="frames/undead-fish-studio-2.jpg" width="1400" height="788" alt="Undead Fish Studio, live capture: pixel-art night street with STUDIO, POST and CINEMA buildings, a MET 0/7 counter and an NPC dialogue box"></a>
+            <figcaption><b>Live</b>The world after ENTER: MET 0/7 counter, NPC dialogue, and the exit to the traditional site.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="6">
+            <figure><a class="shot" href="frames/undead-fish-studio-1.jpg" data-caption="Live: the title screen, GAME VERSION, ENTER."><img src="frames/undead-fish-studio-1.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="Undead Fish Studio, live capture: title screen reading GAME VERSION with an ENTER button"></a><figcaption><b>Live</b>Title screen</figcaption></figure>
+            <figure><a class="shot" href="frames/undead-fish-studio-3.jpg" data-caption="Awwwards image: an NPC client gives a reference, with a VIEW link to the case."><img src="frames/undead-fish-studio-3.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Undead Fish Studio, Awwwards image: an NPC client's dialogue praising the studio, with a VIEW link"></a><figcaption><b>Awwwards</b>An NPC client gives a reference</figcaption></figure>
+            <figure><a class="shot" href="frames/undead-fish-studio-4.jpg" data-caption="Awwwards image: the post office is the contact form."><img src="frames/undead-fish-studio-4.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Undead Fish Studio, Awwwards image: the post office contact form drawn as an in-game window"></a><figcaption><b>Awwwards</b>The post office is the contact form</figcaption></figure>
+            <figure><a class="shot" href="frames/undead-fish-studio-6.jpg" data-caption="Awwwards image: a sign carries the service line."><img src="frames/undead-fish-studio-6.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Undead Fish Studio, Awwwards image: a sign in the street stating the studio's service"></a><figcaption><b>Awwwards</b>A sign carries the service line</figcaption></figure>
+            <figure><a class="shot" href="frames/undead-fish-studio-7.jpg" data-caption="Awwwards image: the public notice board."><img src="frames/undead-fish-studio-7.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Undead Fish Studio, Awwwards image: the notice board window with pinned visitor notes"></a><figcaption><b>Awwwards</b>The notice board</figcaption></figure>
+            <figure><a class="shot" href="frames/undead-fish-studio-5.jpg" data-caption="Live: the traditional site behind the game, a typed heading and an input."><img src="frames/undead-fish-studio-5.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="Undead Fish Studio, live capture: the traditional site with the heading What can we build for you?"></a><figcaption><b>Live</b>The traditional site behind it</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>Every business job is a place. References are clients you walk up to, the service line is a sign, contact is the post office, and a MET 0/7 counter makes reading references the goal. The way out to the traditional site never leaves the screen.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks</h4>
+            <ul>
+              <li>The nine partner testimonials become people you meet on the route, each with the studio's real logo and the quote, name and role verbatim. A MET 0/9 counter sets the goal.</li>
+              <li>Book a trial becomes a place: walking in opens the same inline form as the readable layer, with email and phone as copyable text.</li>
+              <li>The traditional site becomes the manual: pillars, services, all 17 titles with partner credit, team, careers and contact as plain HTML under the game, complete at rest.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="ref" id="ref-lepopee-steven-dieu" data-gallery>
+        <header class="ref-head">
+          <p class="label role">Playable · craft-ref for Direction A</p>
+          <h3>L'épopée de Steven Dieu</h3>
+          <p class="what">A tech lead's portfolio played as a 2D platformer. The author's Awwwards entry says Canvas 2D and vanilla JS, no framework.</p>
+          <ul class="badges">
+            <li class="badge award">Honorable Mention · 16 Sep 2026</li>
+            <li class="badge real"><i class="swatch real" aria-hidden="true"></i>REAL capture</li>
+          </ul>
+          <p class="capnote">Cover and opening film rendered live. The film would not skip under capture, so in-game frames are Awwwards element images.</p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>Self-built (Awwwards creator stevendieu)</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/lepopee-de-steven-dieu" target="_blank" rel="noopener">awwwards.com/sites/lepopee-de-steven-dieu</a></dd>
+            <dt>Live</dt><dd><a href="https://stediconsulting.fr/" target="_blank" rel="noopener">stediconsulting.fr</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/lepopee-steven-dieu-3.jpg" data-caption="Awwwards image: a project opens as an in-game card. The HUD shows 1 / 9 orbs and the timer."><img src="frames/lepopee-steven-dieu-3.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="L'épopée de Steven Dieu, Awwwards image: a project opened as an ornate in-game card, with a HUD showing 1 of 9 orbs and a timer"></a>
+            <figcaption><b>Awwwards</b>A project opens as an in-game card. HUD: 1 / 9 orbs and the timer.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="4">
+            <figure><a class="shot" href="frames/lepopee-steven-dieu-1.jpg" data-caption="Live: the cover with Play and See my projects, and a sound toggle."><img src="frames/lepopee-steven-dieu-1.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="L'épopée de Steven Dieu, live capture: the cover titled The Saga of Steven Dieu with Play and See my projects buttons"></a><figcaption><b>Live</b>Cover: Play, or See my projects</figcaption></figure>
+            <figure><a class="shot" href="frames/lepopee-steven-dieu-2.jpg" data-caption="Live: the opening film. The villains are three bugs."><img src="frames/lepopee-steven-dieu-2.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="L'épopée de Steven Dieu, live capture: opening film frame of three cartoon cockroach pilots"></a><figcaption><b>Live</b>The villains are bugs</figcaption></figure>
+            <figure><a class="shot" href="frames/lepopee-steven-dieu-4.jpg" data-caption="Awwwards image: the end screen turns the score into a contact prompt and a leaderboard."><img src="frames/lepopee-steven-dieu-4.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="L'épopée de Steven Dieu, Awwwards image: end screen asking if the next project could be yours, beside a score card and leaderboard"></a><figcaption><b>Awwwards</b>End screen becomes contact</figcaption></figure>
+            <figure><a class="shot" href="frames/lepopee-steven-dieu-5.jpg" data-caption="Live: the player is a light orb flying at the bugs."><img src="frames/lepopee-steven-dieu-5.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="L'épopée de Steven Dieu, live capture: a glowing orb flies towards three bugs in a blue sky"></a><figcaption><b>Live</b>The orb meets the bugs</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>The bugs are the villains. The tutorial reads: “Because of these pesky bugs, all my projects got scattered! Catch them all: every orb is a project to win back.” Each orb opens a project as an in-game card, counted in the HUD.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks</h4>
+            <ul>
+              <li>Reverse the roles for a QA studio: the visitor is the tester and the bugs are the quarry. Bugs live only in the Six Peaks level, never in partner games.</li>
+              <li>Reached landmarks open the 13 shipped titles as in-game cards: key art, logo, partner credit and the three Key Testing Focus lines verbatim. The 4 underway titles are boarded-up signs with no art.</li>
+              <li>Two doors on the cover, Start the test run and Book a trial, and an end screen that turns the run into the booking form. No leaderboard: there are no real scores to show.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="ref" id="ref-beige-force" data-gallery>
+        <header class="ref-head">
+          <p class="label role">Playable · a services studio pitching with a game</p>
+          <h3>BEIGE FORCE!!</h3>
+          <p class="what">A hospitality design studio's arcade game against bland design. Idea by Andrew Alford Creative and Brandon Durham, built by Small Parade.</p>
+          <ul class="badges">
+            <li class="badge award">Honorable Mention · 4 Sep 2026</li>
+            <li class="badge real"><i class="swatch real" aria-hidden="true"></i>REAL capture</li>
+          </ul>
+          <p class="capnote">Landing page and attract screen rendered live. Live play was not captured.</p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>Small Parade (submitted by brandondurham)</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/beige-force" target="_blank" rel="noopener">awwwards.com/sites/beige-force</a></dd>
+            <dt>Live</dt><dd><a href="https://beigeforce.com/" target="_blank" rel="noopener">beigeforce.com</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/beige-force-2.jpg" data-caption="Live, after Play!: the attract screen with a points table and the controls line."><img src="frames/beige-force-2.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="BEIGE FORCE!!, live capture: arcade attract screen with the BEIGE FORCE title, a points table and Press Space to play"></a>
+            <figcaption><b>Live</b>Attract screen: points table, Press Space to play, controls line.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="1">
+            <figure><a class="shot" href="frames/beige-force-1.jpg" data-caption="Live: the landing page is a roster of named enemies."><img src="frames/beige-force-1.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="BEIGE FORCE!!, live capture: mustard landing page with a grid of named pixel-glyph enemies and a PLAY button"></a><figcaption><b>Live</b>Landing: a roster of named enemies</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>The studio's enemy is the game's enemy. The landing page introduces the enemies by name and the attract screen gives each one a point value.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks</h4>
+            <ul>
+              <li>The same move for Six Peaks: a game about bugs, by the studio that hunts them.</li>
+              <li>A bug bestiary instead of an enemy roster: eight bug types, one per service on the live site, each quoting that service's description verbatim.</li>
+              <li>An attract screen as the rules beat: what each bug type is, Press Space to start, and a controls line that names touch as well.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="ref" id="ref-lacoste-ace-breaker" data-gallery>
+        <header class="ref-head">
+          <p class="label role">Playable · brand arcade with a rules screen</p>
+          <h3>Lacoste Ace Breaker</h3>
+          <p class="what">Breakout on a 3D clay court for Lacoste at Roland Garros, played for prizes.</p>
+          <ul class="badges">
+            <li class="badge award">Site of the Day · 3 Aug 2026</li>
+            <li class="badge award">Developer Award</li>
+            <li class="badge award">Product Honors · Jun 2026</li>
+            <li class="badge real"><i class="swatch real" aria-hidden="true"></i>REAL capture</li>
+          </ul>
+          <p class="capnote">Hero and rules screen rendered live. Gameplay frames are Awwwards element images.</p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>Merci Michel</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/lacoste-ace-breaker" target="_blank" rel="noopener">awwwards.com/sites/lacoste-ace-breaker</a></dd>
+            <dt>Live</dt><dd><a href="https://members-play.lacoste.com/ace-breaker-rg" target="_blank" rel="noopener">members-play.lacoste.com/ace-breaker-rg</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/lacoste-ace-breaker-2.jpg" data-caption="Live: 6 BONUSES TO BOOST YOUR GAME, six power-ups named before play."><img src="frames/lacoste-ace-breaker-2.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="Lacoste Ace Breaker, live capture: rules screen titled 6 bonuses to boost your game with six power-up icons and a Start game button"></a>
+            <figcaption><b>Live</b>Rules screen: six power-ups named before play.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="4">
+            <figure><a class="shot" href="frames/lacoste-ace-breaker-1.jpg" data-caption="Live: the hero with one Play pill."><img src="frames/lacoste-ace-breaker-1.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="Lacoste Ace Breaker, live capture: hero reading Lacoste Ace Breaker with a yellow Play button"></a><figcaption><b>Live</b>Hero, one Play pill</figcaption></figure>
+            <figure><a class="shot" href="frames/lacoste-ace-breaker-3.jpg" data-caption="Awwwards image: in play, lives and score in the HUD."><img src="frames/lacoste-ace-breaker-3.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Lacoste Ace Breaker, Awwwards image: 3D clay court with green bricks, a paddle and a lives and score HUD"></a><figcaption><b>Awwwards</b>In play, two-number HUD</figcaption></figure>
+            <figure><a class="shot" href="frames/lacoste-ace-breaker-4.jpg" data-caption="Awwwards image: 3D bricks and the ball on clay."><img src="frames/lacoste-ace-breaker-4.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Lacoste Ace Breaker, Awwwards image: close view of green 3D bricks and a tennis ball on a clay court"></a><figcaption><b>Awwwards</b>3D bricks on clay</figcaption></figure>
+            <figure><a class="shot" href="frames/lacoste-ace-breaker-5.jpg" data-caption="Awwwards image: another brick layout in play."><img src="frames/lacoste-ace-breaker-5.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Lacoste Ace Breaker, Awwwards image: another brick layout on the court seen from behind the paddle"></a><figcaption><b>Awwwards</b>Another layout</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>A classic game in brand clothes, sold by its bonuses. The rules screen names six power-ups, so the brand's message arrives as game rules.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks</h4>
+            <ul>
+              <li>The six pillars as six power-ups on the rules screen, titles and bodies verbatim. The name Six Peaks already promises six.</li>
+              <li>A rules screen as the second beat after the title: what you do, what you collect, how the run ends, and one start control.</li>
+              <li>Keep the HUD to two counters and draw the Six Peaks mountain silhouette into the play field.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="ref" id="ref-the-tie-break" data-gallery>
+        <header class="ref-head">
+          <p class="label role">Playable · every point reveals content</p>
+          <h3>The Tie-break</h3>
+          <p class="what">Pong on a tennis court that launches the New Balance x Miu Miu collection with Coco Gauff.</p>
+          <ul class="badges">
+            <li class="badge award">Site of the Day · 25 Sep 2026</li>
+            <li class="badge award">Developer Award</li>
+            <li class="badge real"><i class="swatch real" aria-hidden="true"></i>REAL capture</li>
+          </ul>
+          <p class="capnote">Hero and court rendered live. The rally did not start under capture, so rally frames are Awwwards images.</p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>Merci Michel</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/the-tie-break" target="_blank" rel="noopener">awwwards.com/sites/the-tie-break</a></dd>
+            <dt>Live</dt><dd><a href="https://thetiebreak.merci-michel.com/" target="_blank" rel="noopener">thetiebreak.merci-michel.com</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/the-tie-break-2.jpg" data-caption="Awwwards image: the rally. Court drawn in thin lines, big serif scores."><img src="frames/the-tie-break-2.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="The Tie-break, Awwwards image: a Pong rally on a tennis court drawn in thin lines with large serif score numerals"></a>
+            <figcaption><b>Awwwards</b>The rally: court in thin lines, big serif scores.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="4">
+            <figure><a class="shot" href="frames/the-tie-break-1.jpg" data-caption="Live: the hero. A blurred photo under court lines, one Start button."><img src="frames/the-tie-break-1.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="The Tie-break, live capture: blurred photo of the player under thin court lines with the title The Tie-break and a Start button"></a><figcaption><b>Live</b>Hero, one Start button</figcaption></figure>
+            <figure><a class="shot" href="frames/the-tie-break-3.jpg" data-caption="Awwwards image: between points, the shoe takes the screen."><img src="frames/the-tie-break-3.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="The Tie-break, Awwwards image: a close-up of the shoe between points with the round number 03"></a><figcaption><b>Awwwards</b>Between points, the shoe</figcaption></figure>
+            <figure><a class="shot" href="frames/the-tie-break-4.jpg" data-caption="Live: the court waits for play, OPPONENT and YOU."><img src="frames/the-tie-break-4.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="The Tie-break, live capture: the court with Opponent and You labels before play starts"></a><figcaption><b>Live</b>Court before play</figcaption></figure>
+            <figure><a class="shot" href="frames/the-tie-break-5.jpg" data-caption="Awwwards image: late game, five all."><img src="frames/the-tie-break-5.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="The Tie-break, Awwwards image: late in the game with the score at five each over a blurred photo"></a><figcaption><b>Awwwards</b>Late game</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>Every point reveals the product. The game is tiny and readable, and the reward for each point is the next look at the collection, so playing and browsing are the same act.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks</h4>
+            <ul>
+              <li>Each logged bug reveals real content the way each point reveals a shoe: a service, a pillar or a team photo.</li>
+              <li>Draw the level in thin lines over a blurred real photo: the rooftop team shot with the mountains behind it.</li>
+              <li>Set the counters as big display numerals with tabular figures, so the HUD reads like a scoreboard.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="ref" id="ref-superplay" data-gallery>
+        <header class="ref-head">
+          <p class="label role">Playable scroll · game company</p>
+          <h3>SuperPlay</h3>
+          <p class="what">A mobile games company whose home page is one pinned scroll scene full of game pieces.</p>
+          <ul class="badges">
+            <li class="badge award">Honorable Mention · 16 Aug 2026</li>
+            <li class="badge real"><i class="swatch real" aria-hidden="true"></i>REAL capture</li>
+          </ul>
+          <p class="capnote">Hero and three scroll states rendered live. The interactive challenges did not trigger under capture.</p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>AwesomeDeloitte on Awwwards; the footer credits Group107</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/superplay" target="_blank" rel="noopener">awwwards.com/sites/superplay</a></dd>
+            <dt>Live</dt><dd><a href="https://www.superplay.co/" target="_blank" rel="noopener">superplay.co</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/superplay-1.jpg" data-caption="Live: the hero. A huge condensed statement, spinning coins and a 3D mascot."><img src="frames/superplay-1.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="SuperPlay, live capture: hot pink hero reading It's only fun if you're winning with gold coins and a mascot"></a>
+            <figcaption><b>Live</b>Hero: one huge statement, coins and a mascot.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="4">
+            <figure><a class="shot" href="frames/superplay-2.jpg" data-caption="Live: the word WE has become an About button inside the headline."><img src="frames/superplay-2.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="SuperPlay, live capture: headline where the word We has turned into an About button"></a><figcaption><b>Live</b>A headline word becomes a button</figcaption></figure>
+            <figure><a class="shot" href="frames/superplay-3.jpg" data-caption="Live: team photos float among dice and coins like pickups."><img src="frames/superplay-3.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="SuperPlay, live capture: purple scene with team photos floating among dice and coins"></a><figcaption><b>Live</b>Team photos as pickups</figcaption></figure>
+            <figure><a class="shot" href="frames/superplay-4.jpg" data-caption="Live: the statement at rest, WE in yellow."><img src="frames/superplay-4.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="SuperPlay, live capture: statement Being super means we love to push our limits"></a><figcaption><b>Live</b>The statement at rest</figcaption></figure>
+            <figure><a class="shot" href="frames/superplay-5.jpg" data-caption="Awwwards desktop thumbnail."><img src="frames/superplay-5.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="SuperPlay, Awwwards desktop thumbnail: the hero framed on yellow with the mascot"></a><figcaption><b>Awwwards</b>Desktop thumbnail</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>The manifesto is the level. Headline words turn into controls and team photos float like pickups, so a company page plays like a mobile game without leaving the scroll.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks</h4>
+            <ul>
+              <li>Team photos and the four manager headshots as pickups along the route, opening the Team and Careers content.</li>
+              <li>One headline word becomes the control: in the live H1, Beyond Standard QA, the word QA is the start button.</li>
+              <li>A native Stop animations control and a full static path from day one.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="group" aria-labelledby="g-craft">
+  <div class="wrap">
+    <div class="group-head">
+      <h2 id="g-craft">Craft reference</h2>
+      <p>Kept for its craft only: type, the object burst and layered cards. Not for its structure.</p>
+    </div>
+    <div class="cards">
+      <article class="ref" id="ref-ink-games" data-gallery>
+        <header class="ref-head">
+          <p class="label role">Craft · type and burst · game company</p>
+          <h3>Ink Games</h3>
+          <p class="what">A mobile games company's site. Awwwards tags list GSAP, Three.js and Next.js.</p>
+          <ul class="badges">
+            <li class="badge award">Site of the Day · 14 Oct 2025</li>
+            <li class="badge thin"><i class="swatch thin" aria-hidden="true"></i>THIN live capture</li>
+          </ul>
+          <p class="thinbox"><i class="swatch thin" aria-hidden="true"></i><span>The live hero rendered black on the first capture and timed out twice on retry. The hero and mobile frames are Awwwards' own images. Do not cite the live layout or motion.</span></p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>ToyFight</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/ink-games" target="_blank" rel="noopener">awwwards.com/sites/ink-games</a></dd>
+            <dt>Live</dt><dd><a href="https://inkgames.com" target="_blank" rel="noopener">inkgames.com</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/ink-games-1.jpg" data-caption="Awwwards desktop thumbnail: JOIN THE NEW ERA OF GAMING with game objects bursting through the type."><img src="frames/ink-games-1.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="Ink Games, Awwwards image: heavy white headline Join the new era of gaming with coins, gems and characters bursting through it"></a>
+            <figcaption><b>Awwwards</b>Game objects burst through the headline.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="4">
+            <figure><a class="shot" href="frames/ink-games-2.jpg" data-caption="Awwwards mobile thumbnail: three phone screens."><img src="frames/ink-games-2.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="Ink Games, Awwwards image: three phone screens with Play. Win. Earn. and Join share earn"></a><figcaption><b>Awwwards</b>Mobile screens</figcaption></figure>
+            <figure><a class="shot" href="frames/ink-games-3.jpg" data-caption="Live, THIN: the hero rendered as a black frame."><img src="frames/ink-games-3.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="Ink Games, live capture marked thin: a blank near-black hero frame"></a><figcaption><b>Live</b>THIN: blank hero</figcaption></figure>
+            <figure><a class="shot" href="frames/ink-games-4.jpg" data-caption="Live: a tilted video card and the footer, the parts that did render."><img src="frames/ink-games-4.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="Ink Games, live capture: a tilted office video card above a white footer of link chips"></a><figcaption><b>Live</b>Tilted card and footer</figcaption></figure>
+            <figure><a class="shot" href="frames/ink-games-5.jpg" data-caption="Live: a second tilted video card."><img src="frames/ink-games-5.jpg" width="1400" height="788" loading="lazy" decoding="async" alt="Ink Games, live capture: a second tilted video card above the footer"></a><figcaption><b>Live</b>A second tilted card</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>Type with a burst. One huge statement with a cloud of game objects exploding through the letters, like a loot drop.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks (craft only)</h4>
+            <ul>
+              <li>A short 2D burst of our own bug glyphs and the peak mark through the counter each time a bug is logged. No 3D models needed, and none exist.</li>
+              <li>One heavy condensed display face kept for the title, the rules and the run report, with small mono labels for the HUD.</li>
+              <li>Layered cards that slide over each other when a title card opens: key art, then logo, then partner credit.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="group" aria-labelledby="g-b2b">
+  <div class="wrap">
+    <div class="group-head">
+      <h2 id="g-b2b">B2B services analog</h2>
+      <p>A studio that sells a service to game developers, the way Six Peaks does, and still made its site a world.</p>
+    </div>
+    <div class="cards">
+      <article class="ref" id="ref-overworld-audio" data-gallery>
+        <header class="ref-head">
+          <p class="label role">B2B · audio co-development for games</p>
+          <h3>Overworld Audio</h3>
+          <p class="what">Its own meta line: “Audio co-development for games and interactive experiences, from prototype to final mix.” The site is an explorable map of the work.</p>
+          <ul class="badges">
+            <li class="badge award">Honorable Mention · 6 Sep 2026</li>
+            <li class="badge award">Developer Award</li>
+            <li class="badge thin"><i class="swatch thin" aria-hidden="true"></i>THIN live capture</li>
+          </ul>
+          <p class="thinbox"><i class="swatch thin" aria-hidden="true"></i><span>Four live attempts timed out. One text scrape succeeded and is quoted in the teardown. Both frames are Awwwards' own images.</span></p>
+          <dl class="meta">
+            <dt>Agency</dt><dd>Rogier de Boevé</dd>
+            <dt>Evidence</dt><dd><a href="https://www.awwwards.com/sites/overworld-audio" target="_blank" rel="noopener">awwwards.com/sites/overworld-audio</a></dd>
+            <dt>Live</dt><dd><a href="https://overworldaudio.com/" target="_blank" rel="noopener">overworldaudio.com</a></dd>
+          </dl>
+        </header>
+        <div class="ref-frames">
+          <figure>
+            <a class="shot" href="frames/overworld-audio-1.jpg" data-caption="Awwwards image: the logo sculpted into terrain, project markers glowing on the ridges, Explore our work."><img src="frames/overworld-audio-1.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Overworld Audio, Awwwards image: dark 3D terrain shaped like the Overworld logo with glowing project markers and the headline Building unforgettable sonic experiences"></a>
+            <figcaption><b>Awwwards</b>The logo is the terrain; projects are markers.</figcaption>
+          </figure>
+          <div class="thumbs" data-n="1">
+            <figure><a class="shot" href="frames/overworld-audio-2.jpg" data-caption="Awwwards image: Enter with sound, a Star Wars Jedi: Fallen Order project panel, studio pages."><img src="frames/overworld-audio-2.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Overworld Audio, Awwwards image: collage of the Enter with sound gate, a Star Wars Jedi Fallen Order panel and studio pages"></a><figcaption><b>Awwwards</b>Sound gate and a game credit</figcaption></figure>
+          </div>
+        </div>
+        <div class="ref-notes">
+          <div class="sig">
+            <h4>Signature idea</h4>
+            <p>The logo is the world. The studio's mark is sculpted into the terrain and the work sits on it as markers, so a B2B portfolio becomes a place to explore.</p>
+          </div>
+          <div class="steal">
+            <h4>What to steal for Six Peaks</h4>
+            <ul>
+              <li>Build the level from the Six Peaks mark: the six peaks of the logo become the skyline and the checkpoints.</li>
+              <li>Two doors on the title screen, Enter with sound or Enter without sound, silent by default.</li>
+              <li>The B2B tone: one plain statement, then the work, with real game credits and the partner always named.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="direction" id="direction-a" aria-labelledby="d-title">
+  <div class="wrap">
+    <div class="dir-head">
+      <p class="label">Proposed new Direction A · replaces The Ascent</p>
+      <h2 id="d-title">Bug Hunt</h2>
+      <p class="dir-sub">The site is a test build you play.</p>
+      <p class="lede">You walk the six peaks of the Six Peaks mark, log the bugs we planted, meet the partners, and reach the summit, where your run report sits next to Book a trial. Everything the game shows is also in a plain manual under it.</p>
+      <svg class="peaks" viewBox="0 0 500 120" role="img" aria-label="Sketch of the level: the six peaks of the Six Peaks mark, one checkpoint on each peak and a planted bug on the third slope">
+        <polyline class="ridge" points="0,110 50,58 85,76 130,36 165,64 210,14 245,50 290,28 325,58 370,44 410,70 450,52 500,110"></polyline>
+        <circle class="cp" cx="50" cy="58" r="5"></circle>
+        <circle class="cp" cx="130" cy="36" r="5"></circle>
+        <circle class="cp" cx="210" cy="14" r="5"></circle>
+        <circle class="cp" cx="290" cy="28" r="5"></circle>
+        <circle class="cp" cx="370" cy="44" r="5"></circle>
+        <circle class="cp" cx="450" cy="52" r="5"></circle>
+        <rect class="bug" x="223" y="26" width="10" height="10"></rect>
+        <rect class="bugk" x="223" y="26" width="5" height="5"></rect>
+        <rect class="bugk" x="228" y="31" width="5" height="5"></rect>
+      </svg>
+    </div>
+
+    <div class="block">
+      <h3>References</h3>
+      <div class="refpair">
+        <div class="refslot">
+          <p class="label">Content-ref</p>
+          <strong><a href="#ref-undead-fish-studio">Undead Fish Studio</a></strong>
+          <p>A services studio's front page as a world: references are people you meet, contact is a building, a counter sets the goal, and the traditional site is one click away. Duplicate its structure.</p>
+        </div>
+        <div class="refslot">
+          <p class="label">Craft-ref</p>
+          <strong><a href="#ref-lepopee-steven-dieu">L'épopée de Steven Dieu</a></strong>
+          <p>Canvas 2D and vanilla JS: a cover with two doors, a HUD count, cards that open from the world, an end screen that turns into contact. Buildable under our rules: GSAP plus inline JS, no other library.</p>
+        </div>
+      </div>
+      <p class="also"><b>Also drawing on:</b> BEIGE FORCE!! for the bug bestiary and attract screen, Lacoste Ace Breaker for the six pillars as power-ups, The Tie-break for content revealed on each log, SuperPlay for team pickups and QA as the start button, Ink Games for type and the burst, Overworld Audio for the mark as the world and the sound gate.</p>
+    </div>
+
+    <div class="block">
+      <h3>Home route, and how it differs from Press Start</h3>
+      <div class="compare">
+        <div class="tree">
+          <div class="tree-head"><h4>A · Bug Hunt</h4><span class="badge award">#home</span></div>
+          <p class="axis">Axis: one run you play, title to summit. Content is found in the world and mirrored in the manual.</p>
+          <ol>
+            <li><div><b>Title screen.</b> <span>The Six Peaks logo and the live H1, Beyond Standard QA, with QA as the start control. The live sub line, We live and breathe your games with you. Two doors: Start the test run and Book a trial. Silent by default, the nine platform icons as Tested on, and a link to the manual.</span></div></li>
+            <li><div><b>Rules.</b> <span>Find the eight bugs, meet the nine partners, reach the sixth peak. The six pillars as six power-ups, verbatim. The bug bestiary: eight glyphs, one per service. Controls for keys and touch.</span></div></li>
+            <li><div><b>The run.</b> <span>One canvas level whose skyline is the Six Peaks mark, one pillar per peak. HUD: LOGGED, MET, time. The 13 shipped titles are landmarks that open cards with partner credit; the 4 underway titles are boarded signs; nine partners stand on the route with their quotes; team photos are pickups.</span></div></li>
+            <li><div><b>Bug report.</b> <span>Each log files a card: title, steps, expected, actual, severity, and the service that catches it, quoted from the live site. The level gets one polish pass per log.</span></div></li>
+            <li><div><b>Summit.</b> <span>Run report (bugs logged, partners met, time) over the rooftop team photo with the range behind. “Ready for a real build?” with the Book a trial form and copyable email and phone.</span></div></li>
+            <li><div><b>Manual.</b> <span>The readable layer, always rendered under the game: what we offer, six pillars, eight services, 15 partners, 17 titles with partner credit, team, careers in George, ISO 27001 adherence, contact.</span></div></li>
+          </ol>
+        </div>
+        <div class="tree frozen">
+          <div class="tree-head"><h4>B · Press Start</h4><span class="badge">Approved · frozen</span></div>
+          <p class="axis">Axis: a catalogue you browse. Titles lead, each one opens a dossier.</p>
+          <ol>
+            <li><div><b>Showcase hero.</b> <span>Rotating key art under the tester's view overlay.</span></div></li>
+            <li><div><b>Tested on.</b></div></li>
+            <li><div><b>Library (17).</b> <span>Poster grid, each tile opens a QA dossier route.</span></div></li>
+            <li><div><b>Loadout (8).</b> <span>Services as equipment slots.</span></div></li>
+            <li><div><b>Co-op mode.</b></div></li>
+            <li><div><b>Reviews (9).</b></div></li>
+            <li><div><b>Credits.</b></div></li>
+            <li><div><b>Crew.</b></div></li>
+            <li><div><b>Press start.</b> <span>Contact.</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <ul class="diffs">
+        <li>A has no key-art hero, no carousel, no library grid and no dossier pages. Titles are landmarks you reach on the route.</li>
+        <li>Services: B shows them as equipment you pick; A shows each one as the bug it catches.</li>
+        <li>Partners: B collects reviews in a hub; A puts each quote in the mouth of a partner you meet.</li>
+        <li>Ending: B closes on its contact section; A closes on a summit that only opens after your run report.</li>
+        <li>Reading: B's page is its own reading path; A keeps a separate manual that is complete without playing.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h3>Signature mechanic: log the bug</h3>
+      <div class="mech">
+        <div class="block">
+          <ol class="steps">
+            <li><div><b>Spot.</b> Eight faults are planted in the Six Peaks level, one for each service on the live site.</div></li>
+            <li><div><b>Log.</b> Press Space or tap the fault. A bug report files itself: title, steps, expected, actual, severity.</div></li>
+            <li><div><b>Prove.</b> The report names the Six Peaks service that catches this kind of bug and quotes it from the live site.</div></li>
+            <li><div><b>Ship.</b> Each log applies one polish pass to the level: light, colour, depth. The eighth log turns the build gold and opens the summit.</div></li>
+          </ol>
+          <div class="hud" aria-label="HUD example from a run in progress">
+            <span>LOGGED <b>3/8</b></span><span>MET <b>4/9</b></span><span>TIME <b>04:12</b></span>
+          </div>
+          <p class="note">HUD example from a run in progress. The only numbers the game shows are the visitor's own.</p>
+        </div>
+        <article class="ticket" aria-label="Example bug report card">
+          <div class="ticket-top"><span>BUG-03 · Six Peaks test level</span><span class="sev">Minor</span></div>
+          <div class="ticket-body">
+            <h4>Trail sign text runs off the board in the German build</h4>
+            <dl>
+              <dt>Steps</dt><dd><ol><li>Reach the second peak.</li><li>Switch the language to Deutsch.</li><li>Read the trail sign.</li></ol></dd>
+              <dt>Expected</dt><dd>The text fits inside the sign.</dd>
+              <dt>Actual</dt><dd>The last word runs past the right edge.</dd>
+            </dl>
+            <div class="proves">
+              <p class="label">Proves · Functional Localisation QA</p>
+              <q>Testing the functional implementation of localised content, ensuring text displays correctly, fits within UI constraints, renders properly, and follows regional formatting standards without technical defects.</q>
+            </div>
+            <p class="note">Example card. The fault is planted in our own level, never in a partner's game. The quote is the live site's service description.</p>
+          </div>
+        </article>
+      </div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Bug bestiary table">
+        <table>
+          <thead><tr><th scope="col">Service, as named on the live site</th><th scope="col">Planted fault in the Six Peaks level</th></tr></thead>
+          <tbody>
+            <tr><td>Functional QA</td><td>A ledge the player falls straight through.</td></tr>
+            <tr><td>Compliance QA</td><td>A prompt that shows another platform's button.</td></tr>
+            <tr><td>Functional Localisation QA</td><td>A sign whose German text runs off the board.</td></tr>
+            <tr><td>Bug Reporting &amp; Environment Management</td><td>Two signs that disagree on which build they belong to.</td></tr>
+            <tr><td>Test Case Management</td><td>A checklist board with one case left unchecked.</td></tr>
+            <tr><td>Usability Testing</td><td>A hint that appears off screen.</td></tr>
+            <tr><td>Performance Testing</td><td>A stretch of trail where the frame counter drops.</td></tr>
+            <tr><td>Release Candidate Oversight</td><td>An earlier fault that comes back near the summit: the regression check.</td></tr>
+          </tbody>
+          <caption>The bug bestiary. Every fault lives in our own level and is labelled as a demo.</caption>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Real assets, and where they go</h3>
+      <div class="twocol">
+        <ul class="list">
+          <li><b>Six Peaks mark</b><span>The level's skyline and its six checkpoints.</span></li>
+          <li><b>13 shipped titles: key art, posters, logos</b><span>Landmarks that open in-game cards with partner credit and the Key Testing Focus lines verbatim.</span></li>
+          <li><b>4 underway titles</b><span>Boarded signs with no art: “Project underway, further details on release”.</span></li>
+          <li><b>9 testimonials and 15 partner logos</b><span>Partners you meet on the route, quotes verbatim with name, role and studio.</span></li>
+        </ul>
+        <ul class="list">
+          <li><b>8 services</b><span>The bug bestiary and the report cards.</span></li>
+          <li><b>6 pillars</b><span>Power-ups on the rules screen and signs on the peaks.</span></li>
+          <li><b>Team photos and 4 headshots</b><span>Pickups on the route and the summit backdrop.</span></li>
+          <li><b>9 platform icons</b><span>The Tested on row on the title screen.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Needs a ruling before build</h3>
+      <ul class="list ruling">
+        <li><b>Planted bugs vs “never invent bugs”.</b><span>The brief bans invented bugs. These are demo faults in our own level, labelled as a demo, never attached to a partner title and never presented as findings. The line manager decides.</span></li>
+        <li><b>Who draws the level.</b><span>We draw it, in line or pixel form, from the logo silhouette. No fake game art; partner art appears only inside title cards, credited.</span></li>
+        <li><b>The game stays optional.</b><span>The manual is complete at rest, keys and touch both work, reduced motion gets a static level map with buttons, sound is off until asked, and there is no turn-your-phone gate.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Awards read on each site's Awwwards page and on the Games &amp; Entertainment category, 10 October 2026. Live captures through Firecrawl at a 1920 by 1080 viewport. Frames are third-party screenshots for internal review and are not committed. Teardowns with quoted DOM: research/references/&lt;slug&gt;/teardown.md.</p>
+    <p>Not used: Moonsworth by DD.NYC is an Awwwards Nominee only (5 Sep 2026), with no award. Spotify Wrapped Party by Active Theory (Site of the Day and Developer Award, 24 Jul 2026) was verified and cut to keep the board on playable studio sites.</p>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Frame viewer">
+  <div class="lb-inner">
+    <div class="lb-bar">
+      <span class="label" id="lb-count">Frame</span>
+      <div class="lb-ctrls">
+        <button type="button" id="lb-prev">Previous</button>
+        <button type="button" id="lb-next">Next</button>
+        <button type="button" id="lb-close">Close</button>
+      </div>
+    </div>
+    <figure>
+      <img class="lb-img" id="lb-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="">
+      <figcaption id="lb-cap"></figcaption>
+    </figure>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var dlg = document.getElementById('lb');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var img = document.getElementById('lb-img');
+  var cap = document.getElementById('lb-cap');
+  var count = document.getElementById('lb-count');
+  var group = [], idx = 0, opener = null;
+  function title(card) {
+    var h = card && card.querySelector('h3');
+    return h ? h.textContent : 'Frame';
+  }
+  function show() {
+    var a = group[idx];
+    if (!a) return;
+    var inner = a.querySelector('img');
+    img.src = a.getAttribute('href');
+    img.alt = inner ? inner.alt : '';
+    cap.textContent = a.getAttribute('data-caption') || (inner ? inner.alt : '');
+    count.textContent = title(a.closest('[data-gallery]')) + ' · ' + (idx + 1) + ' of ' + group.length;
+  }
+  function step(d) {
+    if (!group.length) return;
+    idx = (idx + d + group.length) % group.length;
+    show();
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a.shot') : null;
+    if (!a) return;
+    var card = a.closest('[data-gallery]');
+    if (!card) return;
+    e.preventDefault();
+    group = Array.prototype.slice.call(card.querySelectorAll('a.shot'));
+    idx = Math.max(0, group.indexOf(a));
+    opener = a;
+    show();
+    try { dlg.showModal(); } catch (err) { window.location.href = a.href; }
+  });
+  document.getElementById('lb-prev').addEventListener('click', function () { step(-1); });
+  document.getElementById('lb-next').addEventListener('click', function () { step(1); });
+  document.getElementById('lb-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+  });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', function () { if (opener) opener.focus(); });
+})();
+</script>
+
+</body></html>
