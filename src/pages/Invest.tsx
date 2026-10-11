@@ -10,7 +10,7 @@ import { LINKS, products, STAGES } from "@/content/products";
 import { gsap, useMotion } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-const INVEST_MAIL = "mailto:aldo@uxconstellation.com?subject=Investing%20in%20Constellation%20Labs";
+const INVEST_MAIL = LINKS.invest;
 
 const WHY = [
   { t: "The problems are real.", b: "Every product starts from friction we hit on paid client work, not from a whiteboard session." },
@@ -149,7 +149,7 @@ export default function Invest() {
               Aldo Calitz runs Constellation and Labs from George, South Africa. One email gets you a call and a live walk through every product.
             </p>
             <div className="flex flex-wrap gap-3" data-reveal>
-              <Cta href={INVEST_MAIL}>Email Aldo</Cta>
+              <Cta href={INVEST_MAIL}>Talk to Aldo</Cta>
               <Cta href={LINKS.studio} variant="line-light">Meet the studio</Cta>
             </div>
           </div>

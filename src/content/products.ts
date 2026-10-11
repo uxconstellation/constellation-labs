@@ -37,14 +37,17 @@ export interface Product {
 
 export const LINKS = {
   studio: "https://uxconstellation.com",
-  studioContact: "https://uxconstellation.com/contact",
+  /** Every enquiry stays on Labs: the contact page records intent and the visitor's path. */
+  studioContact: "/contact?intent=build",
+  invest: "/contact?intent=invest",
+  contact: "/contact",
   email: "mailto:aldo@uxconstellation.com",
   /** Point acre.constellationlabs.cc at the Acre app, then switch this over. */
   acre: "https://acreprop.lovable.app",
   /** Swap the Pinpoints CTA to the live app URL once it is public. */
-  pinpointsInvite: "mailto:aldo@uxconstellation.com?subject=Pinpoints%20invite",
-  prismDemo: "https://uxconstellation.com/contact",
-  nodPilot: "mailto:aldo@uxconstellation.com?subject=Nod%20pilot",
+  pinpointsInvite: "/contact?intent=pinpoints",
+  prismDemo: "/contact?intent=prism",
+  nodPilot: "/contact?intent=nod",
 } as const;
 
 export const products: Product[] = [

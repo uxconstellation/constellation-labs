@@ -9,7 +9,7 @@ describe("products config", () => {
     expect(text).not.toMatch(/—/);
   });
   it("gives every product a real call to action", () => {
-    for (const p of products) expect(p.cta.href).toMatch(/^(https:\/\/|mailto:)/);
+    for (const p of products) expect(p.cta.href).toMatch(/^(https:\/\/|\/contact\?intent=)/);
   });
   it("cycles next experiment back to the start", () => {
     expect(nextProduct("nod").slug).toBe("acre");

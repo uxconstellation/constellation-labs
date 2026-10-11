@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const THREADS = [
@@ -13,14 +14,14 @@ const THREADS = [
  * sews you a patch in the same hand as the four on the bench.
  * Uses the shared embroidery filters from <PatchDefs />.
  */
-export default function PatchMaker({ emailTo }: { emailTo: string }) {
+export default function PatchMaker() {
   const [name, setName] = useState("");
   const [thread, setThread] = useState(0);
   const id = useId().replace(/:/g, "");
   const t = THREADS[thread];
   const label = (name.trim() || "Your product").slice(0, 22);
   const fs = label.length > 16 ? 20 : label.length > 11 ? 25 : label.length > 7 ? 32 : 40;
-  const mail = `${emailTo}?subject=${encodeURIComponent(`A build for ${name.trim() || "my product"}`)}`;
+  const contact = `/contact?intent=build${name.trim() ? `&product=${encodeURIComponent(name.trim())}` : ""}`;
 
   return (
     <div className="grid items-center gap-10 md:grid-cols-[1fr_1fr]">
@@ -76,10 +77,10 @@ export default function PatchMaker({ emailTo }: { emailTo: string }) {
             ))}
           </div>
         </fieldset>
-        <a href={mail} className="btn btn-orange mt-10">
+        <Link to={contact} className="btn btn-orange mt-10">
           Send it to the studio <span className="arrow" aria-hidden="true">→</span>
-        </a>
-        <p className="mt-4 text-[13.5px] text-ink-soft">Opens an email to Aldo with your product name in the subject.</p>
+        </Link>
+        <p className="mt-4 text-[13.5px] text-ink-soft">Takes your product name to the contact form.</p>
       </div>
     </div>
   );

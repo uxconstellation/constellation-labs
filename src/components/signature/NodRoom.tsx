@@ -57,7 +57,7 @@ export default function NodRoom() {
               className={cn("mt-4 flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition-colors duration-500", open ? "bg-[#9A5526] text-paper" : "bg-mist text-ink")}
             >
               <span><span className="block text-[15px] font-bold">{open ? "Open to chat" : "Working quietly"}</span><span className="block text-[12px] opacity-90">Tap to change</span></span>
-              <span className={cn("relative inline-block h-6 w-11 shrink-0 rounded-full transition-colors", open ? "bg-paper/40" : "bg-ink/20")}><span className={cn("absolute top-1 h-4 w-4 rounded-full bg-paper transition-transform duration-500 ease-lab", open ? "translate-x-6" : "translate-x-1")} /></span>
+              <span className={cn("relative inline-block h-6 w-11 shrink-0 rounded-full transition-colors", open ? "bg-paper/40" : "bg-ink/20")}><span data-knob className={cn("absolute left-0 top-1 h-4 w-4 rounded-full bg-paper transition-transform duration-500 ease-lab", open ? "translate-x-6" : "translate-x-1")} /></span>
             </button>
             <p className="mt-6 text-[11px] font-bold uppercase tracking-[.18em] text-ink-soft">Here now</p>
             <ul className="mt-2 grid gap-2">

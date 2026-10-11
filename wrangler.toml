@@ -1,7 +1,28 @@
+# Constellation Labs. Static build plus a small Worker (worker/index.ts) for the
+# contact form and per-host headers.
 name = "constellation-labs-review"
+main = "./worker/index.ts"
 compatibility_date = "2026-09-01"
 account_id = "14433850716ebaf371127d380c2d0673" # Aldo@uxconstellation.com's Account
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 not_found_handling = "single-page-application"
+# Documents and the API go through the Worker (noindex on review hosts only);
+# hashed assets and the favicon take the direct path.
+run_worker_first = ["/*", "!/assets/*", "!/favicon.svg", "!/licenses/*"]
+
+# Leads send through Cloudflare Email Sending from send.constellationlab.cc.
+[[send_email]]
+name = "EMAIL"
+
+[vars]
+CONTACT_TO = "aldo@uxconstellation.com"
+
+# Production home (Aldo, 2026-10-11: "launch it"). constellationlabs.cc is not
+# registered; this subdomain sits on the studio zone already on this account.
+# The workers.dev URL stays live as the review fallback (noindex there only).
+[[routes]]
+pattern = "labs.constellationlab.cc"
+custom_domain = true

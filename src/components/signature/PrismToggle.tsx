@@ -44,7 +44,7 @@ export default function PrismToggle() {
           className="inline-flex items-center gap-3 rounded-full bg-ink py-2 pl-2 pr-5 text-[15px] font-bold text-paper"
         >
           <span className={cn("relative inline-block h-7 w-12 shrink-0 rounded-full transition-colors duration-500", on ? "bg-[#7C8CF0]" : "bg-paper/25")}>
-            <span className={cn("absolute top-1 h-5 w-5 rounded-full bg-paper transition-transform duration-500 ease-lab", on ? "translate-x-6" : "translate-x-1")} />
+            <span data-knob className={cn("absolute left-0 top-1 h-5 w-5 rounded-full bg-paper shadow-sm transition-transform duration-500 ease-lab", on ? "translate-x-6" : "translate-x-1")} />
           </span>
           Prism {on ? "on" : "off"}
         </button>

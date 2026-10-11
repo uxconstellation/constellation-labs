@@ -10,10 +10,13 @@ import ProductPage from "@/pages/ProductPage";
 import Invest from "@/pages/Invest";
 import Build from "@/pages/Build";
 import NotFound from "@/pages/NotFound";
+import Contact from "@/pages/Contact";
+import { recordPage } from "@/lib/journey";
 import ScenesPreview from "@/pages/ScenesPreview";
 
 function RoutedPages() {
   const location = useLocation();
+  useEffect(() => recordPage(location.pathname), [location.pathname]);
   useEffect(() => {
     if (location.hash) {
       // Wait for the new page to mount, then land on the anchor.
@@ -29,6 +32,7 @@ function RoutedPages() {
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/invest" element={<PageTransition><Invest /></PageTransition>} />
         <Route path="/build" element={<PageTransition><Build /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/scenes" element={<PageTransition><ScenesPreview /></PageTransition>} />
         <Route path="/:slug" element={<PageTransition><ProductPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />

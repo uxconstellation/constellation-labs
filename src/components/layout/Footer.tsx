@@ -23,6 +23,7 @@ export default function Footer() {
             <li><Link className="navlink" to="/build">Have us build yours</Link></li>
           </FooterCol>
           <FooterCol title="Talk to us">
+            <li><Link className="navlink" to={LINKS.contact}>Contact form</Link></li>
             <li><a className="navlink" href={LINKS.email}>aldo@uxconstellation.com</a></li>
             <li><a className="navlink" href={LINKS.studio} target="_blank" rel="noopener noreferrer">uxconstellation.com ↗</a></li>
           </FooterCol>
