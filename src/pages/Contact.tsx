@@ -73,7 +73,7 @@ export default function Contact() {
             )}
           </div>
 
-          <div className="rounded-[28px] border border-ink/10 bg-[#FCFAF6]/92 p-6 shadow-float backdrop-blur md:p-10">
+          <div className="rounded-[28px] border border-ink/10 bg-[#FCFAF6] p-6 shadow-float backdrop-blur md:p-10">
             {state === "sent" ? (
               <div role="status" className="py-10">
                 <p className="eyebrow">Sent</p>
@@ -82,7 +82,7 @@ export default function Contact() {
                 <div className="mt-8 flex flex-wrap gap-3"><Cta href="/#bench" variant="ink">Back to the ventures</Cta></div>
               </div>
             ) : (
-              <form onSubmit={submit} noValidate aria-describedby={error ? `${id}-err` : undefined}>
+              <form onSubmit={submit} noValidate>
                 <fieldset>
                   <legend className="eyebrow">What's this about?</legend>
                   <div className="mt-4 flex flex-wrap gap-2">
@@ -97,13 +97,13 @@ export default function Contact() {
 
                 <div className="mt-8 grid gap-5 md:grid-cols-2">
                   <Field id={`${id}-name`} name="name" label="Your name" autoComplete="name" />
-                  <Field id={`${id}-email`} name="email" label="Email" type="email" autoComplete="email" required />
+                  <Field id={`${id}-email`} name="email" label="Email" type="email" autoComplete="email" required aria-invalid={!!error || undefined} aria-describedby={error ? `${id}-err` : undefined} />
                   <Field id={`${id}-company`} name="company" label={intent === "nod" ? "Venue" : "Company"} autoComplete="organization" className="md:col-span-2" />
                   {product && <input type="hidden" name="product" value={product.slice(0, 60)} />}
                   <div className="md:col-span-2">
                     <label htmlFor={`${id}-msg`} className="text-[13px] font-bold">Message</label>
                     <textarea id={`${id}-msg`} name="message" rows={5} defaultValue={product ? `We'd like to build ${product}.` : ""}
-                      className="mt-2 block w-full resize-y rounded-2xl border border-ink/15 bg-paper px-4 py-3 text-[16px] outline-none transition-colors focus:border-ink" />
+                      className="mt-2 block w-full resize-y rounded-2xl border border-ink/25 bg-paper px-4 py-3 text-[16px] outline-none transition-[border-color,box-shadow] focus:border-ink focus:shadow-[0_0_0_3px_rgba(194,65,12,.35)]" />
                   </div>
                   {/* Honeypot: hidden from people and assistive tech, filled by bots */}
                   <div aria-hidden="true" className="absolute left-[-9999px] h-px w-px overflow-hidden">
@@ -133,7 +133,7 @@ function Field({ id, label, className, ...rest }: { id: string; label: string; c
   return (
     <div className={className}>
       <label htmlFor={id} className="text-[13px] font-bold">{label}{rest.required && <span className="text-orange-ink"> *</span>}</label>
-      <input id={id} {...rest} className="mt-2 block h-12 w-full rounded-2xl border border-ink/15 bg-paper px-4 text-[16px] outline-none transition-colors focus:border-ink" />
+      <input id={id} {...rest} className="mt-2 block h-12 w-full rounded-2xl border border-ink/25 bg-paper px-4 text-[16px] outline-none transition-[border-color,box-shadow] focus:border-ink focus:shadow-[0_0_0_3px_rgba(194,65,12,.35)] aria-[invalid=true]:border-orange-ink" />
     </div>
   );
 }

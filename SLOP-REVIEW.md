@@ -1,3 +1,22 @@
+## 2026-10-11 FAIL
+artefact: C:\Dev\products\constellation-labs (commit dfbdeb1, dev server http://localhost:5191)  sha256: src/pages/Contact.tsx e8c0e30b934c278aa92fc53c05a08bd5ffd8075901ef9e08e87f6cc5addfb61c; worker/index.ts 38c3d9a1c60bb8fc9bd6c1359769f9c78588418ad390c4e1b565a5fc72c38268
+medium: web (/contact new; Prism and Nod switches)  client-facing: yes  stage: final: BRIEF.md (production launch)
+builder: claude  reviewer: claude-opus-5-5 (same-model, fresh context)
+render: /contact?intent=prism|invest|nod at 1440 and 390: idle, empty-submit error and send-failure states (scratchpad r9/contact-*.png, c390top.png, c390-bottom.png); keyboard walk with focus styles (p/contact.mjs); pixel contrast with the text hidden and the real ground screenshotted (p/link.mjs, p/liqaa2.mjs); computed style of the form card (p/card.mjs); Prism switch at 2x on and off (r9/sw.png, p/sw.mjs) plus scripts/probe-switch.mjs
+craft-ref: C:\Dev\_refs\design-library\reference-sites\uxconstellation-current
+ring 2: not re-run
+relative: round 9 PASS (deploy build) -> this round adds /contact and the switch fix. Switch fixed: yes. The Prism knob sits 4px from the left when off and 4px from the right when on, the track turns #7C8CF0, and the focus ring shows (r9/sw.png); the Nod switch passes the builder probe too.
+form a11y: all 4 visible fields have programmatic labels (Your name, Email *, Company, Message); the honeypot is aria-hidden with tabIndex -1. Intent chips are buttons with aria-pressed, and ?intent preselects (h1 "Book a Prism demo.", chip pressed). Tab order: 7 chips, 4 fields, Send, with no traps. The empty-submit error "Add an email address we can reply to." is role=alert and names the field. The failure state is honest and offers a mailto fallback. 0px horizontal overflow at 390 and 1440. The /api POST was not exercised here (no Worker on 5191); builder reports probe-contact 8/8 under wrangler dev.
+similar prompt: "contact form on a gradient background with intent chips" -> lands here: partly (the intent preselection and the honest failure copy are specific)
+scores: originality 6/10, design quality 7/10, reference fidelity 7/10, craft 6/10
+hard blockers:
+- H4 | /contact send-failure state: the recovery link "Email Aldo directly" is #C2410C on the pink liquid at 2.4-2.9:1 (median 2.51 at 1440, 2.84 at 390; it needs 4.5:1 at 14.5px). This is the only way forward when sending fails. Root cause: the form card class bg-[#FCFAF6]/92 (Contact.tsx:76) is not generated, because /92 is not a Tailwind opacity step, so the computed background is rgba(0,0,0,0) and the whole form sits on bare liquid (r9/contact-fail-1440.png: the card reads pink and purple). | Use bg-[#FCFAF6]/90 or bg-[rgba(252,250,246,.92)]. With the card at about 92% paper, the link measures about 5:1. Then re-measure the link, the legend and the labels on the card
+taste flags:
+- form a11y polish (not blocking): inputs drop the outline (outline-none, computed outline transparent) and show focus only as a 1px border change ink/15 -> ink, unlike the 2px orange ring on every other control; field borders at ink/15 are about 1.3:1 against paper (WCAG 1.4.11 risk once the card is opaque); the email error is not tied to the field (no aria-invalid, no aria-describedby) and focus stays on Send | Add focus-visible:ring-2 ring-orange-ink to the fields, use ink/35 borders, and set aria-invalid plus aria-describedby on the email input with focus moved to it on error
+- legend "What's this about?" and eyebrow "Get in touch" are ink-soft on liquid at 3.0-3.9:1 (12px) | Darken to ink/80
+- Contact page is one liquid sheet with a form, with none of the specimen-catalogue craft of the rest of the site; the patch only shows at lg | Show the intent's patch on mobile too, small, sewn onto the card corner as on the product heroes
+- prior flags stand (liquid on most sections, WEB-08 gradient text twice, Plato Coffee in Nod lab notes, Acre dashboard figures)
+
 ## 2026-10-09 PASS
 artefact: C:\Dev\products\constellation-labs\dist (commit 5179447, deploy build)  sha256: dist/index.html 5f12815e750de65ad39c3dd1f3067053564f0050043f6fea8bdb136f7434e628
 medium: web (8 routes)  client-facing: yes  stage: final: BRIEF.md
