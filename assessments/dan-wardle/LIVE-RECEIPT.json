@@ -1,0 +1,88 @@
+{
+  "url": "https://labs.constellationlab.cc/assessments/dan-wardle/",
+  "version": "777a5708-ffc7-4b4e-b825-f2da53afec35",
+  "files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "19cd44f0236ae98b56b5e6191d38b7e2019ed139380480e2dd14cde23f0ece40"
+    },
+    {
+      "path": "showcase.js",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "fd94b6d230325aa813891bde290598497a34fcf76237c5153e2c1f24b4360cfd"
+    },
+    {
+      "path": "style.css",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "6f83549996116b8115c453641170829206449ddde4cb3a5b55977c6192eda196"
+    },
+    {
+      "path": "assets/fsc-apply-live.png",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "99bc17de5b88f94aab5c5045178e0ea4a15af3c35683e8bac21efe8cdeb42a66"
+    },
+    {
+      "path": "assets/fsc-live.png",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "bac58bc87d7f9c44f354da44697cc18b8273b017d2f7cdf8b6901a457239a8c2"
+    },
+    {
+      "path": "assets/fsc-pricing-live.png",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "215ccf2f45f2454469e4bbdf87a65028fcef2b974b7049be9bdca90b7a995f3a"
+    },
+    {
+      "path": "assets/rampart-live.png",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "e743c69301cc08b62fbfcc1bfd89d0dd224f326ec15218c2b34eb7c60533bf65"
+    },
+    {
+      "path": "assets/rampart-services-live.png",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "4a4cc32c2aec08cd02e8ae0e205e72f66042f917a37501d2e5ff1eabae40ba0f"
+    },
+    {
+      "path": "assets/tokens.css",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "1df07569db9d712a216411d3ea9767e7c0bbaaf219e9da9954333bf9cd24cf1e"
+    },
+    {
+      "path": "assets/wordmark.svg",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "13b7057ed3933a597139843c6ba22af1ce1bd59172da024bd3097ec19a3583ea"
+    },
+    {
+      "path": "assets/fonts/Noken-Bold.otf",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "80c14eab5d20241057068f6f69727626af6bf2c48877c9a9e149d787d98e9cd8"
+    },
+    {
+      "path": "assets/fonts/Satoshi-Bold.otf",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "50e4f9b7c1864c50761d729d6001bfac708c80457fa6fc41559a8ab1bd2573ff"
+    },
+    {
+      "path": "assets/fonts/Satoshi-Medium.otf",
+      "status": 200,
+      "matches_origin_after_cf_beacon": true,
+      "sha256": "93330866d109f6b2e298748958ec6fa4010cacef586783f281a0b268cab7fc6e"
+    }
+  ],
+  "denominator": 13,
+  "passed": 13,
+  "public_noindex_meta": true,
+  "site_baseline": "11 preexisting files preserved; live index adds Cloudflare beacon."
+}

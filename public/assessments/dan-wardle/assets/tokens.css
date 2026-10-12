@@ -1,0 +1,154 @@
+/*
+ * Constellation Design Tokens — tokens.css
+ * Generated from tokens/ — do not edit directly.
+ * Source: https://github.com/uxconstellation/constellation-design-tokens
+ *
+ * Two layers:
+ *   1. :root raw vars  — use in any CSS context (var(--color-orange))
+ *   2. :root Tailwind  — HSL channel values consumed by Tailwind (hsl(var(--primary)))
+ */
+
+
+/* ─────────────────────────────────────────────────────────────────
+   FONT FACES
+   Noken must be self-hosted. Obtain all weight files from your
+   Noken licence and place them in /public/fonts/noken/
+   Satoshi is loaded via Fontshare CDN — add the <link> to <head>.
+───────────────────────────────────────────────────────────────── */
+
+/*
+  Satoshi — add to <head>:
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css2?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet" />
+*/
+
+
+/* ─────────────────────────────────────────────────────────────────
+   RAW DESIGN TOKENS
+   Use these in any CSS context outside Tailwind.
+───────────────────────────────────────────────────────────────── */
+:root {
+
+  /* Brand Colours */
+  --color-orange:       #FE6E36;
+  --color-teal:         #173F3F;
+  --color-near-black:   #1B1C21;
+  --color-dark-forest:  #160C15;
+  --color-cream:        #F3EEE7;
+  --color-warm-grey:    #B7AA93;
+  --color-charcoal:     #2D2F38;
+
+  /* Secondary Palette — verify against CI source before production use */
+  --color-dusty-red:    #7A3A3A;
+  --color-muted-mauve:  #6B5A6B;
+  --color-warm-brown:   #5C3D2A;
+
+  /* Status */
+  --color-success:      #22C55E;
+  --color-warning:      #EAB308;
+  --color-error:        #DC2626;
+  --color-info:         #3B82F6;
+
+  /* Typography */
+  --font-display:       'Noken', 'Arial Black', sans-serif;
+  --font-body:          'Satoshi', sans-serif;
+  --font-mono:          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --font-size-xs:       0.75rem;
+  --font-size-sm:       0.875rem;
+  --font-size-base:     1rem;
+  --font-size-lg:       1.125rem;
+  --font-size-xl:       1.25rem;
+  --font-size-2xl:      1.5rem;
+  --font-size-3xl:      1.875rem;
+  --font-size-4xl:      2.25rem;
+  --font-size-5xl:      3rem;
+  --font-size-display:  7.5rem;
+
+  --leading-none:       1;
+  --leading-tight:      1.05;
+  --leading-snug:       1.25;
+  --leading-normal:     1.5;
+  --leading-relaxed:    1.625;
+
+  --tracking-tighter:   -0.025em;
+  --tracking-normal:    0em;
+  --tracking-wide:      0.05em;
+  --tracking-wider:     0.1em;
+  --tracking-widest:    0.2em;
+  --tracking-ultra:     0.3em;
+
+  /* Spacing — 8pt grid */
+  --space-1:   0.5rem;   /* 8px  */
+  --space-2:   1rem;     /* 16px */
+  --space-3:   1.5rem;   /* 24px */
+  --space-4:   2rem;     /* 32px */
+  --space-5:   2.5rem;   /* 40px */
+  --space-6:   3rem;     /* 48px */
+  --space-8:   4rem;     /* 64px */
+  --space-10:  5rem;     /* 80px */
+  --space-12:  6rem;     /* 96px */
+  --space-16:  8rem;     /* 128px */
+  --space-20:  10rem;    /* 160px */
+
+  /* Border Radius */
+  --radius-none:  0px;
+  --radius-sm:    0.375rem;
+  --radius-md:    0.5rem;
+  --radius-lg:    0.75rem;
+  --radius-xl:    1rem;
+  --radius-2xl:   1.5rem;
+  --radius-full:  9999px;
+
+  /* Motion */
+  --duration-instant:  100ms;
+  --duration-fast:     150ms;
+  --duration-normal:   250ms;
+  --duration-slow:     400ms;
+  --duration-brand:    600ms;
+  --duration-crawl:    1200ms;
+
+  --ease-standard:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit:      cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   TAILWIND SEMANTIC TOKENS
+   HSL channel values consumed by hsl(var(--token)).
+   Background corrected: dark-forest #160C15, purple cast removed.
+   Orange corrected: CI exact #FE6E36.
+───────────────────────────────────────────────────────────────── */
+:root {
+  --background:           222 13% 7%;    /* #160C15 — CI Dark Forest, near-neutral */
+  --foreground:           38 33% 93%;    /* #F3EEE7 — cream */
+
+  --card:                 228 10% 12%;   /* #1B1C21 — near-black */
+  --card-foreground:      38 33% 93%;
+
+  --popover:              222 13% 7%;
+  --popover-foreground:   38 33% 93%;
+
+  --primary:              17 99% 60%;    /* #FE6E36 — CI orange */
+  --primary-foreground:   222 13% 7%;
+
+  --secondary:            180 42% 17%;   /* #173F3F — CI teal */
+  --secondary-foreground: 38 33% 93%;
+
+  --muted:                228 10% 12%;
+  --muted-foreground:     38 20% 65%;    /* #B7AA93 — warm grey */
+
+  --accent:               38 33% 93%;
+  --accent-foreground:    222 13% 7%;
+
+  --destructive:          0 72% 51%;     /* #DC2626 */
+  --destructive-foreground: 38 33% 93%;
+
+  --border:               228 10% 20%;   /* #2D2F38 — charcoal */
+  --input:                228 10% 20%;
+  --ring:                 17 99% 60%;    /* orange focus ring */
+
+  --radius:               0.75rem;
+}

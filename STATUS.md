@@ -25,3 +25,7 @@
 ## Log
 - 2026-10-09: rebuilt from the co-work baseline (c5d86ec): cards, liquid, distinct product pages; review link published; slop review PASS round 8.
 - 2026-10-11: switch fix, Labs contact page and Worker, production route; files: src/pages/Contact.tsx, src/lib/journey.ts, worker/index.ts, wrangler.toml, src/App.tsx, src/content/products.ts (+test), src/pages/Invest.tsx, src/pages/Build.tsx, src/components/build/PatchMaker.tsx, src/components/layout/Footer.tsx, src/components/signature/PrismToggle.tsx, NodRoom.tsx, index.html, scripts/probe-*.mjs.
+
+## 2026-10-12 assessment publication
+- User authorised Dan Wardle assessment hosting. Source public/assessments/dan-wardle/, live https://labs.constellationlab.cc/assessments/dan-wardle/. Version 777a5708-ffc7-4b4e-b825-f2da53afec35. Existing app/assets preserved, only13assessment assets added.
+- Assessment state assessments/dan-wardle/STATUS.md. Local independentQA/slopPASS, public13/13bytecheckPASS. Browserlivewalk unavailable, not claimed. Previous Labs root QA is historical, no new contact lead submitted.
